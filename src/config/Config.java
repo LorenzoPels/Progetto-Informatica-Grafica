@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package config;
 
 /**
  *
  * @author lollo
  */
-public interface IModel {
+public class Config {
     
 }
