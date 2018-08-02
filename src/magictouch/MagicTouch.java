@@ -15,7 +15,7 @@ public class MagicTouch {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       System.out.println("dio mio"); // TODO code application logic here
     }
     
 }
