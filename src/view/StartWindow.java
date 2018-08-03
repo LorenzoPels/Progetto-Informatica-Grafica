@@ -1,6 +1,7 @@
 
 package view;
 
+import controller.ControllerForView;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -11,12 +12,6 @@ public class StartWindow extends javax.swing.JFrame {
     
     public StartWindow() {
         initComponents();
-    }
-   
-    //metodo per la chiusura della finestra
-    public void close(){
-        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);  
     }
 
     /**
@@ -96,11 +91,11 @@ public class StartWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       close(); // TODO add your handling code here:
+       ControllerForView.getInstance().closeStartWindow(); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       handleStartGameEvent(); // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -148,4 +143,12 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+private void handleStartGameEvent() {
+		//System.out.println("Event start game");
+                
+		ControllerForView.getInstance().openMainGUI();
+	}
+
+
 }
+

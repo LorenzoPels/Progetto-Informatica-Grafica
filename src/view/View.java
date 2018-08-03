@@ -12,6 +12,15 @@ public class View implements IView {
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
 	protected StartWindow startWindow = null;
+        protected MainGUI mainGUI = null;
+        
+        private View() {
+		//TO-DO
+	}
+
+	//---------------------------------------------------------------
+	// INSTANCE METHODS
+	//---------------------------------------------------------------
         
         public void openStartWindow() {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -32,6 +41,15 @@ public class View implements IView {
 		});
 	}
         
+        public void openMainGUI() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (mainGUI == null)
+					mainGUI = new MainGUI();
+				mainGUI.setVisible(true);
+			}
+		});
+	}
         //---------------------------------------------------------------
 	// STATIC METHODS
 	//---------------------------------------------------------------

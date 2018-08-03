@@ -11,11 +11,11 @@ public interface IControllerForView {
 
 	public void loadPreviouslySavedGame(String file);
 
-	public void closeNewGameWindow();
+	public void closeNewGameWindow();*/
 
 	public void openMainGUI();
 
-	public int getNumColumnsOfBoard();
+	/*public int getNumColumnsOfBoard();
 
 	public int getNumRowsOfBoard();
 

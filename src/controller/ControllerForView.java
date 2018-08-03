@@ -26,6 +26,11 @@ public class ControllerForView implements IControllerForView {
 		View.getInstance().closeStartWindow();
 	}
         
+        public void openMainGUI() {
+		closeStartWindow();
+		View.getInstance().openMainGUI();
+	}
+        
 
 
 
