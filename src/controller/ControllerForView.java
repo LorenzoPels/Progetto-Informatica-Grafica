@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import view.View;
 
-/**
- *
- * @author lollo
- */
+
 public class ControllerForView implements IControllerForView {
-    //---------------------------------------------------------------
+        //---------------------------------------------------------------
 	// STATIC FIELDS
 	//---------------------------------------------------------------
 	private final static int SCORE_FACTOR = 10;
@@ -37,7 +30,7 @@ public class ControllerForView implements IControllerForView {
 
 
 
-//---------------------------------------------------------------
+        //---------------------------------------------------------------
 	// STATIC METHODS
 	//---------------------------------------------------------------
 	public static IControllerForView getInstance() {
