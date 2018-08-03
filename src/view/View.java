@@ -10,7 +10,7 @@ package view;
  * @author lollo
  */
 public class View implements IView {
-    //---------------------------------------------------------------
+        //---------------------------------------------------------------
 	// STATIC FIELDS
 	//---------------------------------------------------------------
 	private static View instance = null;
@@ -37,5 +37,14 @@ public class View implements IView {
 					startWindow.setVisible(false);
 			}
 		});
+	}
+        
+        //---------------------------------------------------------------
+	// STATIC METHODS
+	//---------------------------------------------------------------
+	public static IView getInstance() {
+		if (instance == null)
+			instance = new View();
+		return instance;
 	}
 }

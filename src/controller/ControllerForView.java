@@ -5,6 +5,8 @@
  */
 package controller;
 
+import view.View;
+
 /**
  *
  * @author lollo

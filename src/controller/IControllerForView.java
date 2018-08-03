@@ -10,11 +10,11 @@ package controller;
  * @author lollo
  */
 public interface IControllerForView {
-    /*public void openStartWindow();
+    public void openStartWindow();
 
 	public void closeStartWindow();
 
-	public void openNewGameWindow();
+	/*public void openNewGameWindow();
 
 	public void loadPreviouslySavedGame(String file);
 

@@ -5,6 +5,8 @@
  */
 package controller;
 
+import config.Config;
+
 /**
  *
  * @author lollo
@@ -14,8 +16,10 @@ public class MagicTouch {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-       // TODO code application logic here
-    }
+       public static void main(String[] args) {
+		//Config.getInstance(); 
+		ControllerForView.getInstance().openStartWindow();
+	}// TODO code application logic here
+    
     
 }
