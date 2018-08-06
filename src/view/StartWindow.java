@@ -145,7 +145,7 @@ public class StartWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 private void handleStartGameEvent() {
 		//System.out.println("Event start game");
-                
+                ControllerForView.getInstance().closeStartWindow();
 		ControllerForView.getInstance().openMainGUI();
 	}
 

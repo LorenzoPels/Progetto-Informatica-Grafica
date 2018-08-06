@@ -50,6 +50,14 @@ public class View implements IView {
 			}
 		});
 	}
+        public void closeMainGUI() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (mainGUI != null)
+                                    mainGUI.setVisible(false);
+			}
+		});
+	}
         //---------------------------------------------------------------
 	// STATIC METHODS
 	//---------------------------------------------------------------

@@ -14,6 +14,7 @@ public interface IControllerForView {
 	public void closeNewGameWindow();*/
 
 	public void openMainGUI();
+        public void closeMainGUI();
 
 	/*public int getNumColumnsOfBoard();
 
