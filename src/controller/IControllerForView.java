@@ -42,11 +42,11 @@ public interface IControllerForView {
 
 	public String getNameOfFallingPiece();
 
-	public String getNameOfPreviewPiece();
+	public String getNameOfPreviewPiece();*/
 	
 	public void initGame();
 
-	public int iIndex();
+	/*public int iIndex();
 
 	public int jIndex();
 	

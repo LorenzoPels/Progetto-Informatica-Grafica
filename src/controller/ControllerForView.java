@@ -1,6 +1,7 @@
 
 package controller;
 
+import model.Model;
 import view.View;
 
 
@@ -34,6 +35,9 @@ public class ControllerForView implements IControllerForView {
 		View.getInstance().closeMainGUI();
 	}
         
+        public void initGame() {
+		Model.getInstance().initGame();
+	}
 
 
 

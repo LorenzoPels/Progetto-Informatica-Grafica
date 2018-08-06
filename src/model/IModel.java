@@ -14,11 +14,11 @@ public interface IModel {
 
 	public int iRelOfFallingPiece(int blockLabel);//riga occupata dal pezzo cadente
 
-	public String getNameOfFallingPiece();//non so
+	public String getNameOfFallingPiece();//non so*/
 	
 	public void initGame();//non so
 	
-	public void hitFallingPiece();//metodo per far esplodere il palloncino
+	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 
 	public boolean isGroundCell(int i);//verifica se il nemico tocca terra
 	

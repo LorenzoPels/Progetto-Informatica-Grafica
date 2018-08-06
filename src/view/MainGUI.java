@@ -2,13 +2,23 @@
 package view;
 
 import controller.ControllerForView;
+import java.awt.event.KeyEvent;
 
+//---------------------------------------------------------------
+	// STATIC CONSTANTS
+	//---------------------------------------------------------------
+	
+	
 
 public class MainGUI extends javax.swing.JFrame {
+    private boolean isGameStarted; // a game can start only once at the beginning
+    private boolean isGameRunning; // a started game can be running or in pause
 
     
     public MainGUI() {
         initComponents();
+        this.isGameStarted = false;
+	this.isGameRunning = false;
     }
 
     /**
@@ -47,7 +57,12 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 51));
         jLabel3.setText("Punteggio:");
 
-        jButton1.setText("Pausa");
+        jButton1.setText("Inizia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Esci");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +141,36 @@ public class MainGUI extends javax.swing.JFrame {
         ControllerForView.getInstance().openStartWindow();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      startPauseEvent();
+      
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+   // jButton1.setMnemonic(KeyEvent.VK_P);
+    
+    private void startPauseEvent() {
+		if (!this.isGameStarted) {
+			this.isGameStarted = true;
+			this.isGameRunning = true;
+			ControllerForView.getInstance().initGame();
+			//this.boardPanel.setFallingPieceAvailable();
+			//this.boardPanel.requestFocusInWindow();
+			this.jButton1.setText("Pausa");
+			this.jButton2.setEnabled(false);
+		}
+		else if (!this.isGameRunning) {
+			this.isGameRunning = true;
+			//this.boardPanel.requestFocusInWindow();
+			this.jButton1.setText("Pausa");
+			this.jButton2.setEnabled(false);
+		}
+		else {
+			this.isGameRunning = false;
+			this.jButton1.setText("Gioca");
+			this.jButton2.setEnabled(true);
+		}
+	} // end methos startStopEvent()
+    
     /**
      * @param args the command line arguments
      */
