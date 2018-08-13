@@ -3,11 +3,13 @@ package view;
 
 import controller.ControllerForView;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 
-public class StartWindow extends javax.swing.JFrame {
+public class StartWindow extends javax.swing.JFrame{
+     
 
     
     public StartWindow() {
@@ -23,28 +25,42 @@ public class StartWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jLabel = new javax.swing.JLabel();
+        jButtonEsci = new javax.swing.JButton();
+        jButtonMode = new javax.swing.JButton();
+        jButtonDx = new javax.swing.JButton();
+        jButtonSx = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Magic Touch New Game!");
+        setTitle("Magic Touch ");
+        setPreferredSize(new java.awt.Dimension(365, 280));
+        setResizable(false);
 
-        jLabel1.setText("Seleziona una modalità");
+        jLabel.setText("Seleziona una modalità");
 
-        jButton3.setText("Esci");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEsci.setText("Esci");
+        jButtonEsci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonEsciActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Classic");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMode.setText("Classic");
+        jButtonMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonModeActionPerformed(evt);
+            }
+        });
+
+        jButtonDx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDxActionPerformed(evt);
+            }
+        });
+
+        jButtonSx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSxActionPerformed(evt);
             }
         });
 
@@ -56,46 +72,57 @@ public class StartWindow extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonMode, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonDx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEsci, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonMode, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSx, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEsci, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonEsciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEsciActionPerformed
        ControllerForView.getInstance().closeStartWindow();
        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonEsciActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModeActionPerformed
        handleStartGameEvent(); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonModeActionPerformed
+    
+    private void jButtonDxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDxActionPerformed
+        if(jButtonMode.getText()== "Classic")
+        jButtonMode.setText("Insane");
+        else jButtonMode.setText("Classic");
+    }//GEN-LAST:event_jButtonDxActionPerformed
 
-    /**
+    private void jButtonSxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSxActionPerformed
+        if(jButtonMode.getText()== "Classic")
+        jButtonMode.setText("Insane");
+        else jButtonMode.setText("Classic");
+    }//GEN-LAST:event_jButtonSxActionPerformed
+     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -131,11 +158,11 @@ public class StartWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonDx;
+    private javax.swing.JButton jButtonEsci;
+    private javax.swing.JButton jButtonMode;
+    private javax.swing.JButton jButtonSx;
+    private javax.swing.JLabel jLabel;
     // End of variables declaration//GEN-END:variables
 private void handleStartGameEvent() {
 		//System.out.println("Event start game");
