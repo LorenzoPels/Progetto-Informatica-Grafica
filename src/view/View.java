@@ -42,10 +42,12 @@ public class View implements IView {
 	}
         
         public void openMainGUI() {
+            final AbstractDrawing drawing = new ConcreteDrawing();
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    
 			public void run() {
 				if (mainGUI == null)
-					mainGUI = new MainGUI();
+					mainGUI = new MainGUI(drawing);
 				mainGUI.setVisible(true);
 			}
 		});
