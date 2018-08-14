@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class StartWindow extends javax.swing.JFrame{
@@ -14,6 +16,9 @@ public class StartWindow extends javax.swing.JFrame{
     
     public StartWindow() {
         initComponents();
+        jButtonDx.setMnemonic(KeyEvent.VK_RIGHT);
+        jButtonSx.setMnemonic(KeyEvent.VK_LEFT);
+        jButtonMode.setMnemonic(KeyEvent.VK_ENTER);
     }
 
     /**
