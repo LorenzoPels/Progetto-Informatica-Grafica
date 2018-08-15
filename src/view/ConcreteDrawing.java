@@ -11,13 +11,15 @@ import view.CaricatoreImmagine;
 public class ConcreteDrawing extends AbstractDrawing {
 
     BufferedImage sfondo = null;
+    
     private void Caricarisorse(){
     CaricatoreImmagine loader = new CaricatoreImmagine();
-    sfondo = loader.caricaImmagine("/immagine/Sfondo.png");
+    sfondo = loader.caricaImmagine("/immagini/Sfondo.png");
+    
     }
 
     public ConcreteDrawing() {
-        this.sfondo = new BufferedImage(600, 800, 0);  // x, y, width, height
+        Caricarisorse();  // x, y, width, height
     }
 
     @Override
