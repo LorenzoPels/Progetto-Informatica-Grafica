@@ -9,8 +9,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class BoardPanel extends JPanel{
-        BufferedImage img;
+public class BoardPanel extends JPanel {
+        BufferedImage sfondo;
+        BufferedImage mago;
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
 	//---------------------------------------------------------------
@@ -38,15 +39,30 @@ public class BoardPanel extends JPanel{
 		this.block = new Rectangle2D.Double();
 		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());
 		this.addKeyListener(this);*/
-                try {
-            img = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
-        } catch (IOException ex) {
+        try {
+            sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
+            
+        }catch (IOException ex) {
 
         }
         
+        try {
+            mago = ImageIO.read(new File("src/immagini/Mago.png"));
+            
+        } catch (IOException ex) {
+
+        }
+       
+        
         setVisible(true);
+        
+        
                 
 	}
+        
+        
+        
+        
 
 	//---------------------------------------------------------------
 	// PRIVATE INSTANCE METHODS
@@ -176,7 +192,8 @@ public class BoardPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(img,0,0,getWidth(),getHeight(),null);
+            g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
+            g.drawImage(mago,190,540,100,108,null);
 	}
 
 
@@ -224,5 +241,9 @@ public class BoardPanel extends JPanel{
 	/*public void keyTyped(KeyEvent e) {
 		// do nothing
 	}*/
+
+   
+
+    
 
 } // end class
