@@ -20,15 +20,15 @@ import javax.imageio.ImageIO;
 public class MainGUI extends javax.swing.JFrame {
     private boolean isGameStarted; // a game can start only once at the beginning
     private boolean isGameRunning; // a started game can be running or in pause
-    private AbstractDrawing dw;
+    
     private BoardPanel boardPanel;
     BufferedImage img;
     
     
     
-    public MainGUI(AbstractDrawing dw) {
+    public MainGUI() {
         this.createGUI();
-        this.dw=dw;
+       
         initComponents();
         this.isGameStarted = false;
 	this.isGameRunning = false;
@@ -200,7 +200,7 @@ public class MainGUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final AbstractDrawing drawing = new ConcreteDrawing();
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -227,7 +227,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI(drawing).setVisible(true);
+                new MainGUI().setVisible(true);
             }
         });
     }

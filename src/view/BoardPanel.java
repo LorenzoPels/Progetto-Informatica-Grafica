@@ -39,7 +39,7 @@ public class BoardPanel extends JPanel{
 		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());
 		this.addKeyListener(this);*/
                 try {
-            img = ImageIO.read(new File("C:\\Users\\lollo\\Desktop\\Progetto MagicTouch\\MagicTouch\\src\\immagini\\Sfondo_senza_mago.png"));
+            img = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
         } catch (IOException ex) {
 
         }
