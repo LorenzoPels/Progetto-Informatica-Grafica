@@ -26,8 +26,8 @@ public class BoardPanel extends JPanel implements ActionListener {
 	private final static int Y_MARGIN = 10;
         private Timer timer;
         private int x, y;
-        private final int PAUSE = 500;
-        private final int MOVIMENTO = 10;
+        private final int PAUSE = 10;
+        private final int MOVIMENTO = 1;
         private boolean motionControl;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
@@ -56,8 +56,8 @@ public class BoardPanel extends JPanel implements ActionListener {
 
         }
        
-        x = 450;
-        y = 450;
+        x = 200;
+        y = 1;
         
         timer = new Timer(PAUSE, this);
         timer.start();
@@ -196,9 +196,9 @@ public class BoardPanel extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
+            g.drawImage(sfondo,0,0,600,692,null);
             g.drawImage(cavaliere,x,y,null);
-            g.drawImage(mago,190,540,100,108,null);
+            g.drawImage(mago,190,520,100,108,null);
 	}
 
 
@@ -252,7 +252,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
 
         if(y == 0) motionControl = true;
-        if(y == 450) motionControl = false;
+        if(y == 520) motionControl = false;
 
         repaint();
     }
