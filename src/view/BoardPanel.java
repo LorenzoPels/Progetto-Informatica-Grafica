@@ -3,15 +3,20 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel implements ActionListener {
         BufferedImage sfondo;
         BufferedImage mago;
+        private Image cavaliere;
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
 	//---------------------------------------------------------------
@@ -19,7 +24,11 @@ public class BoardPanel extends JPanel {
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
-
+        private Timer timer;
+        private int x, y;
+        private final int PAUSE = 500;
+        private final int MOVIMENTO = 10;
+        private boolean motionControl;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -41,22 +50,17 @@ public class BoardPanel extends JPanel {
 		this.addKeyListener(this);*/
         try {
             sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
-            
+            mago = ImageIO.read(new File("src/immagini/Mago.png"));
+            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliere.png"));
         }catch (IOException ex) {
 
         }
-        
-        try {
-            mago = ImageIO.read(new File("src/immagini/Mago.png"));
-            
-        } catch (IOException ex) {
-
-        }
        
+        x = 450;
+        y = 450;
         
-        setVisible(true);
-        
-        
+        timer = new Timer(PAUSE, this);
+        timer.start();
                 
 	}
         
@@ -193,6 +197,7 @@ public class BoardPanel extends JPanel {
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
+            g.drawImage(cavaliere,x,y,null);
             g.drawImage(mago,190,540,100,108,null);
 	}
 
@@ -241,6 +246,16 @@ public class BoardPanel extends JPanel {
 	/*public void keyTyped(KeyEvent e) {
 		// do nothing
 	}*/
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
+
+        if(y == 0) motionControl = true;
+        if(y == 450) motionControl = false;
+
+        repaint();
+    }
 
    
 
