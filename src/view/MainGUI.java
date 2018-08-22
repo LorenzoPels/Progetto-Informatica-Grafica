@@ -23,7 +23,11 @@ panel = new BoardPanel();
 add(panel);
 setResizable(true);
 pack();
+
 this.createPanel();
+
+setLocationRelativeTo(null);
+
 }
 private void createPanel() {
 		//this.addComponentListener(this);
