@@ -19,6 +19,7 @@ panel = new BoardPanel();
 add(panel);
 setResizable(true);
 pack();
+setLocationRelativeTo(null);
 }
 
 /*public static void makeGUI() {

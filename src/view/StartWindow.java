@@ -19,6 +19,7 @@ public class StartWindow extends javax.swing.JFrame{
         jButtonDx.setMnemonic(KeyEvent.VK_RIGHT);
         jButtonSx.setMnemonic(KeyEvent.VK_LEFT);
         jButtonMode.setMnemonic(KeyEvent.VK_ENTER);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -159,6 +160,8 @@ public class StartWindow extends javax.swing.JFrame{
             public void run() {
                 new StartWindow().setVisible(true);
             }
+        
+       
         });
     }
 
