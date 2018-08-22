@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 
 class MainGUI extends JFrame {
 private BoardPanel panel;
-private final static int larghezza = 800;
+private final static int larghezza = 750;
 private final static int altezza = 730;
 private RightPanel rightpanel;
 
