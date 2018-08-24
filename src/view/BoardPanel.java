@@ -24,11 +24,12 @@ public class BoardPanel extends JPanel implements ActionListener {
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
-        private Timer timer;
+        private static Timer timer;
         private int x, y;
         private final int PAUSE = 10;
         private final int MOVIMENTO = 1;
         private boolean motionControl;
+        public static Boolean giocoiniziato = false;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -64,7 +65,16 @@ public class BoardPanel extends JPanel implements ActionListener {
                 
 	}
         
-        
+        public static Boolean InizioGioco(){
+        giocoiniziato = true;
+        return giocoiniziato;
+        }
+        public static void  PausaGioco(){
+            timer.stop();
+        } 
+        public static void  RiprendiGioco(){
+            timer.start();
+        } 
         
         
 
@@ -197,8 +207,9 @@ public class BoardPanel extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(sfondo,0,0,600,692,null);
-            g.drawImage(cavaliere,x,y,null);
             g.drawImage(mago,190,520,100,108,null);
+            if(giocoiniziato==true)
+                g.drawImage(cavaliere,x,y,null);
 	}
 
 
