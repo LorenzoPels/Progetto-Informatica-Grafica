@@ -5,11 +5,42 @@ import controller.ControllerForView;
 
 
 public class RightPanel extends javax.swing.JPanel {
-
+    private boolean isGameStarted; // a game can start only once at the beginning
+    private boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
     }
+    
+    private void startPauseEvent() {
+		if (!this.isGameStarted) {
+			this.isGameStarted = true;
+			this.isGameRunning = true;
+                        BoardPanel.InizioGioco();
+			//ControllerForView.getInstance().initGame();
+			//this.previewPanel.setPreviewPieceAvailable();
+			//this.boardPanel.setFallingPieceAvailable();
+			//this.boardPanel.requestFocusInWindow();
+			//this.timer.start();
+			this.jButton1.setText("pausa");
+			this.jButton2.setEnabled(false);
+		}
+		else if (!this.isGameRunning) {
+			this.isGameRunning = true;
+                        BoardPanel.RiprendiGioco();
+			//this.boardPanel.requestFocusInWindow();
+			//this.timer.start();
+			this.jButton1.setText("pausa");
+			this.jButton2.setEnabled(false);
+		}
+		else {
+			this.isGameRunning = false;
+                        BoardPanel.PausaGioco();
+			//this.timer.stop();
+			this.jButton1.setText("gioca");
+			this.jButton2.setEnabled(true);
+		}
+	} // end methos startStopEvent()
 
     
     @SuppressWarnings("unchecked")
@@ -34,6 +65,11 @@ public class RightPanel extends javax.swing.JPanel {
         jLabel1.setText("Magic");
 
         jButton1.setText("Inizia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Esci");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +118,10 @@ public class RightPanel extends javax.swing.JPanel {
        ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().openStartWindow();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     startPauseEvent();   // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

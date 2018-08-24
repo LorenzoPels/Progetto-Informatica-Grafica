@@ -13,6 +13,7 @@ private final static int larghezza = 750;
 private final static int altezza = 730;
 private RightPanel rightpanel;
 
+
 MainGUI() {
  
 super("Esempio Animazione");
@@ -21,7 +22,7 @@ setPreferredSize(new Dimension(larghezza,altezza));
 this.createPanel();
 panel = new BoardPanel();
 add(panel);
-setResizable(true);
+setResizable(false);
 pack();
 
 this.createPanel();
@@ -38,10 +39,11 @@ private void createPanel() {
 		//this.setRightPanel();
 		Container contPane = this.getContentPane();
 		contPane.setLayout(new BorderLayout());
-		contPane.add(this.rightpanel, BorderLayout.EAST);
+		contPane.add(this.rightpanel,BorderLayout.EAST);
 		//contPane.add(rightPanel, BorderLayout.EAST);
-		this.pack();
+		//this.pack();
 	}
+
 /*public static void makeGUI() {
 MainGUI mg = new MainGUI();
 mg.setPreferredSize(new Dimension(400,800));
