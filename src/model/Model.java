@@ -7,6 +7,7 @@ public class Model implements IModel {
     // STATIC FIELDS
     //---------------------------------------------------------------
     private static Model instance = null;
+    private Cavaliere fallingPiece;
     
     //---------------------------------------------------------------
     // INSTANCE ATTRIBUTES
@@ -27,11 +28,13 @@ public class Model implements IModel {
 		//this.iIndex = I_INDEX_INIT;
 		//this.jIndex = J_INDEX_INIT;
 		//this.previewPiece = Piece.randomPreviewPiece();
-		//this.fallingPiece = Piece.nextFallingPiece(this.previewPiece);
+		this.fallingPiece = Cavaliere.nextFallingPiece();
 		//this.previewPiece = Piece.randomPreviewPiece();
 	}
         
-
+    public int getScore() {
+		return this.score;
+	}
     //---------------------------------------------------------------
     // STATIC METHODS
     //---------------------------------------------------------------

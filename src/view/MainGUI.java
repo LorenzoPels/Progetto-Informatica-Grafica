@@ -16,17 +16,15 @@ private RightPanel rightpanel;
 
 MainGUI() {
  
-super("Esempio Animazione");
+super("Magic Touch Game");
+//MainGUI maingui = new MainGUI();
 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 setPreferredSize(new Dimension(larghezza,altezza));
 this.createPanel();
 panel = new BoardPanel();
 add(panel);
-setResizable(false);
+setResizable(true);
 pack();
-
-this.createPanel();
-
 setLocationRelativeTo(null);
 
 }
@@ -40,7 +38,7 @@ private void createPanel() {
 		Container contPane = this.getContentPane();
 		contPane.setLayout(new BorderLayout());
 		contPane.add(this.rightpanel,BorderLayout.EAST);
-		//contPane.add(rightPanel, BorderLayout.EAST);
+		//contPane.add(rightpanel, BorderLayout.EAST);
 		//this.pack();
 	}
 
@@ -54,7 +52,7 @@ mg.setVisible(true);
 
 public static void main(String[] args) {
 try {
-javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+javax.swing.SwingUtilities.invokeLater(new Runnable() {
 public void run() {
 new MainGUI().setVisible(true);
 }

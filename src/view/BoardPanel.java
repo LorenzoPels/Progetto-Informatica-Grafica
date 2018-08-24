@@ -12,6 +12,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import model.Cavaliere;
+import static model.CavaliereA.Loader;
 
 public class BoardPanel extends JPanel implements ActionListener {
         BufferedImage sfondo;
@@ -52,7 +54,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         try {
             sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
             mago = ImageIO.read(new File("src/immagini/Mago.png"));
-            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliere.png"));
+            cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
         }catch (IOException ex) {
 
         }
@@ -206,8 +208,8 @@ public class BoardPanel extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(sfondo,0,0,600,692,null);
-            g.drawImage(mago,190,520,100,108,null);
+            g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
+            g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
             if(giocoiniziato==true)
                 g.drawImage(cavaliere,x,y,null);
 	}
@@ -263,7 +265,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
 
         if(y == 0) motionControl = true;
-        if(y == 520) motionControl = false;
+        if(y == getHeight()-145) motionControl = false;
 
         repaint();
     }

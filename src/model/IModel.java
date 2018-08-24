@@ -4,11 +4,11 @@ package model;
 public interface IModel {
    /* public int getNumColumnsOfBoard();//forse da usare se il campo di gioco è una matrice
 
-	public int getNumRowsOfBoard();//forse da usare se il campo di gioco è una matrice
+	public int getNumRowsOfBoard();//forse da usare se il campo di gioco è una matrice*/
 
 	public int getScore();//legge il punteggio ottenuto
 
-	public void incrementScore(int increment);//incrementa il puntegio ottenuto
+	/*public void incrementScore(int increment);//incrementa il puntegio ottenuto
 
 	public int numBlocksOfFallingPiece();//numero riferito al tipo di pezzo
 
@@ -20,7 +20,7 @@ public interface IModel {
 	
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 
-	public boolean isGroundCell(int i);//verifica se il nemico tocca terra
+	public boolean isEmptyCell(int i);//verifica se il nemico tocca terra
 	
         public void removePiece(int blockLabel);//elimina il pezzo caduto a terra se sprovvisto di palloncini
         

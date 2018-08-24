@@ -38,7 +38,9 @@ public class ControllerForView implements IControllerForView {
         public void initGame() {
 		Model.getInstance().initGame();
 	}
-
+        public String getScore() {
+		return String.valueOf(Model.getInstance().getScore());
+	}
 
 
 
