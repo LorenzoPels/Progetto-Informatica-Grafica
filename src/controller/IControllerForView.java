@@ -22,11 +22,11 @@ public interface IControllerForView {
 
 	public String getPlayerName();
 
-	public void setPlayerName(String playerName);
+	public void setPlayerName(String playerName);*/
 
 	public String getScore();
 
-	public void incrementScore(int increment);
+	/*public void incrementScore(int increment);
 
 	public int numBlocksOfPreviewPiece();
 

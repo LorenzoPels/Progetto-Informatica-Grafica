@@ -12,6 +12,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import model.Cavaliere;
+import static model.CavaliereA.Loader;
 
 public class BoardPanel extends JPanel implements ActionListener {
         BufferedImage sfondo;
@@ -52,7 +54,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         try {
             sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
             mago = ImageIO.read(new File("src/immagini/Mago.png"));
-            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliere.png"));
+            cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
         }catch (IOException ex) {
 
         }
