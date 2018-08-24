@@ -206,8 +206,8 @@ public class BoardPanel extends JPanel implements ActionListener {
 	@Override
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(sfondo,0,0,600,692,null);
-            g.drawImage(mago,190,520,100,108,null);
+            g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
+            g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
             if(giocoiniziato==true)
                 g.drawImage(cavaliere,x,y,null);
 	}
@@ -263,7 +263,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
 
         if(y == 0) motionControl = true;
-        if(y == 520) motionControl = false;
+        if(y == getHeight()-145) motionControl = false;
 
         repaint();
     }
