@@ -282,7 +282,7 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
                 g.drawImage(cavaliere1,x+200,y,null);
                 t1 = System.currentTimeMillis();
                 diff = t1 - t0;
-                if( diff >=5000)
+                if( diff >=5000)//5 secondi
                 g.drawImage(pioggia[1],x,y,null);
             }
 	}
