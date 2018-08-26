@@ -12,7 +12,7 @@ public class Model implements IModel {
     //---------------------------------------------------------------
     // INSTANCE ATTRIBUTES
     //---------------------------------------------------------------
-    private int score;
+    public  int score;
     private Model() {
 		//this.boardArray = new int[DEFAULT_NUM_ROWS][DEFAULT_NUM_COLUMNS];
 		this.initGame();
@@ -34,6 +34,9 @@ public class Model implements IModel {
         
     public int getScore() {
 		return this.score;
+	}
+    public  void incrementScore(/*int increment*/) {
+		this.score ++;
 	}
     //---------------------------------------------------------------
     // STATIC METHODS

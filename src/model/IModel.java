@@ -8,9 +8,9 @@ public interface IModel {
 
 	public int getScore();//legge il punteggio ottenuto
 
-	/*public void incrementScore(int increment);//incrementa il puntegio ottenuto
+	public  void incrementScore(/*int increment*/);//incrementa il puntegio ottenuto
 
-	public int numBlocksOfFallingPiece();//numero riferito al tipo di pezzo
+	/*public int numBlocksOfFallingPiece();//numero riferito al tipo di pezzo
 
 	public int iRelOfFallingPiece(int blockLabel);//riga occupata dal pezzo cadente
 

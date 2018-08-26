@@ -1,24 +1,30 @@
 
 package view;
 
+import controller.ControllerForView;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.CavaliereA.Loader;
+import model.Model;
 
 public class BoardPanel extends JPanel implements ActionListener {
         BufferedImage sfondo;
         BufferedImage mago;
         private Image cavaliere;
+       private Image cavaliere1;
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
 	//---------------------------------------------------------------
@@ -45,25 +51,27 @@ public class BoardPanel extends JPanel implements ActionListener {
 
 	public BoardPanel() {
 		super();
+                
 		/*this.isGridVisibleInBoard = Config.getInstance().isGridVisibleInBoard();
 		this.isRefBlockRecognizableInBoard = Config.getInstance().isRefBlockRecognizableInBoard();
 		this.line = new Line2D.Double();
 		this.block = new Rectangle2D.Double();
 		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());
 		this.addKeyListener(this);*/
-        try {
-            sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
-            mago = ImageIO.read(new File("src/immagini/Mago.png"));
-            cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
-        }catch (IOException ex) {
-
-        }
+            try {
+                sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
+                mago = ImageIO.read(new File("src/immagini/Mago.png"));
+                cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
+                cavaliere1 = Cavaliere.Loader();
+            }catch (IOException ex) {
+            }
        
-        x = 200;
-        y = 1;
+            x = 200;
+            y = 1;
         
-        timer = new Timer(PAUSE, this);
-        timer.start();
+            timer = new Timer(PAUSE, this);
+            timer.start();
+            
                 
 	}
         
@@ -71,11 +79,15 @@ public class BoardPanel extends JPanel implements ActionListener {
         giocoiniziato = true;
         return giocoiniziato;
         }
-        public static void  PausaGioco(){
+        public static Boolean  PausaGioco(){
             timer.stop();
+            giocoiniziato = false;
+            return giocoiniziato;
         } 
-        public static void  RiprendiGioco(){
+        public static Boolean  RiprendiGioco(){
             timer.start();
+            giocoiniziato = true;
+            return giocoiniziato;
         } 
         
         
@@ -199,6 +211,7 @@ public class BoardPanel extends JPanel implements ActionListener {
 	public void setFallingPieceUnavailable() {
 		this.isFallingPieceAvailable = false;
 	}*/
+        
 
 	@Override
 	public Dimension getPreferredSize() {
@@ -210,8 +223,11 @@ public class BoardPanel extends JPanel implements ActionListener {
             super.paintComponent(g);
             g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
-            if(giocoiniziato==true)
-                g.drawImage(cavaliere,x,y,null);
+            if(giocoiniziato==true) {
+                g.drawImage(cavaliere,x-150,y,null);
+                
+                g.drawImage(cavaliere1,x+200,y,null);
+            }
 	}
 
 
@@ -270,8 +286,7 @@ public class BoardPanel extends JPanel implements ActionListener {
         repaint();
     }
 
-   
 
-    
+   
 
 } // end class

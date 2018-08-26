@@ -15,7 +15,8 @@ public class ControllerForView implements IControllerForView {
 	private ControllerForView() {
 		//to-do
 	}
-        
+         
+	
         //---------------------------------------------------------------
 	// PUBLIC INSTANCE METHODS
 	//---------------------------------------------------------------
@@ -42,7 +43,11 @@ public class ControllerForView implements IControllerForView {
 		return String.valueOf(Model.getInstance().getScore());
 	}
 
-
+        public void incrementScore(/*int increment*/) {
+		Model.getInstance().incrementScore(/*increment*/);
+	}
+        
+       
 
         //---------------------------------------------------------------
 	// STATIC METHODS

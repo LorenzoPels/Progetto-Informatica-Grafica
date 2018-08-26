@@ -2,14 +2,20 @@
 package view;
 
 import controller.ControllerForView;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import model.Model;
 
 
-public class RightPanel extends javax.swing.JPanel {
+
+public class RightPanel extends javax.swing.JPanel implements KeyListener {
     private boolean isGameStarted; // a game can start only once at the beginning
     private boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
+        this.addKeyListener(this);
+        
     }
     
     private void startPauseEvent() {
@@ -42,7 +48,9 @@ public class RightPanel extends javax.swing.JPanel {
 		}
 	} // end methos startStopEvent()
 
-    
+    public void updateScoreLabel(int score) {
+		this.scorelabel.setText(String.valueOf(score));
+	}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,7 +61,7 @@ public class RightPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        scorelabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 36)); // NOI18N
@@ -85,7 +93,12 @@ public class RightPanel extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 0));
         jLabel4.setText("Touch");
 
-        jLabel5.setText(ControllerForView.getInstance().getScore());
+        scorelabel.setText(ControllerForView.getInstance().getScore());
+        scorelabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                scorelabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,16 +106,18 @@ public class RightPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scorelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(scorelabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        scorelabel.getAccessibleContext().setAccessibleDescription("");
 
         jLabel2.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 51));
@@ -155,6 +170,11 @@ public class RightPanel extends javax.swing.JPanel {
      startPauseEvent();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void scorelabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scorelabelMouseClicked
+       Model.getInstance().incrementScore();
+    updateScoreLabel(Model.getInstance().getScore()); // TODO add your handling code here:
+    }//GEN-LAST:event_scorelabelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -163,7 +183,26 @@ public class RightPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+    Model.getInstance().incrementScore();
+    updateScoreLabel(Model.getInstance().getScore());
+    repaint();
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
