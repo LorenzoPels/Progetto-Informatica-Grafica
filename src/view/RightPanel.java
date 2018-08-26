@@ -8,15 +8,18 @@ import model.Model;
 
 
 
-public class RightPanel extends javax.swing.JPanel implements KeyListener {
+public class RightPanel extends javax.swing.JPanel  {
     private boolean isGameStarted; // a game can start only once at the beginning
     private boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
-        this.addKeyListener(this);
+       
         
     }
+    public static void updateScoreLabel(int score) {
+		scorelabel.setText(String.valueOf(score));
+	}
     
     private void startPauseEvent() {
 		if (!this.isGameStarted) {
@@ -48,9 +51,7 @@ public class RightPanel extends javax.swing.JPanel implements KeyListener {
 		}
 	} // end methos startStopEvent()
 
-    public void updateScoreLabel(int score) {
-		this.scorelabel.setText(String.valueOf(score));
-	}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -171,8 +172,8 @@ public class RightPanel extends javax.swing.JPanel implements KeyListener {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void scorelabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scorelabelMouseClicked
-       Model.getInstance().incrementScore();
-    updateScoreLabel(Model.getInstance().getScore()); // TODO add your handling code here:
+     Model.getInstance().incrementScore();
+    updateScoreLabel(Model.getInstance().getScore()); // TODO add your handling code here
     }//GEN-LAST:event_scorelabelMouseClicked
 
 
@@ -184,25 +185,9 @@ public class RightPanel extends javax.swing.JPanel implements KeyListener {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JLabel scorelabel;
+    public static javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
     
-    @Override
-    public void keyPressed(KeyEvent e) {
-    Model.getInstance().incrementScore();
-    updateScoreLabel(Model.getInstance().getScore());
-    repaint();
-    }
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+  
     
 }

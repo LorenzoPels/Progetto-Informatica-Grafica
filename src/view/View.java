@@ -14,6 +14,7 @@ public class View implements IView {
 	protected StartWindow startWindow = null;
         protected MainGUI mainGUI = null;
         protected RightPanel rightpanel = null;
+        protected BoardPanel boardpanel = null;
         
         private View() {
 		//TO-DO

@@ -12,15 +12,20 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.CavaliereA.Loader;
 import model.Model;
+import static view.RightPanel.scorelabel;
 
-public class BoardPanel extends JPanel implements ActionListener {
+public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
         private Image cavaliere;
@@ -38,6 +43,12 @@ public class BoardPanel extends JPanel implements ActionListener {
         private final int MOVIMENTO = 1;
         private boolean motionControl;
         public static Boolean giocoiniziato = false;
+        private Image[] pioggia = new Image[5];
+        private int tempo;
+        private int variabile;
+        public static long t0;
+        public static long t1;
+        public static long diff;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -56,8 +67,8 @@ public class BoardPanel extends JPanel implements ActionListener {
 		this.isRefBlockRecognizableInBoard = Config.getInstance().isRefBlockRecognizableInBoard();
 		this.line = new Line2D.Double();
 		this.block = new Rectangle2D.Double();
-		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());
-		this.addKeyListener(this);*/
+		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());*/
+		this.addKeyListener(this);
             try {
                 sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
                 mago = ImageIO.read(new File("src/immagini/Mago.png"));
@@ -71,13 +82,26 @@ public class BoardPanel extends JPanel implements ActionListener {
         
             timer = new Timer(PAUSE, this);
             timer.start();
+            Pioggia();
+           t0 = System.currentTimeMillis();
             
                 
 	}
+        public Image[] Pioggia(){
+        
+        pioggia[0] = Cavaliere.Loader();
+        pioggia[1] = Cavaliere.Loader();
+        pioggia[2] = Cavaliere.Loader();
+        pioggia[3] = Cavaliere.Loader();
+        pioggia[4] = Cavaliere.Loader();
+        return pioggia;
+        }
         
         public static Boolean InizioGioco(){
         giocoiniziato = true;
+        
         return giocoiniziato;
+        
         }
         public static Boolean  PausaGioco(){
             timer.stop();
@@ -217,6 +241,34 @@ public class BoardPanel extends JPanel implements ActionListener {
 	public Dimension getPreferredSize() {
 		return PREFERRED_SIZE;
 	}
+       
+        
+     /*   private void slowMethod(int sec){
+            try{
+                Thread.sleep(1000*sec);
+            }catch(InterruptedException ie){
+                ie.printStackTrace();;
+            }
+        }
+        
+        private void executeSlowMethodInBackground(final int sec) {
+        SwingWorker worker = new SwingWorker<Void, Void>() {
+            @Override
+            public Void doInBackground() {
+                System.out.println("in ... doInBackground()");
+                slowMethod(sec);
+                return null;
+            }
+
+            @Override
+            public void done() {
+                System.out.println("in ... done()");
+                numSlowClicks++;
+                jlab2.setText(lab2Prefix + numSlowClicks);
+            }
+        };
+        worker.execute();
+    } // end method executeSlowMethodInBackground()*/
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -224,9 +276,14 @@ public class BoardPanel extends JPanel implements ActionListener {
             g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
             if(giocoiniziato==true) {
+                
                 g.drawImage(cavaliere,x-150,y,null);
                 
                 g.drawImage(cavaliere1,x+200,y,null);
+                t1 = System.currentTimeMillis();
+                diff = t1 - t0;
+                if( diff >=5000)
+                g.drawImage(pioggia[1],x,y,null);
             }
 	}
 
@@ -235,14 +292,18 @@ public class BoardPanel extends JPanel implements ActionListener {
 	// To implement the interface java.awt.event.KeyListener
 	//-------------------------------------------------------------------------
 	/* Invoked when a key has been pressed. */
-	/*public void keyPressed(KeyEvent e) {
+        
+	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:// vk qualcosa indica ciò che innesca la rotazione
-				ControllerForView.getInstance().left();
+				Model.getInstance().incrementScore();
+                                RightPanel.updateScoreLabel(Model.getInstance().getScore());
+                            
+                            /*ControllerForView.getInstance().left();*/
 				this.repaint();
-				//System.out.println("Pressed key: VK_LEFT");
+				//System.out.println("Pressed key: VK_LEFT");*/
 				break;
-			case KeyEvent.VK_RIGHT:
+			/*case KeyEvent.VK_RIGHT:
 				ControllerForView.getInstance().right();
 				this.repaint();
 				//System.out.println("Pressed key: VK_RIGHT");
@@ -262,19 +323,21 @@ public class BoardPanel extends JPanel implements ActionListener {
 				this.repaint();
 				//System.out.println("Pressed key: VK_A");
 				break;
-			//default: System.out.println("Use only the following keys: VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP");
+			//default: System.out.println("Use only the following keys: VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP");*/
 		}
-	}*/
+	}
 
 	/* Invoked when a key has been released. */
-	/*public void keyReleased(KeyEvent e) {
+        
+	public void keyReleased(KeyEvent e) {
 		// do nothing
-	}*/
+	}
 
 	/* Invoked when a key has been typed. */
-	/*public void keyTyped(KeyEvent e) {
+        
+	public void keyTyped(KeyEvent e) {
 		// do nothing
-	}*/
+	}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -282,11 +345,10 @@ public class BoardPanel extends JPanel implements ActionListener {
 
         if(y == 0) motionControl = true;
         if(y == getHeight()-145) motionControl = false;
+        
+        
 
         repaint();
     }
-
-
-   
 
 } // end class
