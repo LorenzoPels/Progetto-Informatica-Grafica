@@ -291,22 +291,23 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
                 //g.drawImage(cavaliere1,x+200,y,null);
                 t1 = System.currentTimeMillis()-P;
                 diff = t1 - t0;
-               boolean stampaggio = true;
+              
               // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
-                if( diff >=3000  )//5 secondi
+                if( diff >=3000  )//3 secondi
                 g.drawImage(pioggia[0],x-100,y1,null);
-                if( diff >=6000  )//5 secondi
+                if( diff >=6000  )//6 secondi
                 g.drawImage(pioggia[1],x+100,y2,null);
-                if( diff >=9000  )//5 secondi
+                if( diff >=9000  )//9 secondi
                 g.drawImage(pioggia[2],x-200,y3,null);
-                if( diff >=12000  )//5 secondi
+                if( diff >=12000  )//12 secondi
                 g.drawImage(pioggia[3],x+200,y4,null);
-                if( diff >=15000  )//5 secondi
+                if( diff >=15000  )// 15secondi
                 g.drawImage(pioggia[4],x+250,y5,null);
-                if( (diff >=18000) /*&& (diff<=30500) */  )//5 secondi
+                if( (diff >=18000) /*&& (diff<=30500) */  )//18 secondi
                     if(y5>=430){    
                         t0=System.currentTimeMillis();
                         Pioggia();
+                        y1=y2=y3=y4=y5=1;
                     }
                //}
             }
