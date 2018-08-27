@@ -13,6 +13,8 @@ public class View implements IView {
 	//---------------------------------------------------------------
 	protected StartWindow startWindow = null;
         protected MainGUI mainGUI = null;
+        protected RightPanel rightpanel = null;
+        protected BoardPanel boardpanel = null;
         
         private View() {
 		//TO-DO
@@ -59,6 +61,10 @@ public class View implements IView {
                                     mainGUI.setVisible(false);
 			}
 		});
+	}
+        
+        public void updateScoreLabel(int score) {
+		this.rightpanel.updateScoreLabel(score);
 	}
         //---------------------------------------------------------------
 	// STATIC METHODS

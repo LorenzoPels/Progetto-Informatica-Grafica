@@ -9,18 +9,21 @@ import javax.imageio.ImageIO;
 
 
 public class Cavaliere {
-	final static Cavaliere[] FALLING_PIECE_ARRAY = new Cavaliere[2];
+	final static Cavaliere[] FALLING_PIECE_ARRAY = new Cavaliere[9];
 	//final static Piece[] PREVIEW_PIECE_ARRAY = new Piece[7];
 	final static HashMap<String, Cavaliere> mapStringNameToFallingPieceObj= new HashMap<String, Cavaliere>();
 
 	static {
 		FALLING_PIECE_ARRAY[0] = new CavaliereA();
 		FALLING_PIECE_ARRAY[1] = new CavaliereB();
-		//FALLING_PIECE_ARRAY[2] = new PieceL();
-		//FALLING_PIECE_ARRAY[3] = new PieceO();
-		//FALLING_PIECE_ARRAY[4] = new PieceS();
-		//FALLING_PIECE_ARRAY[5] = new PieceT();
-		//FALLING_PIECE_ARRAY[6] = new PieceZ();
+		FALLING_PIECE_ARRAY[2] = new CavaliereF();
+		FALLING_PIECE_ARRAY[3] = new CavaliereH();
+		FALLING_PIECE_ARRAY[4] = new CavaliereJ();
+		FALLING_PIECE_ARRAY[5] = new CavaliereK();
+		FALLING_PIECE_ARRAY[6] = new CavaliereL();
+                FALLING_PIECE_ARRAY[7] = new CavaliereM();
+                FALLING_PIECE_ARRAY[8] = new CavaliereP();
+               // FALLING_PIECE_ARRAY[] = new PieceZ();
 
 		/*PREVIEW_PIECE_ARRAY[0] = new PieceI();
 		PREVIEW_PIECE_ARRAY[1] = new PieceJ();
@@ -36,7 +39,7 @@ public class Cavaliere {
 
 	//protected int[][] shapeArray;
 	protected String pieceName;
-        static Image cavaliere;
+        public static Image cavaliere;
 	protected Cavaliere() {
 		//do nothing
 	}

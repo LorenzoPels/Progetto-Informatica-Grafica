@@ -27,6 +27,8 @@ setResizable(true);
 pack();
 setLocationRelativeTo(null);
 
+
+
 }
 private void createPanel() {
 		//this.addComponentListener(this);
@@ -50,13 +52,13 @@ mg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 mg.setVisible(true);
 }*/
 
-public static void main(String[] args) {
-try {
-javax.swing.SwingUtilities.invokeLater(new Runnable() {
-public void run() {
-new MainGUI().setVisible(true);
-}
-});
-} catch(Exception e) {}
-}
+    public static void main(String[] args) {
+         try {
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new MainGUI().setVisible(true);
+            }
+            });
+        } catch(Exception e) {}
+    }
 }

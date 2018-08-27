@@ -26,9 +26,9 @@ public interface IControllerForView {
 
 	public String getScore();
 
-	/*public void incrementScore(int increment);
+	public void incrementScore(/*int increment*/);
 
-	public int numBlocksOfPreviewPiece();
+	/*public int numBlocksOfPreviewPiece();
 
 	public int iRelOfPreviewPiece(int blockLabel);
 

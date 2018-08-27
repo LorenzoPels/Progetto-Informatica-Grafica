@@ -1,24 +1,35 @@
 
 package view;
 
+import controller.ControllerForView;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.CavaliereA.Loader;
+import model.Model;
+import static view.RightPanel.scorelabel;
 
-public class BoardPanel extends JPanel implements ActionListener {
+public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
         private Image cavaliere;
+       private Image cavaliere1;
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
 	//---------------------------------------------------------------
@@ -27,11 +38,17 @@ public class BoardPanel extends JPanel implements ActionListener {
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
         private static Timer timer;
-        private int x, y;
+        private int x, y1,y2,y3,y4,y5;
         private final int PAUSE = 10;
         private final int MOVIMENTO = 1;
-        private boolean motionControl;
+        private boolean motionControl1,motionControl2,motionControl3,motionControl4,motionControl5;
+        
         public static Boolean giocoiniziato = false;
+        private Image[] pioggia = new Image[5];
+        private int tempo;
+        private int variabile;
+        public static long t0,t1,P,Pi,Pf;
+        public static long diff;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -45,37 +62,65 @@ public class BoardPanel extends JPanel implements ActionListener {
 
 	public BoardPanel() {
 		super();
+                
 		/*this.isGridVisibleInBoard = Config.getInstance().isGridVisibleInBoard();
 		this.isRefBlockRecognizableInBoard = Config.getInstance().isRefBlockRecognizableInBoard();
 		this.line = new Line2D.Double();
 		this.block = new Rectangle2D.Double();
-		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());
-		this.addKeyListener(this);*/
-        try {
-            sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
-            mago = ImageIO.read(new File("src/immagini/Mago.png"));
-            cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
-        }catch (IOException ex) {
-
-        }
+		this.setBackground(ColorSettings.getInstance().getColorBackgroundBoard());*/
+		this.addKeyListener(this);
+            try {
+                sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
+                mago = ImageIO.read(new File("src/immagini/Mago.png"));
+                cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
+                cavaliere1 = Cavaliere.Loader();
+            }catch (IOException ex) {
+            }
        
-        x = 200;
-        y = 1;
+            x = 200;
+            y1 = 1;
+            y2 = 1;
+            y3 = 1;
+            y4 = 1;
+            y5 = 1;
         
-        timer = new Timer(PAUSE, this);
-        timer.start();
+            timer = new Timer(PAUSE, this);
+            timer.start();
+            Pioggia();
+            //t0 = System.currentTimeMillis();
+            variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
                 
 	}
+        public Image[] Pioggia(){
+        
+        pioggia[0] = Cavaliere.Loader();
+        pioggia[1] = Cavaliere.Loader();
+        pioggia[2] = Cavaliere.Loader();
+        pioggia[3] = Cavaliere.Loader();
+        pioggia[4] = Cavaliere.Loader();
+        return pioggia;
+        }
         
         public static Boolean InizioGioco(){
         giocoiniziato = true;
+        t0 = System.currentTimeMillis();
         return giocoiniziato;
+        
         }
-        public static void  PausaGioco(){
+        public static Boolean  PausaGioco(){
             timer.stop();
+            giocoiniziato = false;
+            Pi = System.currentTimeMillis();
+            
+            return giocoiniziato;
         } 
-        public static void  RiprendiGioco(){
+        public static Boolean  RiprendiGioco(){
+            Pf = System.currentTimeMillis();
+            P += Pf-Pi;
             timer.start();
+            giocoiniziato = true;
+            
+            return giocoiniziato;
         } 
         
         
@@ -199,19 +244,73 @@ public class BoardPanel extends JPanel implements ActionListener {
 	public void setFallingPieceUnavailable() {
 		this.isFallingPieceAvailable = false;
 	}*/
+        
 
 	@Override
 	public Dimension getPreferredSize() {
 		return PREFERRED_SIZE;
 	}
+       
+        
+     /*   private void slowMethod(int sec){
+            try{
+                Thread.sleep(1000*sec);
+            }catch(InterruptedException ie){
+                ie.printStackTrace();;
+            }
+        }
+        
+        private void executeSlowMethodInBackground(final int sec) {
+        SwingWorker worker = new SwingWorker<Void, Void>() {
+            @Override
+            public Void doInBackground() {
+                System.out.println("in ... doInBackground()");
+                slowMethod(sec);
+                return null;
+            }
+
+            @Override
+            public void done() {
+                System.out.println("in ... done()");
+                numSlowClicks++;
+                jlab2.setText(lab2Prefix + numSlowClicks);
+            }
+        };
+        worker.execute();
+    } // end method executeSlowMethodInBackground()*/
 
 	@Override
 	public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
-            if(giocoiniziato==true)
-                g.drawImage(cavaliere,x,y,null);
+            if(giocoiniziato==true) {
+                
+                //g.drawImage(cavaliere,x-150,y,null);
+                
+                //g.drawImage(cavaliere1,x+200,y,null);
+                t1 = System.currentTimeMillis()-P;
+                diff = t1 - t0;
+              
+              // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
+                if( diff >=3000  )//3 secondi
+                g.drawImage(pioggia[0],x-100,y1,null);
+                if( diff >=6000  )//6 secondi
+                g.drawImage(pioggia[1],x+100,y2,null);
+                if( diff >=9000  )//9 secondi
+                g.drawImage(pioggia[2],x-200,y3,null);
+                if( diff >=12000  )//12 secondi
+                g.drawImage(pioggia[3],x+200,y4,null);
+                if( diff >=15000  )// 15secondi
+                g.drawImage(pioggia[4],x+250,y5,null);
+                if( (diff >=18000) /*&& (diff<=30500) */  )//18 secondi
+                    if(y5>=430){    
+                        t0=System.currentTimeMillis();
+                        Pioggia();
+                        y1=y2=y3=y4=y5=1;
+                    }
+               //}
+            }
 	}
 
 
@@ -219,14 +318,18 @@ public class BoardPanel extends JPanel implements ActionListener {
 	// To implement the interface java.awt.event.KeyListener
 	//-------------------------------------------------------------------------
 	/* Invoked when a key has been pressed. */
-	/*public void keyPressed(KeyEvent e) {
+        
+	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:// vk qualcosa indica ciò che innesca la rotazione
-				ControllerForView.getInstance().left();
+				Model.getInstance().incrementScore();
+                                RightPanel.updateScoreLabel(Model.getInstance().getScore());
+                            
+                            /*ControllerForView.getInstance().left();*/
 				this.repaint();
-				//System.out.println("Pressed key: VK_LEFT");
+				//System.out.println("Pressed key: VK_LEFT");*/
 				break;
-			case KeyEvent.VK_RIGHT:
+			/*case KeyEvent.VK_RIGHT:
 				ControllerForView.getInstance().right();
 				this.repaint();
 				//System.out.println("Pressed key: VK_RIGHT");
@@ -246,32 +349,56 @@ public class BoardPanel extends JPanel implements ActionListener {
 				this.repaint();
 				//System.out.println("Pressed key: VK_A");
 				break;
-			//default: System.out.println("Use only the following keys: VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP");
+			//default: System.out.println("Use only the following keys: VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP");*/
 		}
-	}*/
+	}
 
 	/* Invoked when a key has been released. */
-	/*public void keyReleased(KeyEvent e) {
+        
+	public void keyReleased(KeyEvent e) {
 		// do nothing
-	}*/
+	}
 
 	/* Invoked when a key has been typed. */
-	/*public void keyTyped(KeyEvent e) {
+        
+	public void keyTyped(KeyEvent e) {
 		// do nothing
-	}*/
+	}
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
-
-        if(y == 0) motionControl = true;
-        if(y == getHeight()-145) motionControl = false;
+       if(diff>=3000){
+            y1 += (motionControl1) ? MOVIMENTO: -MOVIMENTO;
+            if(y1 == 0) motionControl1 = true;
+            if(y1 == getHeight()-145) motionControl1 = false;
+        }
+       
+        if(diff>=6000){
+            y2 += (motionControl2) ? MOVIMENTO: -MOVIMENTO;
+            if(y2 == 0) motionControl2 = true;
+            if(y2 == getHeight()-145) motionControl2 = false;
+        }
+        
+        if(diff>=9000){
+            y3 += (motionControl3) ? MOVIMENTO: -MOVIMENTO;
+            if(y3 == 0) motionControl3 = true;
+            if(y3 == getHeight()-145) motionControl3 = false;
+        }
+        
+        if(diff>=12000){
+            y4 += (motionControl4) ? MOVIMENTO: -MOVIMENTO;
+            if(y4 == 0) motionControl4 = true;
+            if(y4 == getHeight()-145) motionControl4 = false;
+        }
+        
+        if(diff>=15000){
+            y5 += (motionControl5) ? MOVIMENTO: -MOVIMENTO;
+            if(y5 == 0) motionControl5 = true;
+            if(y5 == getHeight()-145) motionControl5 = false;
+        }
+        
 
         repaint();
     }
-
-   
-
-    
 
 } // end class
