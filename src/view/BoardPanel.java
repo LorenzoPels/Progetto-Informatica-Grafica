@@ -38,16 +38,16 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
         private static Timer timer;
-        private int x, y;
+        private int x, y1,y2,y3,y4,y5;
         private final int PAUSE = 10;
         private final int MOVIMENTO = 1;
-        private boolean motionControl;
+        private boolean motionControl1,motionControl2,motionControl3,motionControl4,motionControl5;
+        
         public static Boolean giocoiniziato = false;
         private Image[] pioggia = new Image[5];
         private int tempo;
         private int variabile;
-        public static long t0;
-        public static long t1;
+        public static long t0,t1,P,Pi,Pf;
         public static long diff;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
@@ -78,13 +78,17 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
             }
        
             x = 200;
-            y = 1;
+            y1 = 1;
+            y2 = 1;
+            y3 = 1;
+            y4 = 1;
+            y5 = 1;
         
             timer = new Timer(PAUSE, this);
             timer.start();
             Pioggia();
-           t0 = System.currentTimeMillis();
-            
+            //t0 = System.currentTimeMillis();
+            variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
                 
 	}
         public Image[] Pioggia(){
@@ -99,18 +103,23 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         
         public static Boolean InizioGioco(){
         giocoiniziato = true;
-        
+        t0 = System.currentTimeMillis();
         return giocoiniziato;
         
         }
         public static Boolean  PausaGioco(){
             timer.stop();
             giocoiniziato = false;
+            Pi = System.currentTimeMillis();
+            
             return giocoiniziato;
         } 
         public static Boolean  RiprendiGioco(){
+            Pf = System.currentTimeMillis();
+            P += Pf-Pi;
             timer.start();
             giocoiniziato = true;
+            
             return giocoiniziato;
         } 
         
@@ -277,13 +286,29 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
             if(giocoiniziato==true) {
                 
-                g.drawImage(cavaliere,x-150,y,null);
+                //g.drawImage(cavaliere,x-150,y,null);
                 
-                g.drawImage(cavaliere1,x+200,y,null);
-                t1 = System.currentTimeMillis();
+                //g.drawImage(cavaliere1,x+200,y,null);
+                t1 = System.currentTimeMillis()-P;
                 diff = t1 - t0;
-                if( diff >=5000)//5 secondi
-                g.drawImage(pioggia[1],x,y,null);
+               boolean stampaggio = true;
+              // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
+                if( diff >=3000  )//5 secondi
+                g.drawImage(pioggia[0],x-100,y1,null);
+                if( diff >=6000  )//5 secondi
+                g.drawImage(pioggia[1],x+100,y2,null);
+                if( diff >=9000  )//5 secondi
+                g.drawImage(pioggia[2],x-200,y3,null);
+                if( diff >=12000  )//5 secondi
+                g.drawImage(pioggia[3],x+200,y4,null);
+                if( diff >=15000  )//5 secondi
+                g.drawImage(pioggia[4],x+250,y5,null);
+                if( (diff >=18000) /*&& (diff<=30500) */  )//5 secondi
+                    if(y5>=430){    
+                        t0=System.currentTimeMillis();
+                        Pioggia();
+                    }
+               //}
             }
 	}
 
@@ -341,11 +366,35 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        y += (motionControl) ? MOVIMENTO: -MOVIMENTO;
-
-        if(y == 0) motionControl = true;
-        if(y == getHeight()-145) motionControl = false;
+       if(diff>=3000){
+            y1 += (motionControl1) ? MOVIMENTO: -MOVIMENTO;
+            if(y1 == 0) motionControl1 = true;
+            if(y1 == getHeight()-145) motionControl1 = false;
+        }
+       
+        if(diff>=6000){
+            y2 += (motionControl2) ? MOVIMENTO: -MOVIMENTO;
+            if(y2 == 0) motionControl2 = true;
+            if(y2 == getHeight()-145) motionControl2 = false;
+        }
         
+        if(diff>=9000){
+            y3 += (motionControl3) ? MOVIMENTO: -MOVIMENTO;
+            if(y3 == 0) motionControl3 = true;
+            if(y3 == getHeight()-145) motionControl3 = false;
+        }
+        
+        if(diff>=12000){
+            y4 += (motionControl4) ? MOVIMENTO: -MOVIMENTO;
+            if(y4 == 0) motionControl4 = true;
+            if(y4 == getHeight()-145) motionControl4 = false;
+        }
+        
+        if(diff>=15000){
+            y5 += (motionControl5) ? MOVIMENTO: -MOVIMENTO;
+            if(y5 == 0) motionControl5 = true;
+            if(y5 == getHeight()-145) motionControl5 = false;
+        }
         
 
         repaint();
