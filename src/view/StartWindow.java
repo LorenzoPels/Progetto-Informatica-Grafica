@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Icon;
 
 
 public class StartWindow extends javax.swing.JFrame{
@@ -31,18 +32,27 @@ public class StartWindow extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButtonDx = new javax.swing.JButton();
         jButtonEsci = new javax.swing.JButton();
         jButtonMode = new javax.swing.JButton();
-        jButtonDx = new javax.swing.JButton();
         jButtonSx = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Magic Touch ");
-        setPreferredSize(new java.awt.Dimension(365, 280));
         setResizable(false);
 
-        jLabel.setText("Seleziona una modalità");
+        jPanel1.setLayout(null);
+
+        jButtonDx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/frdx.png"))); // NOI18N
+        jButtonDx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonDx);
+        jButtonDx.setBounds(350, 220, 30, 40);
 
         jButtonEsci.setText("Esci");
         jButtonEsci.addActionListener(new java.awt.event.ActionListener() {
@@ -50,59 +60,40 @@ public class StartWindow extends javax.swing.JFrame{
                 jButtonEsciActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonEsci);
+        jButtonEsci.setBounds(140, 370, 90, 30);
 
-        jButtonMode.setText("Classic");
+        jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/classic.png"))); // NOI18N
         jButtonMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModeActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonMode);
+        jButtonMode.setBounds(50, 200, 290, 130);
 
-        jButtonDx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDxActionPerformed(evt);
-            }
-        });
-
+        jButtonSx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/frsx.png"))); // NOI18N
         jButtonSx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSxActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonSx);
+        jButtonSx.setBounds(10, 220, 30, 40);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/start.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 400, 550);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonSx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonMode, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jButtonEsci, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonMode, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSx, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButtonEsci, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -118,15 +109,15 @@ public class StartWindow extends javax.swing.JFrame{
     }//GEN-LAST:event_jButtonModeActionPerformed
     
     private void jButtonDxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDxActionPerformed
-        if(jButtonMode.getText()== "Classic")
-        jButtonMode.setText("Insane");
-        else jButtonMode.setText("Classic");
+        //if(jButtonMode.getIcon()== classic)
+         jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/insane.png")));
+       // else  jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/classic.png")));
     }//GEN-LAST:event_jButtonDxActionPerformed
 
     private void jButtonSxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSxActionPerformed
-        if(jButtonMode.getText()== "Classic")
-        jButtonMode.setText("Insane");
-        else jButtonMode.setText("Classic");
+        //if(jButtonMode.getText()== "Classic")
+        jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/classic.png")));
+        //else jButtonMode.setText("Classic");
     }//GEN-LAST:event_jButtonSxActionPerformed
      /**
      * @param args the command line arguments
@@ -170,7 +161,8 @@ public class StartWindow extends javax.swing.JFrame{
     private javax.swing.JButton jButtonEsci;
     private javax.swing.JButton jButtonMode;
     private javax.swing.JButton jButtonSx;
-    private javax.swing.JLabel jLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 private void handleStartGameEvent() {
 		//System.out.println("Event start game");
