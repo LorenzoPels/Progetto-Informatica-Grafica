@@ -40,7 +40,7 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         private static Timer timer;
         private int x, y1,y2,y3,y4,y5;
         private final int PAUSE = 10;
-        private final int MOVIMENTO = 1;
+        private  int MOVIMENTO = 1;
         private boolean motionControl1,motionControl2,motionControl3,motionControl4,motionControl5;
         
         public static Boolean giocoiniziato = false;
@@ -49,6 +49,12 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         private int variabile;
         public static long t0,t1,P,Pi,Pf;
         public static long diff;
+        public int int1=1000;
+        public int int2=3000;
+        public int int3=4000;
+        public int int4=7000;
+        public int int5=8000;
+        public int int6=10000;
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -293,21 +299,28 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
                 diff = t1 - t0;
               
               // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
-                if( diff >=3000  )//3 secondi
+                if( diff >=int1  )//3 secondi
                 g.drawImage(pioggia[0],x-100,y1,null);
-                if( diff >=6000  )//6 secondi
+                if( diff >=int2  )//6 secondi
                 g.drawImage(pioggia[1],x+100,y2,null);
-                if( diff >=9000  )//9 secondi
+                if( diff >=int3  )//9 secondi
                 g.drawImage(pioggia[2],x-200,y3,null);
-                if( diff >=12000  )//12 secondi
+                if( diff >=int4  )//12 secondi
                 g.drawImage(pioggia[3],x+200,y4,null);
-                if( diff >=15000  )// 15secondi
+                if( diff >=int5  )// 15secondi
                 g.drawImage(pioggia[4],x+250,y5,null);
-                if( (diff >=18000) /*&& (diff<=30500) */  )//18 secondi
-                    if(y5>=430){    
+                if( (diff >=int6) /*&& (diff<=30500) */  )//18 secondi
+                    if(y5>=getHeight()-340){    
                         t0=System.currentTimeMillis();
                         Pioggia();
                         y1=y2=y3=y4=y5=1;
+                        MOVIMENTO++;
+                        int1+=-300;
+                        int2+=-500;
+                        int3+=-300;
+                        int4+=-600;
+                        int5+=-500;
+                        int6+=-500;
                     }
                //}
             }
@@ -367,35 +380,37 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(diff>=3000){
-            y1 += (motionControl1) ? MOVIMENTO: -MOVIMENTO;
-            if(y1 == 0) motionControl1 = true;
-            if(y1 == getHeight()-145) motionControl1 = false;
+       if(diff>=int1){
+            y1 += (motionControl1) ? MOVIMENTO: /*-MOVIMENTO*/0;
+            if(y1 >= 0) motionControl1 = true;
+            if(y1 >= getHeight()-340) motionControl1 = false;
         }
        
-        if(diff>=6000){
-            y2 += (motionControl2) ? MOVIMENTO: -MOVIMENTO;
-            if(y2 == 0) motionControl2 = true;
-            if(y2 == getHeight()-145) motionControl2 = false;
+        if(diff>=int2){
+            y2 += (motionControl2) ? MOVIMENTO: /*MOVIMENTO*/0;
+            if(y2 >= 0) motionControl2 = true;
+            if(y2 >= getHeight()-340) motionControl2 = false;
         }
         
-        if(diff>=9000){
-            y3 += (motionControl3) ? MOVIMENTO: -MOVIMENTO;
-            if(y3 == 0) motionControl3 = true;
-            if(y3 == getHeight()-145) motionControl3 = false;
+        if(diff>=int3){
+            y3 += (motionControl3) ? MOVIMENTO: /*MOVIMENTO*/0;
+            if(y3 >= 0) motionControl3 = true;
+            if(y3 >= getHeight()-340) motionControl3 = false;
         }
         
-        if(diff>=12000){
-            y4 += (motionControl4) ? MOVIMENTO: -MOVIMENTO;
-            if(y4 == 0) motionControl4 = true;
-            if(y4 == getHeight()-145) motionControl4 = false;
+        if(diff>=int4){
+            y4 += (motionControl4) ? MOVIMENTO:/* MOVIMENTO*/0;
+            if(y4 >= 0) motionControl4 = true;
+            if(y4 >= getHeight()-340) motionControl4 = false;
         }
         
-        if(diff>=15000){
-            y5 += (motionControl5) ? MOVIMENTO: -MOVIMENTO;
-            if(y5 == 0) motionControl5 = true;
-            if(y5 == getHeight()-145) motionControl5 = false;
+        if(diff>=int5){
+            y5 += (motionControl5) ? MOVIMENTO: /*MOVIMENTO*/0;
+            if(y5 >= 0) motionControl5 = true;
+            if(y5 >= getHeight()-340) motionControl5 = false;
         }
+        
+        
         
 
         repaint();
