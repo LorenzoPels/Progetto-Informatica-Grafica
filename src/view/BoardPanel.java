@@ -24,6 +24,7 @@ import model.Cavaliere;
 import static model.CavaliereA.Loader;
 import model.Model;
 import static view.RightPanel.scorelabel;
+import static view.RightPanel.updateScoreLabel;
 
 public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         BufferedImage sfondo;
@@ -55,6 +56,7 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         public int int4=7000;
         public int int5=8000;
         public int int6=10000;
+        
 	//---------------------------------------------------------------
 	// INSTANCE ATTRIBUTES
 	//---------------------------------------------------------------
@@ -78,8 +80,9 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
             try {
                 sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
                 mago = ImageIO.read(new File("src/immagini/Mago.png"));
-                cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
-                cavaliere1 = Cavaliere.Loader();
+               // cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
+               // cavaliere1 = Cavaliere.Loader();
+             
             }catch (IOException ex) {
             }
        
@@ -95,6 +98,7 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
             Pioggia();
             //t0 = System.currentTimeMillis();
             variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
+            setFocusable(true);
                 
 	}
         public Image[] Pioggia(){
@@ -111,6 +115,8 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
         giocoiniziato = true;
         t0 = System.currentTimeMillis();
         return giocoiniziato;
+        
+        
         
         }
         public static Boolean  PausaGioco(){
@@ -287,6 +293,7 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 
 	@Override
 	public void paintComponent(Graphics g) {
+            
             super.paintComponent(g);
             g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
@@ -300,15 +307,15 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
               
               // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
                 if( diff >=int1  )//3 secondi
-                g.drawImage(pioggia[0],x-100,y1,null);
-                if( diff >=int2  )//6 secondi
-                g.drawImage(pioggia[1],x+100,y2,null);
-                if( diff >=int3  )//9 secondi
-                g.drawImage(pioggia[2],x-200,y3,null);
-                if( diff >=int4  )//12 secondi
-                g.drawImage(pioggia[3],x+200,y4,null);
-                if( diff >=int5  )// 15secondi
-                g.drawImage(pioggia[4],x+250,y5,null);
+                    g.drawImage(pioggia[0],x-100,y1,null);
+                if(diff >=int2)//6 secondi
+                    g.drawImage(pioggia[1],x+100,y2,null);
+                if(diff >=int3)//9 secondi
+                    g.drawImage(pioggia[2],x-200,y3,null);
+                if(diff >=int4)//12 secondi
+                    g.drawImage(pioggia[3],x+200,y4,null);
+                if(diff >=int5)// 15secondi
+                    g.drawImage(pioggia[4],x+250,y5,null);
                 if( (diff >=int6) /*&& (diff<=30500) */  )//18 secondi
                     if(y5>=getHeight()-340){    
                         t0=System.currentTimeMillis();
@@ -331,17 +338,24 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 	// To implement the interface java.awt.event.KeyListener
 	//-------------------------------------------------------------------------
 	/* Invoked when a key has been pressed. */
-        
+        @Override
 	public void keyPressed(KeyEvent e) {
+           /* if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                Model.getInstance().incrementScore();
+                updateScoreLabel(Model.getInstance().getScore());
+                
+            }*/
+           
 		switch (e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:// vk qualcosa indica ciò che innesca la rotazione
+			case KeyEvent.VK_RIGHT:// vk qualcosa indica ciò che innesca la rotazione
 				Model.getInstance().incrementScore();
                                 RightPanel.updateScoreLabel(Model.getInstance().getScore());
+                                this.repaint();
                             
                             /*ControllerForView.getInstance().left();*/
-				this.repaint();
+				//this.repaint();
 				//System.out.println("Pressed key: VK_LEFT");*/
-				break;
+				//break;
 			/*case KeyEvent.VK_RIGHT:
 				ControllerForView.getInstance().right();
 				this.repaint();
@@ -363,23 +377,25 @@ public class BoardPanel extends JPanel implements ActionListener,KeyListener {
 				//System.out.println("Pressed key: VK_A");
 				break;
 			//default: System.out.println("Use only the following keys: VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP");*/
-		}
+                }
+                       
 	}
 
 	/* Invoked when a key has been released. */
-        
+        @Override
 	public void keyReleased(KeyEvent e) {
 		// do nothing
 	}
 
 	/* Invoked when a key has been typed. */
-        
+        @Override
 	public void keyTyped(KeyEvent e) {
 		// do nothing
 	}
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
        if(diff>=int1){
             y1 += (motionControl1) ? MOVIMENTO: /*-MOVIMENTO*/0;
             if(y1 >= 0) motionControl1 = true;

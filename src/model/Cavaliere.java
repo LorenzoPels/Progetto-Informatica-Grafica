@@ -38,7 +38,7 @@ public class Cavaliere {
 	}
 
 	//protected int[][] shapeArray;
-	protected String pieceName;
+	public  String pieceName;
         public static Image cavaliere;
 	protected Cavaliere() {
 		//do nothing
@@ -75,7 +75,7 @@ public class Cavaliere {
 		}
 	}*/
 
-	protected String getName() {
+	public String getName() {
 		return this.pieceName;
 	}
 
@@ -87,7 +87,7 @@ public class Cavaliere {
 		return mapStringNameToFallingPieceObj.get(fallingPieceName);
 	}
 
-	static Cavaliere nextFallingPiece() {
+	public static Cavaliere nextFallingPiece() {
 		Cavaliere fallingPiece = null;
 		int pieceIndex = (int)(Math.random() * FALLING_PIECE_ARRAY.length) % FALLING_PIECE_ARRAY.length;
 		/*for (int k = 0; k < PREVIEW_PIECE_ARRAY.length; k++)

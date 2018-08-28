@@ -8,13 +8,13 @@ import model.Model;
 
 
 
-public class RightPanel extends javax.swing.JPanel  {
+public class RightPanel extends javax.swing.JPanel {
     private boolean isGameStarted; // a game can start only once at the beginning
     private boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
-       
+        
         
     }
     public static void updateScoreLabel(int score) {
@@ -95,11 +95,6 @@ public class RightPanel extends javax.swing.JPanel  {
         jLabel4.setText("Touch");
 
         scorelabel.setText(ControllerForView.getInstance().getScore());
-        scorelabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                scorelabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,11 +166,6 @@ public class RightPanel extends javax.swing.JPanel  {
      startPauseEvent();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void scorelabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scorelabelMouseClicked
-     Model.getInstance().incrementScore();
-    updateScoreLabel(Model.getInstance().getScore()); // TODO add your handling code here
-    }//GEN-LAST:event_scorelabelMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -187,7 +177,7 @@ public class RightPanel extends javax.swing.JPanel  {
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
-    
-  
+
+   
     
 }

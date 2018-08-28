@@ -4,10 +4,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import model.Model;
+import static view.RightPanel.updateScoreLabel;
 
-class MainGUI extends JFrame {
+class MainGUI extends JFrame  {
 private BoardPanel panel;
 private final static int larghezza = 750;
 private final static int altezza = 730;
@@ -26,6 +30,7 @@ add(panel);
 setResizable(true);
 pack();
 setLocationRelativeTo(null);
+
 
 
 
@@ -61,4 +66,6 @@ mg.setVisible(true);
             });
         } catch(Exception e) {}
     }
+
+   
 }
