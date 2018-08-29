@@ -99,9 +99,9 @@ public class Cavaliere {
 		return fallingPiece;
 	}
         
-        public static Image Loader(){
+        public static Image Loader(Cavaliere cv){
          try {
-            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliereProvvisorio"+nextFallingPiece().getName()+".png"));
+            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliereProvvisorio"+cv.getName()+".png"));
         }catch (IOException ex) {}
          return cavaliere;
         }

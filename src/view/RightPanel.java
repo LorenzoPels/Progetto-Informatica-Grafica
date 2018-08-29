@@ -2,9 +2,7 @@
 package view;
 
 import controller.ControllerForView;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import model.Model;
+import static view.MainGUI.panel;
 
 
 
@@ -25,26 +23,26 @@ public class RightPanel extends javax.swing.JPanel {
 		if (!this.isGameStarted) {
 			this.isGameStarted = true;
 			this.isGameRunning = true;
-                        BoardPanel.InizioGioco();
+                        MainGUI.InizioGioco();
 			//ControllerForView.getInstance().initGame();
 			//this.previewPanel.setPreviewPieceAvailable();
 			//this.boardPanel.setFallingPieceAvailable();
-			//this.boardPanel.requestFocusInWindow();
+			panel.requestFocusInWindow();
 			//this.timer.start();
 			this.jButton1.setText("pausa");
 			this.jButton2.setEnabled(false);
 		}
 		else if (!this.isGameRunning) {
 			this.isGameRunning = true;
-                        BoardPanel.RiprendiGioco();
-			//this.boardPanel.requestFocusInWindow();
+                        MainGUI.RiprendiGioco();
+			panel.requestFocusInWindow();
 			//this.timer.start();
 			this.jButton1.setText("pausa");
 			this.jButton2.setEnabled(false);
 		}
 		else {
 			this.isGameRunning = false;
-                        BoardPanel.PausaGioco();
+                        MainGUI.PausaGioco();
 			//this.timer.stop();
 			this.jButton1.setText("gioca");
 			this.jButton2.setEnabled(true);
@@ -101,9 +99,9 @@ public class RightPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(scorelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(scorelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
