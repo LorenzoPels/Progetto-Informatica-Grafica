@@ -56,8 +56,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
             try {
                 sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
                 mago = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
-               // cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
-               // cavaliere1 = Cavaliere.Loader();
+              
              
             }catch (IOException ex) {
             }
@@ -85,7 +84,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                 //g.drawImage(cavaliere1,x+200,y,null);
                 t1 = System.currentTimeMillis()-P;
                 diff = t1 - t0;
-              
+                //System.out.println(diff);
               // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
                 if( diff >=int1  )//3 secondi
                     g.drawImage(pioggia[0],x-100,y1,null);
@@ -97,9 +96,10 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                     g.drawImage(pioggia[3],x+200,y4,null);
                 if(diff >=int5)// 15secondi
                     g.drawImage(pioggia[4],x+250,y5,null);
-                if( (diff >=int6) /*&& (diff<=30500) */  )//18 secondi
+                if( diff >=int6 )//18 secondi
                     if(y5>=getHeight()-340){    
                         t0=System.currentTimeMillis();
+                        P=0;
                         MainGUI.Cavalieri();
                         MainGUI.Pioggia();
                         y1=y2=y3=y4=y5=-100;
@@ -281,43 +281,6 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 		
 	}
 
-   /* @Override
-    public void actionPerformed(ActionEvent e) {
-        
-       if(diff>=int1){
-            y1 += (motionControl1) ? MOVIMENTO: 0;
-            if(y1 >= 0) motionControl1 = true;
-            if(y1 >= getHeight()-340) motionControl1 = false;
-        }
-       
-        if(diff>=int2){
-            y2 += (motionControl2) ? MOVIMENTO: 0;
-            if(y2 >= 0) motionControl2 = true;
-            if(y2 >= getHeight()-340) motionControl2 = false;
-        }
-        
-        if(diff>=int3){
-            y3 += (motionControl3) ? MOVIMENTO: 0;
-            if(y3 >= 0) motionControl3 = true;
-            if(y3 >= getHeight()-340) motionControl3 = false;
-        }
-        
-        if(diff>=int4){
-            y4 += (motionControl4) ? MOVIMENTO:0;
-            if(y4 >= 0) motionControl4 = true;
-            if(y4 >= getHeight()-340) motionControl4 = false;
-        }
-        
-        if(diff>=int5){
-            y5 += (motionControl5) ? MOVIMENTO: 0;
-            if(y5 >= 0) motionControl5 = true;
-            if(y5 >= getHeight()-340) motionControl5 = false;
-        }
-        
-        
-        
-
-        repaint();
-    }*/
+  
 
 } // end class

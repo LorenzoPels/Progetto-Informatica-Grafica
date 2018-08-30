@@ -111,7 +111,7 @@ public static Boolean  RiprendiGioco(){
             P += Pf-Pi;
             timer.start();
             giocoiniziato = true;
-            
+            //t1 = System.currentTimeMillis()-P;
             return giocoiniziato;
         } 
         
