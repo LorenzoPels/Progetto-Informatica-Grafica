@@ -8,10 +8,11 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.Icon;
 
 
-public class StartWindow extends javax.swing.JFrame{
+public class StartWindow extends javax.swing.JFrame {
      
 
     
@@ -21,6 +22,9 @@ public class StartWindow extends javax.swing.JFrame{
         jButtonSx.setMnemonic(KeyEvent.VK_LEFT);
         jButtonMode.setMnemonic(KeyEvent.VK_ENTER);
         setLocationRelativeTo(null);
+        
+       
+       
     }
 
     /**
@@ -170,6 +174,7 @@ private void handleStartGameEvent() {
 		ControllerForView.getInstance().openMainGUI();
 	}
 
+   
 
 }
 

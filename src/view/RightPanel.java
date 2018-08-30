@@ -2,19 +2,17 @@
 package view;
 
 import controller.ControllerForView;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import model.Model;
+import static view.MainGUI.panel;
 
 
 
-public class RightPanel extends javax.swing.JPanel  {
+public class RightPanel extends javax.swing.JPanel {
     private boolean isGameStarted; // a game can start only once at the beginning
     private boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
-       
+        
         
     }
     public static void updateScoreLabel(int score) {
@@ -25,26 +23,26 @@ public class RightPanel extends javax.swing.JPanel  {
 		if (!this.isGameStarted) {
 			this.isGameStarted = true;
 			this.isGameRunning = true;
-                        BoardPanel.InizioGioco();
+                        MainGUI.InizioGioco();
 			//ControllerForView.getInstance().initGame();
 			//this.previewPanel.setPreviewPieceAvailable();
 			//this.boardPanel.setFallingPieceAvailable();
-			//this.boardPanel.requestFocusInWindow();
+			panel.requestFocusInWindow();
 			//this.timer.start();
 			this.jButton1.setText("pausa");
 			this.jButton2.setEnabled(false);
 		}
 		else if (!this.isGameRunning) {
 			this.isGameRunning = true;
-                        BoardPanel.RiprendiGioco();
-			//this.boardPanel.requestFocusInWindow();
+                        MainGUI.RiprendiGioco();
+			panel.requestFocusInWindow();
 			//this.timer.start();
 			this.jButton1.setText("pausa");
 			this.jButton2.setEnabled(false);
 		}
 		else {
 			this.isGameRunning = false;
-                        BoardPanel.PausaGioco();
+                        MainGUI.PausaGioco();
 			//this.timer.stop();
 			this.jButton1.setText("gioca");
 			this.jButton2.setEnabled(true);
@@ -95,20 +93,15 @@ public class RightPanel extends javax.swing.JPanel  {
         jLabel4.setText("Touch");
 
         scorelabel.setText(ControllerForView.getInstance().getScore());
-        scorelabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                scorelabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(scorelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(scorelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,11 +164,6 @@ public class RightPanel extends javax.swing.JPanel  {
      startPauseEvent();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void scorelabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scorelabelMouseClicked
-     Model.getInstance().incrementScore();
-    updateScoreLabel(Model.getInstance().getScore()); // TODO add your handling code here
-    }//GEN-LAST:event_scorelabelMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -187,7 +175,7 @@ public class RightPanel extends javax.swing.JPanel  {
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
-    
-  
+
+   
     
 }
