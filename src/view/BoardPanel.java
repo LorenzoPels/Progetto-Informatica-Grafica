@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import model.Cavaliere;
 import model.Model;
 import static view.MainGUI.MOVIMENTO;
 import static view.MainGUI.P;
@@ -38,7 +39,7 @@ import static view.RightPanel.updateScoreLabel;
 public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
-        private Image cavaliere;
+        //public static Image cavaliere;
        private Image cavaliere1;
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
@@ -54,64 +55,19 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                 
 		this.addKeyListener(this);
             try {
-                sfondo = ImageIO.read(new File("src/immagini/Sfondo_senza_mago.png"));
-                mago = ImageIO.read(new File("src/immagini/Mago.png"));
+                sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
+                mago = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
                // cavaliere = /*ImageIO.read(new File("src/Cavalieri/cavaliere.png"));*/Cavaliere.Loader();
                // cavaliere1 = Cavaliere.Loader();
              
             }catch (IOException ex) {
             }
        
-            /*x = 200;
-            y1 = 1;
-            y2 = 1;
-            y3 = 1;
-            y4 = 1;
-            y5 = 1;
-        
-            timer = new Timer(PAUSE, this);
-            timer.start();
-            Pioggia();
-            //t0 = System.currentTimeMillis();
-            variabile = (int)(Math.random() * pioggia.length) % pioggia.length;*/
+           
             setFocusable(true);
                 
 	}
-       /* public Image[] Pioggia(){
-        
-        pioggia[0] = Cavaliere.Loader();
-        pioggia[1] = Cavaliere.Loader();
-        pioggia[2] = Cavaliere.Loader();
-        pioggia[3] = Cavaliere.Loader();
-        pioggia[4] = Cavaliere.Loader();
-        return pioggia;
-        }
-        
-        public static Boolean InizioGioco(){
-        giocoiniziato = true;
-        t0 = System.currentTimeMillis();
-        return giocoiniziato;
-        
-        
-        
-        }
-        public static Boolean  PausaGioco(){
-            timer.stop();
-            giocoiniziato = false;
-            Pi = System.currentTimeMillis();
-            
-            return giocoiniziato;
-        } 
-        public static Boolean  RiprendiGioco(){
-            Pf = System.currentTimeMillis();
-            P += Pf-Pi;
-            timer.start();
-            giocoiniziato = true;
-            
-            return giocoiniziato;
-        } */
-        
-        
+       
         
 
 	@Override
@@ -172,118 +128,148 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 	/* Invoked when a key has been pressed. */
         @Override
 	public void keyPressed(KeyEvent e) {
-          /*  if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                Model.getInstance().incrementScore();
-                updateScoreLabel(Model.getInstance().getScore());
                 
-            }*/
-           
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_A:
-                            
+                            boolean cancelA = false;
                             for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "A"){
+                                if(cavalieri[i].getName()== "A" && cancelA==false){
                                     pioggia[i] = null;
-                                    //cavalieri[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
+                                    cancelA = true;
                                 }
                             }
-				
-                                //this.repaint();
-                               break;
+                            break;
+                            
                         case KeyEvent.VK_B:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "B"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
-                                } 
-                                break;
-                                
+                            boolean cancelB = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "B" && cancelB==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelB = true;
+                                }
+                            }
+                            break;
+                            
                         case KeyEvent.VK_F:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "F"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelF = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "F" && cancelF==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelF = true;
                                 }
-                                break;
-                                
+                            }
+                            break;
+                        
                         case KeyEvent.VK_H:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "H"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelH = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "H" && cancelH==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelH = true;
                                 }
-                                break;
+                            }
+                            break;
+                            
                         case KeyEvent.VK_J:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "J"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
-                                } 
-                                break;
+                            boolean cancelJ = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "J" && cancelJ==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelJ = true;
+                                }
+                            }
+                            break;
+                            
                         case KeyEvent.VK_K:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "K"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelK = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "K" && cancelK==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelK = true;
                                 }
-                                break;
+                            }
+                            break;
+                            
                         case KeyEvent.VK_L:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "L"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelL = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "L" && cancelL==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelL = true;
                                 }
-                                break;
+                            }
+                            break;
+                            
                         case KeyEvent.VK_M:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "M"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
-                                } 
-                                break;
+                            boolean cancelM = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "M" && cancelM==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelM = true;
+                                }
+                            }
+                            break;
+                            
                         case KeyEvent.VK_P:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "P"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelP = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "P" && cancelP==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelP = true;
                                 }
-                                break;
+                            }
+                            break;
+                            
                         case KeyEvent.VK_Q:
-				for(int i =0;i<cavalieri.length;i++){
-                                    if(cavalieri[i].getName()== "Q"){
-                                        pioggia[i] = null;
-                                        //cavalieri[i] = null;
-                                        Model.getInstance().incrementScore();
-                                        updateScoreLabel(Model.getInstance().getScore());
-                                    }
+                            boolean cancelQ = false;
+                            for(int i =0;i<cavalieri.length;i++){
+                                if(cavalieri[i].getName()== "Q" && cancelQ==false){
+                                    pioggia[i] = null;
+                                    cavalieri[i] = null;
+                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    Model.getInstance().incrementScore();
+                                    updateScoreLabel(Model.getInstance().getScore());
+                                    cancelQ = true;
                                 }
-                                break;
+                            }
+                            break;
+                        
                }
                        
 	}
@@ -291,13 +277,14 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 	/* Invoked when a key has been released. */
         @Override
 	public void keyReleased(KeyEvent e) {
-		// do nothing
+            
+          
 	}
 
 	/* Invoked when a key has been typed. */
         @Override
 	public void keyTyped(KeyEvent e) {
-		// do nothing
+		
 	}
 
    /* @Override

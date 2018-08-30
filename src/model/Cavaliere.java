@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
+import view.CaricatoreImmagine;
 
 
 public class Cavaliere {
@@ -39,7 +40,7 @@ public class Cavaliere {
 
 	//protected int[][] shapeArray;
 	public  String pieceName;
-        public static Image cavaliere;
+       public static Image cavaliere;
 	protected Cavaliere() {
 		//do nothing
 	}
@@ -100,9 +101,10 @@ public class Cavaliere {
 	}
         
         public static Image Loader(Cavaliere cv){
-         try {
-            cavaliere = ImageIO.read(new File("src/Cavalieri/cavaliereProvvisorio"+cv.getName()+".png"));
-        }catch (IOException ex) {}
+            CaricatoreImmagine loader = new CaricatoreImmagine();
+       
+            cavaliere = loader.caricaImmagine("/Cavalieri/cavaliereProvvisorio"+cv.getName()+".png");
+       
          return cavaliere;
         }
         

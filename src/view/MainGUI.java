@@ -7,9 +7,13 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
+import static model.Cavaliere.Loader;
+
 
 
 
@@ -37,7 +41,7 @@ public static int int3=4000;
 public static int int4=7000;
 public static int int5=8000;
 public static int int6=10000;
-
+//public  Image cavaliere;
 
 MainGUI() {
  
@@ -59,7 +63,7 @@ MainGUI() {
     y5 = -100;
 
     timer = new Timer(PAUSE, this);
-    timer.start();
+    //timer.start();
     Cavalieri();
     Pioggia();
     //t0 = System.currentTimeMillis();
@@ -78,13 +82,16 @@ public static Cavaliere[] Cavalieri(){
    cavalieri[4] = Cavaliere.nextFallingPiece();
    return cavalieri;
 }
+
+
  public static Image[] Pioggia(){
     for(int i=0; i<cavalieri.length;i++)  
-        pioggia[i] = Cavaliere.Loader(cavalieri[i]);
+        pioggia[i] = Loader(cavalieri[i]);
     return pioggia;
     }
         
 public static Boolean InizioGioco(){
+        timer.start();
         giocoiniziato = true;
         t0 = System.currentTimeMillis();
         return giocoiniziato;
