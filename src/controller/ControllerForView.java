@@ -35,7 +35,20 @@ public class ControllerForView implements IControllerForView {
         public void closeMainGUI() {
 		View.getInstance().closeMainGUI();
 	}
-        
+        public void openDialog() {
+		View.getInstance().openDialog();
+	}
+
+	public void closeDialog() {
+		View.getInstance().closeDialog();
+	}
+        public void openGameOverDialog() {
+		View.getInstance().openGameOverDialog();
+	}
+
+	public void closeGameOverDialog() {
+		View.getInstance().closeGameOverDialog();
+	}
         public void initGame() {
 		Model.getInstance().initGame();
 	}

@@ -13,6 +13,8 @@ public class View implements IView {
 	//---------------------------------------------------------------
 	protected StartWindow startWindow = null;
         protected MainGUI mainGUI = null;
+        protected Dialog dialog = null;
+        protected GameOverDialog gameover = null;
         protected RightPanel rightpanel = null;
         protected BoardPanel boardpanel = null;
         
@@ -62,7 +64,44 @@ public class View implements IView {
 			}
 		});
 	}
-        
+        public void openDialog() {
+            
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    
+			public void run() {
+				if (dialog == null)
+					dialog = new Dialog();
+				dialog.setVisible(true);
+			}
+		});
+	}
+        public void closeDialog() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (dialog != null)
+                                    dialog.setVisible(false);
+			}
+		});
+	}
+         public void openGameOverDialog() {
+            
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    
+			public void run() {
+				if (gameover == null)
+					gameover = new GameOverDialog();
+				gameover.setVisible(true);
+			}
+		});
+	}
+        public void closeGameOverDialog() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (gameover != null)
+                                    gameover.setVisible(false);
+			}
+		});
+	}
         public void updateScoreLabel(int score) {
 		this.rightpanel.updateScoreLabel(score);
 	}
