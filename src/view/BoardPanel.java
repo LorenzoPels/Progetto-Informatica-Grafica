@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -64,19 +63,14 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
             }
        
            
-            setFocusable(true);
+            //setFocusable(true);
                 
 	}
-       
-        
 
 	@Override
 	public Dimension getPreferredSize() {
 		return PREFERRED_SIZE;
 	}
-       
-        
-     
 
 	@Override
 	public void paintComponent(Graphics g) {

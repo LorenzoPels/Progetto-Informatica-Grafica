@@ -58,14 +58,16 @@ public class StartWindow extends javax.swing.JFrame {
         jPanel1.add(jButtonDx);
         jButtonDx.setBounds(350, 220, 30, 40);
 
-        jButtonEsci.setText("Esci");
+        jButtonEsci.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 12)); // NOI18N
+        jButtonEsci.setForeground(new java.awt.Color(255, 255, 0));
+        jButtonEsci.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/bottone.png"))); // NOI18N
         jButtonEsci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEsciActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonEsci);
-        jButtonEsci.setBounds(140, 370, 90, 30);
+        jButtonEsci.setBounds(160, 360, 100, 47);
 
         jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/classic.png"))); // NOI18N
         jButtonMode.addActionListener(new java.awt.event.ActionListener() {
