@@ -23,6 +23,7 @@ public class RightPanel extends javax.swing.JPanel {
 		if (!this.isGameStarted) {
 			this.isGameStarted = true;
 			this.isGameRunning = true;
+                        ControllerForView.getInstance().initGame();
                         MainGUI.InizioGioco();
 			//ControllerForView.getInstance().initGame();
 			//this.previewPanel.setPreviewPieceAvailable();
