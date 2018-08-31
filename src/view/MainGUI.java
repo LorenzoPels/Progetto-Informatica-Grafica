@@ -141,50 +141,50 @@ private void createPanel() {
             y1 += (motionControl1) ? MOVIMENTO: /*-MOVIMENTO*/0;
             if(y1 >= -101) motionControl1 = true;
             if(y1 >= getHeight()-340) motionControl1 = false;
-            /*if((y1 >= getHeight()-340) &&(pioggia[0]!= null) ){
+            if((y1 >= getHeight()-340) &&(pioggia[0]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
-            }*/
+            }
         }
        
         if(diff>=int2){
             y2 += (motionControl2) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y2 >= -101) motionControl2 = true;
             if(y2 >= getHeight()-340) motionControl2 = false;
-           /* if((y2 >= getHeight()-340) &&(pioggia[1]!= null) ){
+           if((y2 >= getHeight()-340) &&(pioggia[1]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
-            }*/
+            }
         }
         
         if(diff>=int3){
             y3 += (motionControl3) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y3 >= -101) motionControl3 = true;
             if(y3 >= getHeight()-340) motionControl3 = false;
-            /*if((y3 >= getHeight()-340) &&(pioggia[2]!= null) ){
+            if((y3 >= getHeight()-340) &&(pioggia[2]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
-            }*/
+            }
         }
         
         if(diff>=int4){
             y4 += (motionControl4) ? MOVIMENTO:/* MOVIMENTO*/0;
             if(y4 >= -101) motionControl4 = true;
             if(y4 >= getHeight()-340) motionControl4 = false;
-            /*if((y4 >= getHeight()-340) &&(pioggia[3]!= null) ){
+            if((y4 >= getHeight()-340) &&(pioggia[3]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
-            }*/
+            }
         }
         
         if(diff>=int5){
             y5 += (motionControl5) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y5 >= -101) motionControl5 = true;
             if(y5 >= getHeight()-340) motionControl5 = false;
-            /*if((y5 >= getHeight()-340) &&(pioggia[4]!= null) ){
+            if((y5 >= getHeight()-340) &&(pioggia[4]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
-            }*/
+            }
         }
          this.panel.repaint();       
         //repaint();
