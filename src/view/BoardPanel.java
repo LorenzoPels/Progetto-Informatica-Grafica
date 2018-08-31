@@ -107,6 +107,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                         int4+=-600;
                         int5+=-500;
                         int6+=-500;
+                        
                     }
                //}*/
             }

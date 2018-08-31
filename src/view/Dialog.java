@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerForView;
+import static view.RightPanel.scorelabel;
 
 /**
  *
@@ -20,7 +21,10 @@ public class Dialog extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
+    public void resetLabel(){
+        scorelabel.setText("0");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +94,9 @@ public class Dialog extends javax.swing.JFrame {
        ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().closeDialog();
        ControllerForView.getInstance().openStartWindow();
+       resetLabel();
+      
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

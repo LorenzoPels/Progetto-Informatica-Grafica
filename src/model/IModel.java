@@ -17,7 +17,7 @@ public interface IModel {
 	public String getNameOfFallingPiece();//non so*/
 	
 	public void initGame();//non so
-	
+
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 
 	public boolean isEmptyCell(int i);//verifica se il nemico tocca terra

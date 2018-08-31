@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import model.Model;
+import static view.RightPanel.scorelabel;
 
 
 
@@ -28,6 +30,8 @@ public class StartWindow extends javax.swing.JFrame  {
        
        
     }
+    
+    
 
     
     @SuppressWarnings("unchecked")
@@ -168,8 +172,12 @@ public class StartWindow extends javax.swing.JFrame  {
     // End of variables declaration//GEN-END:variables
 private void handleStartGameEvent() {
 		//System.out.println("Event start game");
-                ControllerForView.getInstance().closeStartWindow();
+                
+                ControllerForView.getInstance().closeStartWindow();               
 		ControllerForView.getInstance().openMainGUI();
+                ControllerForView.getInstance().initGame();
+                
+                
 	}
 
     

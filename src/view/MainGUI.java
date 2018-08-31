@@ -18,7 +18,7 @@ import static model.Cavaliere.Loader;
 
 
 
-class MainGUI extends JFrame implements ActionListener  {
+public class MainGUI extends JFrame implements ActionListener  {
 public static BoardPanel panel;
 private final static int larghezza = 750;
 private final static int altezza = 730;
@@ -71,7 +71,7 @@ MainGUI() {
     //t0 = System.currentTimeMillis();
     variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
     //setFocusable(true);
-            
+           
 
 
 

@@ -49,6 +49,7 @@ public interface IControllerForView {
 	public String getNameOfPreviewPiece();*/
 	
 	public void initGame();
+        //public void Init();
 
 	/*public int iIndex();
 
