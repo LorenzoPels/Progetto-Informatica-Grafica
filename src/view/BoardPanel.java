@@ -84,29 +84,29 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                 diff = t1 - t0;
                 //System.out.println(diff);
                 if( diff >=int1  )
-                    g.drawImage(pioggia[0],x-100,y1,null);
+                    g.drawImage(pioggia[0],x-100,y1,150,180,null);
                 if(diff >=int2)
-                    g.drawImage(pioggia[1],x+100,y2,null);
+                    g.drawImage(pioggia[1],x+100,y2,150,180,null);
                 if(diff >=int3)
-                    g.drawImage(pioggia[2],x-200,y3,null);
+                    g.drawImage(pioggia[2],x-200,y3,150,180,null);
                 if(diff >=int4)
-                    g.drawImage(pioggia[3],x+200,y4,null);
+                    g.drawImage(pioggia[3],x+200,y4,150,180,null);
                 if(diff >=int5)
-                    g.drawImage(pioggia[4],x+250,y5,null);
+                    g.drawImage(pioggia[4],x+250,y5,150,180,null);
                 if( diff >=int6 )
-                    if(y5>=getHeight()-340){    
+                    if(/*y5>=getHeight()-340*/pioggia[4]==null){    
                         t0=System.currentTimeMillis();
                         P=0;
                         MainGUI.Cavalieri();
                         MainGUI.Pioggia();
                         y1=y2=y3=y4=y5=-100;
                         MOVIMENTO++;
-                        int1+=-300;
-                        int2+=-500;
-                        int3+=-300;
-                        int4+=-600;
-                        int5+=-500;
-                        int6+=-500;
+                        int1+=-500;
+                        int2+=-700;
+                        int3+=-500;
+                        int4+=-800;
+                        int5+=-700;
+                        int6+=-700;
                         
                     }
                //}*/
@@ -131,7 +131,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelA = true;
+                                    cancelA = true;
                                 }
                             }
                             break;
@@ -146,7 +146,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelB = true;
+                                    cancelB = true;
                                 }
                             }
                             break;
@@ -161,7 +161,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelF = true;
+                                    cancelF = true;
                                 }
                             }
                             break;
@@ -176,7 +176,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelH = true;
+                                    cancelH = true;
                                 }
                             }
                             break;
@@ -191,7 +191,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                   //cancelJ = true;
+                                   cancelJ = true;
                                 }
                             }
                             break;
@@ -206,7 +206,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelK = true;
+                                    cancelK = true;
                                 }
                             }
                             break;
@@ -221,7 +221,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                   //cancelL = true;
+                                   cancelL = true;
                                 }
                             }
                             break;
@@ -236,7 +236,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelM = true;
+                                    cancelM = true;
                                 }
                             }
                             break;
@@ -251,7 +251,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelP = true;
+                                    cancelP = true;
                                 }
                             }
                             break;
@@ -266,7 +266,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    //cancelQ = true;
+                                    cancelQ = true;
                                 }
                             }
                             break;
