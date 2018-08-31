@@ -11,7 +11,10 @@ public class GameOverDialog extends javax.swing.JFrame {
     public GameOverDialog() {
         initComponents();
         setLocationRelativeTo(null);
+        if(scorelabel.getText().compareTo(recordlabel.getText())>0)
+            recordlabel.setText(scorelabel.getText());
     }
+
 
     
     @SuppressWarnings("unchecked")
@@ -19,7 +22,7 @@ public class GameOverDialog extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        recordlabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -27,16 +30,16 @@ public class GameOverDialog extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 100, 130, 80);
+        recordlabel.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
+        recordlabel.setForeground(new java.awt.Color(0, 153, 255));
+        recordlabel.setText("0");
+        jPanel1.add(recordlabel);
+        recordlabel.setBounds(190, 100, 130, 80);
 
         jLabel3.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 48)); // NOI18N
         jLabel3.setText(ControllerForView.getInstance().getScore());
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(150, 170, 160, 110);
+        jLabel3.setBounds(160, 170, 260, 90);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Gameover.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -91,8 +94,8 @@ public class GameOverDialog extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel recordlabel;
     // End of variables declaration//GEN-END:variables
 }

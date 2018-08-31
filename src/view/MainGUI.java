@@ -66,8 +66,8 @@ MainGUI() {
 
     timer = new Timer(PAUSE, this);
     //timer.start();
-    Cavalieri();
-    Pioggia();
+    //Cavalieri();
+    //Pioggia();
     //t0 = System.currentTimeMillis();
     variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
     //setFocusable(true);
@@ -93,6 +93,8 @@ public static Cavaliere[] Cavalieri(){
     }
         
 public static Boolean InizioGioco(){
+        Cavalieri();
+        Pioggia();
         timer.start();
         giocoiniziato = true;
         t0 = System.currentTimeMillis();
@@ -134,7 +136,7 @@ private void createPanel() {
 
   @Override
     public void actionPerformed(ActionEvent e) {
-       this.panel.repaint(); 
+        
        if(diff>=int1){
             y1 += (motionControl1) ? MOVIMENTO: /*-MOVIMENTO*/0;
             if(y1 >= -101) motionControl1 = true;
@@ -149,7 +151,7 @@ private void createPanel() {
             y2 += (motionControl2) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y2 >= -101) motionControl2 = true;
             if(y2 >= getHeight()-340) motionControl2 = false;
-            if((y2 >= getHeight()-340) &&(pioggia[1]!= null) ){
+           if((y2 >= getHeight()-340) &&(pioggia[1]!= null) ){
                 timer.stop();
                 ControllerForView.getInstance().openGameOverDialog();
             }
@@ -184,20 +186,10 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog();
             }
         }
-        
-        
-        
-
-        repaint();
+         this.panel.repaint();       
+        //repaint();
     }
 
-/*public static void makeGUI() {
-MainGUI mg = new MainGUI();
-mg.setPreferredSize(new Dimension(400,800));
-mg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-mg.setVisible(true);
-}*/
 
     public static void main(String[] args) {
          try {
