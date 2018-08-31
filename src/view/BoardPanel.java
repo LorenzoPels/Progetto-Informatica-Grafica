@@ -47,6 +47,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
+        public Boolean[] esploso = new Boolean[5];
        
 
 	public BoardPanel() {
@@ -79,24 +80,20 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
             g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
            if(giocoiniziato==true) {
                 
-                //g.drawImage(cavaliere,x-150,y,null);
-                
-                //g.drawImage(cavaliere1,x+200,y,null);
                 t1 = System.currentTimeMillis()-P;
                 diff = t1 - t0;
                 //System.out.println(diff);
-              // for(int i=0;i<pioggia.length && stampaggio ==true ;i++){
-                if( diff >=int1  )//3 secondi
+                if( diff >=int1  )
                     g.drawImage(pioggia[0],x-100,y1,null);
-                if(diff >=int2)//6 secondi
+                if(diff >=int2)
                     g.drawImage(pioggia[1],x+100,y2,null);
-                if(diff >=int3)//9 secondi
+                if(diff >=int3)
                     g.drawImage(pioggia[2],x-200,y3,null);
-                if(diff >=int4)//12 secondi
+                if(diff >=int4)
                     g.drawImage(pioggia[3],x+200,y4,null);
-                if(diff >=int5)// 15secondi
+                if(diff >=int5)
                     g.drawImage(pioggia[4],x+250,y5,null);
-                if( diff >=int6 )//18 secondi
+                if( diff >=int6 )
                     if(y5>=getHeight()-340){    
                         t0=System.currentTimeMillis();
                         P=0;
@@ -137,7 +134,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                
+                         
                         case KeyEvent.VK_B:
                             boolean cancelB = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -151,7 +149,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                
+                          
                         case KeyEvent.VK_F:
                             boolean cancelF = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -165,6 +164,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
+                
                         
                         case KeyEvent.VK_H:
                             boolean cancelH = false;
@@ -179,7 +179,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                
+                           
                         case KeyEvent.VK_J:
                             boolean cancelJ = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -189,11 +190,12 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    cancelJ = true;
+                                   cancelJ = true;
                                 }
                             }
                             break;
-                            
+                
+                           
                         case KeyEvent.VK_K:
                             boolean cancelK = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -207,7 +209,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                    
+                        
                         case KeyEvent.VK_L:
                             boolean cancelL = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -217,11 +220,12 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
-                                    cancelL = true;
+                                   cancelL = true;
                                 }
                             }
                             break;
-                            
+                    
+                           
                         case KeyEvent.VK_M:
                             boolean cancelM = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -235,7 +239,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                    
+                          
                         case KeyEvent.VK_P:
                             boolean cancelP = false;
                             for(int i =0;i<cavalieri.length;i++){
@@ -249,7 +254,8 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                 }
                             }
                             break;
-                            
+                    
+                           
                         case KeyEvent.VK_Q:
                             boolean cancelQ = false;
                             for(int i =0;i<cavalieri.length;i++){
