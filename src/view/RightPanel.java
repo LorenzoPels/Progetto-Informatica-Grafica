@@ -12,6 +12,7 @@ public class RightPanel extends javax.swing.JPanel {
     
     public RightPanel() {
         initComponents();
+        scorelabel.setText("0");
         
         
     }
@@ -23,7 +24,7 @@ public class RightPanel extends javax.swing.JPanel {
 		if (!this.isGameStarted) {
 			this.isGameStarted = true;
 			this.isGameRunning = true;
-                        ControllerForView.getInstance().initGame();
+                        //ControllerForView.getInstance().initGame();
                         MainGUI.InizioGioco();
 			//ControllerForView.getInstance().initGame();
 			//this.previewPanel.setPreviewPieceAvailable();

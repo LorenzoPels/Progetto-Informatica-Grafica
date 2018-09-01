@@ -1,6 +1,27 @@
 
 package model;
 
+import view.MainGUI;
+import static view.MainGUI.P;
+import static view.RightPanel.scorelabel;
+import static view.MainGUI.cavalieri;
+import static view.MainGUI.pioggia;
+import static view.MainGUI.int1;
+import static view.MainGUI.int2;
+import static view.MainGUI.int3;
+import static view.MainGUI.int4;
+import static view.MainGUI.int5;
+import static view.MainGUI.int6;
+import static view.MainGUI.y1;
+import static view.MainGUI.y2;
+import static view.MainGUI.y3;
+import static view.MainGUI.y4;
+import static view.MainGUI.y5;
+import static view.MainGUI.t0;
+import static view.MainGUI.t1;
+import static view.MainGUI.Pi;
+import static view.MainGUI.Pf;
+import static view.MainGUI.MOVIMENTO;
 public class Model implements IModel {
     
     //---------------------------------------------------------------
@@ -18,17 +39,46 @@ public class Model implements IModel {
 		this.initGame();
 	}
     
+   /* public void Init(){
+        scorelabel.setText("0");
+        for(int i=0; i<cavalieri.length;i++){
+            cavalieri[i]=null;
+            pioggia[i]=null;
+            
+        }
+        //t0=urentTimeMillis();    
+        
+    }*/
+    
     //---------------------------------------------------------------
     // PUBLIC INSTANCE METHODS
     //---------------------------------------------------------------
     public void initGame() {
-		 this.score= 0;
-		
+		this.score= 0;
+		//scorelabel.setText("0");
+                for(int i=0; i<cavalieri.length;i++){
+                    cavalieri[i]=null;
+                      pioggia[i]=null;
+            
+                 }
+                P=0;
+                MainGUI.Cavalieri();
+                MainGUI.Pioggia();
+                int1=1000;
+                int2=3000;
+                int3=4000;
+                int4=7000;
+                int5=8000;
+                int6=10000;
+                y1 = y2 = y3 = y4 = y5 = -100;
+      
+                t0=t1=P=Pi=Pf=0;
+                MOVIMENTO=1;
 		//this.initBoardArray(DEFAULT_NUM_ROWS, DEFAULT_NUM_COLUMNS);
 		//this.iIndex = I_INDEX_INIT;
 		//this.jIndex = J_INDEX_INIT;
 		//this.previewPiece = Piece.randomPreviewPiece();
-		this.fallingPiece = Cavaliere.nextFallingPiece();
+		//this.fallingPiece = Cavaliere.nextFallingPiece();
 		//this.previewPiece = Piece.randomPreviewPiece();
 	}
         
