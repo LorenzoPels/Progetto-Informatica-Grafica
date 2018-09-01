@@ -102,11 +102,11 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                         y1=y2=y3=y4=y5=-100;
                         MOVIMENTO++;
                         int1+=-500;
-                        int2+=-700;
+                        int2+=-500;
                         int3+=-500;
-                        int4+=-800;
-                        int5+=-700;
-                        int6+=-700;
+                        int4+=-500;
+                        int5+=-500;
+                        int6+=-500;
                         
                     }
                //}*/

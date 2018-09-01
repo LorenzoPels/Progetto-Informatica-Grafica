@@ -3,6 +3,7 @@ package controller;
 
 import model.Model;
 import view.View;
+import java.lang.String;
 
 
 public class ControllerForView implements IControllerForView {
@@ -42,8 +43,8 @@ public class ControllerForView implements IControllerForView {
 	public void closeDialog() {
 		View.getInstance().closeDialog();
 	}
-        public void openGameOverDialog() {
-		View.getInstance().openGameOverDialog();
+        public void openGameOverDialog(String score) {
+		View.getInstance().openGameOverDialog( score);
 	}
 
 	public void closeGameOverDialog() {

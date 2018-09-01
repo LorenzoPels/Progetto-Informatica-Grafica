@@ -2,6 +2,9 @@
 package view;
 
 import controller.ControllerForView;
+import static view.Dialog.resetLabel;
+import static view.RightPanel.jButton1;
+import static view.RightPanel.jButton2;
 import static view.RightPanel.scorelabel;
 
 
@@ -11,10 +14,14 @@ public class GameOverDialog extends javax.swing.JFrame {
     public GameOverDialog() {
         initComponents();
         setLocationRelativeTo(null);
+        
         if(scorelabel.getText().compareTo(recordlabel.getText())>0)
             recordlabel.setText(scorelabel.getText());
     }
-
+private void resetBottoni(){
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
+    jButton2.setEnabled(true);
+}
 
     
     @SuppressWarnings("unchecked")
@@ -23,10 +30,12 @@ public class GameOverDialog extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         recordlabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        finalscorelabel = new javax.swing.JLabel();
+        playbutton = new javax.swing.JButton();
+        exitbutton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
@@ -36,10 +45,27 @@ public class GameOverDialog extends javax.swing.JFrame {
         jPanel1.add(recordlabel);
         recordlabel.setBounds(190, 100, 130, 80);
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 48)); // NOI18N
-        jLabel3.setText(ControllerForView.getInstance().getScore());
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(160, 170, 260, 90);
+        finalscorelabel.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 48)); // NOI18N
+        jPanel1.add(finalscorelabel);
+        finalscorelabel.setBounds(160, 170, 260, 90);
+
+        playbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/play.png"))); // NOI18N
+        playbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(playbutton);
+        playbutton.setBounds(100, 350, 200, 70);
+
+        exitbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/bottone.png"))); // NOI18N
+        exitbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitbuttonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exitbutton);
+        exitbutton.setBounds(150, 440, 100, 47);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Gameover.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -58,6 +84,24 @@ public class GameOverDialog extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void playbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playbuttonActionPerformed
+       ControllerForView.getInstance().closeGameOverDialog();
+       ControllerForView.getInstance().closeMainGUI();
+       
+       ControllerForView.getInstance().openMainGUI();
+       resetBottoni();
+       ControllerForView.getInstance().initGame();
+       resetLabel();
+    }//GEN-LAST:event_playbuttonActionPerformed
+
+    private void exitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbuttonActionPerformed
+      ControllerForView.getInstance().closeMainGUI();
+       ControllerForView.getInstance().closeGameOverDialog();
+       ControllerForView.getInstance().openStartWindow();
+       
+       resetLabel();
+    }//GEN-LAST:event_exitbuttonActionPerformed
 
     
     public static void main(String args[]) {
@@ -93,9 +137,11 @@ public class GameOverDialog extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitbutton;
+    public static javax.swing.JLabel finalscorelabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton playbutton;
     public static javax.swing.JLabel recordlabel;
     // End of variables declaration//GEN-END:variables
 }

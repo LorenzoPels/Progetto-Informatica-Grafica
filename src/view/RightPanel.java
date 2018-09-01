@@ -7,8 +7,8 @@ import static view.MainGUI.panel;
 
 
 public class RightPanel extends javax.swing.JPanel {
-    private boolean isGameStarted; // a game can start only once at the beginning
-    private boolean isGameRunning; // a started game can be running or in pause
+    public static boolean isGameStarted; // a game can start only once at the beginning
+    public static boolean isGameRunning; // a started game can be running or in pause
     
     public RightPanel() {
         initComponents();
@@ -21,9 +21,9 @@ public class RightPanel extends javax.swing.JPanel {
 	}
     
     private void startPauseEvent() {
-		if (!this.isGameStarted) {
-			this.isGameStarted = true;
-			this.isGameRunning = true;
+		if (!isGameStarted) {
+			isGameStarted = true;
+			isGameRunning = true;
                         //ControllerForView.getInstance().initGame();
                         MainGUI.InizioGioco();
 			//ControllerForView.getInstance().initGame();
@@ -32,22 +32,22 @@ public class RightPanel extends javax.swing.JPanel {
 			panel.requestFocusInWindow();
 			//this.timer.start();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
-			this.jButton2.setEnabled(false);
+			jButton2.setEnabled(false);
 		}
-		else if (!this.isGameRunning) {
-			this.isGameRunning = true;
+		else if (!isGameRunning) {
+			isGameRunning = true;
                         MainGUI.RiprendiGioco();
 			panel.requestFocusInWindow();
 			//this.timer.start();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
-			this.jButton2.setEnabled(false);
+			jButton2.setEnabled(false);
 		}
 		else {
-			this.isGameRunning = false;
+			isGameRunning = false;
                         MainGUI.PausaGioco();
 			//this.timer.stop();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
-			this.jButton2.setEnabled(true);
+			jButton2.setEnabled(true);
 		}
 	} // end methos startStopEvent()
 
@@ -76,7 +76,7 @@ public class RightPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Magic");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/inizia.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -169,8 +169,8 @@ public class RightPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public static javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
