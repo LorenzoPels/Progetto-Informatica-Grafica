@@ -1,7 +1,11 @@
 
 package view;
 
+import config.Config;
 import controller.ControllerForView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static view.Dialog.resetLabel;
 import static view.RightPanel.jButton1;
 import static view.RightPanel.jButton2;
@@ -11,10 +15,10 @@ import static view.RightPanel.scorelabel;
 public class GameOverDialog extends javax.swing.JFrame {
 
     
-    public GameOverDialog() {
+    public GameOverDialog() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
-        
+        Config.Write(scorelabel.getText());
         if(scorelabel.getText().compareTo(recordlabel.getText())>0)
             recordlabel.setText(scorelabel.getText());
     }
@@ -131,7 +135,11 @@ private void resetBottoni(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameOverDialog().setVisible(true);
+                try {
+                    new GameOverDialog().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(GameOverDialog.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
