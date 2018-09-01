@@ -17,7 +17,7 @@ public interface IControllerForView {
         public void closeMainGUI();
         public void openDialog();
         public void closeDialog();
-        public void openGameOverDialog();
+        public void openGameOverDialog(String score);
         public void closeGameOverDialog();
 
 	/*public int getNumColumnsOfBoard();

@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
+import static view.RightPanel.scorelabel;
+import static view.GameOverDialog.finalscorelabel;
+
 
 
 
@@ -37,11 +40,11 @@ private int variabile;
 public static long t0,t1,P,Pi,Pf;
 public static long diff;
 public static int int1=1000;
-public static int int2=2000;
-public static int int3=2500;
-public static int int4=3500;
-public static int int5=4500;
-public static int int6=5500;
+public static int int2=1500;
+public static int int3=2000;
+public static int int4=2500;
+public static int int5=3500;
+public static int int6=4000;
 //public static Boolean integro1,integro2,integro3,integro4,integro5 = true;
 //public  Image cavaliere;
 
@@ -143,7 +146,9 @@ private void createPanel() {
             if(y1 >= getHeight()-220) motionControl1 = false;
             if((y1 >= getHeight()-220) &&(pioggia[0]!= null) ){
                 timer.stop();
-                ControllerForView.getInstance().openGameOverDialog();
+                
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+                
             }
         }
        
@@ -153,7 +158,10 @@ private void createPanel() {
             if(y2 >= getHeight()-220) motionControl2 = false;
            if((y2 >= getHeight()-220) &&(pioggia[1]!= null) ){
                 timer.stop();
-                ControllerForView.getInstance().openGameOverDialog();
+                PausaGioco();
+                
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+                
             }
         }
         
@@ -163,7 +171,10 @@ private void createPanel() {
             if(y3 >= getHeight()-220) motionControl3 = false;
             if((y3 >= getHeight()-220) &&(pioggia[2]!= null) ){
                 timer.stop();
-                ControllerForView.getInstance().openGameOverDialog();
+                PausaGioco();
+                
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+                
             }
         }
         
@@ -173,7 +184,10 @@ private void createPanel() {
             if(y4 >= getHeight()-220) motionControl4 = false;
             if((y4 >= getHeight()-220) &&(pioggia[3]!= null) ){
                 timer.stop();
-                ControllerForView.getInstance().openGameOverDialog();
+                PausaGioco();
+                
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+                
             }
         }
         
@@ -183,7 +197,9 @@ private void createPanel() {
             if(y5 >= getHeight()-220) motionControl5 = false;
             if((y5 >= getHeight()-220) &&(pioggia[4]!= null) ){
                 timer.stop();
-                ControllerForView.getInstance().openGameOverDialog();
+                PausaGioco();
+                
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
             }
         }
          this.panel.repaint();       

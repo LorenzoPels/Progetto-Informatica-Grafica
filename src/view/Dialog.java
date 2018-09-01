@@ -6,6 +6,8 @@
 package view;
 
 import controller.ControllerForView;
+import static view.RightPanel.jButton1;
+import static view.RightPanel.jButton2;
 import static view.RightPanel.scorelabel;
 
 /**
@@ -22,7 +24,7 @@ public class Dialog extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public void resetLabel(){
+    public static void resetLabel(){
         scorelabel.setText("0");
     }
     /**
@@ -94,6 +96,8 @@ public class Dialog extends javax.swing.JFrame {
        ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().closeDialog();
        ControllerForView.getInstance().openStartWindow();
+       jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/inizia.png")));
+	jButton2.setEnabled(true);
        resetLabel();
       
        

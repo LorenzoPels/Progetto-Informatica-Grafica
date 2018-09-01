@@ -1,6 +1,8 @@
 
 package view;
 
+import static view.GameOverDialog.finalscorelabel;
+
 
 public class View implements IView {
         //---------------------------------------------------------------
@@ -83,7 +85,7 @@ public class View implements IView {
 			}
 		});
 	}
-         public void openGameOverDialog() {
+         public void openGameOverDialog(String score) {
             
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     
@@ -91,6 +93,7 @@ public class View implements IView {
 				if (gameover == null)
 					gameover = new GameOverDialog();
 				gameover.setVisible(true);
+                                finalscorelabel.setText(score);
 			}
 		});
 	}

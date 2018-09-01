@@ -21,7 +21,13 @@ import static view.MainGUI.t0;
 import static view.MainGUI.t1;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
+import static view.MainGUI.giocoiniziato;
 import static view.MainGUI.MOVIMENTO;
+import static view.RightPanel.isGameRunning;
+import static view.RightPanel.isGameStarted;
+import static view.RightPanel.jButton1;
+import static view.RightPanel.jButton2;
+
 public class Model implements IModel {
     
     //---------------------------------------------------------------
@@ -54,6 +60,9 @@ public class Model implements IModel {
     // PUBLIC INSTANCE METHODS
     //---------------------------------------------------------------
     public void initGame() {
+                isGameRunning = false;
+                isGameStarted = false;
+                giocoiniziato = false;
 		this.score= 0;
 		//scorelabel.setText("0");
                 for(int i=0; i<cavalieri.length;i++){
@@ -74,6 +83,9 @@ public class Model implements IModel {
       
                 t0=t1=P=Pi=Pf=0;
                 MOVIMENTO=1;
+                //jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
+		//jButton2.setEnabled(true);
+                
 		//this.initBoardArray(DEFAULT_NUM_ROWS, DEFAULT_NUM_COLUMNS);
 		//this.iIndex = I_INDEX_INIT;
 		//this.jIndex = J_INDEX_INIT;
