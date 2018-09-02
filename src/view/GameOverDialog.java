@@ -103,7 +103,7 @@ private void resetBottoni(){
       ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().closeGameOverDialog();
        ControllerForView.getInstance().openStartWindow();
-       
+       resetBottoni();
        resetLabel();
     }//GEN-LAST:event_exitbuttonActionPerformed
 

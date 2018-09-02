@@ -106,13 +106,15 @@ public class View implements IView {
                         }
                         gameover.setVisible(true);
                         finalscorelabel.setText(ControllerForView.getInstance().getScore());
-                        if(Integer.parseInt(finalscorelabel.getText()) > Integer.parseInt(recordlabel.getText()))
+                       if(Integer.parseInt(finalscorelabel.getText()) > Integer.parseInt(recordlabel.getText())){
                             try {
                                 Config.Write(finalscorelabel.getText());
                                 recordlabel.setText(finalscorelabel.getText());
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                          }
                         }
+                       //System.out.println(recordlabel.getText());
 
                     }
             });
