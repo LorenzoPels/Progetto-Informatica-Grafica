@@ -78,7 +78,7 @@ public class StartWindow extends javax.swing.JFrame  {
             }
         });
         jPanel1.add(jButtonMode);
-        jButtonMode.setBounds(50, 200, 290, 130);
+        jButtonMode.setBounds(50, 200, 300, 136);
 
         jButtonSx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/frsx.png"))); // NOI18N
         jButtonSx.addActionListener(new java.awt.event.ActionListener() {

@@ -30,15 +30,17 @@ public class Config {
             }
     }
     
-    public static void Read() throws  IOException{
+    public static void Read() throws  FileNotFoundException, IOException{
         FileReader file = new FileReader("record.txt");
         BufferedReader lettore = new BufferedReader(file);
-        String riga = lettore.readLine();
+        String riga="0"; 
+        recordlabel.setText(lettore.readLine());
         while(riga != null){
+           recordlabel.setText(lettore.readLine());
            riga = lettore.readLine();
            
-            if(riga!=null)
-                recordlabel.setText(lettore.readLine());
+          
+                
         }
         file.close();
     }
