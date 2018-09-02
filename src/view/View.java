@@ -1,7 +1,14 @@
 
 package view;
 
+import config.Config;
+import controller.ControllerForView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Model;
 import static view.GameOverDialog.finalscorelabel;
+import static view.GameOverDialog.recordlabel;
 
 
 public class View implements IView {
@@ -87,15 +94,28 @@ public class View implements IView {
 	}
          public void openGameOverDialog(String score) {
             
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    
-			public void run() {
-				if (gameover == null)
-					gameover = new GameOverDialog();
-				gameover.setVisible(true);
-                                finalscorelabel.setText(score);
-			}
-		});
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+                    public void run() {
+                        if (gameover == null)
+                                try {
+                                    gameover = new GameOverDialog();
+                                    Config.Read();
+                        } catch (IOException ex) {
+                            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        gameover.setVisible(true);
+                        finalscorelabel.setText(ControllerForView.getInstance().getScore());
+                        if(Integer.parseInt(finalscorelabel.getText()) > Integer.parseInt(recordlabel.getText()))
+                            try {
+                                Config.Write(finalscorelabel.getText());
+                                recordlabel.setText(finalscorelabel.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+            });
 	}
         public void closeGameOverDialog() {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
