@@ -18,9 +18,9 @@ public class GameOverDialog extends javax.swing.JFrame {
     public GameOverDialog() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
-        Config.Write(scorelabel.getText());
-        if(scorelabel.getText().compareTo(recordlabel.getText())>0)
-            recordlabel.setText(scorelabel.getText());
+        //Config.Write(scorelabel.getText());
+       /* if(scorelabel.getText().compareTo(recordlabel.getText())>0)
+            recordlabel.setText(scorelabel.getText());*/
     }
 private void resetBottoni(){
     jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
