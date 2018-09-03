@@ -252,8 +252,8 @@ private void createPanel() {
 
 
     public static void main(String[] args) {
-         final String audioScoppio = "src/audio/scoppio.wav";
-         final String audioGO = "src/audio/gameover.wav";
+         final String audioScoppio = "audio/scoppio.wav";
+         final String audioGO = "audio/gameover.wav";
          try {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
