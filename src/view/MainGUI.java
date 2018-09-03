@@ -8,8 +8,13 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
@@ -45,10 +50,13 @@ public static int int3=2000;
 public static int int4=2500;
 public static int int5=3500;
 public static int int6=4000;
+public static ClipPlayer scoppio;
+public static ClipPlayer gameover;
+
 //public static Boolean integro1,integro2,integro3,integro4,integro5 = true;
 //public  Image cavaliere;
 
-MainGUI() {
+MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
  
     super("Magic Touch Game");
 //MainGUI maingui = new MainGUI();
@@ -68,6 +76,8 @@ MainGUI() {
     y5 = -100;
 
     timer = new Timer(PAUSE, this);
+    scoppio = new ClipPlayer(audioScoppio);
+    gameover = new ClipPlayer(audioGO);
     //timer.start();
     //Cavalieri();
     //Pioggia();
@@ -145,7 +155,14 @@ private void createPanel() {
             if(y1 >= -101) motionControl1 = true;
             if(y1 >= getHeight()-220) motionControl1 = false;
             if((y1 >= getHeight()-220) &&(pioggia[0]!= null) ){
+                gameover.play();
                 timer.stop();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
@@ -158,7 +175,14 @@ private void createPanel() {
             if(y2 >= getHeight()-220) motionControl2 = false;
            if((y2 >= getHeight()-220) &&(pioggia[1]!= null) ){
                 timer.stop();
-                PausaGioco();
+                gameover.play();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               // PausaGioco();
                 
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
@@ -171,7 +195,14 @@ private void createPanel() {
             if(y3 >= getHeight()-220) motionControl3 = false;
             if((y3 >= getHeight()-220) &&(pioggia[2]!= null) ){
                 timer.stop();
-                PausaGioco();
+                gameover.play();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               // PausaGioco();
                 
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
@@ -184,7 +215,14 @@ private void createPanel() {
             if(y4 >= getHeight()-220) motionControl4 = false;
             if((y4 >= getHeight()-220) &&(pioggia[3]!= null) ){
                 timer.stop();
-                PausaGioco();
+                gameover.play();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               // PausaGioco();
                 
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
@@ -197,7 +235,13 @@ private void createPanel() {
             if(y5 >= getHeight()-220) motionControl5 = false;
             if((y5 >= getHeight()-220) &&(pioggia[4]!= null) ){
                 timer.stop();
-                PausaGioco();
+                gameover.play();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
             }
@@ -208,10 +252,23 @@ private void createPanel() {
 
 
     public static void main(String[] args) {
+         final String audioScoppio = "src/audio/scoppio.wav";
+         final String audioGO = "src/audio/gameover.wav";
          try {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                 try {
+                    new MainGUI(audioScoppio,audioGO).setVisible(true);
+                }
+                catch(FileNotFoundException fnfe) {
+                 
+                }
+                catch(UnsupportedAudioFileException uafe) {
+                  
+                }
+                catch(IOException ioe) {
+                    
+                }
             }
             });
         } catch(Exception e) {}
