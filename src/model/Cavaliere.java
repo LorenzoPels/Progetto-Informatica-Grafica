@@ -103,7 +103,7 @@ public class Cavaliere {
         public static Image Loader(Cavaliere cv){
             CaricatoreImmagine loader = new CaricatoreImmagine();
        
-            cavaliere = loader.caricaImmagine("/Cavalieri/cavaliereProvvisorio"+cv.getName()+".png");
+            cavaliere = loader.caricaImmagine("/Cavalieri/cavaliere"+cv.getName()+".png");
        
          return cavaliere;
         }
