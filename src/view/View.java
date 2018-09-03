@@ -58,8 +58,8 @@ public class View implements IView {
         public void openMainGUI() {
             
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    final String audioScoppio = "src/audio/scoppio.wav";
-                    final String audioGO = "src/audio/gameover.wav";
+                    final String audioScoppio = "audio/scoppio.wav";
+                    final String audioGO = "audio/gameover.wav";
 			public void run() {
 				if (mainGUI == null)
                                 try {
