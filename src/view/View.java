@@ -6,6 +6,7 @@ import controller.ControllerForView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import model.Model;
 import static view.GameOverDialog.finalscorelabel;
 import static view.GameOverDialog.recordlabel;
@@ -57,10 +58,16 @@ public class View implements IView {
         public void openMainGUI() {
             
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    
+                    final String audioFile = "src/audio/scoppio.wav";
 			public void run() {
 				if (mainGUI == null)
-					mainGUI = new MainGUI();
+					try {
+                                            mainGUI = new MainGUI(audioFile);
+                                } catch (UnsupportedAudioFileException ex) {
+                                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+                                }
 				mainGUI.setVisible(true);
 			}
 		});

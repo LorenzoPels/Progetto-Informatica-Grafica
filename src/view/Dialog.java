@@ -96,8 +96,8 @@ public class Dialog extends javax.swing.JFrame {
        ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().closeDialog();
        ControllerForView.getInstance().openStartWindow();
-       jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/inizia.png")));
-	jButton2.setEnabled(true);
+      
+       jButton2.setEnabled(true);
        resetLabel();
       
        

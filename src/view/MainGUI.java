@@ -8,8 +8,10 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
@@ -45,10 +47,11 @@ public static int int3=2000;
 public static int int4=2500;
 public static int int5=3500;
 public static int int6=4000;
+public static ClipPlayer clipPlayer;
 //public static Boolean integro1,integro2,integro3,integro4,integro5 = true;
 //public  Image cavaliere;
 
-MainGUI() {
+MainGUI(String audioFile) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
  
     super("Magic Touch Game");
 //MainGUI maingui = new MainGUI();
@@ -68,6 +71,7 @@ MainGUI() {
     y5 = -100;
 
     timer = new Timer(PAUSE, this);
+    clipPlayer = new ClipPlayer(audioFile);
     //timer.start();
     //Cavalieri();
     //Pioggia();
@@ -208,10 +212,22 @@ private void createPanel() {
 
 
     public static void main(String[] args) {
+         final String audioFile = "src/audio/scoppio.wav";
          try {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                 try {
+                    new MainGUI(audioFile).setVisible(true);
+                }
+                catch(FileNotFoundException fnfe) {
+                 
+                }
+                catch(UnsupportedAudioFileException uafe) {
+                  
+                }
+                catch(IOException ioe) {
+                    
+                }
             }
             });
         } catch(Exception e) {}
