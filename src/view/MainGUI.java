@@ -126,7 +126,7 @@ public static void initBackgroundSound() {
     Platform.runLater(new Runnable() {
         @Override public void run() {  
             //MediaPlayer player;
-            Media audioFile = new Media(new File("C:\\Users\\lollo\\Desktop\\Progetto MagicTouch\\MagicTouch\\audio\\sottofondo.mp3").toURI().toString());
+            Media audioFile = new Media(new File("audio/sottofondo.mp3").toURI().toString());
             player = new MediaPlayer(audioFile);
             player.play();
         }
