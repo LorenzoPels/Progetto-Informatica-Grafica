@@ -60,6 +60,7 @@ public class View implements IView {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     final String audioScoppio = "audio/scoppio.wav";
                     final String audioGO = "audio/gameover.wav";
+                    
 			public void run() {
 				if (mainGUI == null)
                                 try {
