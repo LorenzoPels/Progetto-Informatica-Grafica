@@ -6,6 +6,7 @@
 package view;
 
 import controller.ControllerForView;
+import static view.MainGUI.player;
 import static view.RightPanel.jButton1;
 import static view.RightPanel.jButton2;
 import static view.RightPanel.scorelabel;
@@ -96,7 +97,7 @@ public class Dialog extends javax.swing.JFrame {
        ControllerForView.getInstance().closeMainGUI();
        ControllerForView.getInstance().closeDialog();
        ControllerForView.getInstance().openStartWindow();
-      
+      player.stop();
        jButton2.setEnabled(true);
        resetLabel();
       

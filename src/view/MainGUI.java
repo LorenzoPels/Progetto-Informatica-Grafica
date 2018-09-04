@@ -196,7 +196,7 @@ private void createPanel() {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+                 player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
@@ -216,7 +216,7 @@ private void createPanel() {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                // PausaGioco();
-                
+                player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
@@ -236,7 +236,7 @@ private void createPanel() {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                // PausaGioco();
-                
+                player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
@@ -256,7 +256,7 @@ private void createPanel() {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                // PausaGioco();
-                
+                player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
@@ -275,7 +275,7 @@ private void createPanel() {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+                player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
             }
         }
