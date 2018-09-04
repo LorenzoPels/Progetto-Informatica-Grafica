@@ -8,17 +8,24 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayerBuilder;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
+import static sun.audio.AudioPlayer.player;
 import static view.RightPanel.scorelabel;
 import static view.GameOverDialog.finalscorelabel;
 
@@ -52,6 +59,9 @@ public static int int5=3500;
 public static int int6=4000;
 public static ClipPlayer scoppio;
 public static ClipPlayer gameover;
+public static ClipPlayer sottofondo;
+ public static MediaPlayer player;
+
 
 //public static Boolean integro1,integro2,integro3,integro4,integro5 = true;
 //public  Image cavaliere;
@@ -78,17 +88,20 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
     timer = new Timer(PAUSE, this);
     scoppio = new ClipPlayer(audioScoppio);
     gameover = new ClipPlayer(audioGO);
+    
     //timer.start();
     //Cavalieri();
     //Pioggia();
     //t0 = System.currentTimeMillis();
     variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
+    
     //setFocusable(true);
            
 
 
 
 }
+
 public static Cavaliere[] Cavalieri(){
    cavalieri[0] = Cavaliere.nextFallingPiece();
    cavalieri[1] = Cavaliere.nextFallingPiece();
@@ -104,9 +117,26 @@ public static Cavaliere[] Cavalieri(){
         pioggia[i] = Loader(cavalieri[i]);
     return pioggia;
     }
-        
+       
+ 
+
+
+public static void initBackgroundSound() {
+    final JFXPanel fxPanel = new JFXPanel();
+    Platform.runLater(new Runnable() {
+        @Override public void run() {  
+            //MediaPlayer player;
+            Media audioFile = new Media(new File("C:\\Users\\lollo\\Desktop\\Progetto MagicTouch\\MagicTouch\\audio\\sottofondo.mp3").toURI().toString());
+            player = new MediaPlayer(audioFile);
+            player.play();
+        }
+    });
+}
+
 public static Boolean InizioGioco(){
         Cavalieri();
+        //sottofondo.play();
+        initBackgroundSound();
         Pioggia();
         timer.start();
         giocoiniziato = true;
@@ -119,12 +149,15 @@ public static Boolean InizioGioco(){
 public static Boolean  PausaGioco(){
             timer.stop();
             giocoiniziato = false;
+            player.pause();
             Pi = System.currentTimeMillis();
             
             return giocoiniziato;
         } 
 public static Boolean  RiprendiGioco(){
             Pf = System.currentTimeMillis();
+            //sottofondo.play();
+            player.play();
             P += Pf-Pi;
             timer.start();
             giocoiniziato = true;
@@ -254,6 +287,7 @@ private void createPanel() {
     public static void main(String[] args) {
          final String audioScoppio = "audio/scoppio.wav";
          final String audioGO = "audio/gameover.wav";
+        // final String audioSot = "audio/sottofondo.wav";
          try {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
