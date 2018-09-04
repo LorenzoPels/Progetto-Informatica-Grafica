@@ -34,10 +34,12 @@ public class Config {
         FileReader file = new FileReader("record.txt");
         BufferedReader lettore = new BufferedReader(file);
         String riga="0"; 
-        recordlabel.setText(lettore.readLine());
+        //recordlabel.setText(lettore.readLine());
         while(riga != null){
-           recordlabel.setText(lettore.readLine());
-           riga = lettore.readLine();
+            riga = lettore.readLine();
+            if(riga!=null)
+                recordlabel.setText(riga);
+           
            
           
                 
