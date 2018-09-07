@@ -2,8 +2,14 @@
 package view;
 
 import controller.ControllerForView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import static view.MainGUI.gameover;
 import static view.MainGUI.panel;
 import static view.MainGUI.player;
+import static view.MainGUI.scoppio;
 
 
 
@@ -11,6 +17,7 @@ public class RightPanel extends javax.swing.JPanel {
     public static boolean isGameStarted; // a game can start only once at the beginning
     public static boolean isGameRunning; // a started game can be running or in pause
     public int click;
+    public int click2;
     
     public RightPanel() {
         initComponents();
@@ -202,7 +209,23 @@ public class RightPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void audiobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audiobuttonActionPerformed
-        // TODO add your handling code here:
+        click2++;
+        if(click2%2 != 0){
+            audiobutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/noeffetti.png")));
+            scoppio.close();
+            gameover.close();
+        }else{
+            audiobutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/effetti.png")));
+            try {
+                scoppio = new ClipPlayer("audio/scoppio.wav");
+                gameover = new ClipPlayer("audio/gameover.wav");
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(RightPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(RightPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }//GEN-LAST:event_audiobuttonActionPerformed
 
     private void musicbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicbuttonActionPerformed
@@ -218,7 +241,7 @@ public class RightPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton audiobutton;
+    public static javax.swing.JButton audiobutton;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
