@@ -3,12 +3,14 @@ package view;
 
 import controller.ControllerForView;
 import static view.MainGUI.panel;
+import static view.MainGUI.player;
 
 
 
 public class RightPanel extends javax.swing.JPanel {
     public static boolean isGameStarted; // a game can start only once at the beginning
     public static boolean isGameRunning; // a started game can be running or in pause
+    public int click;
     
     public RightPanel() {
         initComponents();
@@ -19,6 +21,7 @@ public class RightPanel extends javax.swing.JPanel {
     public static void updateScoreLabel(int score) {
 		scorelabel.setText(String.valueOf(score));
 	}
+    
     
     private void startPauseEvent() {
 		if (!isGameStarted) {
@@ -33,6 +36,8 @@ public class RightPanel extends javax.swing.JPanel {
 			//this.timer.start();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
 			jButton2.setEnabled(false);
+                        musicbutton.setEnabled(false);
+                        audiobutton.setEnabled(false);
 		}
 		else if (!isGameRunning) {
 			isGameRunning = true;
@@ -41,6 +46,8 @@ public class RightPanel extends javax.swing.JPanel {
 			//this.timer.start();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
 			jButton2.setEnabled(false);
+                        musicbutton.setEnabled(false);
+                        audiobutton.setEnabled(false);
 		}
 		else {
 			isGameRunning = false;
@@ -48,8 +55,11 @@ public class RightPanel extends javax.swing.JPanel {
 			//this.timer.stop();
 			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
 			jButton2.setEnabled(true);
+                        musicbutton.setEnabled(true);
+                        audiobutton.setEnabled(true);
 		}
 	} // end methos startStopEvent()
+    
 
     
     @SuppressWarnings("unchecked")
@@ -64,6 +74,8 @@ public class RightPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         scorelabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        audiobutton = new javax.swing.JButton();
+        musicbutton = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 0));
@@ -119,6 +131,20 @@ public class RightPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 51));
         jLabel2.setText("Punteggio:");
 
+        audiobutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/effetti.png"))); // NOI18N
+        audiobutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                audiobuttonActionPerformed(evt);
+            }
+        });
+
+        musicbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/musica.png"))); // NOI18N
+        musicbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicbuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,6 +153,7 @@ public class RightPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +162,11 @@ public class RightPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel1))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(audiobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(musicbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,7 +180,11 @@ public class RightPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(audiobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(musicbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,8 +201,24 @@ public class RightPanel extends javax.swing.JPanel {
      startPauseEvent();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void audiobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audiobuttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_audiobuttonActionPerformed
+
+    private void musicbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicbuttonActionPerformed
+     click++;
+        if(click%2 != 0){
+            musicbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/nomusica.png")));
+            player.setMute(true);
+        }else{
+            musicbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/musica.png")));
+            player.setMute(false);
+        }
+    }//GEN-LAST:event_musicbuttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton audiobutton;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -176,6 +226,7 @@ public class RightPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JButton musicbutton;
     public static javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
 

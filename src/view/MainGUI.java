@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -96,7 +97,7 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
     variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
     
     //setFocusable(true);
-           
+    initBackgroundSound();       
 
 
 
@@ -126,9 +127,13 @@ public static void initBackgroundSound() {
     Platform.runLater(new Runnable() {
         @Override public void run() {  
             //MediaPlayer player;
+            //ContinuousAudioDaataStream
             Media audioFile = new Media(new File("audio/sottofondo.mp3").toURI().toString());
             player = new MediaPlayer(audioFile);
-            player.play();
+           player.setCycleCount(MediaPlayer.INDEFINITE);
+
+  
+           // player.play();
         }
     });
 }
@@ -136,7 +141,8 @@ public static void initBackgroundSound() {
 public static Boolean InizioGioco(){
         Cavalieri();
         //sottofondo.play();
-        initBackgroundSound();
+        
+        player.play();
         Pioggia();
         timer.start();
         giocoiniziato = true;
