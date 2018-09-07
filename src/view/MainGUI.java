@@ -97,7 +97,7 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
     variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
     
     //setFocusable(true);
-           
+    initBackgroundSound();       
 
 
 
@@ -133,7 +133,7 @@ public static void initBackgroundSound() {
            player.setCycleCount(MediaPlayer.INDEFINITE);
 
   
-            player.play();
+           // player.play();
         }
     });
 }
@@ -141,7 +141,8 @@ public static void initBackgroundSound() {
 public static Boolean InizioGioco(){
         Cavalieri();
         //sottofondo.play();
-        initBackgroundSound();
+        
+        player.play();
         Pioggia();
         timer.start();
         giocoiniziato = true;
