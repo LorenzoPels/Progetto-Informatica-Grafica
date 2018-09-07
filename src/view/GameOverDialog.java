@@ -10,6 +10,7 @@ import static view.Dialog.resetLabel;
 import static view.RightPanel.jButton1;
 import static view.RightPanel.jButton2;
 import static view.RightPanel.musicbutton;
+import static view.RightPanel.audiobutton;
 import static view.RightPanel.scorelabel;
 
 
@@ -27,8 +28,7 @@ private void resetBottoni(){
     jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
     jButton2.setEnabled(true);
     musicbutton.setEnabled(true);
-    
-    //jButton2.setEnabled(true);
+    audiobutton.setEnabled(true);
     
 }
 
