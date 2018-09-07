@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -126,8 +127,12 @@ public static void initBackgroundSound() {
     Platform.runLater(new Runnable() {
         @Override public void run() {  
             //MediaPlayer player;
+            //ContinuousAudioDaataStream
             Media audioFile = new Media(new File("audio/sottofondo.mp3").toURI().toString());
             player = new MediaPlayer(audioFile);
+           player.setCycleCount(MediaPlayer.INDEFINITE);
+
+  
             player.play();
         }
     });
