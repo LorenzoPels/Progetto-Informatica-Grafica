@@ -18,6 +18,7 @@ import static view.MainGUI.P;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
 import static view.MainGUI.diff;
+import static view.MainGUI.esplosi;
 import static view.MainGUI.giocoiniziato;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
@@ -48,7 +49,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
 	private final static int X_MARGIN = 10;
 	private final static int Y_MARGIN = 10;
-        public Boolean[] esploso = new Boolean[5];
+       // public Boolean[] esploso = new Boolean[5];
        
 
 	public BoardPanel() {
@@ -100,6 +101,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                         P=0;
                         MainGUI.Cavalieri();
                         MainGUI.Pioggia();
+                        MainGUI.Esplosi();
                         y1=y2=y3=y4=y5=-100;
                         MOVIMENTO++;
                         int1+=-500;
@@ -126,160 +128,190 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
 			case KeyEvent.VK_A:
                             
                             boolean cancelA = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "A" && cancelA==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelA==false);i++){
+                                if((cavalieri[i].getName()== "A") && (esplosi[i]==false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelA = true;
                                 }
+                                /*if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                 
                          
                         case KeyEvent.VK_B:
                             boolean cancelB = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "B" && cancelB==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelB==false);i++){
+                                if((cavalieri[i].getName()== "B") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelB = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                 
                           
                         case KeyEvent.VK_F:
                             boolean cancelF = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "F" && cancelF==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelF==false);i++){
+                                if((cavalieri[i].getName()== "F") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelF = true;
                                 }
+                                 /*if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                 
                         
                         case KeyEvent.VK_H:
                             boolean cancelH = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "H" && cancelH==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelH==false);i++){
+                                if((cavalieri[i].getName()== "H") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelH = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                   i++;*/
                             }
                             break;
                 
                            
                         case KeyEvent.VK_J:
                             boolean cancelJ = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "J" && cancelJ==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelJ==false);i++){
+                                if((cavalieri[i].getName()== "J") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                    cancelJ = true;
                                 }
+                                 /*if(cavalieri[i]==null)
+                                   i++;*/
                             }
                             break;
                 
                            
                         case KeyEvent.VK_K:
                             boolean cancelK = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "K" && cancelK==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelK==false);i++){
+                                if((cavalieri[i].getName()== "K") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelK = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                     
                         
                         case KeyEvent.VK_L:
                             boolean cancelL = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "L" && cancelL==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelL==false);i++){
+                                if((cavalieri[i].getName()== "L") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                    cancelL = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                   i++;*/
                             }
                             break;
                     
                            
                         case KeyEvent.VK_M:
                             boolean cancelM = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "M" && cancelM==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelM==false);i++){
+                                if((cavalieri[i].getName()== "M") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelM = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                     
                           
                         case KeyEvent.VK_P:
                             boolean cancelP = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "P" && cancelP==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelP==false);i++){
+                                if((cavalieri[i].getName()== "P") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelP = true;
                                 }
+                                /* if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                     
                            
                         case KeyEvent.VK_Q:
                             boolean cancelQ = false;
-                            for(int i =0;i<cavalieri.length;i++){
-                                if(cavalieri[i].getName()== "Q" && cancelQ==false){
+                            for(int i =0;(i<cavalieri.length)&&(cancelQ==false);i++){
+                                if((cavalieri[i].getName()== "Q") && (esplosi[i] == false)){
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
+                                    esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextFallingPiece();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
                                     cancelQ = true;
                                 }
+                                 /*if(cavalieri[i]==null)
+                                    i++;*/
                             }
                             break;
                         

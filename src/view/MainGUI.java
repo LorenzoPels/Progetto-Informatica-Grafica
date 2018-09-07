@@ -48,6 +48,7 @@ private boolean motionControl1,motionControl2,motionControl3,motionControl4,moti
 public static Boolean giocoiniziato = false;
 public static Image[] pioggia = new Image[5];
 public static Cavaliere[] cavalieri = new Cavaliere[5];
+public static Boolean[] esplosi = new Boolean[5];
 private int tempo;
 private int variabile;
 public static long t0,t1,P,Pi,Pf;
@@ -104,11 +105,14 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
 }
 
 public static Cavaliere[] Cavalieri(){
-   cavalieri[0] = Cavaliere.nextFallingPiece();
+   /*cavalieri[0] = Cavaliere.nextFallingPiece();
    cavalieri[1] = Cavaliere.nextFallingPiece();
    cavalieri[2] = Cavaliere.nextFallingPiece();
    cavalieri[3] = Cavaliere.nextFallingPiece();
-   cavalieri[4] = Cavaliere.nextFallingPiece();
+   cavalieri[4] = Cavaliere.nextFallingPiece();*/
+    for(int i=0; i<cavalieri.length;i++)  
+        cavalieri[i] = Cavaliere.nextFallingPiece();
+   
    return cavalieri;
 }
 
@@ -117,6 +121,12 @@ public static Cavaliere[] Cavalieri(){
     for(int i=0; i<cavalieri.length;i++)  
         pioggia[i] = Loader(cavalieri[i]);
     return pioggia;
+    }
+ 
+ public static void Esplosi(){
+    for(int i=0; i<cavalieri.length;i++)  
+        esplosi[i] = false;
+    //return esplosi;
     }
        
  
@@ -144,6 +154,7 @@ public static Boolean InizioGioco(){
         
         player.play();
         Pioggia();
+        Esplosi();
         timer.start();
         giocoiniziato = true;
         t0 = System.currentTimeMillis();
