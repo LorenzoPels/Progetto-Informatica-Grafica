@@ -65,7 +65,7 @@ private void resetBottoni(){
             }
         });
         jPanel1.add(playbutton);
-        playbutton.setBounds(100, 350, 200, 70);
+        playbutton.setBounds(100, 350, 200, 73);
 
         exitbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/bottone.png"))); // NOI18N
         exitbutton.addActionListener(new java.awt.event.ActionListener() {
