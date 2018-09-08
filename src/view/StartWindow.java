@@ -58,7 +58,7 @@ public class StartWindow extends javax.swing.JFrame  {
             }
         });
         jPanel1.add(jButtonDx);
-        jButtonDx.setBounds(350, 220, 30, 40);
+        jButtonDx.setBounds(360, 220, 30, 40);
 
         jButtonEsci.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 12)); // NOI18N
         jButtonEsci.setForeground(new java.awt.Color(255, 255, 0));
