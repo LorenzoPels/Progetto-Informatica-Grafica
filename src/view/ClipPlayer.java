@@ -14,7 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class ClipPlayer {
 
-    private final static int DEFAULT_NUM_CLIPS = 5;
+    private final int DEFAULT_NUM_CLIPS = 5;
 
     private int clipArrayIndex = 0;
     private Clip[] audioClipArray;

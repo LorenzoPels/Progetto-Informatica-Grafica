@@ -37,18 +37,17 @@ import static view.MainGUI.y4;
 import static view.MainGUI.y5;
 import static view.RightPanel.updateScoreLabel;
 
-public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener {
+public class BoardPanel extends JPanel implements KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
         //public static Image cavaliere;
-       private Image cavaliere1;
+      
 	//---------------------------------------------------------------
 	// STATIC CONSTANTS
 	//---------------------------------------------------------------
 	
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
-	private final static int X_MARGIN = 10;
-	private final static int Y_MARGIN = 10;
+
        // public Boolean[] esploso = new Boolean[5];
        
 
@@ -96,7 +95,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                 if(diff >=int5)
                     g.drawImage(pioggia[4],x+250,y5,150,180,null);
                 if( diff >=int6 )
-                    if(/*y5>=getHeight()-340*/pioggia[4]==null){    
+                    if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]==null  ){    
                         t0=System.currentTimeMillis();
                         P=0;
                         MainGUI.Cavalieri();
@@ -133,7 +132,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -152,7 +151,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -171,7 +170,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -190,7 +189,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -209,7 +208,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -228,7 +227,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -247,7 +246,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -266,7 +265,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -285,7 +284,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());
@@ -304,7 +303,7 @@ public class BoardPanel extends JPanel implements /*ActionListener,*/KeyListener
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
-                                    cavalieri[i]=Cavaliere.nextFallingPiece();
+                                    cavalieri[i]=Cavaliere.nextCavaliere();
                                     scoppio.play();
                                     Model.getInstance().incrementScore();
                                     updateScoreLabel(Model.getInstance().getScore());

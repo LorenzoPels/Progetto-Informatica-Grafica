@@ -12,23 +12,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
-import java.time.Duration;
+        
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayerBuilder;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
-import static sun.audio.AudioPlayer.player;
 import static view.RightPanel.scorelabel;
-import static view.GameOverDialog.finalscorelabel;
 
 
 
@@ -36,8 +32,8 @@ import static view.GameOverDialog.finalscorelabel;
 
 public class MainGUI extends JFrame implements ActionListener  {
 public static BoardPanel panel;
-private final static int larghezza = 750;
-private final static int altezza = 730;
+private final static int LARGHEZZA = 750;
+private final static int ALTEZZA = 730;
 private RightPanel rightpanel;
 private static Timer timer;
 public static int x, y1,y2,y3,y4,y5;
@@ -49,8 +45,7 @@ public static Boolean giocoiniziato = false;
 public static Image[] pioggia = new Image[5];
 public static Cavaliere[] cavalieri = new Cavaliere[5];
 public static Boolean[] esplosi = new Boolean[5];
-private int tempo;
-private int variabile;
+
 public static long t0,t1,P,Pi,Pf;
 public static long diff;
 public static int int1=1000;
@@ -65,15 +60,14 @@ public static ClipPlayer sottofondo;
  public static MediaPlayer player;
 
 
-//public static Boolean integro1,integro2,integro3,integro4,integro5 = true;
-//public  Image cavaliere;
+
 
 MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
  
     super("Magic Touch Game");
-//MainGUI maingui = new MainGUI();
+
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setPreferredSize(new Dimension(larghezza,altezza));
+    setPreferredSize(new Dimension(LARGHEZZA,ALTEZZA));
     this.createPanel();
     panel = new BoardPanel();
     add(panel);
@@ -87,17 +81,11 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
     y4 = -100;
     y5 = -100;
 
-    timer = new Timer(PAUSE, this);
+    timer = new Timer(PAUSE, this );
     scoppio = new ClipPlayer(audioScoppio);
     gameover = new ClipPlayer(audioGO);
     
-    //timer.start();
-    //Cavalieri();
-    //Pioggia();
-    //t0 = System.currentTimeMillis();
-    variabile = (int)(Math.random() * pioggia.length) % pioggia.length;
     
-    //setFocusable(true);
     initBackgroundSound();       
 
 
@@ -105,13 +93,9 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
 }
 
 public static Cavaliere[] Cavalieri(){
-   /*cavalieri[0] = Cavaliere.nextFallingPiece();
-   cavalieri[1] = Cavaliere.nextFallingPiece();
-   cavalieri[2] = Cavaliere.nextFallingPiece();
-   cavalieri[3] = Cavaliere.nextFallingPiece();
-   cavalieri[4] = Cavaliere.nextFallingPiece();*/
+   
     for(int i=0; i<cavalieri.length;i++)  
-        cavalieri[i] = Cavaliere.nextFallingPiece();
+        cavalieri[i] = Cavaliere.nextCavaliere();
    
    return cavalieri;
 }
@@ -302,13 +286,12 @@ private void createPanel() {
 
 
     public static void main(String[] args) {
-         final String audioScoppio = "audio/scoppio.wav";
-         final String audioGO = "audio/gameover.wav";
+         final String audioScoppio = "/audio/scoppio.wav";
+         final String audioGO = "/audio/gameover.wav";
         // final String audioSot = "audio/sottofondo.wav";
          try {
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                 try {
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                try {
                     new MainGUI(audioScoppio,audioGO).setVisible(true);
                 }
                 catch(FileNotFoundException fnfe) {
@@ -320,7 +303,6 @@ private void createPanel() {
                 catch(IOException ioe) {
                     
                 }
-            }
             });
         } catch(Exception e) {}
     }
