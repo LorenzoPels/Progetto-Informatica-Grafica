@@ -310,6 +310,7 @@ private void createPanel() {
                 catch(IOException ioe) {
                     
                 }
+            }
             });
         } catch(Exception e) {}
     }
