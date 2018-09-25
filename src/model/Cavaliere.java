@@ -84,7 +84,10 @@ public class Cavaliere {
 	// STATIC METHODS
 	//---------------------------------------------------------------
 	
+
 	
+	
+
 
 	public static Cavaliere nextCavaliere() {
 		Cavaliere fallingPiece = null;

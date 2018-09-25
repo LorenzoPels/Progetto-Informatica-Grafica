@@ -62,7 +62,7 @@ public static ClipPlayer sottofondo;
 
 
 
-MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+MainGUI(/*String audioScoppio,String audioGO*/) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
  
     super("Magic Touch Game");
 
@@ -81,7 +81,11 @@ MainGUI(String audioScoppio,String audioGO) throws FileNotFoundException, Unsupp
     y4 = -100;
     y5 = -100;
 
-    timer = new Timer(PAUSE, this );
+
+    timer = new Timer(PAUSE, this);
+    final String audioScoppio = "audio/scoppio.wav";
+    final String audioGO = "audio/gameover.wav";
+
     scoppio = new ClipPlayer(audioScoppio);
     gameover = new ClipPlayer(audioGO);
     
@@ -286,13 +290,16 @@ private void createPanel() {
 
 
     public static void main(String[] args) {
-         final String audioScoppio = "/audio/scoppio.wav";
-         final String audioGO = "/audio/gameover.wav";
+
+         //final String audioScoppio = "audio/scoppio.wav";
+         //final String audioGO = "audio/gameover.wav";
         // final String audioSot = "audio/sottofondo.wav";
          try {
-            javax.swing.SwingUtilities.invokeLater(() -> {
-                try {
-                    new MainGUI(audioScoppio,audioGO).setVisible(true);
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                 try {
+                    new MainGUI(/*audioScoppio,audioGO*/).setVisible(true);
+
                 }
                 catch(FileNotFoundException fnfe) {
                  
