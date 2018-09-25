@@ -40,15 +40,12 @@ import static view.RightPanel.updateScoreLabel;
 public class BoardPanel extends JPanel implements KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
-        //public static Image cavaliere;
+       
       
-	//---------------------------------------------------------------
-	// STATIC CONSTANTS
-	//---------------------------------------------------------------
-	
+		
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
 
-       // public Boolean[] esploso = new Boolean[5];
+      
        
 
 	public BoardPanel() {
