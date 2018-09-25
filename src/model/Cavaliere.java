@@ -84,11 +84,12 @@ public class Cavaliere {
 	// STATIC METHODS
 	//---------------------------------------------------------------
 	
-	/*static Cavaliere getFallingPieceByName(String fallingPieceName) {
-		return mapStringNameToFallingPieceObj.get(fallingPieceName);
-	}*/
 
-	public static Cavaliere nextFallingPiece() {
+	
+	
+
+
+	public static Cavaliere nextCavaliere() {
 		Cavaliere fallingPiece = null;
 		int pieceIndex = (int)(Math.random() * FALLING_PIECE_ARRAY.length) % FALLING_PIECE_ARRAY.length;
 		/*for (int k = 0; k < PREVIEW_PIECE_ARRAY.length; k++)
