@@ -84,9 +84,9 @@ public class Cavaliere {
 	// STATIC METHODS
 	//---------------------------------------------------------------
 	
-	static Cavaliere getFallingPieceByName(String fallingPieceName) {
+	/*static Cavaliere getFallingPieceByName(String fallingPieceName) {
 		return mapStringNameToFallingPieceObj.get(fallingPieceName);
-	}
+	}*/
 
 	public static Cavaliere nextFallingPiece() {
 		Cavaliere fallingPiece = null;

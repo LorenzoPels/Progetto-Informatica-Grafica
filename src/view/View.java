@@ -58,13 +58,13 @@ public class View implements IView {
         public void openMainGUI() {
             
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    final String audioScoppio = "audio/scoppio.wav";
-                    final String audioGO = "audio/gameover.wav";
+                    //final String audioScoppio = "audio/scoppio.wav";
+                   // final String audioGO = "audio/gameover.wav";
                     
 			public void run() {
 				if (mainGUI == null)
                                 try {
-                                    mainGUI = new MainGUI(audioScoppio,audioGO);
+                                    mainGUI = new MainGUI(/*audioScoppio,audioGO*/);
                                 } catch (UnsupportedAudioFileException ex) {
                                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                                 } catch (IOException ex) {
