@@ -5,12 +5,16 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import model.Cavaliere;
 import model.Model;
 import static view.MainGUI.MOVIMENTO;
@@ -19,6 +23,7 @@ import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
 import static view.MainGUI.diff;
 import static view.MainGUI.esplosi;
+import static view.MainGUI.getPanel;
 import static view.MainGUI.giocoiniziato;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
@@ -126,7 +131,12 @@ public class BoardPanel extends JPanel implements KeyListener {
                             boolean cancelA = false;
                             for(int i =0;(i<cavalieri.length)&&(cancelA==false);i++){
                                 if((cavalieri[i].getName()== "A") && (esplosi[i]==false)){
-                                    pioggia[i] = null;
+                                    try {
+                                        animazione(cavalieri[i], i );
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(BoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    //pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
                                     cavalieri[i]=Cavaliere.nextCavaliere();
@@ -145,6 +155,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                             boolean cancelB = false;
                             for(int i =0;(i<cavalieri.length)&&(cancelB==false);i++){
                                 if((cavalieri[i].getName()== "B") && (esplosi[i] == false)){
+                                    
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
@@ -328,6 +339,25 @@ public class BoardPanel extends JPanel implements KeyListener {
 		
 	}
 
-  
+    private void animazione(Cavaliere cavaliere, int i) throws IOException {
+        String piecename;
+        piecename = cavaliere.getName();
+        switch (piecename) {
+			case "A":
+                            
+                            int delay = 500; // milliseconds
+                            ActionListener al = new ActionListener
+                            new Timer(delay, null ).start();
+                            
+                            for(int index=0 ; index <= 6; index++){
+                                pioggia[i] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+ index+ ".png"));
+                                MainGUI.getPanel().repaint();
+                            }
+                            break;
+                    
+                           
+                        }
+    
+    }
 
 } // end class
