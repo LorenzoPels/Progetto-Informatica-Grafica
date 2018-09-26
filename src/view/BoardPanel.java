@@ -5,7 +5,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -346,7 +346,7 @@ public class BoardPanel extends JPanel implements KeyListener {
 			case "A":
                             
                             int delay = 500; // milliseconds
-                            ActionListener al = new ActionListener
+                            
                             new Timer(delay, null ).start();
                             
                             for(int index=0 ; index <= 6; index++){
