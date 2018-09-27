@@ -6,17 +6,6 @@ import static view.MainGUI.P;
 import static view.RightPanel.scorelabel;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.pioggia;
-import static view.MainGUI.int1;
-import static view.MainGUI.int2;
-import static view.MainGUI.int3;
-import static view.MainGUI.int4;
-import static view.MainGUI.int5;
-import static view.MainGUI.int6;
-import static view.MainGUI.y1;
-import static view.MainGUI.y2;
-import static view.MainGUI.y3;
-import static view.MainGUI.y4;
-import static view.MainGUI.y5;
 import static view.MainGUI.t0;
 import static view.MainGUI.t1;
 import static view.MainGUI.Pi;
@@ -27,6 +16,17 @@ import static view.RightPanel.isGameRunning;
 import static view.RightPanel.isGameStarted;
 import static view.RightPanel.jButton1;
 import static view.RightPanel.jButton2;
+import static view.MainGUI.y0;
+import static view.MainGUI.y1;
+import static view.MainGUI.y2;
+import static view.MainGUI.y3;
+import static view.MainGUI.y4;
+import static view.MainGUI.int0;
+import static view.MainGUI.int1;
+import static view.MainGUI.int2;
+import static view.MainGUI.int3;
+import static view.MainGUI.int4;
+import static view.MainGUI.int5;
 
 public class Model implements IModel {
     
@@ -73,13 +73,13 @@ public class Model implements IModel {
                 P=0;
                 MainGUI.Cavalieri();
                 MainGUI.Pioggia();
-                int1=1000;
-                int2=3000;
-                int3=4000;
-                int4=7000;
-                int5=8000;
-                int6=10000;
-                y1 = y2 = y3 = y4 = y5 = -100;
+                int0=1000;
+                int1=3000;
+                int2=4000;
+                int3=7000;
+                int4=8000;
+                int5=10000;
+                y0 = y1 = y2 = y3 = y4 = -100;
       
                 t0=t1=P=Pi=Pf=0;
                 MOVIMENTO=1;

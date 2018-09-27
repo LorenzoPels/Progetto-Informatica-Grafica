@@ -19,6 +19,7 @@ import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -36,10 +37,10 @@ private final static int LARGHEZZA = 750;
 private final static int ALTEZZA = 730;
 private RightPanel rightpanel;
 private static Timer timer;
-public static int x, y1,y2,y3,y4,y5;
+public static int x, y0,y1,y2,y3,y4;
 private final int PAUSE = 10;
 public static  int MOVIMENTO = 1;
-private boolean motionControl1,motionControl2,motionControl3,motionControl4,motionControl5;
+private boolean motionControl0,motionControl1,motionControl2,motionControl3,motionControl4;
 
 public static Boolean giocoiniziato = false;
 public static Image[] pioggia = new Image[5];
@@ -48,18 +49,19 @@ public static Boolean[] esplosi = new Boolean[5];
 
 public static long t0,t1,P,Pi,Pf;
 public static long diff;
-public static int int1=1000;
-public static int int2=1500;
-public static int int3=2000;
-public static int int4=2500;
-public static int int5=3500;
-public static int int6=4000;
+public static int int0=1000;
+public static int int1=1500;
+public static int int2=2000;
+public static int int3=2500;
+public static int int4=3500;
+public static int int5=4000;
 public static ClipPlayer scoppio;
 public static ClipPlayer gameover;
 public static ClipPlayer sottofondo;
  public static MediaPlayer player;
 
-
+int index0;
+int index;
 
 
 MainGUI(/*String audioScoppio,String audioGO*/) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
@@ -75,11 +77,11 @@ MainGUI(/*String audioScoppio,String audioGO*/) throws FileNotFoundException, Un
     pack();
     setLocationRelativeTo(null);
     x = 200;
+    y0 = -100;
     y1 = -100;
     y2 = -100;
     y3 = -100;
     y4 = -100;
-    y5 = -100;
 
 
     timer = new Timer(PAUSE, this);
@@ -188,11 +190,18 @@ private void createPanel() {
   @Override
     public void actionPerformed(ActionEvent e) {
         
-       if(diff>=int1){
-            y1 += (motionControl1) ? MOVIMENTO: /*-MOVIMENTO*/0;
-            if(y1 >= -101) motionControl1 = true;
-            if(y1 >= getHeight()-220) motionControl1 = false;
-            if((y1 >= getHeight()-220) &&(pioggia[0]!= null) ){
+        
+        
+       if(diff>=int0){
+            y0 += (motionControl0) ? MOVIMENTO: /*-MOVIMENTO*/0;
+            if(y0 >= -101) motionControl0 = true;
+            if(y0 >= getHeight()-220) motionControl0 = false;
+            if((y0 >= getHeight()-220) &&(esplosi[0] == true)){
+                pioggia[0]= null;
+                index0=0;
+            }
+               // esplosi[0] = true;
+            if((y0 >= getHeight()-220) &&(esplosi[0] == false) ){
                 gameover.play();
                 timer.stop();
                 try {
@@ -205,15 +214,57 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
+            if(esplosi[0]==true  && index0 <= 7 && y0 <= getHeight()-221){
+               
+                String piecename;
+                piecename = cavalieri[0].getName();
+                try {
+                    pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ cavalieri[0].getColore()+"/cavaliere"+ cavalieri[0].getColore()+index0+ ".png"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                MainGUI.getPanel().repaint();
+                index0 ++;
+            }
         }
        
+        if(diff>=int1){
+            y1 += (motionControl1) ? MOVIMENTO: /*MOVIMENTO*/0;
+            if(y1 >= -101) motionControl1 = true;
+            if(y1 >= getHeight()-220) motionControl1 = false;
+           if((y1 >= getHeight()-220) &&(esplosi[1] == true)){
+                pioggia[1]= null;
+                index=0;
+            }
+               // esplosi[0] = true;
+            if((y1 >= getHeight()-220) &&(esplosi[1] == false) ){
+                gameover.play();
+                timer.stop();
+                try {
+                    sleep(1900);
+                    //PausaGioco();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               // PausaGioco();
+                player.stop();
+                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+                
+            }
+        }
+        
         if(diff>=int2){
             y2 += (motionControl2) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y2 >= -101) motionControl2 = true;
             if(y2 >= getHeight()-220) motionControl2 = false;
-           if((y2 >= getHeight()-220) &&(pioggia[1]!= null) ){
-                timer.stop();
+            if((y2 >= getHeight()-220) &&(esplosi[2] == true)){
+                pioggia[2]= null;
+                index=0;
+            }
+               // esplosi[0] = true;
+            if((y2 >= getHeight()-220) &&(esplosi[2] == false) ){
                 gameover.play();
+                timer.stop();
                 try {
                     sleep(1900);
                     //PausaGioco();
@@ -228,12 +279,17 @@ private void createPanel() {
         }
         
         if(diff>=int3){
-            y3 += (motionControl3) ? MOVIMENTO: /*MOVIMENTO*/0;
+            y3 += (motionControl3) ? MOVIMENTO:/* MOVIMENTO*/0;
             if(y3 >= -101) motionControl3 = true;
             if(y3 >= getHeight()-220) motionControl3 = false;
-            if((y3 >= getHeight()-220) &&(pioggia[2]!= null) ){
-                timer.stop();
+            if((y3 >= getHeight()-220) &&(esplosi[3] == true)){
+                pioggia[3]= null;
+                index=0;
+            }
+               // esplosi[0] = true;
+            if((y3 >= getHeight()-220) &&(esplosi[3] == false) ){
                 gameover.play();
+                timer.stop();
                 try {
                     sleep(1900);
                     //PausaGioco();
@@ -248,32 +304,17 @@ private void createPanel() {
         }
         
         if(diff>=int4){
-            y4 += (motionControl4) ? MOVIMENTO:/* MOVIMENTO*/0;
+            y4 += (motionControl4) ? MOVIMENTO: /*MOVIMENTO*/0;
             if(y4 >= -101) motionControl4 = true;
             if(y4 >= getHeight()-220) motionControl4 = false;
-            if((y4 >= getHeight()-220) &&(pioggia[3]!= null) ){
-                timer.stop();
-                gameover.play();
-                try {
-                    sleep(1900);
-                    //PausaGioco();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               // PausaGioco();
-                player.stop();
-                ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-                
+            if((y4 >= getHeight()-220) &&(esplosi[4] == true)){
+                pioggia[4]= null;
+                index=0;
             }
-        }
-        
-        if(diff>=int5){
-            y5 += (motionControl5) ? MOVIMENTO: /*MOVIMENTO*/0;
-            if(y5 >= -101) motionControl5 = true;
-            if(y5 >= getHeight()-220) motionControl5 = false;
-            if((y5 >= getHeight()-220) &&(pioggia[4]!= null) ){
-                timer.stop();
+               // esplosi[0] = true;
+            if((y4 >= getHeight()-220) &&(esplosi[4] == false) ){
                 gameover.play();
+                timer.stop();
                 try {
                     sleep(1900);
                     //PausaGioco();
@@ -286,6 +327,10 @@ private void createPanel() {
         }
          this.panel.repaint();       
         //repaint();
+    }
+    
+    public static BoardPanel getPanel(){
+        return panel;    
     }
 
 
