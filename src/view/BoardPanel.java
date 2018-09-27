@@ -5,12 +5,16 @@ package view;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import model.Cavaliere;
 import model.Model;
 import static view.MainGUI.MOVIMENTO;
@@ -19,23 +23,26 @@ import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
 import static view.MainGUI.diff;
 import static view.MainGUI.esplosi;
+import static view.MainGUI.getPanel;
 import static view.MainGUI.giocoiniziato;
+import static view.MainGUI.pioggia;
+import static view.MainGUI.t0;
+import static view.MainGUI.t1;
+import static view.MainGUI.x;
+import static view.RightPanel.updateScoreLabel;
+import static view.MainGUI.y0;
+import static view.MainGUI.y1;
+import static view.MainGUI.y2;
+import static view.MainGUI.y3;
+import static view.MainGUI.y4;
+import static view.MainGUI.int0;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
 import static view.MainGUI.int5;
-import static view.MainGUI.int6;
-import static view.MainGUI.pioggia;
-import static view.MainGUI.t0;
-import static view.MainGUI.t1;
-import static view.MainGUI.y1;
-import static view.MainGUI.x;
-import static view.MainGUI.y2;
-import static view.MainGUI.y3;
-import static view.MainGUI.y4;
-import static view.MainGUI.y5;
-import static view.RightPanel.updateScoreLabel;
+
+
 
 public class BoardPanel extends JPanel implements KeyListener {
         BufferedImage sfondo;
@@ -81,31 +88,31 @@ public class BoardPanel extends JPanel implements KeyListener {
                 t1 = System.currentTimeMillis()-P;
                 diff = t1 - t0;
                 //System.out.println(diff);
-                if( diff >=int1  )
-                    g.drawImage(pioggia[0],x-100,y1,150,180,null);
+                if( diff >=int0  )
+                    g.drawImage(pioggia[0],x-100,y0,150,180,null);
+                if(diff >=int1)
+                    g.drawImage(pioggia[1],x+100,y1,150,180,null);
                 if(diff >=int2)
-                    g.drawImage(pioggia[1],x+100,y2,150,180,null);
+                    g.drawImage(pioggia[2],x-200,y2,150,180,null);
                 if(diff >=int3)
-                    g.drawImage(pioggia[2],x-200,y3,150,180,null);
+                    g.drawImage(pioggia[3],x+200,y3,150,180,null);
                 if(diff >=int4)
-                    g.drawImage(pioggia[3],x+200,y4,150,180,null);
-                if(diff >=int5)
-                    g.drawImage(pioggia[4],x+250,y5,150,180,null);
-                if( diff >=int6 )
-                    if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]==null  ){    
+                    g.drawImage(pioggia[4],x+250,y4,150,180,null);
+                if( diff >=int5 )
+                    if(esplosi[0]== true && esplosi[1]== true && esplosi[2]== true && esplosi[3]== true && esplosi[4]== true  ){    
                         t0=System.currentTimeMillis();
                         P=0;
                         MainGUI.Cavalieri();
                         MainGUI.Pioggia();
                         MainGUI.Esplosi();
-                        y1=y2=y3=y4=y5=-100;
+                        y0=y1=y2=y3=y4=-100;
                         MOVIMENTO++;
+                        int0+=-500;
                         int1+=-500;
                         int2+=-500;
                         int3+=-500;
                         int4+=-500;
                         int5+=-500;
-                        int6+=-500;
                         
                     }
                //}*/
@@ -126,6 +133,11 @@ public class BoardPanel extends JPanel implements KeyListener {
                             boolean cancelA = false;
                             for(int i =0;(i<cavalieri.length)&&(cancelA==false);i++){
                                 if((cavalieri[i].getName()== "A") && (esplosi[i]==false)){
+                      /*              try {
+                                        animazione(cavalieri[i], i );
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(BoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                    }                   */
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
@@ -145,6 +157,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                             boolean cancelB = false;
                             for(int i =0;(i<cavalieri.length)&&(cancelB==false);i++){
                                 if((cavalieri[i].getName()== "B") && (esplosi[i] == false)){
+                                    
                                     pioggia[i] = null;
                                     cavalieri[i] = null;
                                     esplosi[i] = true;
@@ -328,6 +341,23 @@ public class BoardPanel extends JPanel implements KeyListener {
 		
 	}
 
-  
+    private void animazione(Cavaliere cavaliere, int i) throws IOException {
+    /*    String piecename;
+        piecename = cavaliere.getName();
+        switch (piecename) {
+			case "A":
+                               
+                                int index = 0;
+                                
+                                pioggia[i] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+ index+ ".png"));
+                                MainGUI.getPanel().repaint();
+                                index ++;
+                                                            
+                            break;
+                    
+                           
+                        }           */
+    
+    }
 
 } // end class

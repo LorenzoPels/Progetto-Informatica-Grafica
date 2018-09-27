@@ -12,7 +12,8 @@ public class CavaliereA extends Cavaliere {
 
     
     CavaliereA(){
-    this.pieceName = "A";
+    this.nomeCavaliere = "A";
+    this.coloreCavaliere = "Giallo";
     }
    /* public static Image Loader(){
          try {

@@ -4,6 +4,7 @@ package model;
 
 public class CavaliereB extends Cavaliere {
     CavaliereB(){
-    this.pieceName = "B";
+    this.nomeCavaliere = "B";
+    this.coloreCavaliere = "Giallo";
     }
 }
