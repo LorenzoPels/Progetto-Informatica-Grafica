@@ -214,7 +214,7 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
-            if(esplosi[0]==true  && index0 <= 7 && y0 <= getHeight()-221){
+            if(esplosi[0]==true  && index0 <= 6 && y0 <= getHeight()-221){
                
                 String piecename;
                 piecename = cavalieri[0].getName();
