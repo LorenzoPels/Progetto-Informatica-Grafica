@@ -214,10 +214,9 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
-            if(esplosi[0]==true  && index0 <= 6 && y0 <= getHeight()-221){
+            if(esplosi[0]==true  && index0 <= 13 && y0 <= getHeight()-221){
                
-                String piecename;
-                piecename = cavalieri[0].getName();
+                
                 try {
                     pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ cavalieri[0].getColore()+"/cavaliere"+ cavalieri[0].getColore()+index0+ ".png"));
                 } catch (IOException ex) {
