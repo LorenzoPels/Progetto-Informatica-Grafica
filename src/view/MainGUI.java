@@ -216,9 +216,11 @@ private void createPanel() {
             }
             if(esplosi[0]==true  && index0 <= 13 && y0 <= getHeight()-221){
                
+                String coloreC = cavalieri[0].getColore();
+                
                 
                 try {
-                    pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ cavalieri[0].getColore()+"/cavaliere"+ cavalieri[0].getColore()+index0+ ".png"));
+                    pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC +"/cavaliere"+ coloreC+index0+ ".png"));
                 } catch (IOException ex) {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
