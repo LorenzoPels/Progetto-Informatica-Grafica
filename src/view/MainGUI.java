@@ -59,6 +59,7 @@ public static ClipPlayer scoppio;
 public static ClipPlayer gameover;
 public static ClipPlayer sottofondo;
  public static MediaPlayer player;
+ private String coloreC;
 
 int index0;
 int index;
@@ -214,11 +215,14 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
+            
+            if(esplosi[0] == false){
+                 coloreC = cavalieri[0].getColore();
+            }
+            
             if(esplosi[0]==true  && index0 <= 13 && y0 <= getHeight()-221){
                
-                String coloreC = cavalieri[0].getColore();
-                
-                
+             
                 try {
                     pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC +"/cavaliere"+ coloreC+index0+ ".png"));
                 } catch (IOException ex) {
