@@ -105,7 +105,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                 if(diff >=int4)
                     g.drawImage(pioggia[4],x+250,y4,150,180,null);
                 if( diff >=int5 )
-                    if(esplosi[0]== true && esplosi[1]== true && esplosi[2]== true && esplosi[3]== true && esplosi[4]== true  ){    
+                    if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
                         t0=System.currentTimeMillis();
                         P=0;
                         MainGUI.Cavalieri();
