@@ -58,11 +58,11 @@ public static int int5=4000;
 public static ClipPlayer scoppio;
 public static ClipPlayer gameover;
 public static ClipPlayer sottofondo;
- public static MediaPlayer player;
- private String coloreC;
+public static MediaPlayer player;
+private String coloreC0,coloreC1,coloreC2,coloreC3,coloreC4;
 
-int index0;
-int index;
+static int index0,index1,index2,index3,index4;
+//int index;
 
 
 MainGUI(/*String audioScoppio,String audioGO*/) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
@@ -217,18 +217,18 @@ private void createPanel() {
             }
             
             if(esplosi[0] == false){
-                 coloreC = cavalieri[0].getColore();
+                 coloreC0 = cavalieri[0].getColore();
             }
             
             if(esplosi[0]==true  && index0 <= 13 && y0 <= getHeight()-221){
                
              
                 try {
-                    pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC +"/cavaliere"+ coloreC+index0+ ".png"));
+                    pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC0 +"/cavaliere"+ coloreC0+index0+ ".png"));
                 } catch (IOException ex) {
                     Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                MainGUI.getPanel().repaint();
+                //MainGUI.getPanel().repaint();
                 index0 ++;
             }
         }
@@ -239,7 +239,7 @@ private void createPanel() {
             if(y1 >= getHeight()-220) motionControl1 = false;
            if((y1 >= getHeight()-220) &&(esplosi[1] == true)){
                 pioggia[1]= null;
-                index=0;
+                index1=0;
             }
                // esplosi[0] = true;
             if((y1 >= getHeight()-220) &&(esplosi[1] == false) ){
@@ -256,6 +256,22 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
+            
+            if(esplosi[1] == false){
+                 coloreC1 = cavalieri[1].getColore();
+            }
+            
+            if(esplosi[1]==true  && index1 <= 13 && y1 <= getHeight()-221){
+               
+             
+                try {
+                    pioggia[1] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC1 +"/cavaliere"+ coloreC1+index1+ ".png"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //MainGUI.getPanel().repaint();
+                index1 ++;
+            }
         }
         
         if(diff>=int2){
@@ -264,7 +280,7 @@ private void createPanel() {
             if(y2 >= getHeight()-220) motionControl2 = false;
             if((y2 >= getHeight()-220) &&(esplosi[2] == true)){
                 pioggia[2]= null;
-                index=0;
+                index2=0;
             }
                // esplosi[0] = true;
             if((y2 >= getHeight()-220) &&(esplosi[2] == false) ){
@@ -281,6 +297,22 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
+            
+            if(esplosi[2] == false){
+                 coloreC2 = cavalieri[2].getColore();
+            }
+            
+            if(esplosi[2]==true  && index2 <= 13 && y2 <= getHeight()-221){
+               
+             
+                try {
+                    pioggia[2] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC2 +"/cavaliere"+ coloreC2+index2+ ".png"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //MainGUI.getPanel().repaint();
+                index2 ++;
+            }
         }
         
         if(diff>=int3){
@@ -289,7 +321,7 @@ private void createPanel() {
             if(y3 >= getHeight()-220) motionControl3 = false;
             if((y3 >= getHeight()-220) &&(esplosi[3] == true)){
                 pioggia[3]= null;
-                index=0;
+                index3=0;
             }
                // esplosi[0] = true;
             if((y3 >= getHeight()-220) &&(esplosi[3] == false) ){
@@ -306,6 +338,21 @@ private void createPanel() {
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
                 
             }
+            if(esplosi[3] == false){
+                 coloreC3 = cavalieri[3].getColore();
+            }
+            
+            if(esplosi[3]==true  && index3 <= 13 && y3 <= getHeight()-221){
+               
+             
+                try {
+                    pioggia[3] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC3 +"/cavaliere"+ coloreC3+index3+ ".png"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               // MainGUI.getPanel().repaint();
+                index3 ++;
+            }
         }
         
         if(diff>=int4){
@@ -314,7 +361,7 @@ private void createPanel() {
             if(y4 >= getHeight()-220) motionControl4 = false;
             if((y4 >= getHeight()-220) &&(esplosi[4] == true)){
                 pioggia[4]= null;
-                index=0;
+                index4=0;
             }
                // esplosi[0] = true;
             if((y4 >= getHeight()-220) &&(esplosi[4] == false) ){
@@ -329,7 +376,24 @@ private void createPanel() {
                 player.stop();
                 ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
             }
+            
+            if(esplosi[4] == false){
+                 coloreC4 = cavalieri[4].getColore();
+            }
+            
+            if(esplosi[4]==true  && index4 <= 13 && y4 <= getHeight()-221){
+               
+             
+                try {
+                    pioggia[4] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC4 +"/cavaliere"+ coloreC4+index4+ ".png"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               //MainGUI.getPanel().repaint();
+                index4 ++;
+            }
         }
+        
          this.panel.repaint();       
         //repaint();
     }

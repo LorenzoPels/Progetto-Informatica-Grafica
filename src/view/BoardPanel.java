@@ -41,6 +41,12 @@ import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
 import static view.MainGUI.int5;
+import static view.MainGUI.index0;
+import static view.MainGUI.index1;
+import static view.MainGUI.index2;
+import static view.MainGUI.index3;
+import static view.MainGUI.index4;
+
 
 
 
@@ -106,6 +112,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                         MainGUI.Pioggia();
                         MainGUI.Esplosi();
                         y0=y1=y2=y3=y4=-100;
+                        index0=index1=index2=index3=index4=0;
                         MOVIMENTO++;
                         int0+=-500;
                         int1+=-500;
