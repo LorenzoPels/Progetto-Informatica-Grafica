@@ -17,7 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import model.Cavaliere;
 import model.Model;
-import static view.MainGUI.MOVIMENTO;
+import static view.MainGUI.MOVIMENTO0;
+import static view.MainGUI.MOVIMENTO1;
+import static view.MainGUI.MOVIMENTO2;
+import static view.MainGUI.MOVIMENTO3;
+import static view.MainGUI.MOVIMENTO4;
 import static view.MainGUI.P;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
@@ -53,7 +57,7 @@ import static view.MainGUI.index4;
 public class BoardPanel extends JPanel implements KeyListener {
         BufferedImage sfondo;
         BufferedImage mago;
-       
+        private int count=0;
       
 		
 	private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
@@ -62,6 +66,7 @@ public class BoardPanel extends JPanel implements KeyListener {
        
 
 	public BoardPanel() {
+                
 		super();
                 
 		this.addKeyListener(this);
@@ -104,7 +109,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                     g.drawImage(pioggia[3],x+200,y3,150,180,null);
                 if(diff >=int4)
                     g.drawImage(pioggia[4],x+250,y4,150,180,null);
-                if( diff >=int5 )
+               // if( diff >=int5 )
                     if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
                         t0=System.currentTimeMillis();
                         P=0;
@@ -112,14 +117,30 @@ public class BoardPanel extends JPanel implements KeyListener {
                         MainGUI.Pioggia();
                         MainGUI.Esplosi();
                         y0=y1=y2=y3=y4=-100;
-                        index0=index1=index2=index3=index4=0;
-                        MOVIMENTO++;
-                        int0+=-500;
-                        int1+=-500;
-                        int2+=-500;
-                        int3+=-500;
-                        int4+=-500;
-                        int5+=-500;
+                        index0=index1=index2=index3=index4=0; 
+                        
+                        if(int0>=0){
+                           /* MOVIMENTO0++;
+                            MOVIMENTO1++;
+                            MOVIMENTO2++;
+                            MOVIMENTO3++;
+                            MOVIMENTO4++;*/
+                            int0+=-100;
+                            int1+=-160;
+                            int2+=-220;
+                            int3+=-300;
+                            int4+=-360;
+                            //int5+=-2000;
+                        } 
+                        if(int0>=100){
+                            MOVIMENTO0++;
+                            MOVIMENTO1++;
+                            MOVIMENTO2++;
+                            MOVIMENTO3++;
+                            MOVIMENTO4++;
+                          
+                        }
+                        
                         
                     }
                //}*/
