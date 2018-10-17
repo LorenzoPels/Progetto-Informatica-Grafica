@@ -79,10 +79,10 @@ public class Model implements IModel {
                 MainGUI.Pioggia();
                 int0=1000;
                 int1=3000;
-                int2=4000;
+                int2=5000;
                 int3=7000;
-                int4=8000;
-                int5=10000;
+                int4=9000;
+                int5=11000;
                 y0 = y1 = y2 = y3 = y4 = -100;
       
                 t0=t1=P=Pi=Pf=0;
