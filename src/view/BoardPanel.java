@@ -17,11 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import model.Cavaliere;
 import model.Model;
-import static view.MainGUI.MOVIMENTO0;
-import static view.MainGUI.MOVIMENTO1;
-import static view.MainGUI.MOVIMENTO2;
-import static view.MainGUI.MOVIMENTO3;
-import static view.MainGUI.MOVIMENTO4;
 import static view.MainGUI.P;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
@@ -50,6 +45,11 @@ import static view.MainGUI.index1;
 import static view.MainGUI.index2;
 import static view.MainGUI.index3;
 import static view.MainGUI.index4;
+import static view.MainGUI.movimento1;
+import static view.MainGUI.movimento2;
+import static view.MainGUI.movimento3;
+import static view.MainGUI.movimento4;
+import static view.MainGUI.movimento;
 
 
 
@@ -110,25 +110,23 @@ public class BoardPanel extends JPanel implements KeyListener {
                     y0=y1=y2=y3=y4=-100;
                     index0=index1=index2=index3=index4=0; 
                     
-                    if(int0>=200){
-                       /* MOVIMENTO0++;
-                        MOVIMENTO1++;
-                        MOVIMENTO2++;
-                        MOVIMENTO3++;
-                        MOVIMENTO4++;*/
-                        int0+=-100;
-                        int1+=-320;
-                        int2+=-440;
-                        int3+=-600;
-                        int4+=-720;
+                    if(int4>=100){
+                       
+                        int0+=-200;
+                        int1+=-200;
+                        int2+=-200;
+                        int3+=-200;
+                        int4+=-200;
                         //int5+=-2000;
                     } 
                     if(int0>=600){
-                        MOVIMENTO0++;
-                        MOVIMENTO1++;
-                        MOVIMENTO2++;
-                        MOVIMENTO3++;
-                        MOVIMENTO4++;
+                        if( movimento4 < 6 ){
+                        movimento++;
+                        movimento1++;
+                        movimento2++;
+                        movimento3++;
+                        movimento4++;
+                        }
                         //System.out.println(MOVIMENTO0+"\n"+int0);
 
                     }
