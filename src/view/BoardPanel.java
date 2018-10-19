@@ -45,10 +45,7 @@ import static view.MainGUI.index1;
 import static view.MainGUI.index2;
 import static view.MainGUI.index3;
 import static view.MainGUI.index4;
-import static view.MainGUI.movimento1;
-import static view.MainGUI.movimento2;
-import static view.MainGUI.movimento3;
-import static view.MainGUI.movimento4;
+ 
 import static view.MainGUI.movimento;
 
 
@@ -110,26 +107,28 @@ public class BoardPanel extends JPanel implements KeyListener {
                     y0=y1=y2=y3=y4=-100;
                     index0=index1=index2=index3=index4=0; 
                     
-                    if(int4>=100){
-                       
-                        int0+=-200;
-                        int1+=-200;
-                        int2+=-200;
-                        int3+=-200;
-                        int4+=-200;
-                        //int5+=-2000;
-                    } 
-                    if(int0>=600){
-                        if( movimento4 < 6 ){
-                        movimento++;
-                        movimento1++;
-                        movimento2++;
-                        movimento3++;
-                        movimento4++;
-                        }
+                    //   gestisciTempi(int int0,int int1,int int2,int int3,int int4)
+                    
+                            if(int0>100)
+                                int0-=100;
+                            if( (int1-int0) > 500 )
+                                int1-=500;
+                            if( (int2-int1) > 500 )
+                                int2-=500;
+                            if( (int3-int2) > 500 )
+                                int3-=500;
+                            if( (int4-int3) > 500 )
+                                int4-=500;
+                            
+                            
+                            
+                                if( movimento < 4 )
+                                    movimento++;
+                        
+                        
                         //System.out.println(MOVIMENTO0+"\n"+int0);
 
-                    }
+                    
 
 
                 }
@@ -359,4 +358,18 @@ public class BoardPanel extends JPanel implements KeyListener {
 
     }
 
+    public void gestisciTempi(int int0,int int1,int int2,int int3,int int4){
+        if(int0>100)
+            int0-=100;
+        if( (int1-int0) > 500 )
+            int1-=200;
+        if( (int2-int1) > 500 )
+            int2-=200;
+        if( (int3-int2) > 500 )
+            int3-=200;
+        if( (int4-int3) > 500 )
+            int4-=200;
+        
+    }
+    
 } // end class

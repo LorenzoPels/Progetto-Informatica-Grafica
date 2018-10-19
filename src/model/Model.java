@@ -26,10 +26,7 @@ import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
 import static view.MainGUI.int5;
-import static view.MainGUI.movimento1;
-import static view.MainGUI.movimento2;
-import static view.MainGUI.movimento3;
-import static view.MainGUI.movimento4;
+
 import static view.MainGUI.movimento;
 
 public class Model implements IModel {
@@ -86,7 +83,7 @@ public class Model implements IModel {
                 y0 = y1 = y2 = y3 = y4 = -150;
       
                 t0=t1=P=Pi=Pf=0;
-                movimento=movimento1=movimento2=movimento3=movimento4=1;
+                movimento=1;
                 //jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
 		//jButton2.setEnabled(true);
                 

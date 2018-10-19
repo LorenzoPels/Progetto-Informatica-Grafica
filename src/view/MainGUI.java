@@ -41,8 +41,8 @@ public class MainGUI extends JFrame implements ActionListener  {
     private static Timer timer;
     public static int x, y0,y1,y2,y3,y4;
     private final int PAUSE = 10;
-    public static  int movimento,movimento1,movimento2,movimento3,movimento4;
-    private boolean controlloreMovimento0,motionControl1,motionControl2,motionControl3,motionControl4;
+    public static  int movimento;
+    private boolean controlloreMovimento0,controlloreMovimento1,controlloreMovimento2,controlloreMovimento3,controlloreMovimento4;
 
     public static Boolean giocoiniziato = false;
     public static Image[] pioggia = new Image[5];
@@ -219,7 +219,7 @@ public class MainGUI extends JFrame implements ActionListener  {
 
            if(diff>=int0){
                //System.out.println(MOVIMENTO0);
-                y0 += gestisciMovimento(controlloreMovimento0, esplosi[0]);
+                y0 += gestisciMovimento(controlloreMovimento0, esplosi[0],index0);
                 
                 if(y0 >= -1000) controlloreMovimento0 = true;
                 if(y0 >= getHeight()-220) controlloreMovimento0 = false;
@@ -290,9 +290,12 @@ public class MainGUI extends JFrame implements ActionListener  {
             }
 
             if(diff>=int1){
-                y1 += (motionControl1) ? movimento1: /*MOVIMENTO*/0;
-                if(y1 >= -1000) motionControl1 = true;
-                if(y1 >= getHeight()-220) motionControl1 = false;
+                
+                y1 += gestisciMovimento(controlloreMovimento1, esplosi[1], index1);
+                
+                
+                if(y1 >= -1000) controlloreMovimento1 = true;
+                if(y1 >= getHeight()-220) controlloreMovimento1 = false;
                if((y1 >= getHeight()-220) &&(esplosi[1] == true)){
                     pioggia[1]= null;
                     index1=0;
@@ -349,9 +352,11 @@ public class MainGUI extends JFrame implements ActionListener  {
             }
 
             if(diff>=int2){
-                y2 += (motionControl2) ? movimento2: /*MOVIMENTO*/0;
-                if(y2 >= -1000) motionControl2 = true;
-                if(y2 >= getHeight()-220) motionControl2 = false;
+               
+                y2 += gestisciMovimento(controlloreMovimento2, esplosi[2], index2);
+                
+                if(y2 >= -1000) controlloreMovimento2 = true;
+                if(y2 >= getHeight()-220) controlloreMovimento2 = false;
                 if((y2 >= getHeight()-220) &&(esplosi[2] == true)){
                     pioggia[2]= null;
                     index2=0;
@@ -408,9 +413,11 @@ public class MainGUI extends JFrame implements ActionListener  {
             }
 
             if(diff>=int3){
-                y3 += (motionControl3) ? movimento3:/* MOVIMENTO*/0;
-                if(y3 >= -1000) motionControl3 = true;
-                if(y3 >= getHeight()-220) motionControl3 = false;
+                
+                y3 += gestisciMovimento(controlloreMovimento3, esplosi[3],index3);
+                
+                if(y3 >= -1000) controlloreMovimento3 = true;
+                if(y3 >= getHeight()-220) controlloreMovimento3 = false;
                 if((y3 >= getHeight()-220) &&(esplosi[3] == true)){
                     pioggia[3]= null;
                     index3=0;
@@ -466,9 +473,11 @@ public class MainGUI extends JFrame implements ActionListener  {
             }
 
             if(diff>=int4){
-                y4 += (motionControl4) ? movimento4: /*MOVIMENTO*/0;
-                if(y4 >= -1000) motionControl4 = true;
-                if(y4 >= getHeight()-220) motionControl4 = false;
+                
+                y4 += gestisciMovimento(controlloreMovimento4, esplosi[4], index4);
+                
+                if(y4 >= -1000) controlloreMovimento4 = true;
+                if(y4 >= getHeight()-220) controlloreMovimento4 = false;
                 if((y4 >= getHeight()-220) &&(esplosi[4] == true)){
                     pioggia[4]= null;
                     index4=0;
@@ -586,12 +595,14 @@ public class MainGUI extends JFrame implements ActionListener  {
                         
         }
         
-        public int gestisciMovimento(boolean controlloreMov, boolean esploso){
+        public int gestisciMovimento(boolean controlloreMov, boolean esploso, int index ){
             int a=0;
             if(controlloreMov) 
                 a=movimento;
             if(esploso)
-                a=movimento+2;
+                a=movimento+1;
+            if(index > 12)
+                a=2*movimento+3;
             return a;
             
         }
