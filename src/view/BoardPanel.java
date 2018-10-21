@@ -109,7 +109,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                     
                     //   gestisciTempi(int int0,int int1,int int2,int int3,int int4)
                     
-                            if(int0>100)
+                    /*       if(int0>100)
                                 int0-=100;
                             if( (int1-int0) > 500 )
                                 int1-=500;
@@ -119,7 +119,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 int3-=500;
                             if( (int4-int3) > 500 )
                                 int4-=500;
-                            
+                            */
                             
                             
                                 if( movimento < 4 )

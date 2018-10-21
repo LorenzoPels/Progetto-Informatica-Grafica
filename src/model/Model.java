@@ -74,12 +74,12 @@ public class Model implements IModel {
                 P=0;
                 MainGUI.Cavalieri();
                 MainGUI.Pioggia();
-                int0=1000;
-                int1=3000;
-                int2=5000;
-                int3=7000;
-                int4=9000;
-                int5=11000;
+                int0=900;
+                int1=1800;
+                int2=2700;
+                int3=3600;
+                int4=4500;
+                int5=5400;
                 y0 = y1 = y2 = y3 = y4 = -150;
       
                 t0=t1=P=Pi=Pf=0;

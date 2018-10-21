@@ -52,11 +52,11 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static long t0,t1,P,Pi,Pf;
     public static long diff;
     public static int int0=1000;
-    public static int int1=3000;
-    public static int int2=5000;
-    public static int int3=7000;
-    public static int int4=9000;
-    public static int int5=11000;
+    public static int int1=1500;
+    public static int int2=2000;
+    public static int int3=2500;
+    public static int int4=3000;
+    public static int int5=3500;
     public static ClipPlayer scoppio;
     public static ClipPlayer gameover;
     public static ClipPlayer sottofondo;
@@ -602,7 +602,7 @@ public class MainGUI extends JFrame implements ActionListener  {
             if(esploso)
                 a=movimento+1;
             if(index > 12)
-                a=2*movimento+3;
+                a=2*movimento+1;
             return a;
             
         }
