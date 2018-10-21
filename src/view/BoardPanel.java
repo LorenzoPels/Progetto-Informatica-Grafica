@@ -17,11 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import model.Cavaliere;
 import model.Model;
-import static view.MainGUI.MOVIMENTO0;
-import static view.MainGUI.MOVIMENTO1;
-import static view.MainGUI.MOVIMENTO2;
-import static view.MainGUI.MOVIMENTO3;
-import static view.MainGUI.MOVIMENTO4;
 import static view.MainGUI.P;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.scoppio;
@@ -50,6 +45,8 @@ import static view.MainGUI.index1;
 import static view.MainGUI.index2;
 import static view.MainGUI.index3;
 import static view.MainGUI.index4;
+ 
+import static view.MainGUI.movimento;
 
 
 
@@ -110,28 +107,28 @@ public class BoardPanel extends JPanel implements KeyListener {
                     y0=y1=y2=y3=y4=-100;
                     index0=index1=index2=index3=index4=0; 
                     
-                    if(int0>=200){
-                       /* MOVIMENTO0++;
-                        MOVIMENTO1++;
-                        MOVIMENTO2++;
-                        MOVIMENTO3++;
-                        MOVIMENTO4++;*/
-                        int0+=-100;
-                        int1+=-320;
-                        int2+=-440;
-                        int3+=-600;
-                        int4+=-720;
-                        //int5+=-2000;
-                    } 
-                    if(int0>=600){
-                        MOVIMENTO0++;
-                        MOVIMENTO1++;
-                        MOVIMENTO2++;
-                        MOVIMENTO3++;
-                        MOVIMENTO4++;
+                    //   gestisciTempi(int int0,int int1,int int2,int int3,int int4)
+                    
+                    /*       if(int0>100)
+                                int0-=100;
+                            if( (int1-int0) > 500 )
+                                int1-=500;
+                            if( (int2-int1) > 500 )
+                                int2-=500;
+                            if( (int3-int2) > 500 )
+                                int3-=500;
+                            if( (int4-int3) > 500 )
+                                int4-=500;
+                            */
+                            
+                            
+                                if( movimento < 4 )
+                                    movimento++;
+                        
+                        
                         //System.out.println(MOVIMENTO0+"\n"+int0);
 
-                    }
+                    
 
 
                 }
@@ -361,4 +358,18 @@ public class BoardPanel extends JPanel implements KeyListener {
 
     }
 
+    public void gestisciTempi(int int0,int int1,int int2,int int3,int int4){
+        if(int0>100)
+            int0-=100;
+        if( (int1-int0) > 500 )
+            int1-=200;
+        if( (int2-int1) > 500 )
+            int2-=200;
+        if( (int3-int2) > 500 )
+            int3-=200;
+        if( (int4-int3) > 500 )
+            int4-=200;
+        
+    }
+    
 } // end class
