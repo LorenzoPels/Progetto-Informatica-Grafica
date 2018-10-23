@@ -79,13 +79,26 @@ public class BoardPanel extends JPanel implements KeyListener {
     public Dimension getPreferredSize() {
             return PREFERRED_SIZE;
     }
-
+    
+    int xMago= 50;
+    int xfasullo=1;
     @Override
     public void paintComponent(Graphics g) {
 
+     /*   if (xMago> getWidth() - 100)
+            xMago-=2;   */
+        if (xMago == getWidth() - 150)
+            xfasullo=-1;
+        if (xMago == 49)
+            xfasullo=+1;
+        
+        
+            xMago+=xfasullo;
+            
+        
         super.paintComponent(g);
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
-        g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
+        g.drawImage(mago,xMago,getHeight()-145,100,108,null);
         if(giocoiniziato==true) {
 
            
