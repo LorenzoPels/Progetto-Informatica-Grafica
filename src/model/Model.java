@@ -1,6 +1,7 @@
 
 package model;
 
+import view.BoardPanel;
 import view.MainGUI;
 import static view.MainGUI.P;
 import static view.RightPanel.scorelabel;
@@ -74,6 +75,7 @@ public class Model implements IModel {
                 P=0;
                 MainGUI.Cavalieri();
                 MainGUI.Pioggia();
+                BoardPanel.pioggiaRandom();
                 int0=900;
                 int1=1800;
                 int2=2700;

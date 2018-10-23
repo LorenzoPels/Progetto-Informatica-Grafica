@@ -56,7 +56,10 @@ public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage[] arrayMago = new BufferedImage[3];
     BufferedImage mago;
     private int count=0;
-    private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
+    public static int[] x = new int[5];
+    public static int larghezza = 490;
+    public static int altezza = 680;
+    private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
     int a=0;
 
     public BoardPanel() {
@@ -73,6 +76,22 @@ public class BoardPanel extends JPanel implements KeyListener {
         }catch (IOException ex) {
         }
         //setFocusable(true);
+    }
+    
+    public static void pioggiaRandom(){
+        for(int i=0;i<pioggia.length;i++){
+            x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
+            if(x[i]<148)
+                x[i]+=148;
+            if(i>0){
+                if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
+                    x[i] = x[i-1]-148;
+                if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
+                    x[i] = x[i-1]+148;
+            } 
+                
+        }
+        
     }
 
     @Override
@@ -107,15 +126,15 @@ public class BoardPanel extends JPanel implements KeyListener {
             diff = t1 - t0;
             //System.out.println(diff);
             if( diff >=int0  )
-                g.drawImage(pioggia[0],x-100,y0,150,180,null);
+                g.drawImage(pioggia[0],x[0],y0,150,180,null);
             if(diff >=int1)
-                g.drawImage(pioggia[1],x+100,y1,150,180,null);
+                g.drawImage(pioggia[1],x[1],y1,150,180,null);
             if(diff >=int2)
-                g.drawImage(pioggia[2],x-200,y2,150,180,null);
+                g.drawImage(pioggia[2],x[2],y2,150,180,null);
             if(diff >=int3)
-                g.drawImage(pioggia[3],x+200,y3,150,180,null);
+                g.drawImage(pioggia[3],x[3],y3,150,180,null);
             if(diff >=int4)
-                g.drawImage(pioggia[4],x+250,y4,150,180,null);
+                g.drawImage(pioggia[4],x[4],y4,150,180,null);
            // if( diff >=int5 )
                 if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
                     t0=System.currentTimeMillis();
@@ -123,6 +142,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                     MainGUI.Cavalieri();
                     MainGUI.Pioggia();
                     MainGUI.Esplosi();
+                    pioggiaRandom();
                     y0=y1=y2=y3=y4=-100;
                     index0=index1=index2=index3=index4=0; 
                     
