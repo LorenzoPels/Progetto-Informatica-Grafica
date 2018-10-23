@@ -200,17 +200,13 @@ public class MainGUI extends JFrame implements ActionListener  {
             } 
 
     private void createPanel() {
-                    //this.addComponentListener(this);
-                    //this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-                    //this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-                    //this.setPreferredSize(new Dimension(WINDOW_PREFERRED_WIDTH, WINDOW_PREFERRED_HEIGHT));
+                 
                     this.rightpanel = new RightPanel();
-                    //this.setRightPanel();
+          
                     Container contPane = this.getContentPane();
                     contPane.setLayout(new BorderLayout());
                     contPane.add(this.rightpanel,BorderLayout.EAST);
-                    //contPane.add(rightpanel, BorderLayout.EAST);
-                    //this.pack();
+                    
             }
 
 
@@ -252,39 +248,11 @@ public class MainGUI extends JFrame implements ActionListener  {
                     
                     pioggia[0]= effettuaAnimazione(coloreC0, index0);
 
-                    //try {
-                /*    if(coloreC0=="Arancio")
-                        pioggia[0]=Arancio[index0];
-                    if(coloreC0=="Blu")
-                        pioggia[0]=Blu[index0];
-                    if(coloreC0=="Giallo")
-                        pioggia[0]=Giallo[index0];
-                    if(coloreC0=="Grigio")
-                        pioggia[0]=Grigio[index0];
-                    if(coloreC0=="Rosa")
-                        pioggia[0]=Rosa[index0];
-                    if(coloreC0=="Rosso")
-                        pioggia[0]=Rosso[index0];
-                    if(coloreC0=="Verde")
-                        pioggia[0]=Verde[index0];
-                    if(coloreC0=="Viola")
-                        pioggia[0]=Viola[index0];
-                                                                    */
-                    
-                        // pioggia[0] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC0 +"/cavaliere"+ coloreC0+index0+ ".png"));
-                   /* } catch (IOException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
-                    //MainGUI.getPanel().repaint();
+                 
                     index0 ++;
                  
                     
-                    /*if((index0==0) &&(exp0==true)){
-                        MOVIMENTO0 = MOVIMENTO0-4;
-                        exp0=false;
-
-                    }*/
-
+                   
 
                 }
             }
@@ -323,30 +291,10 @@ public class MainGUI extends JFrame implements ActionListener  {
                 if(esplosi[1]==true  && index1 <= 13 && y1 <= getHeight()-221){
 
 
-                   /* try {
-                        pioggia[1] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC1 +"/cavaliere"+ coloreC1+index1+ ".png"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //MainGUI.getPanel().repaint();*/
+                  
                     pioggia[1]= effettuaAnimazione(coloreC1, index1);
                    
-                /*    if(coloreC1=="Arancio")
-                        pioggia[1]=Arancio[index1];
-                    if(coloreC1=="Blu")
-                        pioggia[1]=Blu[index1];
-                    if(coloreC1=="Giallo")
-                        pioggia[1]=Giallo[index1];
-                    if(coloreC1=="Grigio")
-                        pioggia[1]=Grigio[index1];
-                    if(coloreC1=="Rosa")
-                        pioggia[1]=Rosa[index1];
-                    if(coloreC1=="Rosso")
-                        pioggia[1]=Rosso[index1];
-                    if(coloreC1=="Verde")
-                        pioggia[1]=Verde[index1];
-                    if(coloreC1=="Viola")
-                        pioggia[1]=Viola[index1];       */
+     
                     index1 ++;                              
                 }
             }
@@ -384,30 +332,9 @@ public class MainGUI extends JFrame implements ActionListener  {
                 if(esplosi[2]==true  && index2 <= 13 && y2 <= getHeight()-221){
 
 
-                   /* try {
-                        pioggia[2] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC2 +"/cavaliere"+ coloreC2+index2+ ".png"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //MainGUI.getPanel().repaint();*/
+              
                     pioggia[2]= effettuaAnimazione(coloreC2, index2);
-                   
-                /*    if(coloreC2=="Arancio")
-                        pioggia[2]=Arancio[index2];
-                    if(coloreC2=="Blu")
-                        pioggia[2]=Blu[index2];
-                    if(coloreC2=="Giallo")
-                        pioggia[2]=Giallo[index2];
-                    if(coloreC2=="Grigio")
-                        pioggia[2]=Grigio[index2];
-                    if(coloreC2=="Rosa")
-                        pioggia[2]=Rosa[index2];
-                    if(coloreC2=="Rosso")
-                        pioggia[2]=Rosso[index2];
-                    if(coloreC2=="Verde")
-                        pioggia[2]=Verde[index2];
-                    if(coloreC2=="Viola")
-                        pioggia[2]=Viola[index2];       */
+                
                     index2 ++;
                 }
             }
@@ -444,30 +371,10 @@ public class MainGUI extends JFrame implements ActionListener  {
                 if(esplosi[3]==true  && index3 <= 13 && y3 <= getHeight()-221){
 
 
-                   /* try {
-                        pioggia[3] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC3 +"/cavaliere"+ coloreC3+index3+ ".png"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   // MainGUI.getPanel().repaint();*/
+                   
                     pioggia[3]= effettuaAnimazione(coloreC3, index3);
                    
-                /*    if(coloreC3=="Arancio")
-                        pioggia[3]=Arancio[index3];
-                    if(coloreC3=="Blu")
-                        pioggia[3]=Blu[index3];
-                    if(coloreC3=="Giallo")
-                        pioggia[3]=Giallo[index3];
-                    if(coloreC3=="Grigio")
-                        pioggia[3]=Grigio[index3];
-                    if(coloreC3=="Rosa")
-                        pioggia[3]=Rosa[index3];
-                    if(coloreC3=="Rosso")
-                        pioggia[3]=Rosso[index3];
-                    if(coloreC3=="Verde")
-                        pioggia[3]=Verde[index3];
-                    if(coloreC3=="Viola")
-                        pioggia[3]=Viola[index3];           */
+             
                     index3 ++;
                 }
             }
@@ -503,30 +410,8 @@ public class MainGUI extends JFrame implements ActionListener  {
                 if(esplosi[4]==true  && index4 <= 13 && y4 <= getHeight()-221){
 
 
-                    /*try {
-                        pioggia[4] = ImageIO.read(getClass().getResource("/Cavalieri/Animazioni/cavaliere"+ coloreC4 +"/cavaliere"+ coloreC4+index4+ ".png"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   //MainGUI.getPanel().repaint();*/
                         pioggia[4]= effettuaAnimazione(coloreC4, index4);
-                    
-                /*    if(coloreC4=="Arancio")
-                        pioggia[4]=Arancio[index4];
-                    if(coloreC4=="Blu")
-                        pioggia[4]=Blu[index4];
-                    if(coloreC4=="Giallo")
-                        pioggia[4]=Giallo[index4];
-                    if(coloreC4=="Grigio")
-                        pioggia[4]=Grigio[index4];
-                    if(coloreC4=="Rosa")
-                        pioggia[4]=Rosa[index4];
-                    if(coloreC4=="Rosso")
-                        pioggia[4]=Rosso[index4];
-                    if(coloreC4=="Verde")
-                        pioggia[4]=Verde[index4];
-                    if(coloreC4=="Viola")
-                        pioggia[4]=Viola[index4];           */
+       
                     index4 ++;
                 }
             }
