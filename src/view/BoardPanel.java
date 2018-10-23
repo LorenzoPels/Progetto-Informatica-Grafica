@@ -53,9 +53,11 @@ import static view.MainGUI.movimento;
 
 public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage sfondo;
+    BufferedImage[] arrayMago = new BufferedImage[3];
     BufferedImage mago;
     private int count=0;
     private final static Dimension PREFERRED_SIZE = new Dimension(490,680);
+    int a=0;
 
     public BoardPanel() {
 
@@ -63,8 +65,10 @@ public class BoardPanel extends JPanel implements KeyListener {
         this.addKeyListener(this);
         try {
             sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
-            mago = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
-
+            arrayMago[0] = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
+            arrayMago[1] = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
+            arrayMago[2] = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
+            mago = arrayMago[0];
 
         }catch (IOException ex) {
         }
@@ -75,15 +79,30 @@ public class BoardPanel extends JPanel implements KeyListener {
     public Dimension getPreferredSize() {
             return PREFERRED_SIZE;
     }
-
+    
+    int xMago= 50;
+    int xfasullo=1;
     @Override
     public void paintComponent(Graphics g) {
 
+     /*   if (xMago> getWidth() - 100)
+            xMago-=2;   */
+        if (xMago == getWidth() - 150)
+            xfasullo=-1;
+        if (xMago == 49)
+            xfasullo=+1;
+        
+        
+            xMago+=xfasullo;
+            
+        
         super.paintComponent(g);
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
-        g.drawImage(mago,getWidth()-350,getHeight()-145,100,108,null);
+        g.drawImage(mago,xMago,getHeight()-145,100,108,null);
         if(giocoiniziato==true) {
 
+           
+            
             t1 = System.currentTimeMillis()-P;
             diff = t1 - t0;
             //System.out.println(diff);
@@ -107,24 +126,25 @@ public class BoardPanel extends JPanel implements KeyListener {
                     y0=y1=y2=y3=y4=-100;
                     index0=index1=index2=index3=index4=0; 
                     
-                    //   gestisciTempi(int int0,int int1,int int2,int int3,int int4)
-                    
-                    /*       if(int0>100)
-                                int0-=100;
-                            if( (int1-int0) > 500 )
-                                int1-=500;
-                            if( (int2-int1) > 500 )
-                                int2-=500;
-                            if( (int3-int2) > 500 )
-                                int3-=500;
-                            if( (int4-int3) > 500 )
-                                int4-=500;
-                            */
+                                if(int0>100)
+                                    int0-=100;
+                                if( (int1-int0) > 500 )
+                                    int1-=200;
+                                if( (int2-int1) > 500 )
+                                    int2-=200;
+                                if( (int3-int2) > 500 )
+                                    int3-=200;
+                                if( (int4-int3) > 500 )
+                                    int4-=200;
                             
-                            
-                                if( movimento < 4 )
-                                    movimento++;
-                        
+                                
+                               // in questo modo movimento aumenta ogni due ondate 
+                                                        //per ora non funziona 
+                                if( movimento < 4 ){
+                                    if( (movimento+a)%2 == 0)
+                                        a++;
+                                    else{movimento++;}
+                                }
                         
                         //System.out.println(MOVIMENTO0+"\n"+int0);
 
@@ -137,10 +157,6 @@ public class BoardPanel extends JPanel implements KeyListener {
     }
 
 
-    //-------------------------------------------------------------------------
-    // To implement the interface java.awt.event.KeyListener
-    //-------------------------------------------------------------------------
-    /* Invoked when a key has been pressed. */
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -160,6 +176,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                gestisciMago();
+                                
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelA = true;
@@ -180,6 +199,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelB = true;
@@ -199,6 +221,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelF = true;
@@ -218,6 +243,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelH = true;
@@ -237,6 +265,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                cancelJ = true;
@@ -256,6 +287,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelK = true;
@@ -275,6 +309,10 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                cancelL = true;
@@ -294,6 +332,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelM = true;
@@ -313,6 +354,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelP = true;
@@ -332,6 +376,9 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 esplosi[i] = true;
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
+                                
+                                 gestisciMago();
+                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
                                 cancelQ = true;
@@ -348,6 +395,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     /* Invoked when a key has been released. */
     @Override
     public void keyReleased(KeyEvent e) {
+        
 
 
     }
@@ -358,18 +406,13 @@ public class BoardPanel extends JPanel implements KeyListener {
 
     }
 
-    public void gestisciTempi(int int0,int int1,int int2,int int3,int int4){
-        if(int0>100)
-            int0-=100;
-        if( (int1-int0) > 500 )
-            int1-=200;
-        if( (int2-int1) > 500 )
-            int2-=200;
-        if( (int3-int2) > 500 )
-            int3-=200;
-        if( (int4-int3) > 500 )
-            int4-=200;
-        
+    int i =0;
+    public BufferedImage gestisciMago(){
+        i= (i+1)%3;
+       
+        return mago = arrayMago[i];
     }
+    
+    
     
 } // end class
