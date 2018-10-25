@@ -86,15 +86,7 @@ public class Model implements IModel {
       
                 t0=t1=P=Pi=Pf=0;
                 movimento=1;
-                //jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
-		//jButton2.setEnabled(true);
                 
-		//this.initBoardArray(DEFAULT_NUM_ROWS, DEFAULT_NUM_COLUMNS);
-		//this.iIndex = I_INDEX_INIT;
-		//this.jIndex = J_INDEX_INIT;
-		//this.previewPiece = Piece.randomPreviewPiece();
-		//this.fallingPiece = Cavaliere.nextFallingPiece();
-		//this.previewPiece = Piece.randomPreviewPiece();
 	}
         
     public int getScore() {
