@@ -61,6 +61,9 @@ public class BoardPanel extends JPanel implements KeyListener {
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
     int a=0;
+    
+    public static int xMagoMax ;
+    public static int xMagoMin ;
 
     public BoardPanel() {
 
@@ -99,28 +102,36 @@ public class BoardPanel extends JPanel implements KeyListener {
             return PREFERRED_SIZE;
     }
     
-    int xMago= 50;
-    int xfasullo=1;
+    int xMago= larghezza/2;
+    int direzioneMago=1;
+    
+    
     @Override
     public void paintComponent(Graphics g) {
 
-     /*   if (xMago> getWidth() - 100)
-            xMago-=2;   */
-        if (xMago == getWidth() - 150)
-            xfasullo=-1;
-        if (xMago == 49)
-            xfasullo=+1;
         
         
-            xMago+=xfasullo;
+        if (xMago == xMagoMax ){
+            direzioneMago=-1;
+            mago = arrayMago[0];
+        }
+        if (xMago == xMagoMin){
+            direzioneMago=+1;
+            mago = arrayMago[0];
+        }
+        
+            xMago+=direzioneMago;       
             
         
         super.paintComponent(g);
+        
+        
+        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
         g.drawImage(mago,xMago,getHeight()-145,100,108,null);
         if(giocoiniziato==true) {
 
-           
+            
             
             t1 = System.currentTimeMillis()-P;
             diff = t1 - t0;
@@ -197,7 +208,8 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                gestisciMago();
+                                gestisciMago(i);
+                                
                                 
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -220,7 +232,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -242,7 +254,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -264,7 +276,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -286,7 +298,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -308,7 +320,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -330,7 +342,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                  
                                 Model.getInstance().incrementScore();
@@ -353,7 +365,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -375,7 +387,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -397,7 +409,7 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 cavalieri[i]=Cavaliere.nextCavaliere();
                                 scoppio.play();
                                 
-                                 gestisciMago();
+                                 gestisciMago(i);
                                  
                                 Model.getInstance().incrementScore();
                                 updateScoreLabel(Model.getInstance().getScore());
@@ -426,13 +438,32 @@ public class BoardPanel extends JPanel implements KeyListener {
 
     }
 
-    int i =0;
-    public BufferedImage gestisciMago(){
-        i= (i+1)%3;
-       
+   
+    public BufferedImage gestisciMago(int c){
+        int i;
+        
+        
+        i= movimentoMago(c);
         return mago = arrayMago[i];
     }
     
+    public int movimentoMago(int i){
+        int imgMago = 0;
+        if(xMago < x[i] ){
+            imgMago = 1;
+            xMagoMax = x[i]+10;
+            direzioneMago=+1;
+        }
+        if(xMago > x[i] ){
+            imgMago = 2;
+            xMagoMin=x[i]-10;
+            direzioneMago=-1;
+        }
+        
+        return imgMago;
+        
+    }
     
+   
     
 } // end class

@@ -26,6 +26,13 @@ import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
 import model.Model;
+
+
+import static view.BoardPanel.larghezza;
+import static view.BoardPanel.xMagoMax;
+import static view.BoardPanel.xMagoMin;
+
+
 import static view.RightPanel.scorelabel;
 
 
@@ -175,10 +182,12 @@ public class MainGUI extends JFrame implements ActionListener  {
             timer.start();
             giocoiniziato = true;
             t0 = System.currentTimeMillis();
-            return giocoiniziato;
+           
+            
+            xMagoMax = larghezza-200 ;        
+            xMagoMin = 100;
 
-
-
+             return giocoiniziato;
         }
     public static Boolean  PausaGioco(){
                 timer.stop();
