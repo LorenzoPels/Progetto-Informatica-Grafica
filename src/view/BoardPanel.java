@@ -53,8 +53,8 @@ import static view.MainGUI.movimento;
 
 public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage sfondo;
-    BufferedImage[] arrayMago = new BufferedImage[3];
-    BufferedImage mago;
+    static BufferedImage[] arrayMago = new BufferedImage[3];
+    static BufferedImage mago;
     private int count=0;
     public static int[] x = new int[5];
     public static int larghezza = 490;
@@ -451,12 +451,12 @@ public class BoardPanel extends JPanel implements KeyListener {
         int imgMago = 0;
         if(xMago < x[i] ){
             imgMago = 1;
-            xMagoMax = x[i]+10;
+            xMagoMax = x[i]+50;
             direzioneMago=+1;
         }
         if(xMago > x[i] ){
             imgMago = 2;
-            xMagoMin=x[i]-10;
+            xMagoMin=x[i]-50;
             direzioneMago=-1;
         }
         

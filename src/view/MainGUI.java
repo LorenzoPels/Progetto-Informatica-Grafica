@@ -31,7 +31,8 @@ import model.Model;
 import static view.BoardPanel.larghezza;
 import static view.BoardPanel.xMagoMax;
 import static view.BoardPanel.xMagoMin;
-
+import static view.BoardPanel.mago;
+import static view.BoardPanel.arrayMago;
 
 import static view.RightPanel.scorelabel;
 
@@ -184,9 +185,10 @@ public class MainGUI extends JFrame implements ActionListener  {
             t0 = System.currentTimeMillis();
            
             
-            xMagoMax = larghezza-200 ;        
-            xMagoMin = 100;
-
+            xMagoMax = larghezza-150 ;        
+            xMagoMin = 50;
+            mago = arrayMago[0];
+                    
              return giocoiniziato;
         }
     public static Boolean  PausaGioco(){
