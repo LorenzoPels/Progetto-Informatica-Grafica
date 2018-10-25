@@ -8,8 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import model.Model;
-import static view.GameOverDialog.finalscorelabel;
+import static view.GameOverDialog.centinaia;
+import static view.GameOverDialog.decine;
 import static view.GameOverDialog.recordlabel;
+import static view.GameOverDialog.unità;
 
 
 public class View implements IView {
@@ -27,6 +29,11 @@ public class View implements IView {
         protected GameOverDialog gameover = null;
         protected RightPanel rightpanel = null;
         protected BoardPanel boardpanel = null;
+        protected String finalscore;
+        private String cifre;
+        private char cifreU;
+        private char cifreD;
+        private char cifreH;
         
         private View() {
 		//TO-DO
@@ -115,11 +122,48 @@ public class View implements IView {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         gameover.setVisible(true);
-                        finalscorelabel.setText(ControllerForView.getInstance().getScore());
-                       if(Integer.parseInt(finalscorelabel.getText()) > Integer.parseInt(recordlabel.getText())){
+                        //decine.setText(ControllerForView.getInstance().getScore());
+                        cifre = ControllerForView.getInstance().getScore();
+                        centinaia.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreH+".jpg"))*/null);
+                        decine.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg"))*/null);
+                        unità.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg"))*/null);
+                        centinaia.setBounds(20, 170, 70, 110);
+                        decine.setBounds(90, 170, 70, 110);
+                        unità.setBounds(160, 170, 70, 110);
+                        
+                        if(cifre.length() ==3){
+                            cifreH = cifre.charAt(0);
+                            cifreD = cifre.charAt(1);
+                            cifreU = cifre.charAt(2);
+                            centinaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreH+".jpg")));
+                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            centinaia.setBounds(90, 170, 70, 110);
+                            unità.setBounds(230, 170, 70, 110);
+                            decine.setBounds(160, 170, 70, 110);
+                        }
+
+                        if(cifre.length() ==2){
+                            cifreD = cifre.charAt(0);
+                            cifreU = cifre.charAt(1);
+                            //cifreH = cifre.charAt(2);
+                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            unità.setBounds(200, 170, 70, 110);
+                            decine.setBounds(130, 170, 70, 110);
+
+                        }
+                        if(cifre.length() ==1){
+                            cifreU = cifre.charAt(0);
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            //cifreD = cifre.charAt(1);
+                           // cifreU = cifre.charAt(2);
+                        }
+                        finalscore=ControllerForView.getInstance().getScore();
+                       if(Integer.parseInt(/*decine.getText()*/finalscore) > Integer.parseInt(recordlabel.getText())){
                             try {
-                                Config.Write(finalscorelabel.getText());
-                                recordlabel.setText(finalscorelabel.getText());
+                                Config.Write(decine.getText());
+                                recordlabel.setText(decine.getText());
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                           }
