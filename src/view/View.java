@@ -141,9 +141,9 @@ public class View implements IView {
                             cifreH = cifre.charAt(0);
                             cifreD = cifre.charAt(1);
                             cifreU = cifre.charAt(2);
-                            centinaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreH+".jpg")));
-                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
-                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            centinaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreH+".png")));
+                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreD+".png")));
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreU+".png")));
                             centinaia.setBounds(90, 170, 70, 110);
                             unità.setBounds(230, 170, 70, 110);
                             decine.setBounds(160, 170, 70, 110);
@@ -153,15 +153,15 @@ public class View implements IView {
                             cifreD = cifre.charAt(0);
                             cifreU = cifre.charAt(1);
                             //cifreH = cifre.charAt(2);
-                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
-                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreD+".png")));
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreU+".png")));
                             unità.setBounds(200, 170, 70, 110);
                             decine.setBounds(130, 170, 70, 110);
 
                         }
                         if(cifre.length() ==1){
                             cifreU = cifre.charAt(0);
-                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
+                            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreU+".png")));
                             //cifreD = cifre.charAt(1);
                            // cifreU = cifre.charAt(2);
                         }
@@ -186,9 +186,9 @@ public class View implements IView {
                             recordH = record.charAt(0);
                             recordD = record.charAt(1);
                             recordU = record.charAt(2);
-                            recordCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordH+"R.jpg")));
-                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordD+"R.jpg")));
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            recordCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordH+"R.jpg")));
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
                             recordCent.setBounds(160, 110, 30, 50);
                             recordDec.setBounds(190, 110, 30, 50);
                             recordUnit.setBounds(220, 110, 30, 50);
@@ -198,15 +198,15 @@ public class View implements IView {
                             recordD = record.charAt(0);
                             recordU = record.charAt(1);
                             
-                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordD+"R.jpg")));
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
                             recordDec.setBounds(175, 110, 30, 50);
                             recordUnit.setBounds(205, 110, 30, 50);
 
                         }
                         if(record.length() ==1){
                             recordU = record.charAt(0);
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
                             
                         }
                        
