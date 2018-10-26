@@ -15,55 +15,15 @@ import static view.RightPanel.scorelabel;
 
 
 public class GameOverDialog extends javax.swing.JFrame {
-    /*private String cifre;
-    private char cifreU;
-    private char cifreD;
-    private char cifreH;*/
+    
     
     public GameOverDialog() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
-        //Punteggio();
-        //Config.Write(scorelabel.getText());
-       /* if(scorelabel.getText().compareTo(recordlabel.getText())>0)
-            recordlabel.setText(scorelabel.getText());*/
+        
     }
     
-    /*public void Punteggio(){
-        //cifre = String.valueOf(scorelabel);
-        
-        cifre = ControllerForView.getInstance().getScore();
-        System.out.println(cifre.length());
-        if(cifre.length() ==3){
-            cifreH = cifre.charAt(0);
-            cifreD = cifre.charAt(1);
-            cifreU = cifre.charAt(2);
-            centinaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreH+".jpg")));
-            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
-            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
-            centinaia.setBounds(90, 170, 70, 110);
-            unità.setBounds(230, 170, 70, 110);
-            decine.setBounds(160, 170, 70, 110);
-        }
-            
-        if(cifre.length() ==2){
-            cifreD = cifre.charAt(0);
-            cifreU = cifre.charAt(1);
-            //cifreH = cifre.charAt(2);
-            decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg")));
-            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
-            unità.setBounds(200, 170, 70, 110);
-            decine.setBounds(130, 170, 70, 110);
-            
-        }
-        if(cifre.length() ==1){
-            cifreU = cifre.charAt(0);
-            unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg")));
-            //cifreD = cifre.charAt(1);
-           // cifreU = cifre.charAt(2);
-        }   
-            
-    }*/
+    
     
     private void resetBottoni(){
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
@@ -79,7 +39,9 @@ public class GameOverDialog extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        recordlabel = new javax.swing.JLabel();
+        recordUnit = new javax.swing.JLabel();
+        recordDec = new javax.swing.JLabel();
+        recordCent = new javax.swing.JLabel();
         unità = new javax.swing.JLabel();
         centinaia = new javax.swing.JLabel();
         decine = new javax.swing.JLabel();
@@ -91,11 +53,20 @@ public class GameOverDialog extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        recordlabel.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
-        recordlabel.setForeground(new java.awt.Color(0, 153, 255));
-        recordlabel.setText("0");
-        jPanel1.add(recordlabel);
-        recordlabel.setBounds(190, 120, 90, 50);
+        recordUnit.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
+        recordUnit.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.add(recordUnit);
+        recordUnit.setBounds(190, 110, 30, 50);
+
+        recordDec.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
+        recordDec.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.add(recordDec);
+        recordDec.setBounds(160, 110, 30, 50);
+
+        recordCent.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 36)); // NOI18N
+        recordCent.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.add(recordCent);
+        recordCent.setBounds(130, 110, 30, 50);
 
         unità.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 48)); // NOI18N
         jPanel1.add(unità);
@@ -207,7 +178,9 @@ public class GameOverDialog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton playbutton;
-    public static javax.swing.JLabel recordlabel;
+    public static javax.swing.JLabel recordCent;
+    public static javax.swing.JLabel recordDec;
+    public static javax.swing.JLabel recordUnit;
     public static javax.swing.JLabel unità;
     // End of variables declaration//GEN-END:variables
 }

@@ -438,9 +438,6 @@ public class MainGUI extends JFrame implements ActionListener  {
 
         public static void main(String[] args) {
 
-             //final String audioScoppio = "audio/scoppio.wav";
-             //final String audioGO = "audio/gameover.wav";
-            // final String audioSot = "audio/sottofondo.wav";
              try {
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
