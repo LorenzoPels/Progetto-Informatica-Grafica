@@ -8,7 +8,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static view.GameOverDialog.recordlabel;
+import static view.View.record;
+import static view.GameOverDialog.recordUnit;
 
 
 public class Config {
@@ -38,7 +39,7 @@ public class Config {
         while(riga != null){
             riga = lettore.readLine();
             if(riga!=null)
-                recordlabel.setText(riga);
+                record = riga;
            
            
           

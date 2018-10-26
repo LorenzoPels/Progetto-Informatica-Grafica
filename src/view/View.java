@@ -10,8 +10,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import model.Model;
 import static view.GameOverDialog.centinaia;
 import static view.GameOverDialog.decine;
-import static view.GameOverDialog.recordlabel;
 import static view.GameOverDialog.unità;
+import static view.GameOverDialog.recordCent;
+import static view.GameOverDialog.recordDec;
+import static view.GameOverDialog.recordUnit;
 
 
 public class View implements IView {
@@ -34,6 +36,10 @@ public class View implements IView {
         private char cifreU;
         private char cifreD;
         private char cifreH;
+        public static String record;
+        private char recordU;
+        private char recordD;
+        private char recordH;
         
         private View() {
 		//TO-DO
@@ -115,18 +121,18 @@ public class View implements IView {
 
                     public void run() {
                         if (gameover == null)
-                                try {
-                                    gameover = new GameOverDialog();
-                                    Config.Read();
+                            try {
+                                gameover = new GameOverDialog();
+                                Config.Read();
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         gameover.setVisible(true);
                         //decine.setText(ControllerForView.getInstance().getScore());
                         cifre = ControllerForView.getInstance().getScore();
-                        centinaia.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreH+".jpg"))*/null);
-                        decine.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreD+".jpg"))*/null);
-                        unità.setIcon(/*new javax.swing.ImageIcon(getClass().getResource("/immagini/"+cifreU+".jpg"))*/null);
+                        centinaia.setIcon(null);
+                        decine.setIcon(null);
+                        unità.setIcon(null);
                         centinaia.setBounds(20, 170, 70, 110);
                         decine.setBounds(90, 170, 70, 110);
                         unità.setBounds(160, 170, 70, 110);
@@ -160,15 +166,51 @@ public class View implements IView {
                            // cifreU = cifre.charAt(2);
                         }
                         finalscore=ControllerForView.getInstance().getScore();
-                       if(Integer.parseInt(/*decine.getText()*/finalscore) > Integer.parseInt(recordlabel.getText())){
+                       if(Integer.parseInt(/*decine.getText()*/cifre) > Integer.parseInt(record)){
                             try {
-                                Config.Write(decine.getText());
-                                recordlabel.setText(decine.getText());
+                                Config.Write(cifre);
+                                record=cifre;
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                           }
                         }
-                       //System.out.println(recordlabel.getText());
+                        
+                        recordCent.setIcon(null);
+                        recordDec.setIcon(null);
+                        recordUnit.setIcon(null);
+                        recordCent.setBounds(130, 110, 30, 50);
+                        recordDec.setBounds(160, 110, 30, 50);
+                        recordUnit.setBounds(190, 110, 30, 50);
+                        
+                        if(record.length() ==3){
+                            recordH = record.charAt(0);
+                            recordD = record.charAt(1);
+                            recordU = record.charAt(2);
+                            recordCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordH+"R.jpg")));
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordD+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            recordCent.setBounds(160, 110, 30, 50);
+                            recordDec.setBounds(190, 110, 30, 50);
+                            recordUnit.setBounds(220, 110, 30, 50);
+                        }
+
+                        if(record.length() ==2){
+                            recordD = record.charAt(0);
+                            recordU = record.charAt(1);
+                            
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordD+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            recordDec.setBounds(175, 110, 30, 50);
+                            recordUnit.setBounds(205, 110, 30, 50);
+
+                        }
+                        if(record.length() ==1){
+                            recordU = record.charAt(0);
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+recordU+"R.jpg")));
+                            
+                        }
+                       
+                       
 
                     }
             });

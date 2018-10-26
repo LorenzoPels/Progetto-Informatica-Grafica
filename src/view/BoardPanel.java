@@ -56,6 +56,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     static BufferedImage[] arrayMago = new BufferedImage[3];
     static BufferedImage mago;
     private int count=0;
+    private long tmago;
     public static int[] x = new int[5];
     public static int larghezza = 490;
     public static int altezza = 680;
@@ -64,6 +65,8 @@ public class BoardPanel extends JPanel implements KeyListener {
     
     public static int xMagoMax ;
     public static int xMagoMin ;
+    int xMago= larghezza/2;
+    int direzioneMago=1;
 
     public BoardPanel() {
 
@@ -102,8 +105,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             return PREFERRED_SIZE;
     }
     
-    int xMago= larghezza/2;
-    int direzioneMago=1;
+    
     
     
     @Override
@@ -147,43 +149,41 @@ public class BoardPanel extends JPanel implements KeyListener {
             if(diff >=int4)
                 g.drawImage(pioggia[4],x[4],y4,150,180,null);
            // if( diff >=int5 )
-                if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
-                    t0=System.currentTimeMillis();
-                    P=0;
-                    MainGUI.Cavalieri();
-                    MainGUI.Pioggia();
-                    MainGUI.Esplosi();
-                    pioggiaRandom();
-                    y0=y1=y2=y3=y4=-100;
-                    index0=index1=index2=index3=index4=0; 
-                    
-                                if(int0>100)
-                                    int0-=100;
-                                if( (int1-int0) > 500 )
-                                    int1-=200;
-                                if( (int2-int1) > 500 )
-                                    int2-=200;
-                                if( (int3-int2) > 500 )
-                                    int3-=200;
-                                if( (int4-int3) > 500 )
-                                    int4-=200;
-                            
-                                
-                               // in questo modo movimento aumenta ogni due ondate 
-                                                        //per ora non funziona 
-                                if( movimento < 4 ){
-                                    if( (movimento+a)%2 == 0)
-                                        a++;
-                                    else{movimento++;}
-                                }
-                        
-                        //System.out.println(MOVIMENTO0+"\n"+int0);
-
-                    
+            if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
+                t0=System.currentTimeMillis();
+                P=0;
+                MainGUI.Cavalieri();
+                MainGUI.Pioggia();
+                MainGUI.Esplosi();
+                pioggiaRandom();
+                y0=y1=y2=y3=y4=-100;
+                index0=index1=index2=index3=index4=0; 
 
 
+                if(int0>100)
+                    int0-=100;
+                if( (int1-int0) > 500 )
+                    int1-=200;
+                if( (int2-int1) > 500 )
+                    int2-=200;
+                if( (int3-int2) > 500 )
+                    int3-=200;
+                if( (int4-int3) > 500 )
+                    int4-=200;
+
+
+                // in questo modo movimento aumenta ogni due ondate 
+                                         //per ora non funziona 
+                if( movimento < 4 ){
+                    if( (movimento+a)%2 == 0)
+                        a++;
+                    else{movimento++;}
                 }
-           //}*/
+
+            }
+            if((t1-tmago)>= 500)
+                mago = arrayMago[0];
+           
         }
     }
 
@@ -459,7 +459,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             xMagoMin=x[i]-50;
             direzioneMago=-1;
         }
-        
+        tmago =  System.currentTimeMillis();
         return imgMago;
         
     }
