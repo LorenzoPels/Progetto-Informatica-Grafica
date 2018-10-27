@@ -127,7 +127,7 @@ public class StartWindow extends javax.swing.JFrame  {
         if(mode == "insane")
             insane = true;
         else insane = false;
-        System.out.println(insane);
+        
         handleStartGameEvent();// TODO add your handling code here:
     }//GEN-LAST:event_jButtonModeActionPerformed
          /**

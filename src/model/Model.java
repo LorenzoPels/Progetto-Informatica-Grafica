@@ -27,6 +27,12 @@ import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
 import static view.MainGUI.int5;
+import static view.MainGUI.index0;
+import static view.MainGUI.index1;
+import static view.MainGUI.index2;
+import static view.MainGUI.index3;
+import static view.MainGUI.index4;
+
 
 import static view.MainGUI.movimento;
 
@@ -82,6 +88,7 @@ public class Model implements IModel {
                 int3=3600;
                 int4=4500;
                 int5=5400;
+                index0=index1=index2=index3=index4=0;
                 y0 = y1 = y2 = y3 = y4 = -150;
       
                 t0=t1=P=Pi=Pf=0;

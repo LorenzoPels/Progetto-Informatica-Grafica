@@ -27,7 +27,7 @@ public class Cavaliere {
             FALLING_PIECE_ARRAY[6] = new CavaliereL();
             FALLING_PIECE_ARRAY[7] = new CavaliereM();
             FALLING_PIECE_ARRAY[8] = new CavaliereP();           
-            FALLING_PIECE_ARRAY[9] = new CavaliereA();
+            FALLING_PIECE_ARRAY[9] = new CavaliereQ();
             FALLING_PIECE_ARRAY[10] = new CavaliereA();
             FALLING_PIECE_ARRAY[11] = new CavaliereA();
             FALLING_PIECE_ARRAY[12] = new CavaliereA();
@@ -61,6 +61,7 @@ public class Cavaliere {
             Cavaliere fallingPiece = null;
             if(insane == true)
                 length=15;
+            else length=9;
             int pieceIndex = (int)(Math.random() * length) % length;
 
             fallingPiece = FALLING_PIECE_ARRAY[pieceIndex];

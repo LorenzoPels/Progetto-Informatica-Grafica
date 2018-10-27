@@ -47,7 +47,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     private final static int ALTEZZA = 730;
     private RightPanel rightpanel;
     private static Timer timer;
-    public static int x, y0,y1,y2,y3,y4;
+    public static int  y0,y1,y2,y3,y4;
     private final int PAUSE = 10;
     public static  int movimento;
     private boolean controlloreMovimento0,controlloreMovimento1,controlloreMovimento2,controlloreMovimento3,controlloreMovimento4;
@@ -82,7 +82,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];          
 
-    static int index0,index1,index2,index3,index4;
+    public static int index0,index1,index2,index3,index4;
 //int index;
 
 
@@ -98,7 +98,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         setResizable(true);
         pack();
         setLocationRelativeTo(null);
-        x = 200;
+        
         y0 = -150;
         y1 = -150;
         y2 = -150;
@@ -189,7 +189,7 @@ public class MainGUI extends JFrame implements ActionListener  {
             xMagoMin = 50;
             mago = arrayMago[0];
                     
-             return giocoiniziato;
+            return giocoiniziato;
         }
     public static Boolean  PausaGioco(){
                 timer.stop();
@@ -233,6 +233,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                 if((y0 >= getHeight()-220) &&(esplosi[0] == true)){
                     pioggia[0]= null;
                     index0=0;
+                    
                     //exp0=false;
 
                 }

@@ -27,7 +27,6 @@ import static view.MainGUI.giocoiniziato;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.MainGUI.t1;
-import static view.MainGUI.x;
 import static view.RightPanel.updateScoreLabel;
 import static view.MainGUI.y0;
 import static view.MainGUI.y1;
