@@ -124,7 +124,6 @@ public class View implements IView {
                         if (gameover == null)
                             try {
                                 gameover = new GameOverDialog();
-                                System.out.println(insane);
                                 if(insane == true)
                                     Config.ReadInsane();
                                 else Config.Read();
