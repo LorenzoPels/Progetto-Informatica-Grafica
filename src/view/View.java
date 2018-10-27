@@ -14,6 +14,7 @@ import static view.GameOverDialog.unità;
 import static view.GameOverDialog.recordCent;
 import static view.GameOverDialog.recordDec;
 import static view.GameOverDialog.recordUnit;
+import static view.StartWindow.insane;
 
 
 public class View implements IView {
@@ -36,7 +37,7 @@ public class View implements IView {
         private char cifreU;
         private char cifreD;
         private char cifreH;
-        public static String record;
+        public static String record = "0";
         private char recordU;
         private char recordD;
         private char recordH;
@@ -116,14 +117,16 @@ public class View implements IView {
 		});
 	}
          public void openGameOverDialog(String score) {
-            
+            gameover = null;
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
                     public void run() {
                         if (gameover == null)
                             try {
                                 gameover = new GameOverDialog();
-                                Config.Read();
+                                if(insane == true)
+                                    Config.ReadInsane();
+                                else Config.Read();
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -166,10 +169,13 @@ public class View implements IView {
                            // cifreU = cifre.charAt(2);
                         }
                         finalscore=ControllerForView.getInstance().getScore();
-                       if(Integer.parseInt(/*decine.getText()*/cifre) > Integer.parseInt(record)){
+                        
+                       if(Integer.parseInt(cifre) > Integer.parseInt(record)){
                             try {
-                                Config.Write(cifre);
-                                record=cifre;
+                                if(insane==true)
+                                    Config.WriteInsane(cifre);
+                                else Config.Write(cifre);
+                                record=cifre;                             
                         } catch (IOException ex) {
                             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                           }
@@ -186,9 +192,9 @@ public class View implements IView {
                             recordH = record.charAt(0);
                             recordD = record.charAt(1);
                             recordU = record.charAt(2);
-                            recordCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordH+"R.jpg")));
-                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.jpg")));
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
+                            recordCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordH+"R.png")));
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.png")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.png")));
                             recordCent.setBounds(160, 110, 30, 50);
                             recordDec.setBounds(190, 110, 30, 50);
                             recordUnit.setBounds(220, 110, 30, 50);
@@ -198,15 +204,15 @@ public class View implements IView {
                             recordD = record.charAt(0);
                             recordU = record.charAt(1);
                             
-                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.jpg")));
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
+                            recordDec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordD+"R.png")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.png")));
                             recordDec.setBounds(175, 110, 30, 50);
                             recordUnit.setBounds(205, 110, 30, 50);
 
                         }
                         if(record.length() ==1){
                             recordU = record.charAt(0);
-                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.jpg")));
+                            recordUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+recordU+"R.png")));
                             
                         }
                        
