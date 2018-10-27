@@ -118,6 +118,7 @@ public class View implements IView {
 	}
          public void openGameOverDialog(String score) {
             gameover = null;
+            record ="0";
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
                     public void run() {
