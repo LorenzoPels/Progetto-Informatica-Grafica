@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -90,7 +92,17 @@ public class MainGUI extends JFrame implements ActionListener  {
 
         super("Magic Touch Game");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+               ControllerForView.getInstance().openDialog();
+            }
+             
+        });
+            
+    
+    
         setPreferredSize(new Dimension(LARGHEZZA,ALTEZZA));
         this.createPanel();
         panel = new BoardPanel();
@@ -98,6 +110,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         setResizable(true);
         pack();
         setLocationRelativeTo(null);
+        
         
         y0 = -150;
         y1 = -150;
@@ -500,6 +513,7 @@ public class MainGUI extends JFrame implements ActionListener  {
             return a;
             
         }
+        
 
    
 }

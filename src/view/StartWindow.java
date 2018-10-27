@@ -3,12 +3,14 @@ package view;
 
 import controller.ControllerForView;
 import java.awt.Toolkit;
+
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import model.Model;
 import static view.RightPanel.scorelabel;
 
@@ -32,6 +34,11 @@ public class StartWindow extends javax.swing.JFrame  {
        
     }
     
+    public void Close(){
+    WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    
+    }
     
 
     
@@ -109,8 +116,9 @@ public class StartWindow extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEsciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEsciActionPerformed
-       ControllerForView.getInstance().closeStartWindow();
-       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);// TODO add your handling code here:
+        Close();
+        //ControllerForView.getInstance().closeStartWindow();
+      // setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);// TODO add your handling code here:
     }//GEN-LAST:event_jButtonEsciActionPerformed
 
     private void jButtonDxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDxActionPerformed
@@ -187,6 +195,8 @@ public class StartWindow extends javax.swing.JFrame  {
                 
                 
 	}
+
+
 
     
    
