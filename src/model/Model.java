@@ -35,6 +35,7 @@ import static view.MainGUI.index4;
 
 
 import static view.MainGUI.movimento;
+import static view.StartWindow.insane;
 
 public class Model implements IModel {
     
@@ -87,13 +88,26 @@ public class Model implements IModel {
                 int2=2700;
                 int3=3600;
                 int4=4500;
-                int5=5400;
+                //int5=5400;
                 index0=index1=index2=index3=index4=0;
                 y0 = y1 = y2 = y3 = y4 = -150;
       
                 t0=t1=P=Pi=Pf=0;
-                movimento=1;
-                
+                if(insane==true){
+                    movimento=2;
+                    int0=700;
+                    int1=1400;
+                    int2=2100;
+                    int3=2800;
+                    int4=3500;               
+                }else{ 
+                    movimento =1;
+                    int0=900;
+                    int1=1800;
+                    int2=2700;
+                    int3=3600;
+                    int4=4500;
+                }
 	}
         
     public int getScore() {

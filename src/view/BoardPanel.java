@@ -46,6 +46,7 @@ import static view.MainGUI.index3;
 import static view.MainGUI.index4;
  
 import static view.MainGUI.movimento;
+import static view.StartWindow.insane;
 
 
 
@@ -109,8 +110,6 @@ public class BoardPanel extends JPanel implements KeyListener {
     
     @Override
     public void paintComponent(Graphics g) {
-
-        
         
         if (xMago == xMagoMax ){
             direzioneMago=-1;
@@ -121,19 +120,13 @@ public class BoardPanel extends JPanel implements KeyListener {
             mago = arrayMago[0];
         }
         
-            xMago+=direzioneMago;       
-            
-        
-        super.paintComponent(g);
-        
-        
-        
+        xMago+=direzioneMago;       
+      
+        super.paintComponent(g);        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
         g.drawImage(mago,xMago,getHeight()-145,100,108,null);
         if(giocoiniziato==true) {
 
-            
-            
             t1 = System.currentTimeMillis()-P;
             diff = t1 - t0;
             //System.out.println(diff);
@@ -172,17 +165,23 @@ public class BoardPanel extends JPanel implements KeyListener {
 
 
                 // in questo modo movimento aumenta ogni due ondate 
-                                         //per ora non funziona 
-                if( movimento < 4 ){
-                    if( (movimento+a)%2 == 0)
-                        a++;
-                    else{movimento++;}
+                if(insane == true){                        //per ora non funziona 
+                    if( movimento < 6 ){
+                       // if( (movimento+a)%2 == 0)
+                            a++;
+                        /*else*/ movimento++;
+                    }
+                }else{
+                    if( movimento < 4 ){
+                        if( (movimento+a)%2 == 0)
+                            a++;
+                        else movimento++;               
+                    }
                 }
-
+                
             }
             if((t1-tmago)>= 500)
-                mago = arrayMago[0];
-           
+                    mago = arrayMago[0];
         }
     }
 
