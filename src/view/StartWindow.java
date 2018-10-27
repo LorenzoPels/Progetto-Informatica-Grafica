@@ -15,7 +15,8 @@ import static view.RightPanel.scorelabel;
 
 
 public class StartWindow extends javax.swing.JFrame  {
-     
+    public static Boolean insane=false;
+    private String mode;  
 
     
     public StartWindow() {
@@ -113,20 +114,26 @@ public class StartWindow extends javax.swing.JFrame  {
     }//GEN-LAST:event_jButtonEsciActionPerformed
 
     private void jButtonDxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDxActionPerformed
-       jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/insane.png")));
+        mode="insane";
+        jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+mode+".png")));
     }//GEN-LAST:event_jButtonDxActionPerformed
 
     private void jButtonSxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSxActionPerformed
-        jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/classic.png")));
+        mode="classic";
+        jButtonMode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/"+mode+".png")));
     }//GEN-LAST:event_jButtonSxActionPerformed
 
     private void jButtonModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModeActionPerformed
+        if(mode == "insane")
+            insane = true;
+        else insane = false;
+        System.out.println(insane);
         handleStartGameEvent();// TODO add your handling code here:
     }//GEN-LAST:event_jButtonModeActionPerformed
          /**
      * @param args the command line arguments
      */
-   
+    
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -170,7 +177,8 @@ public class StartWindow extends javax.swing.JFrame  {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-private void handleStartGameEvent() {
+
+    private void handleStartGameEvent() {
 		//System.out.println("Event start game");
                 
                 ControllerForView.getInstance().closeStartWindow();               
