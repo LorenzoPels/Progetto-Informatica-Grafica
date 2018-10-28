@@ -131,14 +131,14 @@ public class MainGUI extends JFrame implements ActionListener  {
         //  caricaAnimazioni();
         CaricatoreImmagine loader = new CaricatoreImmagine();
             for(int i =0;i<=13;i++){
-                Arancio[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
-                Blu[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
-                Giallo[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
-                Grigio[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
-                Rosa[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
-                Rosso[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
-                Verde[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
-                Viola[i]= loader.caricaImmagine("/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
+                Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
+                Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
+                Giallo[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
+                Grigio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
+                Rosa[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
+                Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
+                Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
+                Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
             }
 
 
