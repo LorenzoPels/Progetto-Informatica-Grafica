@@ -28,11 +28,11 @@ public class Cavaliere {
             FALLING_PIECE_ARRAY[7] = new CavaliereM();
             FALLING_PIECE_ARRAY[8] = new CavaliereP();           
             FALLING_PIECE_ARRAY[9] = new CavaliereQ();
-            FALLING_PIECE_ARRAY[10] = new CavaliereA();
-            FALLING_PIECE_ARRAY[11] = new CavaliereA();
-            FALLING_PIECE_ARRAY[12] = new CavaliereA();
-            FALLING_PIECE_ARRAY[13] = new CavaliereA();
-            FALLING_PIECE_ARRAY[14] = new CavaliereA();
+            FALLING_PIECE_ARRAY[10] = new CavaliereR();
+            FALLING_PIECE_ARRAY[11] = new CavaliereU();
+            FALLING_PIECE_ARRAY[12] = new CavaliereV();
+            FALLING_PIECE_ARRAY[13] = new CavaliereW();
+            FALLING_PIECE_ARRAY[14] = new CavaliereY();
             
 
 
@@ -72,7 +72,7 @@ public class Cavaliere {
     public static Image Loader(Cavaliere cv){
         CaricatoreImmagine loader = new CaricatoreImmagine();
 
-        cavaliere = loader.caricaImmagine("/Cavalieri/cavaliere"+cv.getName()+".png");
+        cavaliere = loader.caricaImmagine("/immagini/Cavalieri/cavaliere"+cv.getName()+".png");
 
      return cavaliere;
     }

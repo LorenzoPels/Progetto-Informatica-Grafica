@@ -417,6 +417,111 @@ public class BoardPanel extends JPanel implements KeyListener {
                                 i++;*/
                         }
                         break;
+                        
+                    case KeyEvent.VK_R:
+                        boolean cancelR = false;
+                        for(int i =0;(i<cavalieri.length)&&(cancelR==false);i++){
+                            if((cavalieri[i].getName()== "R") && (esplosi[i] == false)){
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                 gestisciMago(i);
+                                 
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                cancelR = true;
+                            }
+                             /*if(cavalieri[i]==null)
+                                i++;*/
+                        }
+                        break;
+                        
+                    case KeyEvent.VK_U:
+                        boolean cancelU = false;
+                        for(int i =0;(i<cavalieri.length)&&(cancelU==false);i++){
+                            if((cavalieri[i].getName()== "U") && (esplosi[i] == false)){
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                 gestisciMago(i);
+                                 
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                cancelU = true;
+                            }
+                             /*if(cavalieri[i]==null)
+                                i++;*/
+                        }
+                        break;
+                        
+                    case KeyEvent.VK_V:
+                        boolean cancelV = false;
+                        for(int i =0;(i<cavalieri.length)&&(cancelV==false);i++){
+                            if((cavalieri[i].getName()== "V") && (esplosi[i] == false)){
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                 gestisciMago(i);
+                                 
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                cancelV = true;
+                            }
+                             /*if(cavalieri[i]==null)
+                                i++;*/
+                        }
+                        break;
+                        
+                    case KeyEvent.VK_W:
+                        boolean cancelW = false;
+                        for(int i =0;(i<cavalieri.length)&&(cancelW==false);i++){
+                            if((cavalieri[i].getName()== "W") && (esplosi[i] == false)){
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                 gestisciMago(i);
+                                 
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                cancelW = true;
+                            }
+                             /*if(cavalieri[i]==null)
+                                i++;*/
+                        }
+                        break;
+                        
+                    case KeyEvent.VK_Y:
+                        boolean cancelY = false;
+                        for(int i =0;(i<cavalieri.length)&&(cancelY==false);i++){
+                            if((cavalieri[i].getName()== "Y") && (esplosi[i] == false)){
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                 gestisciMago(i);
+                                 
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                cancelY = true;
+                            }
+                             /*if(cavalieri[i]==null)
+                                i++;*/
+                        }
+                        break;
 
            }
 
