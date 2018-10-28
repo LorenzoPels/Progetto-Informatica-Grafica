@@ -255,7 +255,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                     gameover.play();
                     timer.stop();
                     try {
-                        sleep(1900);
+                        sleep(1500);
                         //PausaGioco();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -298,7 +298,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                     gameover.play();
                     timer.stop();
                     try {
-                        sleep(1900);
+                        sleep(1500);
                         //PausaGioco();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -339,7 +339,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                     gameover.play();
                     timer.stop();
                     try {
-                        sleep(1900);
+                        sleep(1500);
                         //PausaGioco();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -379,7 +379,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                     gameover.play();
                     timer.stop();
                     try {
-                        sleep(1900);
+                        sleep(1500);
                         //PausaGioco();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -419,7 +419,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                     gameover.play();
                     timer.stop();
                     try {
-                        sleep(1900);
+                        sleep(1500);
                         //PausaGioco();
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
