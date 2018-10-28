@@ -180,6 +180,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                 Media audioFile = new Media(new File("audio/sottofondo.mp3").toURI().toString());
                 player = new MediaPlayer(audioFile);
                player.setCycleCount(MediaPlayer.INDEFINITE);
+               player.setVolume(0.7);
 
 
                // player.play();
