@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static view.MainGUI.gameover;
+import static view.MainGUI.isGameRunning;
+import static view.MainGUI.isGameStarted;
 import static view.MainGUI.panel;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
@@ -14,8 +16,7 @@ import static view.MainGUI.scoppio;
 
 
 public class RightPanel extends javax.swing.JPanel {
-    public static boolean isGameStarted; // a game can start only once at the beginning
-    public static boolean isGameRunning; // a started game can be running or in pause
+    
     public int click;
     public int click2;
     
@@ -28,45 +29,6 @@ public class RightPanel extends javax.swing.JPanel {
     public static void updateScoreLabel(int score) {
 		scorelabel.setText(String.valueOf(score));
 	}
-    
-    
-    private void startPauseEvent() {
-		if (!isGameStarted) {
-			isGameStarted = true;
-			isGameRunning = true;
-                        //ControllerForView.getInstance().initGame();
-                        MainGUI.InizioGioco();
-			//ControllerForView.getInstance().initGame();
-			//this.previewPanel.setPreviewPieceAvailable();
-			//this.boardPanel.setFallingPieceAvailable();
-			panel.requestFocusInWindow();
-			//this.timer.start();
-			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
-			jButton2.setEnabled(false);
-                        musicbutton.setEnabled(false);
-                        audiobutton.setEnabled(false);
-		}
-		else if (!isGameRunning) {
-			isGameRunning = true;
-                        MainGUI.RiprendiGioco();
-			panel.requestFocusInWindow();
-			//this.timer.start();
-			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
-			jButton2.setEnabled(false);
-                        musicbutton.setEnabled(false);
-                        audiobutton.setEnabled(false);
-		}
-		else {
-			isGameRunning = false;
-                        MainGUI.PausaGioco();
-			//this.timer.stop();
-			jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
-			jButton2.setEnabled(true);
-                        musicbutton.setEnabled(true);
-                        audiobutton.setEnabled(true);
-		}
-	} // end methos startStopEvent()
-    
 
     
     @SuppressWarnings("unchecked")
@@ -75,8 +37,8 @@ public class RightPanel extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pausebutton = new javax.swing.JButton();
+        escbutton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         scorelabel = new javax.swing.JLabel();
@@ -95,17 +57,17 @@ public class RightPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Magic");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png"))); // NOI18N
+        pausebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                pausebuttonActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/bottone.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        escbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/bottone.png"))); // NOI18N
+        escbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                escbuttonActionPerformed(evt);
             }
         });
 
@@ -164,12 +126,12 @@ public class RightPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pausebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(escbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(audiobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -192,21 +154,34 @@ public class RightPanel extends javax.swing.JPanel {
                     .addComponent(audiobutton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(musicbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pausebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(escbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void escbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escbuttonActionPerformed
        
        ControllerForView.getInstance().openDialog();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_escbuttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     startPauseEvent();   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void pausebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausebuttonActionPerformed
+    
+     if (!isGameRunning) {
+        pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
+        escbutton.setEnabled(false);
+        musicbutton.setEnabled(false);
+        audiobutton.setEnabled(false);
+     }else {
+        pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
+        escbutton.setEnabled(true);
+        musicbutton.setEnabled(true);
+        audiobutton.setEnabled(true);
+     }
+     
+      MainGUI.startPauseEvent();   // TODO add your handling code here:
+    }//GEN-LAST:event_pausebuttonActionPerformed
 
     private void audiobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audiobuttonActionPerformed
         click2++;
@@ -242,14 +217,14 @@ public class RightPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton audiobutton;
-    public static javax.swing.JButton jButton1;
-    public static javax.swing.JButton jButton2;
+    public static javax.swing.JButton escbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JButton musicbutton;
+    public static javax.swing.JButton pausebutton;
     public static javax.swing.JLabel scorelabel;
     // End of variables declaration//GEN-END:variables
 

@@ -7,9 +7,9 @@ package view;
 
 import controller.ControllerForView;
 import static view.MainGUI.player;
-import static view.RightPanel.jButton1;
-import static view.RightPanel.jButton2;
 import static view.RightPanel.scorelabel;
+import static view.RightPanel.escbutton;
+import static view.RightPanel.pausebutton;
 
 /**
  *

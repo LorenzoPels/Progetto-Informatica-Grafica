@@ -4,6 +4,12 @@ package controller;
 import model.Model;
 import view.View;
 import java.lang.String;
+import model.Cavaliere;
+import static view.MainGUI.cavalieri;
+import static view.MainGUI.esplosi;
+import static view.MainGUI.pioggia;
+import static view.MainGUI.scoppio;
+import static view.RightPanel.updateScoreLabel;
 
 
 public class ControllerForView implements IControllerForView {
@@ -61,6 +67,30 @@ public class ControllerForView implements IControllerForView {
 		Model.getInstance().incrementScore(/*increment*/);
 	}
         
+        public void Colpito(boolean b, String s){
+            //b = false;
+            for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+                            if((cavalieri[i].getName()== s) && (esplosi[i]==false)){
+                  /*              try {
+                                    animazione(cavalieri[i], i );
+                                } catch (IOException ex) {
+                                    Logger.getLogger(BoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }                   */
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                View.getInstance().gestisciMago(i);
+                                
+                                
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                b = true;
+                            }
+            }
+        }
        
 
         //---------------------------------------------------------------

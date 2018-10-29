@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static view.Dialog.resetLabel;
-import static view.RightPanel.jButton1;
-import static view.RightPanel.jButton2;
 import static view.RightPanel.musicbutton;
 import static view.RightPanel.audiobutton;
 import static view.RightPanel.scorelabel;
+import static view.RightPanel.escbutton;
+import static view.RightPanel.pausebutton;
 
 
 public class GameOverDialog extends javax.swing.JFrame {
@@ -26,8 +26,8 @@ public class GameOverDialog extends javax.swing.JFrame {
     
     
     private void resetBottoni(){
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
-        jButton2.setEnabled(true);
+        pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
+        escbutton.setEnabled(true);
         musicbutton.setEnabled(true);
         audiobutton.setEnabled(true);
 

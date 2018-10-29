@@ -1,6 +1,8 @@
 
 package view;
 
+import java.awt.image.BufferedImage;
+
 public interface IView {
     public void openStartWindow();
 
@@ -17,6 +19,11 @@ public interface IView {
         public void openGameOverDialog(String score);
 	public void closeGameOverDialog();
 	public void updateScoreLabel(int score);
+        public BufferedImage gestisciMago(int c);
+        public int movimentoMago(int i);
+        public void movimentoBraccia();
+        public void stampaMago();
+        
 	
 	/*public void gameOverDialog();
         */
