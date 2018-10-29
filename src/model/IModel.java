@@ -17,6 +17,7 @@ public interface IModel {
 	public String getNameOfFallingPiece();//non so*/
 	
 	public void initGame();//non so
+        public void Colpito(boolean b, String s);
 
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 

@@ -11,6 +11,8 @@ import static view.MainGUI.t0;
 import static view.MainGUI.t1;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
+import static view.MainGUI.cavalieri;
+import static view.MainGUI.esplosi;
 import static view.MainGUI.giocoiniziato;
 import static view.MainGUI.isGameRunning;
 import static view.MainGUI.isGameStarted;
@@ -34,8 +36,12 @@ import static view.MainGUI.timer;
 
 
 import static view.MainGUI.movimento;
+import static view.MainGUI.pioggia;
 import static view.MainGUI.player;
+import static view.MainGUI.scoppio;
+import static view.RightPanel.updateScoreLabel;
 import static view.StartWindow.insane;
+import view.View;
 
 
 public class Model implements IModel {
@@ -107,6 +113,31 @@ public class Model implements IModel {
     public  void incrementScore(/*int increment*/) {
 		this.score ++;
 	}
+    
+    public void Colpito(boolean b, String s){
+            //b = false;
+            for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+                            if((cavalieri[i].getName()== s) && (esplosi[i]==false)){
+                  /*              try {
+                                    animazione(cavalieri[i], i );
+                                } catch (IOException ex) {
+                                    Logger.getLogger(BoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }                   */
+                                pioggia[i] = null;
+                                cavalieri[i] = null;
+                                esplosi[i] = true;
+                                cavalieri[i]=Cavaliere.nextCavaliere();
+                                scoppio.play();
+                                
+                                View.getInstance().gestisciMago(i);
+                                
+                                
+                                Model.getInstance().incrementScore();
+                                updateScoreLabel(Model.getInstance().getScore());
+                                b = true;
+                            }
+            }
+        }
     //---------------------------------------------------------------
     // STATIC METHODS
     //---------------------------------------------------------------
