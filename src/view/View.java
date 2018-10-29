@@ -3,17 +3,23 @@ package view;
 
 import config.Config;
 import controller.ControllerForView;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import model.Model;
+import static view.BoardPanel.arrayMago;
+import static view.BoardPanel.larghezza;
+import static view.BoardPanel.mago;
+import static view.BoardPanel.x;
 import static view.GameOverDialog.centinaia;
 import static view.GameOverDialog.decine;
 import static view.GameOverDialog.unità;
 import static view.GameOverDialog.recordCent;
 import static view.GameOverDialog.recordDec;
 import static view.GameOverDialog.recordUnit;
+import static view.MainGUI.t1;
 import static view.StartWindow.insane;
 
 
@@ -41,6 +47,11 @@ public class View implements IView {
         private char recordU;
         private char recordD;
         private char recordH;
+        private static long tmago;
+        public static int xMagoMax ;
+        public static int xMagoMin ;
+        static int xMago= larghezza/2;
+        int direzioneMago=1;
         
         private View() {
 		//TO-DO
@@ -231,8 +242,47 @@ public class View implements IView {
 		});
 	}
         public void updateScoreLabel(int score) {
-		this.rightpanel.updateScoreLabel(score);
+            this.rightpanel.updateScoreLabel(score);
 	}
+        
+        public int movimentoMago(int i){
+            int imgMago = 0;
+            if(xMago < x[i] ){
+                imgMago = 1;
+                xMagoMax = x[i]+50;
+                direzioneMago=+1;
+            }
+            if(xMago > x[i] ){
+                imgMago = 2;
+                xMagoMin=x[i]-50;
+                direzioneMago=-1;
+            }
+            tmago =  System.currentTimeMillis();
+            return imgMago;       
+        }
+     
+        public void movimentoBraccia(){
+            if((t1-tmago)>= 500)
+                    mago = arrayMago[0];
+        }
+        
+        public void stampaMago(){
+            if (xMago == xMagoMax ){
+                direzioneMago=-1;
+                mago = arrayMago[0];
+            }
+            if (xMago == xMagoMin){
+                direzioneMago=+1;
+                mago = arrayMago[0];
+            }        
+            xMago+=direzioneMago;
+        }
+        
+        public BufferedImage gestisciMago(int c){
+            int i;
+            i= movimentoMago(c);
+            return mago = arrayMago[i];
+        }
         //---------------------------------------------------------------
 	// STATIC METHODS
 	//---------------------------------------------------------------

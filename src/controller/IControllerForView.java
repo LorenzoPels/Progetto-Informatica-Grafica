@@ -19,6 +19,7 @@ public interface IControllerForView {
         public void closeDialog();
         public void openGameOverDialog(String score);
         public void closeGameOverDialog();
+        
 
 	/*public int getNumColumnsOfBoard();
 
@@ -49,6 +50,7 @@ public interface IControllerForView {
 	public String getNameOfPreviewPiece();*/
 	
 	public void initGame();
+        public void Colpito(boolean b, String s);
         //public void Init();
 
 	/*public int iIndex();

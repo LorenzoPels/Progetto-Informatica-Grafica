@@ -12,10 +12,8 @@ import static view.MainGUI.t1;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
 import static view.MainGUI.giocoiniziato;
-import static view.RightPanel.isGameRunning;
-import static view.RightPanel.isGameStarted;
-import static view.RightPanel.jButton1;
-import static view.RightPanel.jButton2;
+import static view.MainGUI.isGameRunning;
+import static view.MainGUI.isGameStarted;
 import static view.MainGUI.y0;
 import static view.MainGUI.y1;
 import static view.MainGUI.y2;
@@ -32,10 +30,13 @@ import static view.MainGUI.index1;
 import static view.MainGUI.index2;
 import static view.MainGUI.index3;
 import static view.MainGUI.index4;
+import static view.MainGUI.timer;
 
 
 import static view.MainGUI.movimento;
+import static view.MainGUI.player;
 import static view.StartWindow.insane;
+
 
 public class Model implements IModel {
     
@@ -53,17 +54,6 @@ public class Model implements IModel {
 		//this.boardArray = new int[DEFAULT_NUM_ROWS][DEFAULT_NUM_COLUMNS];
 		this.initGame();
 	}
-    
-   /* public void Init(){
-        scorelabel.setText("0");
-        for(int i=0; i<cavalieri.length;i++){
-            cavalieri[i]=null;
-            pioggia[i]=null;
-            
-        }
-        //t0=urentTimeMillis();    
-        
-    }*/
     
     //---------------------------------------------------------------
     // PUBLIC INSTANCE METHODS
@@ -83,6 +73,7 @@ public class Model implements IModel {
                 MainGUI.Cavalieri();
                 MainGUI.Pioggia();
                 BoardPanel.pioggiaRandom();
+                
                 int0=900;
                 int1=1800;
                 int2=2700;

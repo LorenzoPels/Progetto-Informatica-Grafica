@@ -13,34 +13,28 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
-        
+import static java.lang.Thread.sleep;      
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
-import model.Model;
-
-
 import static view.BoardPanel.larghezza;
-import static view.BoardPanel.xMagoMax;
-import static view.BoardPanel.xMagoMin;
+import static view.View.xMagoMax;
+import static view.View.xMagoMin;
 import static view.BoardPanel.mago;
 import static view.BoardPanel.arrayMago;
-
+import static view.RightPanel.audiobutton;
+import static view.RightPanel.escbutton;
+import static view.RightPanel.musicbutton;
+import static view.RightPanel.pausebutton;
 import static view.RightPanel.scorelabel;
-
-
-
-
 
 
 public class MainGUI extends JFrame implements ActionListener  {
@@ -48,17 +42,15 @@ public class MainGUI extends JFrame implements ActionListener  {
     private final static int LARGHEZZA = 750;
     private final static int ALTEZZA = 730;
     private RightPanel rightpanel;
-    private static Timer timer;
+    public static Timer timer;
     public static int  y0,y1,y2,y3,y4;
     private final int PAUSE = 10;
     public static  int movimento;
     private boolean controlloreMovimento0,controlloreMovimento1,controlloreMovimento2,controlloreMovimento3,controlloreMovimento4;
-
     public static Boolean giocoiniziato = false;
     public static Image[] pioggia = new Image[5];
     public static Cavaliere[] cavalieri = new Cavaliere[5];
     public static Boolean[] esplosi = new Boolean[5];
-
     public static long t0,t1,P,Pi,Pf;
     public static long diff;
     public static int int0;
@@ -73,9 +65,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static MediaPlayer player;
     private String coloreC0,coloreC1,coloreC2,coloreC3,coloreC4;
     private Boolean exp0 = false;
-    
-    
-   private Image[] Arancio = new Image[14];
+    private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
     private Image[] Giallo = new Image[14];
     private Image[] Grigio = new Image[14];
@@ -83,12 +73,13 @@ public class MainGUI extends JFrame implements ActionListener  {
     private Image[] Rosso = new Image[14];
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];          
-
     public static int index0,index1,index2,index3,index4;
-//int index;
+    public static boolean isGameStarted; // a game can start only once at the beginning
+    public static boolean isGameRunning; // a started game can be running or in pause
 
 
-    MainGUI(/*String audioScoppio,String audioGO*/) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+
+    MainGUI() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
 
         super("Magic Touch Game");
 
@@ -97,12 +88,11 @@ public class MainGUI extends JFrame implements ActionListener  {
             @Override
             public void windowClosing(WindowEvent e) {
                ControllerForView.getInstance().openDialog();
+               pausaGioco();
             }
              
         });
             
-    
-    
         setPreferredSize(new Dimension(LARGHEZZA,ALTEZZA));
         this.createPanel();
         panel = new BoardPanel();
@@ -110,14 +100,12 @@ public class MainGUI extends JFrame implements ActionListener  {
         setResizable(true);
         pack();
         setLocationRelativeTo(null);
-        
-        
+         
         y0 = -150;
         y1 = -150;
         y2 = -150;
         y3 = -150;
         y4 = -150;
-
 
         timer = new Timer(PAUSE, this);
         final String audioScoppio = "audio/scoppio.wav";
@@ -126,9 +114,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         scoppio = new ClipPlayer(audioScoppio);
         gameover = new ClipPlayer(audioGO);
 
-
         initBackgroundSound();   
-        //  caricaAnimazioni();
         CaricatoreImmagine loader = new CaricatoreImmagine();
             for(int i =0;i<=13;i++){
                 Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
@@ -188,51 +174,61 @@ public class MainGUI extends JFrame implements ActionListener  {
         });
     }
 
-    public static Boolean InizioGioco(){
-            Cavalieri();
-            //sottofondo.play();
-            player.play();
-            Pioggia();
-            Esplosi();
-            timer.start();
-            giocoiniziato = true;
-            t0 = System.currentTimeMillis();
-           
-            
-            xMagoMax = larghezza-150 ;        
-            xMagoMin = 50;
-            mago = arrayMago[0];
-                    
-            return giocoiniziato;
+    public void pausaGioco(){
+                    isGameRunning = false;
+                    timer.stop();
+                    giocoiniziato = false;
+                    player.pause();
+                    Pi = System.currentTimeMillis();
+                    pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
+                    escbutton.setEnabled(true);
+                    musicbutton.setEnabled(true);
+                    audiobutton.setEnabled(true);
+    }
+    
+    public static void startPauseEvent() {
+        if (!isGameStarted) {
+                isGameStarted = true;
+                isGameRunning = true;
+                Cavalieri();
+                Pioggia();
+                Esplosi();
+                player.play();
+                timer.start();
+                giocoiniziato = true;
+                t0 = System.currentTimeMillis();
+                xMagoMax = larghezza-150 ;        
+                xMagoMin = 50;
+                mago = arrayMago[0];
+                panel.requestFocusInWindow();
         }
-    public static Boolean  PausaGioco(){
-                timer.stop();
-                giocoiniziato = false;
-                player.pause();
-                Pi = System.currentTimeMillis();
-
-                return giocoiniziato;
-            } 
-    public static Boolean  RiprendiGioco(){
+        else if (!isGameRunning) {
+                isGameRunning = true;
                 Pf = System.currentTimeMillis();
-                //sottofondo.play();
+                panel.requestFocusInWindow();
                 player.play();
                 P += Pf-Pi;
                 timer.start();
                 giocoiniziato = true;
-                //t1 = System.currentTimeMillis()-P;
-                return giocoiniziato;
-            } 
+        }
+        else {
+                isGameRunning = false;
+                timer.stop();
+                giocoiniziato = false;
+                player.pause();
+                Pi = System.currentTimeMillis();
+                
+        }
+    } // end methos startStopEvent()
 
     private void createPanel() {
                  
-                    this.rightpanel = new RightPanel();
-          
-                    Container contPane = this.getContentPane();
-                    contPane.setLayout(new BorderLayout());
-                    contPane.add(this.rightpanel,BorderLayout.EAST);
-                    
-            }
+        this.rightpanel = new RightPanel();
+        Container contPane = this.getContentPane();
+        contPane.setLayout(new BorderLayout());
+        contPane.add(this.rightpanel,BorderLayout.EAST);
+
+    }
 
 
       @Override
