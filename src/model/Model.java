@@ -208,7 +208,7 @@ public class Model implements IModel {
 
 
             pioggia[i]= effettuaAnimazione(colore[i], index[i]);
-            System.out.println( colore[i]);
+            
 
             index[i] ++;
         }
