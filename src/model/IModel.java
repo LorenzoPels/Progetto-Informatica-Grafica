@@ -12,6 +12,7 @@ public interface IModel {
         public int getY(int i);
         public void resetIndex();
         public void resetY();
+        public void resetOndata();
 
 	public  void incrementScore(/*int increment*/);//incrementa il puntegio ottenuto
 
@@ -29,6 +30,7 @@ public interface IModel {
         public int movimentoMago(int i);
         public void movimentoBraccia();
         public void stampaMago();
+        public void pioggiaRandom();
 
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 
