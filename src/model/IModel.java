@@ -1,12 +1,17 @@
 
 package model;
 
+import java.awt.Image;
+
 public interface IModel {
    /* public int getNumColumnsOfBoard();//forse da usare se il campo di gioco è una matrice
 
 	public int getNumRowsOfBoard();//forse da usare se il campo di gioco è una matrice*/
 
 	public int getScore();//legge il punteggio ottenuto
+        public int getY(int i);
+        public void resetIndex();
+        public void resetY();
 
 	public  void incrementScore(/*int increment*/);//incrementa il puntegio ottenuto
 
@@ -18,6 +23,10 @@ public interface IModel {
 	
 	public void initGame();//non so
         public void Colpito(boolean b, String s);
+        public void statoCavaliere(int i);
+        public void caricaAnimazioni();
+        public Image effettuaAnimazione(String colore, int indice);
+        public int gestisciMovimento(boolean controlloreMov, boolean esploso, int index );
 
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino
 
