@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
+import model.Model;
 import static view.BoardPanel.larghezza;
 import static view.View.xMagoMax;
 import static view.View.xMagoMin;
@@ -39,15 +40,16 @@ import static view.RightPanel.scorelabel;
 
 public class MainGUI extends JFrame implements ActionListener  {
     public static BoardPanel panel;
-    private final static int LARGHEZZA = 750;
-    private final static int ALTEZZA = 730;
+    public final static int LARGHEZZA = 750;
+    public final static int ALTEZZA = 730;
+    private int altezza;
     private RightPanel rightpanel;
     public static Timer timer;
     public static int  y0,y1,y2,y3,y4;
     private final int PAUSE = 10;
     public static  int movimento;
     private boolean controlloreMovimento0,controlloreMovimento1,controlloreMovimento2,controlloreMovimento3,controlloreMovimento4;
-    public static Boolean giocoiniziato = false;
+    //public static Boolean giocoiniziato = false;
     public static Image[] pioggia = new Image[5];
     public static Cavaliere[] cavalieri = new Cavaliere[5];
     public static Boolean[] esplosi = new Boolean[5];
@@ -65,18 +67,18 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static MediaPlayer player;
     private String coloreC0,coloreC1,coloreC2,coloreC3,coloreC4;
     private Boolean exp0 = false;
-    private Image[] Arancio = new Image[14];
+    /*private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
     private Image[] Giallo = new Image[14];
     private Image[] Grigio = new Image[14];
     private Image[] Rosa = new Image[14];
     private Image[] Rosso = new Image[14];
     private Image[] Verde = new Image[14];
-    private Image[] Viola = new Image[14];          
+    private Image[] Viola = new Image[14];  */        
     public static int index0,index1,index2,index3,index4;
     public static boolean isGameStarted; // a game can start only once at the beginning
     public static boolean isGameRunning; // a started game can be running or in pause
-
+    
 
 
     MainGUI() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
@@ -106,6 +108,8 @@ public class MainGUI extends JFrame implements ActionListener  {
         y2 = -150;
         y3 = -150;
         y4 = -150;
+        
+       
 
         timer = new Timer(PAUSE, this);
         final String audioScoppio = "audio/scoppio.wav";
@@ -115,7 +119,8 @@ public class MainGUI extends JFrame implements ActionListener  {
         gameover = new ClipPlayer(audioGO);
 
         initBackgroundSound();   
-        CaricatoreImmagine loader = new CaricatoreImmagine();
+        altezza = getHeight();
+        /*CaricatoreImmagine loader = new CaricatoreImmagine();
             for(int i =0;i<=13;i++){
                 Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
                 Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
@@ -125,8 +130,8 @@ public class MainGUI extends JFrame implements ActionListener  {
                 Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
                 Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
                 Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
-            }
-
+            }*/
+        Model.getInstance().caricaAnimazioni();
 
 
     }
@@ -177,7 +182,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     public void pausaGioco(){
                     isGameRunning = false;
                     timer.stop();
-                    giocoiniziato = false;
+                    //giocoiniziato = false;
                     player.pause();
                     Pi = System.currentTimeMillis();
                     pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
@@ -195,7 +200,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                 Esplosi();
                 player.play();
                 timer.start();
-                giocoiniziato = true;
+                //giocoiniziato = true;
                 t0 = System.currentTimeMillis();
                 xMagoMax = larghezza-150 ;        
                 xMagoMin = 50;
@@ -209,12 +214,12 @@ public class MainGUI extends JFrame implements ActionListener  {
                 player.play();
                 P += Pf-Pi;
                 timer.start();
-                giocoiniziato = true;
+                //giocoiniziato = true;
         }
         else {
                 isGameRunning = false;
                 timer.stop();
-                giocoiniziato = false;
+               // giocoiniziato = false;
                 player.pause();
                 Pi = System.currentTimeMillis();
                 
@@ -234,208 +239,29 @@ public class MainGUI extends JFrame implements ActionListener  {
       @Override
         public void actionPerformed(ActionEvent e) {
 
-           if(diff>=int0){
-               //System.out.println(MOVIMENTO0);
-                y0 += gestisciMovimento(controlloreMovimento0, esplosi[0],index0);
-                
-                if(y0 >= -1000) controlloreMovimento0 = true;
-                if(y0 >= getHeight()-220) controlloreMovimento0 = false;
-                if((y0 >= getHeight()-220) &&(esplosi[0] == true)){
-                    pioggia[0]= null;
-                    index0=0;
-                    
-                    //exp0=false;
-
-                }
-                   // esplosi[0] = true;
-                if((y0 >= getHeight()-220) &&(esplosi[0] == false) ){
-                    gameover.play();
-                    timer.stop();
-                    try {
-                        sleep(1500);
-                        //PausaGioco();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                     player.stop();
-                    ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-
-                }
-
-                if(esplosi[0] == false){
-                     coloreC0 = cavalieri[0].getColore();
-                }
-
-                if(esplosi[0]==true  && index0 <= 13 && y0 <= getHeight()-221){
-                    
-                    pioggia[0]= effettuaAnimazione(coloreC0, index0);
-
-                 
-                    index0 ++;
-                 
-                    
-                   
-
-                }
+            if(diff>=int0){
+               Model.getInstance().statoCavaliere( 0);
+               
             }
 
             if(diff>=int1){
+               Model.getInstance().statoCavaliere( 1);
                 
-                y1 += gestisciMovimento(controlloreMovimento1, esplosi[1], index1);
-                
-                
-                if(y1 >= -1000) controlloreMovimento1 = true;
-                if(y1 >= getHeight()-220) controlloreMovimento1 = false;
-               if((y1 >= getHeight()-220) &&(esplosi[1] == true)){
-                    pioggia[1]= null;
-                    index1=0;
-                }
-                   // esplosi[0] = true;
-                if((y1 >= getHeight()-220) &&(esplosi[1] == false) ){
-                    gameover.play();
-                    timer.stop();
-                    try {
-                        sleep(1500);
-                        //PausaGioco();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   // PausaGioco();
-                    player.stop();
-                    ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-
-                }
-
-                if(esplosi[1] == false){
-                     coloreC1 = cavalieri[1].getColore();
-                }
-
-                if(esplosi[1]==true  && index1 <= 13 && y1 <= getHeight()-221){
-
-
-                  
-                    pioggia[1]= effettuaAnimazione(coloreC1, index1);
-                   
-     
-                    index1 ++;                              
-                }
             }
 
             if(diff>=int2){
                
-                y2 += gestisciMovimento(controlloreMovimento2, esplosi[2], index2);
-                
-                if(y2 >= -1000) controlloreMovimento2 = true;
-                if(y2 >= getHeight()-220) controlloreMovimento2 = false;
-                if((y2 >= getHeight()-220) &&(esplosi[2] == true)){
-                    pioggia[2]= null;
-                    index2=0;
-                }
-                   // esplosi[0] = true;
-                if((y2 >= getHeight()-220) &&(esplosi[2] == false) ){
-                    gameover.play();
-                    timer.stop();
-                    try {
-                        sleep(1500);
-                        //PausaGioco();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   // PausaGioco();
-                    player.stop();
-                    ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-
-                }
-
-                if(esplosi[2] == false){
-                     coloreC2 = cavalieri[2].getColore();
-                }
-
-                if(esplosi[2]==true  && index2 <= 13 && y2 <= getHeight()-221){
-
-
-              
-                    pioggia[2]= effettuaAnimazione(coloreC2, index2);
-                
-                    index2 ++;
-                }
+              Model.getInstance().statoCavaliere( 2);
             }
 
             if(diff>=int3){
                 
-                y3 += gestisciMovimento(controlloreMovimento3, esplosi[3],index3);
-                
-                if(y3 >= -1000) controlloreMovimento3 = true;
-                if(y3 >= getHeight()-220) controlloreMovimento3 = false;
-                if((y3 >= getHeight()-220) &&(esplosi[3] == true)){
-                    pioggia[3]= null;
-                    index3=0;
-                }
-                   // esplosi[0] = true;
-                if((y3 >= getHeight()-220) &&(esplosi[3] == false) ){
-                    gameover.play();
-                    timer.stop();
-                    try {
-                        sleep(1500);
-                        //PausaGioco();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                   // PausaGioco();
-                    player.stop();
-                    ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-
-                }
-                if(esplosi[3] == false){
-                     coloreC3 = cavalieri[3].getColore();
-                }
-
-                if(esplosi[3]==true  && index3 <= 13 && y3 <= getHeight()-221){
-
-
-                   
-                    pioggia[3]= effettuaAnimazione(coloreC3, index3);
-                   
-             
-                    index3 ++;
-                }
+             Model.getInstance().statoCavaliere( 3);
             }
 
             if(diff>=int4){
+               Model.getInstance().statoCavaliere( 4);
                 
-                y4 += gestisciMovimento(controlloreMovimento4, esplosi[4], index4);
-                
-                if(y4 >= -1000) controlloreMovimento4 = true;
-                if(y4 >= getHeight()-220) controlloreMovimento4 = false;
-                if((y4 >= getHeight()-220) &&(esplosi[4] == true)){
-                    pioggia[4]= null;
-                    index4=0;
-                }
-                   // esplosi[0] = true;
-                if((y4 >= getHeight()-220) &&(esplosi[4] == false) ){
-                    gameover.play();
-                    timer.stop();
-                    try {
-                        sleep(1500);
-                        //PausaGioco();
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    player.stop();
-                    ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-                }
-
-                if(esplosi[4] == false){
-                     coloreC4 = cavalieri[4].getColore();
-                }
-
-                if(esplosi[4]==true  && index4 <= 13 && y4 <= getHeight()-221){
-
-
-                        pioggia[4]= effettuaAnimazione(coloreC4, index4);
-       
-                    index4 ++;
-                }
             }
 
              this.panel.repaint();       
@@ -469,7 +295,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                 });
             } catch(Exception e) {}
         }
-        public Image effettuaAnimazione(String colore, int indice){
+        /*public Image effettuaAnimazione(String colore, int indice){
                 Image frameAnimazione = null;
                 
                     if(colore=="Arancio")
@@ -509,7 +335,7 @@ public class MainGUI extends JFrame implements ActionListener  {
                 a=2*movimento+1;
             return a;
             
-        }
+        }*/
         
 
    

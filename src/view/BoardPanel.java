@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import model.Model;
 import static view.MainGUI.P;
 import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
@@ -21,6 +22,7 @@ import static view.MainGUI.y1;
 import static view.MainGUI.y2;
 import static view.MainGUI.y3;
 import static view.MainGUI.y4;
+
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
@@ -105,15 +107,15 @@ public class BoardPanel extends JPanel implements KeyListener {
             diff = t1 - t0;
             //System.out.println(diff);
             if( diff >=int0  )
-                g.drawImage(pioggia[0],x[0],y0,150,180,null);
+                g.drawImage(pioggia[0],x[0],Model.getInstance().getY(0),150,180,null);
             if(diff >=int1)
-                g.drawImage(pioggia[1],x[1],y1,150,180,null);
+                g.drawImage(pioggia[1],x[1],Model.getInstance().getY(1),150,180,null);
             if(diff >=int2)
-                g.drawImage(pioggia[2],x[2],y2,150,180,null);
+                g.drawImage(pioggia[2],x[2],Model.getInstance().getY(2),150,180,null);
             if(diff >=int3)
-                g.drawImage(pioggia[3],x[3],y3,150,180,null);
+                g.drawImage(pioggia[3],x[3],Model.getInstance().getY(3),150,180,null);
             if(diff >=int4)
-                g.drawImage(pioggia[4],x[4],y4,150,180,null);
+                g.drawImage(pioggia[4],x[4],Model.getInstance().getY(4),150,180,null);
            // if( diff >=int5 )
             if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
                 t0=System.currentTimeMillis();
@@ -124,6 +126,8 @@ public class BoardPanel extends JPanel implements KeyListener {
                 pioggiaRandom();
                 y0=y1=y2=y3=y4=-100;
                 index0=index1=index2=index3=index4=0; 
+                Model.getInstance().resetIndex();
+                Model.getInstance().resetY();
                 if(int0>100)
                     int0-=100;
                 if( (int1-int0) > 500 )

@@ -1,19 +1,23 @@
 
 package model;
 
+import controller.ControllerForView;
+import java.awt.Image;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.BoardPanel;
+import view.CaricatoreImmagine;
 import view.MainGUI;
+import static view.MainGUI.ALTEZZA;
 import static view.MainGUI.P;
-import static view.RightPanel.scorelabel;
-import static view.MainGUI.cavalieri;
-import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.MainGUI.t1;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.esplosi;
-import static view.MainGUI.giocoiniziato;
+import static view.MainGUI.gameover;
 import static view.MainGUI.isGameRunning;
 import static view.MainGUI.isGameStarted;
 import static view.MainGUI.y0;
@@ -26,19 +30,18 @@ import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.int5;
 import static view.MainGUI.index0;
 import static view.MainGUI.index1;
 import static view.MainGUI.index2;
 import static view.MainGUI.index3;
 import static view.MainGUI.index4;
-import static view.MainGUI.timer;
-
-
 import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
+import static view.MainGUI.timer;
+import static view.MainGUI.y3;
+import static view.RightPanel.scorelabel;
 import static view.RightPanel.updateScoreLabel;
 import static view.StartWindow.insane;
 import view.View;
@@ -51,11 +54,22 @@ public class Model implements IModel {
     //---------------------------------------------------------------
     private static Model instance = null;
     private Cavaliere fallingPiece;
-    
+    private Image[] Arancio = new Image[14];
+    private Image[] Blu = new Image[14];
+    private Image[] Giallo = new Image[14];
+    private Image[] Grigio = new Image[14];
+    private Image[] Rosa = new Image[14];
+    private Image[] Rosso = new Image[14];
+    private Image[] Verde = new Image[14];
+    private Image[] Viola = new Image[14];
+    private boolean controlloreMovimento[]= new boolean[5];
     //---------------------------------------------------------------
     // INSTANCE ATTRIBUTES
     //---------------------------------------------------------------
     public  int score;
+    public  int y[] = new int[5];
+    public  int index[] = new int[5];
+    public  String[] colore = new String[5];
     private Model() {
 		//this.boardArray = new int[DEFAULT_NUM_ROWS][DEFAULT_NUM_COLUMNS];
 		this.initGame();
@@ -67,7 +81,7 @@ public class Model implements IModel {
     public void initGame() {
                 isGameRunning = false;
                 isGameStarted = false;
-                giocoiniziato = false;
+                //giocoiniziato = false;
 		this.score= 0;
 		//scorelabel.setText("0");
                 for(int i=0; i<cavalieri.length;i++){
@@ -87,8 +101,11 @@ public class Model implements IModel {
                 int4=4500;
                 //int5=5400;
                 index0=index1=index2=index3=index4=0;
+                resetIndex();
                 y0 = y1 = y2 = y3 = y4 = -150;
-      
+                for (int i=0; i<y.length;i++)
+                    y[i]=-150;
+                
                 t0=t1=P=Pi=Pf=0;
                 if(insane==true){
                     movimento=2;
@@ -110,7 +127,21 @@ public class Model implements IModel {
     public int getScore() {
 		return this.score;
 	}
-    public  void incrementScore(/*int increment*/) {
+    public int getY(int i) {
+		return this.y[i];
+	}
+    public void resetIndex(){
+        for (int i=0; i<index.length;i++)
+                    index[i]=0;
+    
+    }
+    public void resetY(){
+        for (int i=0; i<y.length;i++)
+                    y[i]=-150;
+    
+    }
+    
+    public  void incrementScore() {
 		this.score ++;
 	}
     
@@ -138,6 +169,109 @@ public class Model implements IModel {
                             }
             }
         }
+    
+    public void statoCavaliere(int i){
+        if(controlloreMovimento[i]) 
+                y[i]+=movimento;
+            if(esplosi[i])
+                y[i]+=movimento+1;
+            if(index[i] > 12)
+                y[i]+=2*movimento+1;
+        if(y[i] >= -1000) controlloreMovimento[i] = true;
+        if(y[i] >= ALTEZZA-220) controlloreMovimento[i] = false;
+        
+        if((y[i] >= ALTEZZA-220) &&(esplosi[i] == true)){
+            pioggia[i]= null;
+            index[i]=0;
+        }
+           // esplosi[0] = true;
+        if((y[i] >= ALTEZZA-220) &&(esplosi[i] == false) ){
+            gameover.play();
+            timer.stop();
+            try {
+                sleep(1500);
+                //PausaGioco();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           // PausaGioco();
+            player.stop();
+            ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
+
+        }
+        if(esplosi[i] == false){
+             colore[i] = cavalieri[i].getColore();
+        }
+
+        if(esplosi[i]==true  && index[i] <= 13 && y[i] <= ALTEZZA-221){
+
+
+
+            pioggia[i]= effettuaAnimazione(colore[i], index[i]);
+            System.out.println( colore[i]);
+
+            index[i] ++;
+        }
+    }
+    public void caricaAnimazioni(){
+        CaricatoreImmagine loader = new CaricatoreImmagine();
+            for(int i =0;i<=13;i++){
+                Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
+                Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
+                Giallo[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
+                Grigio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
+                Rosa[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
+                Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
+                Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
+                Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
+            }
+    
+    }
+    
+    public Image effettuaAnimazione(String colore, int indice){
+                Image frameAnimazione = null;
+                
+                    if(colore=="Arancio")
+                       frameAnimazione = Arancio[indice]; 
+                    if(colore=="Blu")
+                       frameAnimazione = Blu[indice]; 
+                    
+                    if(colore=="Giallo")
+                        frameAnimazione = Giallo[indice]; 
+                        
+                    if(colore=="Grigio")
+                        frameAnimazione = Grigio[indice]; 
+                        
+                    if(colore=="Rosa")
+                        frameAnimazione = Rosa[indice]; 
+                        
+                    if(colore=="Rosso")
+                        frameAnimazione = Rosso[indice]; 
+                        
+                    if(colore=="Verde")
+                        frameAnimazione = Verde[indice]; 
+                        
+                    if(colore=="Viola")
+                        frameAnimazione = Viola[indice]; 
+                    
+                    return frameAnimazione;
+                        
+        }
+        
+        public int gestisciMovimento(boolean controlloreMov, boolean esploso, int index ){
+            int a=0;
+            if(controlloreMov) 
+                a=movimento;
+            if(esploso)
+                a=movimento+1;
+            if(index > 12)
+                a=2*movimento+1;
+            return a;
+            
+        }
+        
+        
+    
     //---------------------------------------------------------------
     // STATIC METHODS
     //---------------------------------------------------------------
