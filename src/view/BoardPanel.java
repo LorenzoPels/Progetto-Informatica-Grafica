@@ -24,8 +24,7 @@ import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
 import static view.MainGUI.isGameStarted;
-import static view.MainGUI.movimento;
-import static view.StartWindow.insane;
+
 
 
 
@@ -37,7 +36,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     public static int larghezza = 490;
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
-    int a=0;
+    //int a=0;
 
     public BoardPanel() {
 
@@ -54,22 +53,7 @@ public class BoardPanel extends JPanel implements KeyListener {
         }
         //setFocusable(true);
     }
-    
-    public static void pioggiaRandom(){
-        for(int i=0;i<pioggia.length;i++){
-            x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
-            if(x[i]<148)
-                x[i]+=148;
-            if(i>0){
-                if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
-                    x[i] = x[i-1]-148;
-                if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
-                    x[i] = x[i-1]+148;
-            } 
-                
-        }
         
-    }
 
     @Override
     public Dimension getPreferredSize() {
@@ -100,44 +84,8 @@ public class BoardPanel extends JPanel implements KeyListener {
                 g.drawImage(pioggia[3],x[3],Model.getInstance().getY(3),150,180,null);
             if(diff >=int4)
                 g.drawImage(pioggia[4],x[4],Model.getInstance().getY(4),150,180,null);
-           // if( diff >=int5 )
-            if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
-                t0=System.currentTimeMillis();
-                P=0;
-                MainGUI.Cavalieri();
-                MainGUI.Pioggia();
-                MainGUI.Esplosi();
-                pioggiaRandom();
-                Model.getInstance().resetIndex();
-                Model.getInstance().resetY();
-                if(int0>100)
-                    int0-=100;
-                if( (int1-int0) > 500 )
-                    int1-=200;
-                if( (int2-int1) > 500 )
-                    int2-=200;
-                if( (int3-int2) > 500 )
-                    int3-=200;
-                if( (int4-int3) > 500 )
-                    int4-=200;
-                // in questo modo movimento aumenta ogni due ondate 
-                if(insane == true){                        //per ora non funziona 
-                    if( movimento < 6 ){
-                       // if( (movimento+a)%2 == 0)
-                            a++;
-                        /*else*/ movimento++;
-                    }
-                }else{
-                    if( movimento < 4 ){
-                        if( (movimento+a)%2 == 0)
-                            a++;
-                        else movimento++;               
-                    }
-                }
-                
-            }
-            /*if((t1-tmago)>= 500)
-                    mago = arrayMago[0];*/
+           
+            Model.getInstance().resetOndata();           
             Model.getInstance().movimentoBraccia();
         }
     }
