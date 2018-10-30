@@ -3,10 +3,14 @@ package model;
 
 import controller.ControllerForView;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import view.BoardPanel;
+import static view.BoardPanel.arrayMago;
+import static view.BoardPanel.larghezza;
+import static view.BoardPanel.x;
 import view.CaricatoreImmagine;
 import view.MainGUI;
 import static view.MainGUI.ALTEZZA;
@@ -29,11 +33,12 @@ import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
+import static view.MainGUI.t1;
 import static view.MainGUI.timer;
 import static view.RightPanel.scorelabel;
 import static view.RightPanel.updateScoreLabel;
 import static view.StartWindow.insane;
-import view.View;
+import static view.BoardPanel.mago;
 
 
 public class Model implements IModel {
@@ -52,6 +57,11 @@ public class Model implements IModel {
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
     private boolean controlloreMovimento[]= new boolean[5];
+    private static long tmago;
+    public static int xMagoMax ;
+    public static int xMagoMin ;
+    public static int xMago= larghezza/2;
+    int direzioneMago=1;
     //---------------------------------------------------------------
     // INSTANCE ATTRIBUTES
     //---------------------------------------------------------------
@@ -137,12 +147,9 @@ public class Model implements IModel {
                 esplosi[i] = true;
                 cavalieri[i]=Cavaliere.nextCavaliere();
                 scoppio.play();
-
-                View.getInstance().gestisciMago(i);
-
-
-                Model.getInstance().incrementScore();
-                updateScoreLabel(Model.getInstance().getScore());
+                gestisciMago(i);
+                incrementScore();
+                updateScoreLabel(getScore());
                 b = true;
             }
         }
@@ -202,47 +209,73 @@ public class Model implements IModel {
     }
     
     public Image effettuaAnimazione(String colore, int indice){
-                Image frameAnimazione = null;
-                
-                    if(colore=="Arancio")
-                       frameAnimazione = Arancio[indice]; 
-                    if(colore=="Blu")
-                       frameAnimazione = Blu[indice]; 
-                    
-                    if(colore=="Giallo")
-                        frameAnimazione = Giallo[indice]; 
+        Image frameAnimazione = null;
+
+        if(colore=="Arancio")
+           frameAnimazione = Arancio[indice]; 
+        if(colore=="Blu")
+           frameAnimazione = Blu[indice]; 
+
+        if(colore=="Giallo")
+            frameAnimazione = Giallo[indice]; 
+
+        if(colore=="Grigio")
+            frameAnimazione = Grigio[indice]; 
+
+        if(colore=="Rosa")
+            frameAnimazione = Rosa[indice]; 
+
+        if(colore=="Rosso")
+            frameAnimazione = Rosso[indice]; 
+
+        if(colore=="Verde")
+            frameAnimazione = Verde[indice]; 
+
+        if(colore=="Viola")
+            frameAnimazione = Viola[indice]; 
+
+        return frameAnimazione;
                         
-                    if(colore=="Grigio")
-                        frameAnimazione = Grigio[indice]; 
-                        
-                    if(colore=="Rosa")
-                        frameAnimazione = Rosa[indice]; 
-                        
-                    if(colore=="Rosso")
-                        frameAnimazione = Rosso[indice]; 
-                        
-                    if(colore=="Verde")
-                        frameAnimazione = Verde[indice]; 
-                        
-                    if(colore=="Viola")
-                        frameAnimazione = Viola[indice]; 
-                    
-                    return frameAnimazione;
-                        
+    }
+   
+    public int movimentoMago(int i){
+        int imgMago = 0;
+        if(xMago < x[i] ){
+            imgMago = 1;
+            xMagoMax = x[i]+50;
+            direzioneMago=+1;
         }
-        
-        public int gestisciMovimento(boolean controlloreMov, boolean esploso, int index ){
-            int a=0;
-            if(controlloreMov) 
-                a=movimento;
-            if(esploso)
-                a=movimento+1;
-            if(index > 12)
-                a=2*movimento+1;
-            return a;
-            
+        if(xMago > x[i] ){
+            imgMago = 2;
+            xMagoMin=x[i]-50;
+            direzioneMago=-1;
         }
+        tmago =  System.currentTimeMillis();
+        return imgMago;       
+    }
+     
+    public void movimentoBraccia(){
+        if((t1-tmago)>= 500)
+                mago = arrayMago[0];
+    }
         
+    public void stampaMago(){
+        if (xMago == xMagoMax ){
+            direzioneMago=-1;
+            mago = arrayMago[0];
+        }
+        if (xMago == xMagoMin){
+            direzioneMago=+1;
+            mago = arrayMago[0];
+        }        
+        xMago+=direzioneMago;
+    }
+        
+    public BufferedImage gestisciMago(int c){
+        int i;
+        i= movimentoMago(c);
+        return mago = arrayMago[i];
+    }
         
     
     //---------------------------------------------------------------

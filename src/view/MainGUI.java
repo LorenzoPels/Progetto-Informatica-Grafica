@@ -27,8 +27,6 @@ import model.Cavaliere;
 import static model.Cavaliere.Loader;
 import model.Model;
 import static view.BoardPanel.larghezza;
-import static view.View.xMagoMax;
-import static view.View.xMagoMin;
 import static view.BoardPanel.mago;
 import static view.BoardPanel.arrayMago;
 import static view.RightPanel.audiobutton;
@@ -36,6 +34,8 @@ import static view.RightPanel.escbutton;
 import static view.RightPanel.musicbutton;
 import static view.RightPanel.pausebutton;
 import static view.RightPanel.scorelabel;
+import static model.Model.xMagoMax;
+import static model.Model.xMagoMin;
 
 
 public class MainGUI extends JFrame implements ActionListener  {

@@ -47,11 +47,11 @@ public class View implements IView {
         private char recordU;
         private char recordD;
         private char recordH;
-        private static long tmago;
+        /*private static long tmago;
         public static int xMagoMax ;
         public static int xMagoMin ;
         static int xMago= larghezza/2;
-        int direzioneMago=1;
+        int direzioneMago=1;*/
         
         private View() {
 		//TO-DO
@@ -245,7 +245,7 @@ public class View implements IView {
             this.rightpanel.updateScoreLabel(score);
 	}
         
-        public int movimentoMago(int i){
+       /* public int movimentoMago(int i){
             int imgMago = 0;
             if(xMago < x[i] ){
                 imgMago = 1;
@@ -282,7 +282,7 @@ public class View implements IView {
             int i;
             i= movimentoMago(c);
             return mago = arrayMago[i];
-        }
+        }*/
         //---------------------------------------------------------------
 	// STATIC METHODS
 	//---------------------------------------------------------------

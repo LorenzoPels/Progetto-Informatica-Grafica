@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.Model;
+import static model.Model.xMago;
 import static view.MainGUI.P;
 import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
@@ -25,13 +26,13 @@ import static view.MainGUI.int4;
 import static view.MainGUI.isGameStarted;
 import static view.MainGUI.movimento;
 import static view.StartWindow.insane;
-import static view.View.xMago;
+
 
 
 public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage sfondo;
-    static BufferedImage[] arrayMago = new BufferedImage[3];
-    static BufferedImage mago;
+    public static BufferedImage[] arrayMago = new BufferedImage[3];
+    public static BufferedImage mago;
     public static int[] x = new int[5];
     public static int larghezza = 490;
     public static int altezza = 680;
@@ -79,7 +80,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics g) {
 
-        View.getInstance().stampaMago();
+        Model.getInstance().stampaMago();
       
         super.paintComponent(g);        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
@@ -137,7 +138,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             }
             /*if((t1-tmago)>= 500)
                     mago = arrayMago[0];*/
-            View.getInstance().movimentoBraccia();
+            Model.getInstance().movimentoBraccia();
         }
     }
 
