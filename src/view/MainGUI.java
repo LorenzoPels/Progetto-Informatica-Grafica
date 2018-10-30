@@ -42,14 +42,10 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static BoardPanel panel;
     public final static int LARGHEZZA = 750;
     public final static int ALTEZZA = 730;
-    private int altezza;
     private RightPanel rightpanel;
     public static Timer timer;
-    public static int  y0,y1,y2,y3,y4;
     private final int PAUSE = 10;
     public static  int movimento;
-    private boolean controlloreMovimento0,controlloreMovimento1,controlloreMovimento2,controlloreMovimento3,controlloreMovimento4;
-    //public static Boolean giocoiniziato = false;
     public static Image[] pioggia = new Image[5];
     public static Cavaliere[] cavalieri = new Cavaliere[5];
     public static Boolean[] esplosi = new Boolean[5];
@@ -65,17 +61,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static ClipPlayer gameover;
     public static ClipPlayer sottofondo;
     public static MediaPlayer player;
-    private String coloreC0,coloreC1,coloreC2,coloreC3,coloreC4;
     private Boolean exp0 = false;
-    /*private Image[] Arancio = new Image[14];
-    private Image[] Blu = new Image[14];
-    private Image[] Giallo = new Image[14];
-    private Image[] Grigio = new Image[14];
-    private Image[] Rosa = new Image[14];
-    private Image[] Rosso = new Image[14];
-    private Image[] Verde = new Image[14];
-    private Image[] Viola = new Image[14];  */        
-    public static int index0,index1,index2,index3,index4;
     public static boolean isGameStarted; // a game can start only once at the beginning
     public static boolean isGameRunning; // a started game can be running or in pause
     
@@ -102,14 +88,6 @@ public class MainGUI extends JFrame implements ActionListener  {
         setResizable(true);
         pack();
         setLocationRelativeTo(null);
-         
-        y0 = -150;
-        y1 = -150;
-        y2 = -150;
-        y3 = -150;
-        y4 = -150;
-        
-       
 
         timer = new Timer(PAUSE, this);
         final String audioScoppio = "audio/scoppio.wav";
@@ -119,18 +97,6 @@ public class MainGUI extends JFrame implements ActionListener  {
         gameover = new ClipPlayer(audioGO);
 
         initBackgroundSound();   
-        altezza = getHeight();
-        /*CaricatoreImmagine loader = new CaricatoreImmagine();
-            for(int i =0;i<=13;i++){
-                Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
-                Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
-                Giallo[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
-                Grigio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
-                Rosa[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
-                Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
-                Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
-                Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
-            }*/
         Model.getInstance().caricaAnimazioni();
 
 
@@ -166,15 +132,12 @@ public class MainGUI extends JFrame implements ActionListener  {
         final JFXPanel fxPanel = new JFXPanel();
         Platform.runLater(new Runnable() {
             @Override public void run() {  
-                //MediaPlayer player;
-                //ContinuousAudioDaataStream
+
                 Media audioFile = new Media(new File("audio/sottofondo.mp3").toURI().toString());
                 player = new MediaPlayer(audioFile);
                player.setCycleCount(MediaPlayer.INDEFINITE);
                player.setVolume(0.7);
 
-
-               // player.play();
             }
         });
     }
@@ -295,48 +258,5 @@ public class MainGUI extends JFrame implements ActionListener  {
                 });
             } catch(Exception e) {}
         }
-        /*public Image effettuaAnimazione(String colore, int indice){
-                Image frameAnimazione = null;
-                
-                    if(colore=="Arancio")
-                       frameAnimazione = Arancio[indice]; 
-                    if(colore=="Blu")
-                       frameAnimazione = Blu[indice]; 
-                    
-                    if(colore=="Giallo")
-                        frameAnimazione = Giallo[indice]; 
-                        
-                    if(colore=="Grigio")
-                        frameAnimazione = Grigio[indice]; 
-                        
-                    if(colore=="Rosa")
-                        frameAnimazione = Rosa[indice]; 
-                        
-                    if(colore=="Rosso")
-                        frameAnimazione = Rosso[indice]; 
-                        
-                    if(colore=="Verde")
-                        frameAnimazione = Verde[indice]; 
-                        
-                    if(colore=="Viola")
-                        frameAnimazione = Viola[indice]; 
-                    
-                    return frameAnimazione;
-                        
-        }
-        
-        public int gestisciMovimento(boolean controlloreMov, boolean esploso, int index ){
-            int a=0;
-            if(controlloreMov) 
-                a=movimento;
-            if(esploso)
-                a=movimento+1;
-            if(index > 12)
-                a=2*movimento+1;
-            return a;
-            
-        }*/
-        
-
-   
+  
 }

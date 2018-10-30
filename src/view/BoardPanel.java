@@ -17,36 +17,21 @@ import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.MainGUI.t1;
-import static view.MainGUI.y0;
-import static view.MainGUI.y1;
-import static view.MainGUI.y2;
-import static view.MainGUI.y3;
-import static view.MainGUI.y4;
-
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.index0;
-import static view.MainGUI.index1;
-import static view.MainGUI.index2;
-import static view.MainGUI.index3;
-import static view.MainGUI.index4;
 import static view.MainGUI.isGameStarted;
 import static view.MainGUI.movimento;
 import static view.StartWindow.insane;
 import static view.View.xMago;
 
 
-
-
 public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage sfondo;
     static BufferedImage[] arrayMago = new BufferedImage[3];
     static BufferedImage mago;
-    private int count=0;
-    //private long tmago;
     public static int[] x = new int[5];
     public static int larghezza = 490;
     public static int altezza = 680;
@@ -90,9 +75,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             return PREFERRED_SIZE;
     }
     
-    
-    
-    
+
     @Override
     public void paintComponent(Graphics g) {
 
@@ -105,7 +88,7 @@ public class BoardPanel extends JPanel implements KeyListener {
 
             t1 = System.currentTimeMillis()-P;
             diff = t1 - t0;
-            //System.out.println(diff);
+            
             if( diff >=int0  )
                 g.drawImage(pioggia[0],x[0],Model.getInstance().getY(0),150,180,null);
             if(diff >=int1)
@@ -124,8 +107,6 @@ public class BoardPanel extends JPanel implements KeyListener {
                 MainGUI.Pioggia();
                 MainGUI.Esplosi();
                 pioggiaRandom();
-                y0=y1=y2=y3=y4=-100;
-                index0=index1=index2=index3=index4=0; 
                 Model.getInstance().resetIndex();
                 Model.getInstance().resetY();
                 if(int0>100)

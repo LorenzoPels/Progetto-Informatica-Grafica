@@ -20,27 +20,16 @@ import static view.MainGUI.esplosi;
 import static view.MainGUI.gameover;
 import static view.MainGUI.isGameRunning;
 import static view.MainGUI.isGameStarted;
-import static view.MainGUI.y0;
-import static view.MainGUI.y1;
-import static view.MainGUI.y2;
-import static view.MainGUI.y3;
-import static view.MainGUI.y4;
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.index0;
-import static view.MainGUI.index1;
-import static view.MainGUI.index2;
-import static view.MainGUI.index3;
-import static view.MainGUI.index4;
 import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
 import static view.MainGUI.timer;
-import static view.MainGUI.y3;
 import static view.RightPanel.scorelabel;
 import static view.RightPanel.updateScoreLabel;
 import static view.StartWindow.insane;
@@ -70,106 +59,95 @@ public class Model implements IModel {
     public  int y[] = new int[5];
     public  int index[] = new int[5];
     public  String[] colore = new String[5];
-    private Model() {
-		//this.boardArray = new int[DEFAULT_NUM_ROWS][DEFAULT_NUM_COLUMNS];
-		this.initGame();
-	}
+    private Model() {		
+        this.initGame();
+    }
     
     //---------------------------------------------------------------
     // PUBLIC INSTANCE METHODS
     //---------------------------------------------------------------
     public void initGame() {
-                isGameRunning = false;
-                isGameStarted = false;
-                //giocoiniziato = false;
-		this.score= 0;
-		//scorelabel.setText("0");
-                for(int i=0; i<cavalieri.length;i++){
-                    cavalieri[i]=null;
-                      pioggia[i]=null;
-            
-                 }
-                P=0;
-                MainGUI.Cavalieri();
-                MainGUI.Pioggia();
-                BoardPanel.pioggiaRandom();
-                
-                int0=900;
-                int1=1800;
-                int2=2700;
-                int3=3600;
-                int4=4500;
-                //int5=5400;
-                index0=index1=index2=index3=index4=0;
-                resetIndex();
-                y0 = y1 = y2 = y3 = y4 = -150;
-                for (int i=0; i<y.length;i++)
-                    y[i]=-150;
-                
-                t0=t1=P=Pi=Pf=0;
-                if(insane==true){
-                    movimento=2;
-                    int0=700;
-                    int1=1400;
-                    int2=2100;
-                    int3=2800;
-                    int4=3500;               
-                }else{ 
-                    movimento =1;
-                    int0=900;
-                    int1=1800;
-                    int2=2700;
-                    int3=3600;
-                    int4=4500;
-                }
-	}
+        isGameRunning = false;
+        isGameStarted = false;
+        this.score= 0;
+        for(int i=0; i<cavalieri.length;i++){
+            cavalieri[i]=null;
+              pioggia[i]=null;
+         }
+        P=0;
+        MainGUI.Cavalieri();
+        MainGUI.Pioggia();
+        BoardPanel.pioggiaRandom();
+        int0=900;
+        int1=1800;
+        int2=2700;
+        int3=3600;
+        int4=4500;
+        resetIndex();
+        resetY();
+        for (int i=0; i<y.length;i++)
+            y[i]=-150;
+
+        t0=t1=P=Pi=Pf=0;
+        if(insane==true){
+            movimento=2;
+            int0=700;
+            int1=1400;
+            int2=2100;
+            int3=2800;
+            int4=3500;               
+        }else{ 
+            movimento =1;
+            int0=900;
+            int1=1800;
+            int2=2700;
+            int3=3600;
+            int4=4500;
+        }
+    }
         
     public int getScore() {
-		return this.score;
-	}
+        return this.score;
+    }
+    
     public int getY(int i) {
-		return this.y[i];
-	}
+        return this.y[i];
+    }
+    
     public void resetIndex(){
         for (int i=0; i<index.length;i++)
-                    index[i]=0;
-    
+            index[i]=0;
     }
+    
     public void resetY(){
         for (int i=0; i<y.length;i++)
-                    y[i]=-150;
-    
+            y[i]=-150;  
     }
     
     public  void incrementScore() {
-		this.score ++;
-	}
+        this.score ++;
+    }
     
     public void Colpito(boolean b, String s){
-            //b = false;
-            for(int i =0;(i<cavalieri.length)&&(b==false);i++){
-                            if((cavalieri[i].getName()== s) && (esplosi[i]==false)){
-                  /*              try {
-                                    animazione(cavalieri[i], i );
-                                } catch (IOException ex) {
-                                    Logger.getLogger(BoardPanel.class.getName()).log(Level.SEVERE, null, ex);
-                                }                   */
-                                pioggia[i] = null;
-                                cavalieri[i] = null;
-                                esplosi[i] = true;
-                                cavalieri[i]=Cavaliere.nextCavaliere();
-                                scoppio.play();
-                                
-                                View.getInstance().gestisciMago(i);
-                                
-                                
-                                Model.getInstance().incrementScore();
-                                updateScoreLabel(Model.getInstance().getScore());
-                                b = true;
-                            }
+        //b = false;
+        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
+                pioggia[i] = null;
+                cavalieri[i] = null;
+                esplosi[i] = true;
+                cavalieri[i]=Cavaliere.nextCavaliere();
+                scoppio.play();
+
+                View.getInstance().gestisciMago(i);
+
+
+                Model.getInstance().incrementScore();
+                updateScoreLabel(Model.getInstance().getScore());
+                b = true;
             }
         }
-    
+    }
+
     public void statoCavaliere(int i){
         if(controlloreMovimento[i]) 
                 y[i]+=movimento;
@@ -184,17 +162,17 @@ public class Model implements IModel {
             pioggia[i]= null;
             index[i]=0;
         }
-           // esplosi[0] = true;
+           
         if((y[i] >= ALTEZZA-220) &&(esplosi[i] == false) ){
             gameover.play();
             timer.stop();
             try {
                 sleep(1500);
-                //PausaGioco();
+                
             } catch (InterruptedException ex) {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-           // PausaGioco();
+           
             player.stop();
             ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
 
@@ -204,12 +182,7 @@ public class Model implements IModel {
         }
 
         if(esplosi[i]==true  && index[i] <= 13 && y[i] <= ALTEZZA-221){
-
-
-
             pioggia[i]= effettuaAnimazione(colore[i], index[i]);
-            
-
             index[i] ++;
         }
     }
