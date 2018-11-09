@@ -11,8 +11,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import model.MagoDefault;
+
+
 import model.Model;
-import static model.Model.xMago;
+//import static model.Model.xMago;
 import static view.MainGUI.P;
 import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
@@ -30,13 +34,15 @@ import static view.MainGUI.isGameStarted;
 
 public class BoardPanel extends JPanel implements KeyListener {
     BufferedImage sfondo;
-    public static BufferedImage[] arrayMago = new BufferedImage[3];
-    public static BufferedImage mago;
+    //public static BufferedImage[] arrayMago = new BufferedImage[3];
+    //public static BufferedImage mago;
     public static int[] x = new int[5];
     public static int larghezza = 490;
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
     //int a=0;
+    public static MagoDefault mago;
+    BufferedImage a,b,c;
 
     public BoardPanel() {
 
@@ -44,10 +50,13 @@ public class BoardPanel extends JPanel implements KeyListener {
         this.addKeyListener(this);
         try {
             sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
-            arrayMago[0] = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
-            arrayMago[1] = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
-            arrayMago[2] = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
-            mago = arrayMago[0];
+         
+            a = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
+            b = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
+            c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
+                      
+            mago = new MagoDefault(a,b,c);
+            
 
         }catch (IOException ex) {
         }
@@ -64,11 +73,12 @@ public class BoardPanel extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics g) {
 
-        Model.getInstance().stampaMago();
-      
+        //Model.getInstance().stampaMago();
+        mago.stampaMago();
+        
         super.paintComponent(g);        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
-        g.drawImage(mago,xMago,getHeight()-145,100,108,null);
+        g.drawImage(mago.magoImg() ,mago.getXMago() ,getHeight()-145,100,108,null);
         if(isGameStarted==true) {
 
             t1 = System.currentTimeMillis()-P;
@@ -86,7 +96,8 @@ public class BoardPanel extends JPanel implements KeyListener {
                 g.drawImage(pioggia[4],x[4],Model.getInstance().getY(4),150,180,null);
            
             Model.getInstance().resetOndata();           
-            Model.getInstance().movimentoBraccia();
+            //Model.getInstance().movimentoBraccia();
+            mago.movimentoBraccia();
         }
     }
 
@@ -195,5 +206,6 @@ public class BoardPanel extends JPanel implements KeyListener {
     public void keyTyped(KeyEvent e) {
 
     }
+     
   
 } // end class

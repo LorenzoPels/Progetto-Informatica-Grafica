@@ -27,9 +27,9 @@ public interface IModel {
         public void statoCavaliere(int i);
         public void caricaAnimazioni();
         public Image effettuaAnimazione(String colore, int indice);
-        public int movimentoMago(int i);
-        public void movimentoBraccia();
-        public void stampaMago();
+        //public int movimentoMago(int i);
+        //public void movimentoBraccia();
+        //public void stampaMago();
         public void pioggiaRandom();
 
 	/*public void hitFallingPiece();//metodo per far esplodere il palloncino

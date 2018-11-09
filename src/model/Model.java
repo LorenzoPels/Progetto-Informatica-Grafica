@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static view.BoardPanel.arrayMago;
+//import static view.BoardPanel.arrayMago;
 import static view.BoardPanel.larghezza;
 import static view.BoardPanel.x;
 import view.CaricatoreImmagine;
@@ -26,7 +26,7 @@ import static view.MainGUI.t1;
 import static view.MainGUI.timer;
 import static view.RightPanel.scorelabel;
 import static view.RightPanel.updateScoreLabel;
-import static view.BoardPanel.mago;
+//mport static view.BoardPanel.mago;
 import static view.MainGUI.P;
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
@@ -37,6 +37,9 @@ import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.StartWindow.insane;
+
+import model.MagoDefault;
+import static view.BoardPanel.mago;
 
 
 public class Model implements IModel {
@@ -55,11 +58,11 @@ public class Model implements IModel {
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
     private boolean controlloreMovimento[]= new boolean[5];
-    private static long tmago;
+ /*   private static long tmago;
     public static int xMagoMax ;
     public static int xMagoMin ;
-    public static int xMago= larghezza/2;
-    int direzioneMago=1;
+    public static int xMago= larghezza/2;       
+    int direzioneMago=1;            */
     int a=0;
     //---------------------------------------------------------------
     // INSTANCE ATTRIBUTES
@@ -182,7 +185,8 @@ public class Model implements IModel {
                 esplosi[i] = true;
                 cavalieri[i]=Cavaliere.nextCavaliere();
                 scoppio.play();
-                gestisciMago(i);
+                //gestisciMago(i);
+                mago.gestisciMago(i);
                 incrementScore();
                 updateScoreLabel(getScore());
                 b = true;
@@ -264,7 +268,9 @@ public class Model implements IModel {
                         
     }
    
-    public int movimentoMago(int i){
+   
+    
+   /* public int movimentoMago(int i){
         int imgMago = 0;
         if(xMago < x[i] ){
             imgMago = 1;
@@ -301,7 +307,7 @@ public class Model implements IModel {
         int i;
         i= movimentoMago(c);
         return mago = arrayMago[i];
-    }
+    }                                                                   */
     
     public void pioggiaRandom(){   
         for(int i=0;i<pioggia.length;i++){

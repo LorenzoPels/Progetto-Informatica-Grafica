@@ -12,6 +12,7 @@ import static view.StartWindow.insane;
 
 
 public class Cavaliere {
+    
     private static int length =9;
     final static Cavaliere[] FALLING_PIECE_ARRAY = new Cavaliere[15];
     //final static Piece[] PREVIEW_PIECE_ARRAY = new Piece[7];
