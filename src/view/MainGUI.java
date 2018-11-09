@@ -27,15 +27,18 @@ import model.Cavaliere;
 import static model.Cavaliere.Loader;
 import model.Model;
 import static view.BoardPanel.larghezza;
-import static view.BoardPanel.mago;
-import static view.BoardPanel.arrayMago;
+//import static view.BoardPanel.mago;
+//import static view.BoardPanel.arrayMago;
 import static view.RightPanel.audiobutton;
 import static view.RightPanel.escbutton;
 import static view.RightPanel.musicbutton;
 import static view.RightPanel.pausebutton;
 import static view.RightPanel.scorelabel;
-import static model.Model.xMagoMax;
-import static model.Model.xMagoMin;
+//import static model.Model.xMagoMax;
+//import static model.Model.xMagoMin;
+
+import model.Mago;
+import static view.BoardPanel.maggo;
 
 
 public class MainGUI extends JFrame implements ActionListener  {
@@ -165,9 +168,14 @@ public class MainGUI extends JFrame implements ActionListener  {
                 timer.start();
                 //giocoiniziato = true;
                 t0 = System.currentTimeMillis();
-                xMagoMax = larghezza-150 ;        
+            /*    xMagoMax = larghezza-150 ;        
                 xMagoMin = 50;
-                mago = arrayMago[0];
+                mago = arrayMago[0];        */
+            
+                maggo.setXMagoMax(larghezza-150);
+                maggo.setXMagoMin(50);
+                maggo.resetMago();
+            
                 panel.requestFocusInWindow();
         }
         else if (!isGameRunning) {
