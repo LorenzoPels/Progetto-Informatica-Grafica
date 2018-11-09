@@ -12,7 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import model.Mago;
+import model.MagoDefault;
 
 import model.Model;
 //import static model.Model.xMago;
@@ -40,7 +40,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
     //int a=0;
-    public static Mago maggo;
+    public static MagoDefault maggo;
     BufferedImage a,b,c;
 
     public BoardPanel() {
@@ -54,7 +54,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             b = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
             c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
                       
-            maggo = new Mago(a,b,c);
+            maggo = new MagoDefault(a,b,c);
             
 
         }catch (IOException ex) {

@@ -37,7 +37,7 @@ import static view.RightPanel.scorelabel;
 //import static model.Model.xMagoMax;
 //import static model.Model.xMagoMin;
 
-import model.Mago;
+import model.MagoDefault;
 import static view.BoardPanel.maggo;
 
 

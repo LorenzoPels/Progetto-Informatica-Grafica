@@ -38,7 +38,7 @@ import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.StartWindow.insane;
 
-import model.Mago;
+import model.MagoDefault;
 import static view.BoardPanel.maggo;
 
 

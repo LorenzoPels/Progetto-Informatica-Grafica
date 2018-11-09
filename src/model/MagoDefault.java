@@ -15,7 +15,7 @@ import static view.BoardPanel.x;
 import static view.MainGUI.t1;
 
 
-public class Mago {
+public class MagoDefault {
     
     public static BufferedImage[] arrayMago = new BufferedImage[3];;
     public static BufferedImage mago;
@@ -27,7 +27,7 @@ public class Mago {
     
     private static long tmago;
 
-    public Mago(BufferedImage a, BufferedImage b, BufferedImage c) {arrayMago =  new BufferedImage[3];
+    public MagoDefault(BufferedImage a, BufferedImage b, BufferedImage c) {arrayMago =  new BufferedImage[3];
             
             arrayMago[0] = a;
             arrayMago[1] = b;
