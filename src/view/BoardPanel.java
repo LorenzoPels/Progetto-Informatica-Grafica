@@ -11,12 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
 import model.MagoDefault;
-
-
 import model.Model;
-//import static model.Model.xMago;
 import static view.MainGUI.P;
 import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
@@ -27,22 +23,26 @@ import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.isGameStarted;
+import static view.MainGUI.giocoIniziato;
 
 
 
 
 public class BoardPanel extends JPanel implements KeyListener {
-    BufferedImage sfondo;
-    //public static BufferedImage[] arrayMago = new BufferedImage[3];
-    //public static BufferedImage mago;
+
+    //---------------------------------------------------------------
+    // VARIABILI STATICHE
+    //--------------------------------------------------------------- 
     public static int[] x = new int[5];
     public static int larghezza = 490;
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
-    //int a=0;
     public static MagoDefault mago;
+    //---------------------------------------------------------------
+    // VARIABILI PRIVATE
+    //--------------------------------------------------------------- 
     BufferedImage a,b,c;
+    BufferedImage sfondo;
 
     public BoardPanel() {
 
@@ -60,7 +60,7 @@ public class BoardPanel extends JPanel implements KeyListener {
 
         }catch (IOException ex) {
         }
-        //setFocusable(true);
+        
     }
         
 
@@ -73,13 +73,11 @@ public class BoardPanel extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics g) {
 
-        //Model.getInstance().stampaMago();
         mago.stampaMago();
-        
         super.paintComponent(g);        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
         g.drawImage(mago.magoImg() ,mago.getXMago() ,getHeight()-145,100,108,null);
-        if(isGameStarted==true) {
+        if(giocoIniziato==true) {
 
             t1 = System.currentTimeMillis()-P;
             diff = t1 - t0;
@@ -96,7 +94,6 @@ public class BoardPanel extends JPanel implements KeyListener {
                 g.drawImage(pioggia[4],x[4],Model.getInstance().getY(4),150,180,null);
            
             Model.getInstance().resetOndata();           
-            //Model.getInstance().movimentoBraccia();
             mago.movimentoBraccia();
         }
     }

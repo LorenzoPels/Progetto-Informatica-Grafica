@@ -14,8 +14,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class ClipPlayer {
 
+    
+    //---------------------------------------------------------------
+    // VARIABILI PRIVATE
+    //--------------------------------------------------------------- 
     private final int DEFAULT_NUM_CLIPS = 5;
-
     private int clipArrayIndex = 0;
     private Clip[] audioClipArray;
 
@@ -35,6 +38,10 @@ public class ClipPlayer {
 
     } // end constructor
 
+    //---------------------------------------------------------------
+    // METODI PRIVATI
+    //--------------------------------------------------------------- 
+    
     private int computeNumClips() {
         // to-do
         return DEFAULT_NUM_CLIPS;
@@ -75,12 +82,14 @@ public class ClipPlayer {
         return audioClip;
     } // end method getClip()
 
+    //---------------------------------------------------------------
+    // METODI PUBBLICI
+    //--------------------------------------------------------------- 
+    
     public void play() {
-        //System.out.println("PLAY, this.clipArrayIndex = " + this.clipArrayIndex);
         this.audioClipArray[this.clipArrayIndex].loop(1);
-        this.clipArrayIndex++;
-        //this.clipArrayIndex = this.clipArrayIndex % this.audioClipArray.length;
-        this.clipArrayIndex %= this.audioClipArray.length; // it is equivalent to the previous instruction, but it is more compact
+        this.clipArrayIndex++;       
+        this.clipArrayIndex %= this.audioClipArray.length; 
     }
 
     public void close() {

@@ -7,11 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static view.MainGUI.gameover;
-import static view.MainGUI.isGameRunning;
-import static view.MainGUI.isGameStarted;
-import static view.MainGUI.panel;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
+import static view.MainGUI.giocoInEsecuzione;
 
 
 
@@ -22,13 +20,12 @@ public class RightPanel extends javax.swing.JPanel {
     
     public RightPanel() {
         initComponents();
-        scorelabel.setText("0");
-        
-        
+        scorelabel.setText("0");    
     }
+    
     public static void updateScoreLabel(int score) {
 		scorelabel.setText(String.valueOf(score));
-	}
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -168,7 +165,7 @@ public class RightPanel extends javax.swing.JPanel {
 
     private void pausebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausebuttonActionPerformed
     
-     if (!isGameRunning) {
+     if (!giocoInEsecuzione) {
         pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
         escbutton.setEnabled(false);
         musicbutton.setEnabled(false);

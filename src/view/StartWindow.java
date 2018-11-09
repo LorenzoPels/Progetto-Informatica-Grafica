@@ -3,17 +3,8 @@ package view;
 
 import controller.ControllerForView;
 import java.awt.Toolkit;
-
 import java.awt.event.KeyEvent;
-
-import javax.swing.JFrame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
-import model.Model;
-import static view.RightPanel.scorelabel;
-
 
 
 public class StartWindow extends javax.swing.JFrame  {
@@ -26,12 +17,8 @@ public class StartWindow extends javax.swing.JFrame  {
         jButtonDx.setMnemonic(KeyEvent.VK_RIGHT);
         jButtonSx.setMnemonic(KeyEvent.VK_LEFT);
         jButtonMode.setMnemonic(KeyEvent.VK_ENTER);
-        
-       
         setLocationRelativeTo(null);
-        
-       
-       
+            
     }
     
     public void Close(){
