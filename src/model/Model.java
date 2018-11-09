@@ -39,7 +39,7 @@ import static view.MainGUI.t0;
 import static view.StartWindow.insane;
 
 import model.MagoDefault;
-import static view.BoardPanel.maggo;
+import static view.BoardPanel.mago;
 
 
 public class Model implements IModel {
@@ -186,7 +186,7 @@ public class Model implements IModel {
                 cavalieri[i]=Cavaliere.nextCavaliere();
                 scoppio.play();
                 //gestisciMago(i);
-                maggo.gestisciMago(i);
+                mago.gestisciMago(i);
                 incrementScore();
                 updateScoreLabel(getScore());
                 b = true;

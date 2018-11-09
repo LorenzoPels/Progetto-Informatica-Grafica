@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import model.MagoDefault;
 
+
 import model.Model;
 //import static model.Model.xMago;
 import static view.MainGUI.P;
@@ -40,7 +41,7 @@ public class BoardPanel extends JPanel implements KeyListener {
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
     //int a=0;
-    public static MagoDefault maggo;
+    public static MagoDefault mago;
     BufferedImage a,b,c;
 
     public BoardPanel() {
@@ -54,7 +55,7 @@ public class BoardPanel extends JPanel implements KeyListener {
             b = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
             c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
                       
-            maggo = new MagoDefault(a,b,c);
+            mago = new MagoDefault(a,b,c);
             
 
         }catch (IOException ex) {
@@ -73,11 +74,11 @@ public class BoardPanel extends JPanel implements KeyListener {
     public void paintComponent(Graphics g) {
 
         //Model.getInstance().stampaMago();
-        maggo.stampaMago();
+        mago.stampaMago();
         
         super.paintComponent(g);        
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
-        g.drawImage( maggo.magoImg() ,maggo.getXMago() ,getHeight()-145,100,108,null);
+        g.drawImage(mago.magoImg() ,mago.getXMago() ,getHeight()-145,100,108,null);
         if(isGameStarted==true) {
 
             t1 = System.currentTimeMillis()-P;
@@ -96,7 +97,7 @@ public class BoardPanel extends JPanel implements KeyListener {
            
             Model.getInstance().resetOndata();           
             //Model.getInstance().movimentoBraccia();
-            maggo.movimentoBraccia();
+            mago.movimentoBraccia();
         }
     }
 

@@ -15,7 +15,7 @@ import static view.BoardPanel.x;
 import static view.MainGUI.t1;
 
 
-public class MagoDefault {
+public class MagoDefault implements MagoInterface {
     
     public static BufferedImage[] arrayMago = new BufferedImage[3];;
     public static BufferedImage mago;

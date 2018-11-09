@@ -38,7 +38,7 @@ import static view.RightPanel.scorelabel;
 //import static model.Model.xMagoMin;
 
 import model.MagoDefault;
-import static view.BoardPanel.maggo;
+import static view.BoardPanel.mago;
 
 
 public class MainGUI extends JFrame implements ActionListener  {
@@ -172,9 +172,9 @@ public class MainGUI extends JFrame implements ActionListener  {
                 xMagoMin = 50;
                 mago = arrayMago[0];        */
             
-                maggo.setXMagoMax(larghezza-150);
-                maggo.setXMagoMin(50);
-                maggo.resetMago();
+                mago.setXMagoMax(larghezza-150);
+                mago.setXMagoMin(50);
+                mago.resetMago();
             
                 panel.requestFocusInWindow();
         }
