@@ -3,20 +3,13 @@ package controller;
 
 import model.Model;
 import view.View;
-import java.lang.String;
-import model.Cavaliere;
-import static view.MainGUI.cavalieri;
-import static view.MainGUI.esplosi;
-import static view.MainGUI.pioggia;
-import static view.MainGUI.scoppio;
-import static view.RightPanel.updateScoreLabel;
+
 
 
 public class ControllerForView implements IControllerForView {
         //---------------------------------------------------------------
-	// STATIC FIELDS
+	// VARIABILI STATICHE
 	//---------------------------------------------------------------
-	private final static int SCORE_FACTOR = 10;
 	private static ControllerForView instance = null;
 
 	private ControllerForView() {
@@ -25,7 +18,7 @@ public class ControllerForView implements IControllerForView {
          
 	
         //---------------------------------------------------------------
-	// PUBLIC INSTANCE METHODS
+	// METODI PUBBLICI
 	//---------------------------------------------------------------
 	public void openStartWindow() {
 		View.getInstance().openStartWindow();
@@ -63,8 +56,8 @@ public class ControllerForView implements IControllerForView {
 		return String.valueOf(Model.getInstance().getScore());
 	}
 
-        public void incrementScore(/*int increment*/) {
-		Model.getInstance().incrementScore(/*increment*/);
+        public void incrementScore() {
+		Model.getInstance().incrementScore();
 	}
         
         public void Colpito(boolean b, String s){
@@ -74,7 +67,7 @@ public class ControllerForView implements IControllerForView {
        
 
         //---------------------------------------------------------------
-	// STATIC METHODS
+	// METODI STATICI
 	//---------------------------------------------------------------
 	public static IControllerForView getInstance() {
 		if (instance == null)

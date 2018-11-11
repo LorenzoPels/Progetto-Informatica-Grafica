@@ -2,30 +2,26 @@
 package model;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import static view.BoardPanel.larghezza;
-
-
 import static view.BoardPanel.x;
-
-
 import static view.MainGUI.t1;
 
 
 public class MagoDefault implements MagoInterface {
     
+    //---------------------------------------------------------------
+    // VARIABILI STATICHE
+    //---------------------------------------------------------------  
     public static BufferedImage[] arrayMago = new BufferedImage[3];;
     public static BufferedImage mago;
-    
     public static int xMago ;
     public static int xMagoMax;
     public static int xMagoMin;
-    int direzioneMago;
-    
     private static long tmago;
+    //---------------------------------------------------------------
+    // VARIABILI PRIVATE
+    //--------------------------------------------------------------- 
+    int direzioneMago;
 
     public MagoDefault(BufferedImage a, BufferedImage b, BufferedImage c) {arrayMago =  new BufferedImage[3];
             
@@ -43,6 +39,10 @@ public class MagoDefault implements MagoInterface {
             tmago= 0 ;
     }
     
+    
+    //---------------------------------------------------------------
+    //  METODI PUBBLICI
+    //--------------------------------------------------------------- 
        
     public BufferedImage magoImg(){
         return this.mago;

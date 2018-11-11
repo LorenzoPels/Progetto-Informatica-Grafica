@@ -1,5 +1,5 @@
 
-package config;
+package utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,13 +9,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static view.View.record;
-import static view.GameOverDialog.recordUnit;
 
 
 public class Config {
     public void Config(){
     
     }
+    
+    //---------------------------------------------------------------
+    // METODI STATICI
+    //--------------------------------------------------------------- 
     
     public static void Write(String s) throws FileNotFoundException, IOException{
         File f = new File("record.txt");
@@ -43,31 +46,31 @@ public class Config {
                 scrivi.close();
             }
     }
-    
+
     public static void Read() throws  FileNotFoundException, IOException{
         FileReader file = new FileReader("record.txt");
         BufferedReader lettore = new BufferedReader(file);
         String riga="0"; 
-        //recordlabel.setText(lettore.readLine());
+
         while(riga != null){
             riga = lettore.readLine();
             if(riga!=null)
                 record = riga;
-        
+
         }
         file.close();
     }
-    
+
     public static void ReadInsane() throws  FileNotFoundException, IOException{
         FileReader file = new FileReader("recordInsane.txt");
         BufferedReader lettore = new BufferedReader(file);
         String riga="0"; 
-        //recordlabel.setText(lettore.readLine());
+
         while(riga != null){
             riga = lettore.readLine();
             if(riga!=null)
                 record = riga;
-        
+
         }
         file.close();
     }

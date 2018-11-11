@@ -1,7 +1,7 @@
 
 package view;
 
-import config.Config;
+
 import controller.ControllerForView;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import static view.Dialog.resetLabel;
 import static view.RightPanel.musicbutton;
 import static view.RightPanel.audiobutton;
-import static view.RightPanel.scorelabel;
 import static view.RightPanel.escbutton;
 import static view.RightPanel.pausebutton;
 
@@ -21,9 +20,7 @@ public class GameOverDialog extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-    }
-    
-    
+    }       
     
     private void resetBottoni(){
         pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));

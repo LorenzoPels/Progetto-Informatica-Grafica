@@ -3,11 +3,9 @@ package model;
 
 import controller.ControllerForView;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import static view.BoardPanel.arrayMago;
 import static view.BoardPanel.larghezza;
 import static view.BoardPanel.x;
 import view.CaricatoreImmagine;
@@ -18,15 +16,12 @@ import static view.MainGUI.Pf;
 import static view.MainGUI.cavalieri;
 import static view.MainGUI.esplosi;
 import static view.MainGUI.gameover;
-import static view.MainGUI.isGameRunning;
-import static view.MainGUI.isGameStarted;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
 import static view.MainGUI.t1;
 import static view.MainGUI.timer;
 import static view.RightPanel.scorelabel;
 import static view.RightPanel.updateScoreLabel;
-//mport static view.BoardPanel.mago;
 import static view.MainGUI.P;
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
@@ -37,17 +32,21 @@ import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.StartWindow.insane;
-
-import model.MagoDefault;
 import static view.BoardPanel.mago;
+import static view.MainGUI.giocoIniziato;
+import static view.MainGUI.giocoInEsecuzione;
 
 
 public class Model implements IModel {
     
     //---------------------------------------------------------------
-    // STATIC FIELDS
+    // VARIABILI STATICHE
     //---------------------------------------------------------------
     private static Model instance = null;
+    
+    //---------------------------------------------------------------
+    // VARIABILI PRIVATE
+    //--------------------------------------------------------------- 
     private Cavaliere fallingPiece;
     private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
@@ -58,29 +57,29 @@ public class Model implements IModel {
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
     private boolean controlloreMovimento[]= new boolean[5];
- /*   private static long tmago;
-    public static int xMagoMax ;
-    public static int xMagoMin ;
-    public static int xMago= larghezza/2;       
-    int direzioneMago=1;            */
+    private final int altezzaterreno = ALTEZZA-250;
     int a=0;
+    
     //---------------------------------------------------------------
-    // INSTANCE ATTRIBUTES
+    // VARIABILI PUBBLICHE
     //---------------------------------------------------------------
     public  int score;
     public  int y[] = new int[5];
     public  int index[] = new int[5];
     public  String[] colore = new String[5];
+    
+    
+    
     private Model() {		
         this.initGame();
     }
     
     //---------------------------------------------------------------
-    // PUBLIC INSTANCE METHODS
+    // METODI PUBBLICI
     //---------------------------------------------------------------
     public void initGame() {
-        isGameRunning = false;
-        isGameStarted = false;
+        giocoInEsecuzione = false;
+        giocoIniziato = false;
         this.score= 0;
         for(int i=0; i<cavalieri.length;i++){
             cavalieri[i]=null;
@@ -177,15 +176,13 @@ public class Model implements IModel {
     }
     
     public void Colpito(boolean b, String s){
-        //b = false;
         for(int i =0;(i<cavalieri.length)&&(b==false);i++){
             if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
                 pioggia[i] = null;
                 cavalieri[i] = null;
                 esplosi[i] = true;
                 cavalieri[i]=Cavaliere.nextCavaliere();
-                scoppio.play();
-                //gestisciMago(i);
+                scoppio.play();                
                 mago.gestisciMago(i);
                 incrementScore();
                 updateScoreLabel(getScore());
@@ -202,12 +199,12 @@ public class Model implements IModel {
             if(index[i] > 12)
                 y[i]+=2*movimento+1;
         if(y[i] >= -1000) controlloreMovimento[i] = true;
-        if(y[i] >= ALTEZZA-220) controlloreMovimento[i] = false;        
-        if((y[i] >= ALTEZZA-220) &&(esplosi[i] == true)){
+        if(y[i] >= altezzaterreno) controlloreMovimento[i] = false;        
+        if((y[i] >= altezzaterreno) &&(esplosi[i] == true)){
             pioggia[i]= null;
             index[i]=0;
         }        
-        if((y[i] >= ALTEZZA-220) &&(esplosi[i] == false) ){
+        if((y[i] >= altezzaterreno) &&(esplosi[i] == false) ){
             gameover.play();
             timer.stop();
             try {
@@ -225,7 +222,7 @@ public class Model implements IModel {
              colore[i] = cavalieri[i].getColore();
         }
 
-        if(esplosi[i]==true  && index[i] <= 13 && y[i] <= ALTEZZA-221){
+        if(esplosi[i]==true  && index[i] <= 13 && y[i] <= altezzaterreno-1){
             pioggia[i]= effettuaAnimazione(colore[i], index[i]);
             index[i] ++;
         }
@@ -267,47 +264,6 @@ public class Model implements IModel {
         return frameAnimazione;
                         
     }
-   
-   
-    
-   /* public int movimentoMago(int i){
-        int imgMago = 0;
-        if(xMago < x[i] ){
-            imgMago = 1;
-            xMagoMax = x[i]+50;
-            direzioneMago=+1;
-        }
-        if(xMago > x[i] ){
-            imgMago = 2;
-            xMagoMin=x[i]-50;
-            direzioneMago=-1;
-        }
-        tmago =  System.currentTimeMillis();
-        return imgMago;       
-    }
-     
-    public void movimentoBraccia(){
-        if((t1-tmago)>= 500)
-                mago = arrayMago[0];
-    }
-        
-    public void stampaMago(){
-        if (xMago == xMagoMax ){
-            direzioneMago=-1;
-            mago = arrayMago[0];
-        }
-        if (xMago == xMagoMin){
-            direzioneMago=+1;
-            mago = arrayMago[0];
-        }        
-        xMago+=direzioneMago;
-    }
-        
-    public BufferedImage gestisciMago(int c){
-        int i;
-        i= movimentoMago(c);
-        return mago = arrayMago[i];
-    }                                                                   */
     
     public void pioggiaRandom(){   
         for(int i=0;i<pioggia.length;i++){
@@ -324,7 +280,7 @@ public class Model implements IModel {
     }
     
     //---------------------------------------------------------------
-    // STATIC METHODS
+    // METODI STATICI
     //---------------------------------------------------------------
     public static IModel getInstance() {
             if (instance == null)
