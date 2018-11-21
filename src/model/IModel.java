@@ -9,6 +9,10 @@ public interface IModel {
         
         public int getY(int i);
         
+        public int getMovimento();
+        
+        public void incrementaMovimento();
+        
         public void resetIndex();
         
         public void resetY();
@@ -28,5 +32,6 @@ public interface IModel {
         public Image effettuaAnimazione(String colore, int indice);
         
         public void pioggiaRandom();
+        
 
 }

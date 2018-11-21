@@ -27,6 +27,15 @@ public interface IControllerForView {
 	public void initGame();
         
         public void Colpito(boolean b, String s);
-       
+        
+        public int getY(int i);
+         
+        public void resetIndex();
+        
+        public void resetY();
+        
+        public void statoCavaliere(int i);
+        
+        public void pioggiaRandom();
     
 }

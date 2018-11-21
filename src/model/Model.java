@@ -47,7 +47,7 @@ public class Model implements IModel {
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
-    private Cavaliere fallingPiece;
+    //private Cavaliere fallingPiece;
     private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
     private Image[] Giallo = new Image[14];
@@ -56,8 +56,8 @@ public class Model implements IModel {
     private Image[] Rosso = new Image[14];
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
-    private boolean controlloreMovimento[]= new boolean[5];
-    private final int altezzaterreno = ALTEZZA-250;
+  //  private boolean controlloreMovimento[]= new boolean[5];
+   // private final int altezzaterreno = ALTEZZA-250;
     int a=0;
     
     //---------------------------------------------------------------
@@ -65,9 +65,9 @@ public class Model implements IModel {
     //---------------------------------------------------------------
     public  int score;
     public  int y[] = new int[5];
-    public  int index[] = new int[5];
+    //public  int index[] = new int[5];
     public  String[] colore = new String[5];
-    
+    public int movimento;
     
     
     private Model() {		
@@ -89,11 +89,7 @@ public class Model implements IModel {
         MainGUI.Cavalieri();
         MainGUI.Pioggia();
         pioggiaRandom();
-        int0=900;
-        int1=1800;
-        int2=2700;
-        int3=3600;
-        int4=4500;
+        
         resetIndex();
         resetY();
         for (int i=0; i<y.length;i++)
@@ -120,21 +116,29 @@ public class Model implements IModel {
     public int getScore() {
         return this.score;
     }
-    
+    //va messo nel controllerForView
     public int getY(int i) {
         return this.y[i];
     }
+    public int getMovimento(){
+        return movimento;
+    }
     
+    public void incrementaMovimento(){
+        movimento++;
+    }
+    
+    //va messo nel controllerView
     public void resetIndex(){
         for (int i=0; i<index.length;i++)
             index[i]=0;
     }
-    
+    //va messo nel controllerView
     public void resetY(){
         for (int i=0; i<y.length;i++)
             y[i]=-150;  
     }
-    
+    //va messo nel controllerForModel
     public void resetOndata(){
         if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
             t0=System.currentTimeMillis();
@@ -174,7 +178,7 @@ public class Model implements IModel {
     public  void incrementScore() {
         this.score ++;
     }
-    
+    //va messo nel controllerModel
     public void Colpito(boolean b, String s){
         for(int i =0;(i<cavalieri.length)&&(b==false);i++){
             if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
@@ -190,7 +194,7 @@ public class Model implements IModel {
             }
         }
     }
-
+    //va messo nel controllerView
     public void statoCavaliere(int i){
         if(controlloreMovimento[i]) 
             y[i]+=movimento;
@@ -264,7 +268,7 @@ public class Model implements IModel {
         return frameAnimazione;
                         
     }
-    
+    //va messo nel controllerView
     public void pioggiaRandom(){   
         for(int i=0;i<pioggia.length;i++){
             x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
