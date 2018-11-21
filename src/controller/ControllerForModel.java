@@ -17,6 +17,7 @@ import static view.StartWindow.insane;
 public class ControllerForModel implements IControllerForModel {
 
 	private static ControllerForModel instance = null;
+        public int rallentaMov=0;
 
 	private ControllerForModel() {
 		//to-do
@@ -24,10 +25,14 @@ public class ControllerForModel implements IControllerForModel {
         
         public int getMovimento(){
             return Model.getInstance().getMovimento();
+            
         }
     
         public void incrementaMovimento(){
-            Model.getInstance().incrementaMovimento();
+            //Model.getInstance().incrementaMovimento();
+            int mv = Model.getInstance().getMovimento();
+            mv++;
+            Model.getInstance().setMovimento(mv);
         }
         
         public void resetOndata(){
@@ -37,9 +42,11 @@ public class ControllerForModel implements IControllerForModel {
             MainGUI.Cavalieri();
             MainGUI.Pioggia();
             MainGUI.Esplosi();
-            pioggiaRandom();
-            resetIndex();
-            resetY();
+            ControllerForView.getInstance().pioggiaRandom();
+            ControllerForView.getInstance().resetY();
+            //pioggiaRandom();
+            //resetIndex();
+            //resetY();
             if(int0>100)
                 int0-=100;
             if( (int1-int0) > 500 )
@@ -50,14 +57,16 @@ public class ControllerForModel implements IControllerForModel {
                 int3-=200;
             if( (int4-int3) > 500 )
                 int4-=200;
-
-            aggiornaMovimento(a);
+              
+              aggiornaMovimento(rallentaMov);
+            //aggiornaMovimento(a);
         }
     }
         public void aggiornaMovimento(int a){
             if(insane == true){                        
-                if( getMovimento() < 6 ){                    
-                    a++;
+                if( getMovimento() < 6 ){
+                    if( (getMovimento() + a)%2 == 0)
+                        a++;
                     incrementaMovimento();
                 }
             }else{
@@ -68,8 +77,24 @@ public class ControllerForModel implements IControllerForModel {
                 }
             }               
         }
-                
-	public IControllerForModel getInstance() {
+        
+    /*    public void Colpito(boolean b, String s){
+        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
+                pioggia[i] = null;
+                cavalieri[i] = null;
+                esplosi[i] = true;
+                cavalieri[i]=Cavaliere.nextCavaliere();
+                scoppio.play();                
+                mago.gestisciMago(i);
+                incrementScore();
+                updateScoreLabel(getScore());
+                b = true;
+            }
+        }
+    }                                                                           */  //spostato su CFV
+        
+	public static IControllerForModel getInstance() {
 		if (instance == null)
 			instance = new ControllerForModel();
 		return instance;

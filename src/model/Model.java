@@ -1,6 +1,7 @@
 
 package model;
 
+import controller.ControllerForModel;
 import controller.ControllerForView;
 import java.awt.Image;
 import static java.lang.Thread.sleep;
@@ -13,7 +14,9 @@ import view.MainGUI;
 import static view.MainGUI.ALTEZZA;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
+
 import static view.MainGUI.cavalieri;
+
 import static view.MainGUI.esplosi;
 import static view.MainGUI.gameover;
 import static view.MainGUI.player;
@@ -28,7 +31,7 @@ import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.movimento;
+                                                                                //import static view.MainGUI.movimento;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.StartWindow.insane;
@@ -64,7 +67,7 @@ public class Model implements IModel {
     // VARIABILI PUBBLICHE
     //---------------------------------------------------------------
     public  int score;
-    public  int y[] = new int[5];
+                                                                                //public  int y[] = new int[5];
     //public  int index[] = new int[5];
     public  String[] colore = new String[5];
     public int movimento;
@@ -88,12 +91,11 @@ public class Model implements IModel {
         P=0;
         MainGUI.Cavalieri();
         MainGUI.Pioggia();
-        pioggiaRandom();
         
+        pioggiaRandom();       //in questo momento pensi che dovresti creare un metodo in CFM che chiamando CFV risolve
         resetIndex();
         resetY();
-        for (int i=0; i<y.length;i++)
-            y[i]=-150;
+        
 
         t0=t1=P=Pi=Pf=0;
         if(insane==true){
@@ -117,19 +119,23 @@ public class Model implements IModel {
         return this.score;
     }
     //va messo nel controllerForView
-    public int getY(int i) {
-        return this.y[i];
-    }
+/*    public int getY(int i) {
+        return this.y[i];           
+    }                                                                           */
     public int getMovimento(){
         return movimento;
     }
     
-    public void incrementaMovimento(){
-        movimento++;
+    public void setMovimento(int m){
+        movimento = m;
     }
     
+/*    public void incrementaMovimento(){
+        movimento++;
+    }                                                                           */
+    
     //va messo nel controllerView
-    public void resetIndex(){
+    /*public void resetIndex(){
         for (int i=0; i<index.length;i++)
             index[i]=0;
     }
@@ -137,9 +143,10 @@ public class Model implements IModel {
     public void resetY(){
         for (int i=0; i<y.length;i++)
             y[i]=-150;  
-    }
+    }                                                                           */
+    
     //va messo nel controllerForModel
-    public void resetOndata(){
+    /*public void resetOndata(){
         if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
             t0=System.currentTimeMillis();
             P=0;
@@ -161,8 +168,9 @@ public class Model implements IModel {
                 int4-=200;
 
             if(insane == true){                        
-                if( movimento < 6 ){                    
-                    a++;
+                if( movimento < 6 ){
+                    if( (getMovimento() + a)%2 == 0)
+                        a++;
                     movimento++;
                 }
             }else{
@@ -173,13 +181,13 @@ public class Model implements IModel {
                 }
             }               
         }
-    }
+    }                                                                           */
     
     public  void incrementScore() {
         this.score ++;
     }
-    //va messo nel controllerModel
-    public void Colpito(boolean b, String s){
+    //va messo nel controllerModel   invece view?
+    /*public void Colpito(boolean b, String s){
         for(int i =0;(i<cavalieri.length)&&(b==false);i++){
             if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
                 pioggia[i] = null;
@@ -193,9 +201,10 @@ public class Model implements IModel {
                 b = true;
             }
         }
-    }
+    }                                                                           */
+    
     //va messo nel controllerView
-    public void statoCavaliere(int i){
+    /*public void statoCavaliere(int i){
         if(controlloreMovimento[i]) 
             y[i]+=movimento;
             if(esplosi[i])
@@ -230,7 +239,7 @@ public class Model implements IModel {
             pioggia[i]= effettuaAnimazione(colore[i], index[i]);
             index[i] ++;
         }
-    }
+    }                                                                           */
     
     public void caricaAnimazioni(){
         CaricatoreImmagine loader = new CaricatoreImmagine();
@@ -269,7 +278,7 @@ public class Model implements IModel {
                         
     }
     //va messo nel controllerView
-    public void pioggiaRandom(){   
+ /*   public void pioggiaRandom(){   
         for(int i=0;i<pioggia.length;i++){
             x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
             if(x[i]<148)
@@ -281,7 +290,7 @@ public class Model implements IModel {
                     x[i] = x[i-1]+148;
             } 
         }               
-    }
+    }                                                                           */
     
     //---------------------------------------------------------------
     // METODI STATICI

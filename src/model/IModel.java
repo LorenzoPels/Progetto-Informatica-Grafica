@@ -7,31 +7,33 @@ public interface IModel {
    
 	public int getScore();
         
-        public int getY(int i);
+                                                                                //public int getY(int i);
         
         public int getMovimento();
         
-        public void incrementaMovimento();
+        public void setMovimento(int m);
         
-        public void resetIndex();
+                                                                                //public void incrementaMovimento();
         
-        public void resetY();
+                                                                                //public void resetIndex();
         
-        public void resetOndata();
+                                                                                //public void resetY();
+        
+                                                                                //public void resetOndata();
 
 	public  void incrementScore();
 	
 	public void initGame();
         
-        public void Colpito(boolean b, String s);
+                                                                                //public void Colpito(boolean b, String s);
         
-        public void statoCavaliere(int i);
+                                                                                //public void statoCavaliere(int i);
         
         public void caricaAnimazioni();
         
         public Image effettuaAnimazione(String colore, int indice);
         
-        public void pioggiaRandom();
-        
+                                                                                //public void pioggiaRandom();ù
+        // manca   public static IModel getInstance();    perchè?    
 
 }

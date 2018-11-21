@@ -13,6 +13,7 @@ public class ControllerForView implements IControllerForView {
     public  int index[] = new int[5];
     private boolean controlloreMovimento[]= new boolean[5];
     public int y[] = new int[5];
+    public int movimento;
     
 //---------------------------------------------------------------
     // VARIABILI STATICHE
@@ -133,7 +134,22 @@ public class ControllerForView implements IControllerForView {
                         x[i] = x[i-1]+148;
                 } 
             }               
-}
+        }
+        public void Colpito(boolean b, String s){
+        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
+                pioggia[i] = null;
+                cavalieri[i] = null;
+                esplosi[i] = true;
+                cavalieri[i]=Cavaliere.nextCavaliere();
+                scoppio.play();                
+                mago.gestisciMago(i);
+                incrementScore();
+                updateScoreLabel(getScore());
+                b = true;
+            }
+        }
+    }
 
     //---------------------------------------------------------------
     // METODI STATICI
