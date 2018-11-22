@@ -9,9 +9,9 @@ public interface IModel {
         
                                                                                 //public int getY(int i);
         
-        public int getMovimento();
-        
-        public void setMovimento(int m);
+                                                                                //public int getMovimento();
+
+                                                                                //public void setMovimento(int m);
         
                                                                                 //public void incrementaMovimento();
         

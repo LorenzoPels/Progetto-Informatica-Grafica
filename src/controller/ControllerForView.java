@@ -9,13 +9,13 @@ import view.View;
 
 public class ControllerForView implements IControllerForView {
     
-    private final int altezzaterreno = ALTEZZA-250;
+    private final int altezzaterreno = ALTEZZA-250;     //get altezza?
     public  int index[] = new int[5];
     private boolean controlloreMovimento[]= new boolean[5];
     public int y[] = new int[5];
     public int movimento;
     
-//---------------------------------------------------------------
+    //---------------------------------------------------------------
     // VARIABILI STATICHE
     //---------------------------------------------------------------
     private static ControllerForView instance = null;
@@ -67,11 +67,11 @@ public class ControllerForView implements IControllerForView {
     public void incrementScore() {
             Model.getInstance().incrementScore();
     }
-
+                                                                                /*
     public void Colpito(boolean b, String s){
        Model.getInstance().Colpito(b, s);
 
-    }
+    }                                                                           */
 
     public int getY(int i) {
         return this.y[i];
@@ -136,20 +136,29 @@ public class ControllerForView implements IControllerForView {
             }               
         }
         public void Colpito(boolean b, String s){
-        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
-            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
-                pioggia[i] = null;
-                cavalieri[i] = null;
-                esplosi[i] = true;
-                cavalieri[i]=Cavaliere.nextCavaliere();
-                scoppio.play();                
-                mago.gestisciMago(i);
-                incrementScore();
-                updateScoreLabel(getScore());
-                b = true;
+            for(int i =0;(i<cavalieri.length)&&(b==false);i++){
+                if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
+                    pioggia[i] = null;
+                    cavalieri[i] = null;
+                    esplosi[i] = true;
+                    cavalieri[i]=Cavaliere.nextCavaliere();
+                    scoppio.play();                
+                    mago.gestisciMago(i);
+                    incrementScore();
+                    updateScoreLabel(getScore());
+                    b = true;
+                }
             }
         }
-    }
+        
+        public int getMovimento(){
+            return movimento;    
+        }
+        public void setMovimento(int mv){
+            movimento = mv;    
+        }
+        
+        
 
     //---------------------------------------------------------------
     // METODI STATICI

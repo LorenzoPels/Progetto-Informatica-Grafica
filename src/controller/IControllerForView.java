@@ -37,5 +37,9 @@ public interface IControllerForView {
         public void statoCavaliere(int i);
         
         public void pioggiaRandom();
+        
+        public int getMovimento();
+        
+        public void setMovimento(int mv);
     
 }

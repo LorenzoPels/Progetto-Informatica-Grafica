@@ -2,29 +2,29 @@
 package model;
 
 import controller.ControllerForModel;
-import controller.ControllerForView;
-import java.awt.Image;
-import static java.lang.Thread.sleep;
+
+import java.awt.Image;                                                          /*
+import static java.lang.Thread.sleep;                                           
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static view.BoardPanel.larghezza;
-import static view.BoardPanel.x;
+import static view.BoardPanel.x;                                                */
 import view.CaricatoreImmagine;
 import view.MainGUI;
-import static view.MainGUI.ALTEZZA;
+//import static view.MainGUI.ALTEZZA;
 import static view.MainGUI.Pi;
 import static view.MainGUI.Pf;
 
 import static view.MainGUI.cavalieri;
-
+                                                                                /*
 import static view.MainGUI.esplosi;
 import static view.MainGUI.gameover;
 import static view.MainGUI.player;
-import static view.MainGUI.scoppio;
-import static view.MainGUI.t1;
+import static view.MainGUI.scoppio;                                             */
+import static view.MainGUI.t1;                                                  /*
 import static view.MainGUI.timer;
 import static view.RightPanel.scorelabel;
-import static view.RightPanel.updateScoreLabel;
+import static view.RightPanel.updateScoreLabel;                                 */
 import static view.MainGUI.P;
 import static view.MainGUI.int0;
 import static view.MainGUI.int1;
@@ -35,7 +35,7 @@ import static view.MainGUI.int4;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
 import static view.StartWindow.insane;
-import static view.BoardPanel.mago;
+//import static view.BoardPanel.mago;
 import static view.MainGUI.giocoIniziato;
 import static view.MainGUI.giocoInEsecuzione;
 
@@ -70,7 +70,7 @@ public class Model implements IModel {
                                                                                 //public  int y[] = new int[5];
     //public  int index[] = new int[5];
     public  String[] colore = new String[5];
-    public int movimento;
+    //public int movimento;         ora se ne occupa la view
     
     
     private Model() {		
@@ -92,21 +92,23 @@ public class Model implements IModel {
         MainGUI.Cavalieri();
         MainGUI.Pioggia();
         
-        pioggiaRandom();       //in questo momento pensi che dovresti creare un metodo in CFM che chiamando CFV risolve
-        resetIndex();
-        resetY();
-        
+    //    pioggiaRandom();       //in questo momento pensi che dovresti creare un metodo in CFM che chiamando CFV risolve
+    //    resetIndex();
+    //    resetY();
+        ControllerForModel.getInstance().pioggiaRandom();
+        ControllerForModel.getInstance().resetIndex();
+        ControllerForModel.getInstance().resetY();
 
         t0=t1=P=Pi=Pf=0;
         if(insane==true){
-            movimento=2;
+            ControllerForModel.getInstance().setMovimento(2);
             int0=700;
             int1=1400;
             int2=2100;
             int3=2800;
             int4=3500;               
         }else{ 
-            movimento =1;
+            ControllerForModel.getInstance().setMovimento(1);
             int0=900;
             int1=1800;
             int2=2700;
@@ -122,13 +124,13 @@ public class Model implements IModel {
 /*    public int getY(int i) {
         return this.y[i];           
     }                                                                           */
-    public int getMovimento(){
+/*    public int getMovimento(){
         return movimento;
     }
     
     public void setMovimento(int m){
         movimento = m;
-    }
+    }                                       */// ora movimento sta nella View
     
 /*    public void incrementaMovimento(){
         movimento++;

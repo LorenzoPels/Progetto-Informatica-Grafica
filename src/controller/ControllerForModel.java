@@ -24,15 +24,17 @@ public class ControllerForModel implements IControllerForModel {
 	}
         
         public int getMovimento(){
-            return Model.getInstance().getMovimento();
-            
+            return ControllerForView.getInstance().getMovimento();    
+        }
+        public void setMovimento(int mv){
+            ControllerForView.getInstance().setMovimento(mv);    
         }
     
         public void incrementaMovimento(){
             //Model.getInstance().incrementaMovimento();
-            int mv = Model.getInstance().getMovimento();
+            int mv = ControllerForView.getInstance().getMovimento();
             mv++;
-            Model.getInstance().setMovimento(mv);
+            ControllerForView.getInstance().setMovimento(mv);
         }
         
         public void resetOndata(){
@@ -93,6 +95,17 @@ public class ControllerForModel implements IControllerForModel {
             }
         }
     }                                                                           */  //spostato su CFV
+        
+        public void pioggiaRandom(){
+            ControllerForView.getInstance().pioggiaRandom();
+        }
+        public void resetIndex(){
+            ControllerForView.getInstance().resetIndex();
+        }
+        public void resetY(){
+            ControllerForView.getInstance().resetY();
+        }    
+        
         
 	public static IControllerForModel getInstance() {
 		if (instance == null)
