@@ -1,33 +1,20 @@
 
 package controller;
 
-import model.Model;
+
 import static view.MainGUI.ALTEZZA;
 import view.View;
 
 
 
 public class ControllerForView implements IControllerForView {
-    
-    private final int altezzaterreno = ALTEZZA-250;     //get altezza?
-    public  int index[] = new int[5];
-    private boolean controlloreMovimento[]= new boolean[5];
-    public int y[] = new int[5];
-    public int movimento;
-    
-    //---------------------------------------------------------------
-    // VARIABILI STATICHE
-    //---------------------------------------------------------------
+                                                                                
     private static ControllerForView instance = null;
 
     private ControllerForView() {
-            //to-do
+            
     }
 
-
-    //---------------------------------------------------------------
-    // METODI PUBBLICI
-    //---------------------------------------------------------------
     public void openStartWindow() {
             View.getInstance().openStartWindow();
     }
@@ -58,26 +45,23 @@ public class ControllerForView implements IControllerForView {
             View.getInstance().closeGameOverDialog();
     }
     public void initGame() {
-            Model.getInstance().initGame();
+            ControllerForModel.getInstance().initGame();
     }
     public String getScore() {
-            return String.valueOf(Model.getInstance().getScore());
+            return String.valueOf(ControllerForModel.getInstance().getScore());
     }
 
     public void incrementScore() {
-            Model.getInstance().incrementScore();
+            ControllerForModel.getInstance().incrementScore();
     }
-                                                                                /*
-    public void Colpito(boolean b, String s){
-       Model.getInstance().Colpito(b, s);
-
-    }                                                                           */
+                                                                                
 
     public int getY(int i) {
-        return this.y[i];
+        return ControllerForModel.getInstance().getY(i);
     }
 
     public void resetIndex(){
+        ControllerForModel.getInstance().
         for (int i=0; i<index.length;i++)
             index[i]=0;
     }
@@ -154,9 +138,7 @@ public class ControllerForView implements IControllerForView {
         public int getMovimento(){
             return movimento;    
         }
-        public void setMovimento(int mv){
-            movimento = mv;    
-        }
+        
         
         
 

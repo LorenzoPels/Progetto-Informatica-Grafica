@@ -40,7 +40,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     public final static int LARGHEZZA = 750;
     public final static int ALTEZZA = 730;
     public static Timer timer;
-    
+                                                                                /*
     public static Image[] pioggia = new Image[5];
     public static Cavaliere[] cavalieri = new Cavaliere[5];
     public static Boolean[] esplosi = new Boolean[5];
@@ -50,8 +50,8 @@ public class MainGUI extends JFrame implements ActionListener  {
     public static int int1;
     public static int int2;
     public static int int3;
-    public static int int4;
-    public static int int5;
+    public static int int4;                                                     */
+    
     public static ClipPlayer scoppio;
     public static ClipPlayer gameover;
     public static ClipPlayer sottofondo;

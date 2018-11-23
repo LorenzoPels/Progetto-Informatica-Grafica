@@ -3,6 +3,12 @@ package controller;
 
 
 public interface IControllerForModel {
+        
+        public void initGame();
+        
+        public int getScore();
+        
+        public void incrementScore();
     
         public int getMovimento();
         
@@ -17,6 +23,8 @@ public interface IControllerForModel {
         public void pioggiaRandom();
         
         public void resetIndex();
+                
+        public int getY(int i);
         
         public void resetY();
 }

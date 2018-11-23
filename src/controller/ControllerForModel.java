@@ -1,16 +1,8 @@
 
 package controller;
 
+import java.awt.Image;
 import model.Model;
-import view.MainGUI;
-import static view.MainGUI.P;
-import static view.MainGUI.int0;
-import static view.MainGUI.int1;
-import static view.MainGUI.int2;
-import static view.MainGUI.int3;
-import static view.MainGUI.int4;
-import static view.MainGUI.pioggia;
-import static view.MainGUI.t0;
 import static view.StartWindow.insane;
 
 
@@ -22,12 +14,15 @@ public class ControllerForModel implements IControllerForModel {
 	private ControllerForModel() {
 		//to-do
 	}
+        public void initGame(){
+            Model.getInstance().initGame();
+        }
         
         public int getMovimento(){
-            return ControllerForView.getInstance().getMovimento();    
+            return Model.getInstance().getMovimento();   
         }
         public void setMovimento(int mv){
-            ControllerForView.getInstance().setMovimento(mv);    
+            Model.getInstance().setMovimento(mv);    
         }
     
         public void incrementaMovimento(){
@@ -38,31 +33,38 @@ public class ControllerForModel implements IControllerForModel {
         }
         
         public void resetOndata(){
-        if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
-            t0=System.currentTimeMillis();
-            P=0;
-            MainGUI.Cavalieri();
-            MainGUI.Pioggia();
-            MainGUI.Esplosi();
-            ControllerForView.getInstance().pioggiaRandom();
-            ControllerForView.getInstance().resetY();
-            //pioggiaRandom();
-            //resetIndex();
-            //resetY();
-            if(int0>100)
-                int0-=100;
-            if( (int1-int0) > 500 )
-                int1-=200;
-            if( (int2-int1) > 500 )
-                int2-=200;
-            if( (int3-int2) > 500 )
-                int3-=200;
-            if( (int4-int3) > 500 )
-                int4-=200;
-              
-              aggiornaMovimento(rallentaMov);
-            //aggiornaMovimento(a);
-        }
+            Image[] pioggia = Model.getInstance().getPioggia();
+            if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){  
+                
+                                                                                //    Model.t0=System.currentTimeMillis();
+                                                                                  //  Model.P=0;
+                
+                Model.getInstance().setT0(System.currentTimeMillis());
+                Model.getInstance().setT0(0);
+                
+
+                Model.getInstance().Cavalieri();
+                Model.getInstance().Pioggia();
+                Model.getInstance().Esplosi();
+
+                ControllerForView.getInstance().pioggiaRandom();
+                ControllerForView.getInstance().resetY();
+                
+                
+                if( diffIntervallo(0) > 100 )
+                    Model.getInstance().setIntervallo(0, Model.getInstance().getIntervalli(0) - 100);
+                if( diffIntervallo(1) > 500 )
+                    Model.getInstance().setIntervallo(1, Model.getInstance().getIntervalli(0) - 200);
+                if( diffIntervallo(2) > 500 )
+                     Model.getInstance().setIntervallo(2, Model.getInstance().getIntervalli(0) - 200);
+                if( diffIntervallo(3) > 500 )
+                     Model.getInstance().setIntervallo(3, Model.getInstance().getIntervalli(0) - 200);
+                if( diffIntervallo(4) > 500 )
+                     Model.getInstance().setIntervallo(4, Model.getInstance().getIntervalli(0) - 200);
+
+                aggiornaMovimento(rallentaMov);
+                
+            }
     }
         public void aggiornaMovimento(int a){
             if(insane == true){                        
@@ -80,36 +82,43 @@ public class ControllerForModel implements IControllerForModel {
             }               
         }
         
-    /*    public void Colpito(boolean b, String s){
-        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
-            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
-                pioggia[i] = null;
-                cavalieri[i] = null;
-                esplosi[i] = true;
-                cavalieri[i]=Cavaliere.nextCavaliere();
-                scoppio.play();                
-                mago.gestisciMago(i);
-                incrementScore();
-                updateScoreLabel(getScore());
-                b = true;
-            }
-        }
-    }                                                                           */  //spostato su CFV
-        
+  
         public void pioggiaRandom(){
             ControllerForView.getInstance().pioggiaRandom();
         }
         public void resetIndex(){
             ControllerForView.getInstance().resetIndex();
         }
+        
+        public int getY(int i){
+            return Model.getInstance().getYArray()[i];
+        }
         public void resetY(){
             ControllerForView.getInstance().resetY();
         }    
         
+        public int getScore(){
+            return Model.getInstance().getScore();
+        }
+        
+        public void incrementScore(){
+            Model.getInstance().incrementScore();
+        }
         
 	public static IControllerForModel getInstance() {
 		if (instance == null)
 			instance = new ControllerForModel();
 		return instance;
 	}
+        
+        public int diffIntervallo(int i){
+                int diff = Model.getInstance().getIntervalli(i);
+            if(i != 0)
+                diff = Model.getInstance().getIntervalli(i) - Model.getInstance().getIntervalli(i-1);  
+            return diff;
+        }
+
+    
+
+
 }
