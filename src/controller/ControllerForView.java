@@ -61,15 +61,17 @@ public class ControllerForView implements IControllerForView {
     }
 
     public void resetIndex(){
-        ControllerForModel.getInstance().
-        for (int i=0; i<index.length;i++)
-            index[i]=0;
+        ControllerForModel.getInstance().resetIndex();
+                                                                                //    for (int i=0; i<index.length;i++)
+                                                                                //       index[i]=0;
     }
 
     public void resetY(){
-        for (int i=0; i<y.length;i++)
-            y[i]=-150;  
+        ControllerForModel.getInstance().resetY();
+                                                                                //    for (int i=0; i<y.length;i++)
+                                                                                //        y[i]=-150;  
     }
+    
     public void statoCavaliere(int i){
         if(controlloreMovimento[i]) 
             y[i]+= ControllerForModel.getInstance().getMovimento();
