@@ -28,18 +28,18 @@ public interface IControllerForView {
         
         public void Colpito(boolean b, String s);
         
-        public int getY(int i);
+       // public int getY(int i);
          
-        public void resetIndex();
+        /*public void resetIndex();
         
-        public void resetY();
+        public void resetY();*/
         
         public void statoCavaliere(int i);
         
-        public void pioggiaRandom();
+        //public void pioggiaRandom();
         
-        public int getMovimento();
+        //public int getMovimento();
         
-        public void setMovimento(int mv);
+        
     
 }

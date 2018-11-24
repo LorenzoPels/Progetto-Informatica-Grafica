@@ -1,30 +1,43 @@
 
 package controller;
 
+import java.awt.Image;
+import model.Cavaliere;
+
 
 public interface IControllerForModel {
         
-        public void initGame();
-        
-        public int getScore();
-        
-        public void incrementScore();
-    
         public int getMovimento();
-        
-        public void setMovimento(int mv);
-        
-        public void incrementaMovimento();
         
         public void resetOndata();
         
-        public void aggiornaMovimento(int a);
+        public void aggiornaMovimento(int a); 
         
-        public void pioggiaRandom();
+        public int getAltezzaterreno();
         
-        public void resetIndex();
-                
+        public int getIndex(int i);
+         
+        public boolean getControlloreMovimento(int i);
+        
+        public int[] getYArray();
+        
         public int getY(int i);
         
-        public void resetY();
+        public int getScore();
+        
+        public int getIntervalli(int i);
+        
+        public int diffIntervallo(int i);
+        
+        public  Boolean[] getEsplosi();
+        
+        public Boolean getEsplosi(int i);
+        
+        public  Image getPioggia(int i);
+        
+        public  Cavaliere getCavalieri(int i);
+        
+        public  Cavaliere[] getCavalieri();
+        
+        
 }

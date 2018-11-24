@@ -2,6 +2,7 @@
 package controller;
 
 import java.awt.Image;
+import model.Cavaliere;
 import model.Model;
 import static view.StartWindow.insane;
 
@@ -14,26 +15,27 @@ public class ControllerForModel implements IControllerForModel {
 	private ControllerForModel() {
 		//to-do
 	}
-        public void initGame(){
+       /* public void initGame(){
             Model.getInstance().initGame();
-        }
+        }*/
         
         public int getMovimento(){
             return Model.getInstance().getMovimento();   
         }
-        public void setMovimento(int mv){
+       /* public void setMovimento(int mv){
             Model.getInstance().setMovimento(mv);    
-        }
+        }*/
     
-        public void incrementaMovimento(){
+       /* public void incrementaMovimento(){
             //Model.getInstance().incrementaMovimento();
             int mv = ControllerForView.getInstance().getMovimento();
             mv++;
             ControllerForView.getInstance().setMovimento(mv);
-        }
+        }*/
         
         public void resetOndata(){
             Image[] pioggia = Model.getInstance().getPioggia();
+            // provare pioggia[]==null
             if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){  
                 
                                                                                 //    Model.t0=System.currentTimeMillis();
@@ -41,14 +43,11 @@ public class ControllerForModel implements IControllerForModel {
                 
                 Model.getInstance().setT0(System.currentTimeMillis());
                 Model.getInstance().setT0(0);
-                
-
                 Model.getInstance().Cavalieri();
                 Model.getInstance().Pioggia();
                 Model.getInstance().Esplosi();
-
-                ControllerForView.getInstance().pioggiaRandom();
-                ControllerForView.getInstance().resetY();
+                Model.getInstance().pioggiaRandom();
+                Model.getInstance().resetY();
                 
                 
                 if( diffIntervallo(0) > 100 )
@@ -71,38 +70,83 @@ public class ControllerForModel implements IControllerForModel {
                 if( getMovimento() < 6 ){
                     if( (getMovimento() + a)%2 == 0)
                         a++;
-                    incrementaMovimento();
+                    Model.getInstance().incrementaMovimento();
                 }
             }else{
                 if( getMovimento() < 4 ){
                     if( (getMovimento() + a)%2 == 0)
                         a++;
-                    else incrementaMovimento();               
+                    else Model.getInstance().incrementaMovimento();               
                 }
             }               
         }
         
-  
-        public void pioggiaRandom(){
+        public int getAltezzaterreno(){
+            return Model.getInstance().getAltezzaterreno();
+        }
+        
+        public int getIndex(int i){
+            return Model.getInstance().getIndex(i);
+        }
+        
+        public boolean getControlloreMovimento(int i){
+            return Model.getInstance().getControlloreMovimento(i);
+        }
+        
+      /*  public void pioggiaRandom(){
             ControllerForView.getInstance().pioggiaRandom();
-        }
-        public void resetIndex(){
+        }*/
+       /*public void resetIndex(){
             ControllerForView.getInstance().resetIndex();
-        }
+        }*/
+         public int[] getYArray(){
+             return Model.getInstance().getYArray();
+         }
         
         public int getY(int i){
             return Model.getInstance().getYArray()[i];
         }
-        public void resetY(){
+        /*public void resetY(){
             ControllerForView.getInstance().resetY();
-        }    
+        } */   
         
         public int getScore(){
             return Model.getInstance().getScore();
         }
         
-        public void incrementScore(){
+        public int getIntervalli(int i){
+            return Model.getInstance().getIntervalli(i);
+        }
+        
+       /* public void incrementScore(){
             Model.getInstance().incrementScore();
+        }*/
+        
+        public int diffIntervallo(int i){
+                int diff = Model.getInstance().getIntervalli(i);
+            if(i != 0)
+                diff = Model.getInstance().getIntervalli(i) - Model.getInstance().getIntervalli(i-1);  
+            return diff;
+        }
+        
+        public Boolean[] getEsplosi(){
+            return Model.getInstance().getEsplosi();
+        }
+        
+        public Boolean getEsplosi(int i){
+            return Model.getInstance().getEsplosi(i);
+        }
+        
+        public  Image getPioggia(int i){
+            return Model.getInstance().getPioggia(i);
+        }
+        
+        public  Cavaliere getCavalieri(int i){
+            return Model.getInstance().getCavalieri(i);
+        }
+        
+        public  Cavaliere[] getCavalieri(){
+            return Model.getInstance().getCavalieri();
         }
         
 	public static IControllerForModel getInstance() {
@@ -111,14 +155,5 @@ public class ControllerForModel implements IControllerForModel {
 		return instance;
 	}
         
-        public int diffIntervallo(int i){
-                int diff = Model.getInstance().getIntervalli(i);
-            if(i != 0)
-                diff = Model.getInstance().getIntervalli(i) - Model.getInstance().getIntervalli(i-1);  
-            return diff;
-        }
-
-    
-
 
 }

@@ -187,4 +187,5 @@ public class ControllerForView implements IControllerForView {
                     instance = new ControllerForView();
             return instance;
     }
+
 }

@@ -1,17 +1,13 @@
 
 package model;
 
-import controller.ControllerForModel;
 
 import java.awt.Image;                                                          
 import static model.Cavaliere.Loader;
-
+import static view.BoardPanel.larghezza;
 import view.CaricatoreImmagine;
-
 import static view.MainGUI.ALTEZZA;
-
 import static view.StartWindow.insane;
-
 import static view.MainGUI.giocoIniziato;
 import static view.MainGUI.giocoInEsecuzione;
 
@@ -28,6 +24,7 @@ public class Model implements IModel {
     public  int[] index = new int[5];
     private boolean[] controlloreMovimento= new boolean[5];
     public int[] y = new int[5];
+    public int[] x = new int[5];
     public int movimento;
     
     public Image[] pioggia = new Image[5];
@@ -53,37 +50,30 @@ public class Model implements IModel {
     
     public void initGame() {
         giocoInEsecuzione = false;
-        giocoIniziato = false;
-        
-        score= 0;
-        
+        giocoIniziato = false;      
+        score= 0;       
         for(int i=0; i<cavalieri.length;i++){
             cavalieri[i]=null;
               pioggia[i]=null;
               esplosi[i]=false;
          }
-        P=0;
-        
+        P=0;     
         Cavalieri();
         Pioggia();
-        
-    
-        ControllerForModel.getInstance().pioggiaRandom();
-        ControllerForModel.getInstance().resetIndex();
-        ControllerForModel.getInstance().resetY();
-
-        t0=t1=P=Pi=Pf=0;
-        
+        pioggiaRandom();
+        resetIndex();
+        resetY();
+        t0=t1=P=Pi=Pf=0;       
         int t = 0;
         if(insane==true){
-            ControllerForModel.getInstance().setMovimento(2);
+            setMovimento(2);
            
             for (int i = 0;i < intervalli.length ;i++){
                     t+=700;
                     intervalli[i]=t;
             }        
         }else{ 
-            ControllerForModel.getInstance().setMovimento(1);
+           setMovimento(1);
            
             for (int i = 0;i < intervalli.length ;i++){
                     t+=900;
@@ -142,20 +132,49 @@ public class Model implements IModel {
     public int getAltezzaterreno(){
         return altezzaterreno;
     }
-    public int[] getIndex(){
-        return index;
+    public int getIndex(int i){
+        return index[i];
     }
-    public boolean[] getControlloreMovimento(){
-        return controlloreMovimento;
+    
+     public void resetIndex(){
+         for(int i=0;i<index.length;i++)
+             index[i]=0;
+     }
+     
+     public void setIndex(int i, int a){
+             index[i]=a;
+     }
+    
+    public boolean getControlloreMovimento(int i){
+        return controlloreMovimento[i];
     }
+    
+     public void setControlloreMovimento(int i,Boolean b){
+         controlloreMovimento[i]=b;
+     }
+    
     public int[] getYArray(){
         return y;
     }
+    
+    public void resetY(){
+        for(int i=0;i<y.length;i++)
+             y[i]=-150;
+    }
+    
+    public void setY(int i, int a){
+        y[i] = a;
+    }
+    
     public int getMovimento(){
         return movimento;
     }
     public void setMovimento(int mv){
         movimento = mv;
+    }
+    
+    public void incrementaMovimento(){
+        movimento++;
     }
     
     public Image[] getPioggia(){
@@ -168,8 +187,16 @@ public class Model implements IModel {
     return pioggia;
     }
     
-    public Cavaliere[] getCavalieri(){
-        return cavalieri;
+    public  Image getPioggia(int i){
+        return pioggia[i];
+    }
+    
+    public  void setPioggia(int i, Image img){
+        pioggia[i]=img;
+    }
+    
+    public Cavaliere getCavalieri(int i){
+        return cavalieri[i];
     }
     
     public  Cavaliere[] Cavalieri(){
@@ -177,6 +204,14 @@ public class Model implements IModel {
             cavalieri[i] = Cavaliere.nextCavaliere();
         return cavalieri;
         }
+    
+    public  Cavaliere[] getCavalieri(){
+        return cavalieri;
+    }
+    
+    public  void setCavalieri(int i,Cavaliere cv){
+        cavalieri[i]=cv;
+    }
     
     public Boolean[] getEsplosi(){
         return esplosi;
@@ -187,6 +222,15 @@ public class Model implements IModel {
             esplosi[i] = false;      
     }
     
+    public  Boolean getEsplosi(int i){
+        return esplosi[i];
+    }
+    
+    
+    public  void setEsplosi(int i, Boolean b){
+        esplosi[i]=b;
+    }
+    
     public int getIntervalli(int i){
         return intervalli[i];
     }
@@ -194,9 +238,19 @@ public class Model implements IModel {
         intervalli[i]=val;
     }
     
-    
-    
-    
+    public void pioggiaRandom(){   
+            for(int i=0;i<pioggia.length;i++){
+                x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
+                if(x[i]<148)
+                    x[i]+=148;
+                if(i>0){
+                    if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
+                        x[i] = x[i-1]-148;
+                    if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
+                        x[i] = x[i-1]+148;
+                } 
+            }               
+        }
     
     public void setT0(long tmp){
     t0= tmp;
@@ -204,11 +258,7 @@ public class Model implements IModel {
     public void setP(long tmp){
         P = tmp;
     }
-   
-    
-    
-    
-    
+
     public static IModel getInstance() {
             if (instance == null)
                     instance = new Model();

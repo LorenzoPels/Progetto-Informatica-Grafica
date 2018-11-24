@@ -18,10 +18,12 @@ public class MagoDefault implements MagoInterface {
     public static int xMagoMax;
     public static int xMagoMin;
     private static long tmago;
+    
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
     int direzioneMago;
+    private static MagoDefault instance = null;
 
     public MagoDefault(BufferedImage a, BufferedImage b, BufferedImage c) {arrayMago =  new BufferedImage[3];
             
@@ -103,5 +105,14 @@ public class MagoDefault implements MagoInterface {
     public void setXMagoMin(int x){
         xMagoMin = x;
    }
+    
+    public static MagoInterface getInstance() {
+        BufferedImage a = arrayMago[0];
+        BufferedImage b = arrayMago[1];
+        BufferedImage c = arrayMago[2];
+            if (instance == null)
+                    instance = new MagoDefault(a,b,c);
+            return instance;
+    }
     
 }
