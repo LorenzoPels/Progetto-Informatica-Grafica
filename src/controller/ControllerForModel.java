@@ -3,6 +3,7 @@ package controller;
 
 import java.awt.Image;
 import model.Cavaliere;
+import model.MagoInterface;
 import model.Model;
 import static view.StartWindow.insane;
 
@@ -41,8 +42,8 @@ public class ControllerForModel implements IControllerForModel {
                                                                                 //    Model.t0=System.currentTimeMillis();
                                                                                   //  Model.P=0;
                 
-                Model.getInstance().setT0(System.currentTimeMillis());
-                Model.getInstance().setT0(0);
+                Model.getInstance().setT0();
+                Model.getInstance().setP(0);
                 Model.getInstance().Cavalieri();
                 Model.getInstance().Pioggia();
                 Model.getInstance().Esplosi();
@@ -106,6 +107,10 @@ public class ControllerForModel implements IControllerForModel {
         public int getY(int i){
             return Model.getInstance().getYArray()[i];
         }
+        public int getX(int i){
+            return Model.getInstance().getXArray()[i];
+        }
+        
         /*public void resetY(){
             ControllerForView.getInstance().resetY();
         } */   
@@ -154,6 +159,11 @@ public class ControllerForModel implements IControllerForModel {
 			instance = new ControllerForModel();
 		return instance;
 	}
+        
+        public MagoInterface getMago(){
+            return Model.getInstance().getMago();
+        }
+        
         
 
 }

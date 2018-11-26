@@ -29,6 +29,8 @@ public interface IModel {
         
         public int[] getYArray();
         
+        public int[] getXArray();
+        
         public void resetY();
         
         public void setY(int i,int a);
@@ -39,7 +41,7 @@ public interface IModel {
         
         public void incrementaMovimento();
         
-        public  Cavaliere[] Cavalieri();
+        public  /*Cavaliere[]*/ void Cavalieri();
         
         public  Cavaliere getCavalieri(int i);
         
@@ -47,7 +49,7 @@ public interface IModel {
         
         public  void setCavalieri(int i,Cavaliere cv);
         
-        public  Image[] Pioggia();
+        public  /*Image[]*/ void Pioggia();
         
         public  Image getPioggia(int i);
         
@@ -68,8 +70,34 @@ public interface IModel {
         public void setIntervallo(int i, int val);
         
         public void pioggiaRandom();
-
-        public void setT0(long tmp);
-
+        
+         public long getT0();
+        
+        public void setT0();
+        
+        public long getT1();
+        
+        public void setT1();
+        
         public void setP(long tmp);
+        
+        public long getP();
+        
+        public long getPi();
+        
+        public void setPi();
+        
+        public long getPf();
+        
+        public void setPf();
+        
+        public Boolean getGiocoInEsecuzione();
+         
+        public void setGiocoInEsecuzione(Boolean b);
+     
+        public Boolean getGiocoIniziato();
+    
+        public void setGiocoIniziato(Boolean b);
+    
+        public MagoInterface getMago();
 }

@@ -20,9 +20,13 @@ import javafx.scene.media.MediaPlayer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+
+                                                                                /* 26/11
 import model.Cavaliere;
 import static model.Cavaliere.Loader;
-import model.Model;
+import model.Model;                                                             */
+
+
 import static view.BoardPanel.larghezza;
 import static view.RightPanel.audiobutton;
 import static view.RightPanel.escbutton;
@@ -40,24 +44,15 @@ public class MainGUI extends JFrame implements ActionListener  {
     public final static int LARGHEZZA = 750;
     public final static int ALTEZZA = 730;
     public static Timer timer;
-                                                                                /*
-    public static Image[] pioggia = new Image[5];
-    public static Cavaliere[] cavalieri = new Cavaliere[5];
-    public static Boolean[] esplosi = new Boolean[5];
-    public static long t0,t1,P,Pi,Pf;
-    public static long diff;
-    public static int int0;
-    public static int int1;
-    public static int int2;
-    public static int int3;
-    public static int int4;                                                     */
+                                                                                
     
     public static ClipPlayer scoppio;
     public static ClipPlayer gameover;
     public static ClipPlayer sottofondo;
     public static MediaPlayer player;
-    public static boolean giocoIniziato; 
-    public static boolean giocoInEsecuzione; 
+    
+    /*public static boolean giocoIniziato; 
+    public static boolean giocoInEsecuzione;                                    */
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
@@ -92,7 +87,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         scoppio = new ClipPlayer(audioScoppio);
         gameover = new ClipPlayer(audioGO);
         initBackgroundSound();   
-        Model.getInstance().caricaAnimazioni();
+        //Model.getInstance().caricaAnimazioni();         questa cosa è molto pericolosa
 
 
     }
@@ -102,11 +97,11 @@ public class MainGUI extends JFrame implements ActionListener  {
     //---------------------------------------------------------------
     
     public void pausaGioco(){
-        giocoInEsecuzione = false;
+        ControllerForView.getInstance().setGiocoInEsecuzione(false);
         timer.stop();
         //giocoiniziato = false;
         player.pause();
-        Pi = System.currentTimeMillis();
+        ControllerForView.getInstance().setPi();
         pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
         escbutton.setEnabled(true);
         musicbutton.setEnabled(true);
@@ -114,30 +109,32 @@ public class MainGUI extends JFrame implements ActionListener  {
     }
     
 @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if(diff>=int0){
-           Model.getInstance().statoCavaliere( 0);
-
-        }
-
-        if(diff>=int1){
-           Model.getInstance().statoCavaliere( 1);
+    public void actionPerformed(ActionEvent e) {                                //va nel CFV? 26/11
+        
+        long diff = ControllerForView.getInstance().getT1() - ControllerForView.getInstance().getT0();
+        
+        if(diff>= ControllerForView.getInstance().getIntervalli(0)){
+           ControllerForView.getInstance().statoCavaliere( 0);
 
         }
 
-        if(diff>=int2){
+        if(diff>= ControllerForView.getInstance().getIntervalli(1)){
+          ControllerForView.getInstance().statoCavaliere( 1);
 
-          Model.getInstance().statoCavaliere( 2);
         }
 
-        if(diff>=int3){
+        if(diff>= ControllerForView.getInstance().getIntervalli(2)){
 
-         Model.getInstance().statoCavaliere( 3);
+          ControllerForView.getInstance().statoCavaliere( 2);
         }
 
-        if(diff>=int4){
-           Model.getInstance().statoCavaliere( 4);
+        if(diff>= ControllerForView.getInstance().getIntervalli(3)){
+
+         ControllerForView.getInstance().statoCavaliere( 3);
+        }
+
+        if(diff>= ControllerForView.getInstance().getIntervalli(4)){
+           ControllerForView.getInstance().statoCavaliere( 4);
 
         }
 
@@ -158,27 +155,7 @@ public class MainGUI extends JFrame implements ActionListener  {
 
     }   
         
-    //---------------------------------------------------------------
-    // METODI STATICI
-    //---------------------------------------------------------------
-
-    public static Cavaliere[] Cavalieri(){
-        for(int i=0; i<cavalieri.length;i++)  
-            cavalieri[i] = Cavaliere.nextCavaliere();
-       return cavalieri;
-    }
-
-
-    public static Image[] Pioggia(){
-       for(int i=0; i<cavalieri.length;i++)  
-           pioggia[i] = Loader(cavalieri[i]);
-       return pioggia;
-       }
-
-    public static void Esplosi(){
-       for(int i=0; i<cavalieri.length;i++)  
-           esplosi[i] = false;      
-       }
+    
 
     public static void initBackgroundSound() {
         final JFXPanel fxPanel = new JFXPanel();
@@ -194,37 +171,38 @@ public class MainGUI extends JFrame implements ActionListener  {
         });
     }
 
-    
-    
     public static void startPauseEvent() {
-        if (!giocoIniziato) {
-                giocoIniziato = true;
-                giocoInEsecuzione = true;
-                Cavalieri();
-                Pioggia();
-                Esplosi();
+   
+        if (!ControllerForView.getInstance().getGiocoIniziato()) {
+                ControllerForView.getInstance().setGiocoIniziato(true);
+                ControllerForView.getInstance().setGiocoInEsecuzione(true);
+                ControllerForView.getInstance().Cavalieri();
+                ControllerForView.getInstance().Pioggia();
+                ControllerForView.getInstance().Esplosi();
                 player.play();
                 timer.start();
-                t0 = System.currentTimeMillis();
+                ControllerForView.getInstance().setT0();
                 mago.setXMagoMax(larghezza-150);
                 mago.setXMagoMin(50);
                 mago.resetMago();
                 panel.requestFocusInWindow();
         }
-        else if (!giocoInEsecuzione) {
-                giocoInEsecuzione = true;
-                Pf = System.currentTimeMillis();
+        else if (!ControllerForView.getInstance().getGiocoInEsecuzione()) {
+                ControllerForView.getInstance().setGiocoInEsecuzione(true);
+                ControllerForView.getInstance().setPf();
                 panel.requestFocusInWindow();
                 player.play();
-                P += Pf-Pi;
+                long P = ControllerForView.getInstance().getP();
+                 P += ControllerForView.getInstance().getPf()- ControllerForView.getInstance().getPi();
+                 ControllerForView.getInstance().setP(P);
                 timer.start();
                 
         }
         else {
-                giocoInEsecuzione = false;
+                ControllerForView.getInstance().setGiocoInEsecuzione(false);
                 timer.stop();             
                 player.pause();
-                Pi = System.currentTimeMillis();               
+                ControllerForView.getInstance().setPi();               
         }
     } // end methos startStopEvent()
 

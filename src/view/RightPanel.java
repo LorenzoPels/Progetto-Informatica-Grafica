@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import static view.MainGUI.gameover;
 import static view.MainGUI.player;
 import static view.MainGUI.scoppio;
-import static view.MainGUI.giocoInEsecuzione;
+
 
 
 
@@ -168,7 +168,7 @@ public class RightPanel extends javax.swing.JPanel {
 
     private void pausebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pausebuttonActionPerformed
     
-     if (!giocoInEsecuzione) {
+     if (!ControllerForView.getInstance().getGiocoInEsecuzione()) {
         pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/pausa.png")));
         escbutton.setEnabled(false);
         musicbutton.setEnabled(false);

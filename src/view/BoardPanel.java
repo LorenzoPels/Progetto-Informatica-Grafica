@@ -11,9 +11,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+
 import model.MagoDefault;
 import model.Model;
-import static view.MainGUI.P;
+
+
+/*import static view.MainGUI.P;
 import static view.MainGUI.diff;
 import static view.MainGUI.pioggia;
 import static view.MainGUI.t0;
@@ -23,7 +27,7 @@ import static view.MainGUI.int1;
 import static view.MainGUI.int2;
 import static view.MainGUI.int3;
 import static view.MainGUI.int4;
-import static view.MainGUI.giocoIniziato;
+import static view.MainGUI.giocoIniziato;                                       *///26/11
 
 
 
@@ -51,11 +55,11 @@ public class BoardPanel extends JPanel implements KeyListener {
         try {
             sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
          
-            a = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
+         /*   a = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
             b = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
-            c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));
+            c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));   *///26/11
                       
-            mago = new MagoDefault(a,b,c);
+            //mago = new MagoDefault(a,b,c);
             
 
         }catch (IOException ex) {
@@ -72,39 +76,18 @@ public class BoardPanel extends JPanel implements KeyListener {
 
     @Override
     public void paintComponent(Graphics g) {
-
-        mago.stampaMago();
-        super.paintComponent(g);        
+        
+        super.paintComponent(g);  
         g.drawImage(sfondo,0,0,getWidth(),getHeight(),null);
-        g.drawImage(mago.magoImg() ,mago.getXMago() ,getHeight()-145,100,108,null);
-        if(giocoIniziato==true) {
-
-            t1 = System.currentTimeMillis()-P;
-            diff = t1 - t0;
-            
-            if( diff >=int0  )
-                g.drawImage(pioggia[0],x[0],Model.getInstance().getY(0),150,180,null);
-            if(diff >=int1)
-                g.drawImage(pioggia[1],x[1],Model.getInstance().getY(1),150,180,null);
-            if(diff >=int2)
-                g.drawImage(pioggia[2],x[2],Model.getInstance().getY(2),150,180,null);
-            if(diff >=int3)
-                g.drawImage(pioggia[3],x[3],Model.getInstance().getY(3),150,180,null);
-            if(diff >=int4)
-                g.drawImage(pioggia[4],x[4],Model.getInstance().getY(4),150,180,null);
-           
-            Model.getInstance().resetOndata();           
-            mago.movimentoBraccia();
-        }
+        ControllerForView.getInstance().logicaPaint(g);
     }
 
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        
             switch (e.getKeyCode()) {
-                    case KeyEvent.VK_A:
-
+                    case KeyEvent.VK_A:                       
                         boolean cancelA = false;
                         ControllerForView.getInstance().Colpito(cancelA, "A");                       
                         break;

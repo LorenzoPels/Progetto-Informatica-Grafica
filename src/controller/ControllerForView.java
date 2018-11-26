@@ -2,11 +2,16 @@
 package controller;
 
 
+import java.awt.Graphics;
+import java.awt.Image;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cavaliere;
 import model.MagoDefault;
+import model.MagoInterface;
+
+
 import model.Model;
 import view.MainGUI;
 import static view.MainGUI.ALTEZZA;
@@ -148,6 +153,7 @@ public class ControllerForView implements IControllerForView {
             }               
         }*/
         public void Colpito(boolean b, String s){
+            System.out.println("eseguo colpito");
             Cavaliere[] cavalieri = ControllerForModel.getInstance().getCavalieri();
             int[] y = ControllerForModel.getInstance().getYArray();
             Boolean[] esplosi = ControllerForModel.getInstance().getEsplosi();
@@ -176,8 +182,101 @@ public class ControllerForView implements IControllerForView {
             return movimento;    
         }*/
         
+    public void logicaPaint(Graphics g){
         
+          MagoInterface mago = ControllerForModel.getInstance().getMago();
+          mago.stampaMago();
+              
+       
+        g.drawImage(mago.magoImg() ,mago.getXMago() ,ALTEZZA-145,100,108,null);
+        if(getGiocoIniziato()==true) {
+
+            Model.getInstance().setT1();
+            
+            long diff =  Model.getInstance().getT1() -  Model.getInstance().getT0();
+            
+            
+            if(diff >= Model.getInstance().getIntervalli(0) )
+                g.drawImage(ControllerForModel.getInstance().getPioggia(0),ControllerForModel.getInstance().getX(0),ControllerForModel.getInstance().getY(0),150,180,null);
+            if(diff >= Model.getInstance().getIntervalli(1) )
+                g.drawImage(ControllerForModel.getInstance().getPioggia(1),ControllerForModel.getInstance().getX(1),ControllerForModel.getInstance().getY(1),150,180,null);
+            if(diff >= Model.getInstance().getIntervalli(2) )
+                g.drawImage(ControllerForModel.getInstance().getPioggia(2),ControllerForModel.getInstance().getX(2),ControllerForModel.getInstance().getY(2),150,180,null);
+            if(diff >= Model.getInstance().getIntervalli(3) )
+                g.drawImage(ControllerForModel.getInstance().getPioggia(3),ControllerForModel.getInstance().getX(3),ControllerForModel.getInstance().getY(3),150,180,null);
+            if(diff >= Model.getInstance().getIntervalli(4) )
+                g.drawImage(ControllerForModel.getInstance().getPioggia(4),ControllerForModel.getInstance().getX(4),ControllerForModel.getInstance().getY(4),150,180,null);
+           
+            ControllerForModel.getInstance().resetOndata();           
+            mago.movimentoBraccia();                                            
+        }
         
+    }
+
+    public Boolean getGiocoInEsecuzione(){
+        return Model.getInstance().getGiocoInEsecuzione();
+    }
+    public void setGiocoInEsecuzione(Boolean b){
+        Model.getInstance().setGiocoInEsecuzione(b);
+    }
+    public Boolean getGiocoIniziato(){
+        return Model.getInstance().getGiocoIniziato();
+    }
+    public void setGiocoIniziato(Boolean b){
+        Model.getInstance().setGiocoIniziato(b);
+    }
+    
+    public long getT0(){
+        return Model.getInstance().getT0();
+    }
+        
+    public void setT0(){
+        Model.getInstance().setT0();
+    }
+
+    public long getT1(){
+        return Model.getInstance().getT1();
+    }
+
+    public void setP(long tmp){
+        Model.getInstance().setP(tmp);
+    }
+    
+    public long getP(){
+        return Model.getInstance().getP();
+    }
+
+    public long getPi(){
+        return Model.getInstance().getPi();
+    }
+
+    public void setPi(){
+        Model.getInstance().setPi();
+    }
+
+    public long getPf(){
+        return Model.getInstance().getPf();
+    }
+
+    public void setPf(){
+        Model.getInstance().setPf();
+    }
+
+    public int getIntervalli(int i){
+        return Model.getInstance().getIntervalli(i);
+    }
+    
+    public  void Cavalieri(){
+        Model.getInstance().Cavalieri();
+    }
+        
+    public  void Pioggia(){
+        Model.getInstance().Pioggia();
+    }
+        
+    public  void Esplosi(){
+        Model.getInstance().Esplosi();
+    }
 
     //---------------------------------------------------------------
     // METODI STATICI

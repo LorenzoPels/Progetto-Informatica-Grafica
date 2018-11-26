@@ -3,6 +3,7 @@ package controller;
 
 import java.awt.Image;
 import model.Cavaliere;
+import model.MagoInterface;
 
 
 public interface IControllerForModel {
@@ -23,6 +24,8 @@ public interface IControllerForModel {
         
         public int getY(int i);
         
+        public int getX(int i);
+        
         public int getScore();
         
         public int getIntervalli(int i);
@@ -38,6 +41,8 @@ public interface IControllerForModel {
         public  Cavaliere getCavalieri(int i);
         
         public  Cavaliere[] getCavalieri();
+        
+        public MagoInterface getMago();
         
         
 }

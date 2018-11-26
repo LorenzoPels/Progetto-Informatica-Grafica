@@ -4,12 +4,19 @@ package model;
 
 import java.awt.Image;                                                          
 import static model.Cavaliere.Loader;
+
+
+
 import static view.BoardPanel.larghezza;
 import view.CaricatoreImmagine;
+
+
 import static view.MainGUI.ALTEZZA;
 import static view.StartWindow.insane;
-import static view.MainGUI.giocoIniziato;
-import static view.MainGUI.giocoInEsecuzione;
+
+
+/*import static view.MainGUI.giocoIniziato;
+import static view.MainGUI.giocoInEsecuzione;                                   */
 
 
 
@@ -44,6 +51,10 @@ public class Model implements IModel {
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
     
+    Boolean giocoInEsecuzione, giocoIniziato;
+    
+    MagoInterface mago;
+    
     private Model() {		
         this.initGame();
     }
@@ -63,6 +74,7 @@ public class Model implements IModel {
         pioggiaRandom();
         resetIndex();
         resetY();
+        caricaAnimazioni();
         t0=t1=P=Pi=Pf=0;       
         int t = 0;
         if(insane==true){
@@ -80,6 +92,8 @@ public class Model implements IModel {
                     intervalli[i]=t;
             }
         }
+        
+        mago = new MagoDefault();
     }
         
     public int getScore() {
@@ -156,7 +170,9 @@ public class Model implements IModel {
     public int[] getYArray(){
         return y;
     }
-    
+    public int[] getXArray(){
+        return x;
+    }
     public void resetY(){
         for(int i=0;i<y.length;i++)
              y[i]=-150;
@@ -181,10 +197,10 @@ public class Model implements IModel {
         return pioggia;
     }
     
-    public  Image[] Pioggia(){
+    public  /*Image[]*/ void Pioggia(){
     for(int i=0; i<cavalieri.length;i++)  
        pioggia[i] = Loader(cavalieri[i]);
-    return pioggia;
+    //return pioggia;
     }
     
     public  Image getPioggia(int i){
@@ -199,10 +215,10 @@ public class Model implements IModel {
         return cavalieri[i];
     }
     
-    public  Cavaliere[] Cavalieri(){
+    public  /*Cavaliere[]*/ void Cavalieri(){
         for(int i=0; i<cavalieri.length;i++)  
             cavalieri[i] = Cavaliere.nextCavaliere();
-        return cavalieri;
+        //return cavalieri;
         }
     
     public  Cavaliere[] getCavalieri(){
@@ -251,19 +267,69 @@ public class Model implements IModel {
                 } 
             }               
         }
-    
-    public void setT0(long tmp){
-    t0= tmp;
+    public long getT0(){
+        return t0;
+    }    
+    public void setT0(){
+        t0=System.currentTimeMillis();
     }
+    public long getT1(){
+        return t1;
+    }
+    public void setT1(){
+        t1=System.currentTimeMillis()-P;
+    }
+    
     public void setP(long tmp){
         P = tmp;
     }
+    
+    public long getP(){
+        return P;
+    }
+    
+    public long getPi(){
+        return Pi;
+    }
+        
+    public void setPi(){
+        Pi = System.currentTimeMillis();
+    }
+        
+    public long getPf(){
+        return Pf;
+    }
 
+    public void setPf(){
+        Pf = System.currentTimeMillis();
+    }
+    
+    public MagoInterface getMago(){
+        return this.mago;
+    }
+    
+    public Boolean getGiocoInEsecuzione(){
+        return giocoInEsecuzione;
+    }
+     public void setGiocoInEsecuzione(Boolean b){
+        giocoInEsecuzione = b;
+    }
+    public Boolean getGiocoIniziato(){
+        return giocoIniziato;
+    }
+    public void setGiocoIniziato(Boolean b){
+        giocoIniziato = b;
+    }
+    
+    
     public static IModel getInstance() {
             if (instance == null)
                     instance = new Model();
             return instance;
     }
+
+    
+    
 
 }
 
