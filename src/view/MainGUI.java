@@ -1,6 +1,7 @@
 
 package view;
 
+import controller.ControllerForModel;
 import controller.ControllerForView;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -115,7 +116,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         
         if(diff>= ControllerForView.getInstance().getIntervalli(0)){
            ControllerForView.getInstance().statoCavaliere( 0);
-
+           
         }
 
         if(diff>= ControllerForView.getInstance().getIntervalli(1)){
@@ -182,9 +183,9 @@ public class MainGUI extends JFrame implements ActionListener  {
                 player.play();
                 timer.start();
                 ControllerForView.getInstance().setT0();
-                mago.setXMagoMax(larghezza-150);
-                mago.setXMagoMin(50);
-                mago.resetMago();
+                //mago.setXMagoMax(larghezza-150);
+                //mago.setXMagoMin(50);
+                //mago.resetMago();
                 panel.requestFocusInWindow();
         }
         else if (!ControllerForView.getInstance().getGiocoInEsecuzione()) {

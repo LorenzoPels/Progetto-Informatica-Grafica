@@ -29,7 +29,7 @@ public class Model implements IModel {
                      
     private final int altezzaterreno = ALTEZZA-250;     //get altezza?
     public  int[] index = new int[5];
-    private boolean[] controlloreMovimento= new boolean[5];
+    public boolean[] controlloreMovimento= new boolean[5];
     public int[] y = new int[5];
     public int[] x = new int[5];
     public int movimento;
@@ -94,6 +94,10 @@ public class Model implements IModel {
         }
         
         mago = new MagoDefault();
+        /* SPOSTATI DA START PAUE EVENT */
+        mago.setXMagoMax(larghezza-150);
+        mago.setXMagoMin(50);
+        mago.resetMago();
     }
         
     public int getScore() {

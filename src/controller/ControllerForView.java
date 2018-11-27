@@ -134,6 +134,7 @@ public class ControllerForView implements IControllerForView {
         }
 
         if(esplosi==true  && index <= 13 && y <= altezzaterreno-1){
+            
              Model.getInstance().setPioggia(i,Model.getInstance().effettuaAnimazione(colore, index));
             index ++;
             Model.getInstance().setIndex(i, index);
@@ -153,13 +154,13 @@ public class ControllerForView implements IControllerForView {
             }               
         }*/
         public void Colpito(boolean b, String s){
-            System.out.println("eseguo colpito");
+            
             Cavaliere[] cavalieri = ControllerForModel.getInstance().getCavalieri();
             int[] y = ControllerForModel.getInstance().getYArray();
             Boolean[] esplosi = ControllerForModel.getInstance().getEsplosi();
             for(int i =0;(i<cavalieri.length)&&(b==false);i++){
                 if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
-                    //pioggia[i] = null;
+                    //pioggia[i] = null;                    
                     Model.getInstance().setPioggia(i, null);
                     cavalieri[i] = null;
                     Model.getInstance().setCavalieri(i, cavalieri[i]);
