@@ -44,5 +44,10 @@ public interface IControllerForModel {
         
         public MagoInterface getMago();
         
+        public String getColore(int i);
+        
+        public int getRallentaMov();
+
+        
         
 }

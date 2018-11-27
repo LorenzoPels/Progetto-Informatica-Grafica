@@ -33,10 +33,12 @@ public class Model implements IModel {
     public int[] y = new int[5];
     public int[] x = new int[5];
     public int movimento;
+    public int rallentaMov;
     
     public Image[] pioggia = new Image[5];
     public Cavaliere[] cavalieri = new Cavaliere[5];
     public Boolean[] esplosi = new Boolean[5];
+    public String[] colori = new String[5];
     
     public long t0,t1,P,Pi,Pf;
     public long diff;
@@ -75,7 +77,12 @@ public class Model implements IModel {
         resetIndex();
         resetY();
         caricaAnimazioni();
-        t0=t1=P=Pi=Pf=0;       
+        t0=t1=P=Pi=Pf=0;
+        rallentaMov = 0;
+        
+        for (int i = 0; i< colori.length; i++)
+            colori[i] = null;
+        
         int t = 0;
         if(insane==true){
             setMovimento(2);
@@ -325,6 +332,21 @@ public class Model implements IModel {
         giocoIniziato = b;
     }
     
+    public String getColore(int i){
+        return colori[i];
+    }
+        
+    public void setColore(int i, String s){
+        colori[i]= s;
+    }
+    
+    public int getRallentaMov(){
+        return rallentaMov;
+    }
+        
+    public void incrementRallentaMov(){
+        rallentaMov++;
+    }
     
     public static IModel getInstance() {
             if (instance == null)

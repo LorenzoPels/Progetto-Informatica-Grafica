@@ -93,7 +93,7 @@ public class ControllerForView implements IControllerForView {
     public void statoCavaliere(int i){
         // non si sa colore[i] da dove nasceva fuori, perciò lo richiamo qui come
         // unica variabile.
-        String colore=null;
+        String colore= ControllerForModel.getInstance().getColore(i);
         int y=ControllerForModel.getInstance().getY(i);
         Boolean esplosi = ControllerForModel.getInstance().getEsplosi(i);
         int altezzaterreno = ControllerForModel.getInstance().getAltezzaterreno();
@@ -129,8 +129,10 @@ public class ControllerForView implements IControllerForView {
             ControllerForView.getInstance().openGameOverDialog(/*scorelabel.getText()*/getScore());
 
         }
-        if(esplosi == false){
+        if(colore == null){
              colore = ControllerForModel.getInstance().getCavalieri(i).getColore();
+             Model.getInstance().setColore(i, colore);
+             
         }
 
         if(esplosi==true  && index <= 13 && y <= altezzaterreno-1){

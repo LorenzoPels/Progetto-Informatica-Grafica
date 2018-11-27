@@ -100,4 +100,12 @@ public interface IModel {
         public void setGiocoIniziato(Boolean b);
     
         public MagoInterface getMago();
+        
+        public String getColore(int i);
+        
+        public void setColore(int i, String s);
+        
+        public int getRallentaMov();
+        
+        public void incrementRallentaMov();
 }

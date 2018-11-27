@@ -11,7 +11,7 @@ import static view.StartWindow.insane;
 public class ControllerForModel implements IControllerForModel {
 
 	private static ControllerForModel instance = null;
-        public int rallentaMov=0;
+        //public int rallentaMov=0;
 
 	private ControllerForModel() {
 		//to-do
@@ -50,19 +50,26 @@ public class ControllerForModel implements IControllerForModel {
                 Model.getInstance().pioggiaRandom();
                 Model.getInstance().resetY();
                 
+                Model .getInstance().setColore(0, null);
+                Model .getInstance().setColore(1, null);
+                Model .getInstance().setColore(2, null);
+                Model .getInstance().setColore(3, null);
+                Model .getInstance().setColore(4, null);
                 
                 if( diffIntervallo(0) > 100 )
                     Model.getInstance().setIntervallo(0, Model.getInstance().getIntervalli(0) - 100);
                 if( diffIntervallo(1) > 500 )
-                    Model.getInstance().setIntervallo(1, Model.getInstance().getIntervalli(0) - 200);
+                    Model.getInstance().setIntervallo(1, Model.getInstance().getIntervalli(1) - 200);
                 if( diffIntervallo(2) > 500 )
-                     Model.getInstance().setIntervallo(2, Model.getInstance().getIntervalli(0) - 200);
+                     Model.getInstance().setIntervallo(2, Model.getInstance().getIntervalli(2) - 200);
                 if( diffIntervallo(3) > 500 )
-                     Model.getInstance().setIntervallo(3, Model.getInstance().getIntervalli(0) - 200);
+                     Model.getInstance().setIntervallo(3, Model.getInstance().getIntervalli(3) - 200);
                 if( diffIntervallo(4) > 500 )
-                     Model.getInstance().setIntervallo(4, Model.getInstance().getIntervalli(0) - 200);
+                     Model.getInstance().setIntervallo(4, Model.getInstance().getIntervalli(4) - 200);
+                
+                aggiornaMovimento(getRallentaMov());
 
-                aggiornaMovimento(rallentaMov);
+                
                 
             }
     }
@@ -70,13 +77,13 @@ public class ControllerForModel implements IControllerForModel {
             if(insane == true){                        
                 if( getMovimento() < 6 ){
                     if( (getMovimento() + a)%2 == 0)
-                        a++;
+                        Model.getInstance().incrementRallentaMov();
                     Model.getInstance().incrementaMovimento();
                 }
             }else{
                 if( getMovimento() < 4 ){
                     if( (getMovimento() + a)%2 == 0)
-                        a++;
+                        Model.getInstance().incrementRallentaMov();
                     else Model.getInstance().incrementaMovimento();               
                 }
             }               
@@ -164,6 +171,13 @@ public class ControllerForModel implements IControllerForModel {
             return Model.getInstance().getMago();
         }
         
+        public String getColore(int i){
+            return Model.getInstance().getColore(i);
+        }
         
+        public int getRallentaMov(){
+            return Model.getInstance().getRallentaMov();
+        }
+
 
 }
