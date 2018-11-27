@@ -46,6 +46,8 @@ public class MagoDefault implements MagoInterface {
             Logger.getLogger(MagoDefault.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        
             mago = arrayMago[0];
             
             xMago = larghezza/2;
@@ -90,14 +92,14 @@ public class MagoDefault implements MagoInterface {
     
      public int movimentoMago(int i){
         int imgMago = 0;
-        if(xMago < x[i] ){
+        if(xMago < Model.getInstance().getXArray()[i] ){
             imgMago = 1;
-            xMagoMax = x[i]+50;
+            xMagoMax = Model.getInstance().getXArray()[i]+50;
             direzioneMago=+1;
         }
-        if(xMago > x[i] ){
+        if(xMago > Model.getInstance().getXArray()[i] ){
             imgMago = 2;
-            xMagoMin=x[i]-50;
+            xMagoMin=Model.getInstance().getXArray()[i]-50;
             direzioneMago=-1;
         }
         tmago =  System.currentTimeMillis();
