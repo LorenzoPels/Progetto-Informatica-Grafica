@@ -17,17 +17,6 @@ import model.MagoDefault;
 import model.Model;
 
 
-/*import static view.MainGUI.P;
-import static view.MainGUI.diff;
-import static view.MainGUI.pioggia;
-import static view.MainGUI.t0;
-import static view.MainGUI.t1;
-import static view.MainGUI.int0;
-import static view.MainGUI.int1;
-import static view.MainGUI.int2;
-import static view.MainGUI.int3;
-import static view.MainGUI.int4;
-import static view.MainGUI.giocoIniziato;                                       *///26/11
 
 
 

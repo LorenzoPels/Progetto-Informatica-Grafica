@@ -3,7 +3,7 @@ package controller;
 
 
 import java.awt.Graphics;
-import java.awt.Image;
+
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -162,7 +162,7 @@ public class ControllerForView implements IControllerForView {
             Boolean[] esplosi = ControllerForModel.getInstance().getEsplosi();
             for(int i =0;(i<cavalieri.length)&&(b==false);i++){
                 if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
-                    //pioggia[i] = null;                    
+                    //pioggia[i] = null;
                     Model.getInstance().setPioggia(i, null);
                     cavalieri[i] = null;
                     Model.getInstance().setCavalieri(i, cavalieri[i]);
@@ -170,8 +170,10 @@ public class ControllerForView implements IControllerForView {
                     Model.getInstance().setEsplosi(i, esplosi[i]);
                     cavalieri[i]=Cavaliere.nextCavaliere();
                     Model.getInstance().setCavalieri(i, cavalieri[i]);
-                    scoppio.play();                
+                    scoppio.play();
+                    
                     MagoDefault.getInstance().gestisciMago(i);
+                    
                     incrementScore();
                     updateScoreLabel(ControllerForModel.getInstance().getScore());
                     b = true;
@@ -188,10 +190,10 @@ public class ControllerForView implements IControllerForView {
     public void logicaPaint(Graphics g){
         
           MagoInterface mago = ControllerForModel.getInstance().getMago();
-          mago.stampaMago();
+          //mago.stampaMago();
               
        
-        g.drawImage(mago.magoImg() ,mago.getXMago() ,ALTEZZA-145,100,108,null);
+        g.drawImage(mago.magoImg() ,mago.getXMago() ,ALTEZZA-190,100,108,null);
         if(getGiocoIniziato()==true) {
 
             Model.getInstance().setT1();
@@ -211,7 +213,8 @@ public class ControllerForView implements IControllerForView {
                 g.drawImage(ControllerForModel.getInstance().getPioggia(4),ControllerForModel.getInstance().getX(4),ControllerForModel.getInstance().getY(4),150,180,null);
            
             ControllerForModel.getInstance().resetOndata();           
-            mago.movimentoBraccia();                                            
+            mago.movimentoBraccia(); 
+            mago.stampaMago();
         }
         
     }
