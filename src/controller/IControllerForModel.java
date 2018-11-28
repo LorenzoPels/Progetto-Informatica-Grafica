@@ -2,6 +2,7 @@
 package controller;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import model.Cavaliere;
 import model.MagoInterface;
 
@@ -47,6 +48,10 @@ public interface IControllerForModel {
         public String getColore(int i);
         
         public int getRallentaMov();
+        
+        public int getXMago();
+        
+        public BufferedImage magoImg();
 
         
         

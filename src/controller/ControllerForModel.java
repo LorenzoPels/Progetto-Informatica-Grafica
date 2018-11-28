@@ -2,7 +2,9 @@
 package controller;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import model.Cavaliere;
+import model.MagoDefault;
 import model.MagoInterface;
 import model.Model;
 import static view.StartWindow.insane;
@@ -177,6 +179,14 @@ public class ControllerForModel implements IControllerForModel {
         
         public int getRallentaMov(){
             return Model.getInstance().getRallentaMov();
+        }
+        
+        public int getXMago(){
+            return MagoDefault.getInstance().getXMago();
+        }
+        
+        public BufferedImage magoImg(){
+            return MagoDefault.getInstance().magoImg();
         }
 
 

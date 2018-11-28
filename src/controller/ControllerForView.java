@@ -193,7 +193,7 @@ public class ControllerForView implements IControllerForView {
           //mago.stampaMago();
               
        
-        g.drawImage(mago.magoImg() ,mago.getXMago() ,ALTEZZA-190,100,108,null);
+        g.drawImage(ControllerForModel.getInstance().magoImg() ,ControllerForModel.getInstance().getXMago() ,ALTEZZA-190,100,108,null);
         if(getGiocoIniziato()==true) {
 
             Model.getInstance().setT1();
