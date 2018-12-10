@@ -3,7 +3,6 @@ package model;
 
 import java.awt.Image;
 import java.util.HashMap;
-import view.CaricatoreImmagine;
 import static view.StartWindow.insane;
 
 
@@ -67,15 +66,15 @@ public class Cavaliere {
     //---------------------------------------------------------------
     
     public static Cavaliere nextCavaliere() {
-            Cavaliere fallingPiece = null;
-            if(insane == true)
-                length=15;
-            else length=9;
-            int pieceIndex = (int)(Math.random() * length) % length;
+        Cavaliere fallingPiece = null;
+        if(insane == true)
+            length=15;
+        else length=9;
+        int pieceIndex = (int)(Math.random() * length) % length;
 
-            fallingPiece = FALLING_PIECE_ARRAY[pieceIndex];
+        fallingPiece = FALLING_PIECE_ARRAY[pieceIndex];
 
-            return fallingPiece;
+        return fallingPiece;
     }
 
     public static Image Loader(Cavaliere cv){

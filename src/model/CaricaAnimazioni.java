@@ -1,6 +1,7 @@
 
-package view;
+package model;
 
+import model.CaricatoreImmagine;
 import java.awt.Image;
 
 

@@ -7,8 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import static view.BoardPanel.larghezza;
-import static view.BoardPanel.x;
-//import static view.MainGUI.t1;
+
 
 
 public class MagoDefault implements MagoInterface {
@@ -21,18 +20,16 @@ public class MagoDefault implements MagoInterface {
     public static int xMago ;
     public static int xMagoMax;
     public static int xMagoMin;
+    public static int direzioneMago; 
     private static long tmago;
     
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
-    
-    public static int direzioneMago; /////// PRIMA ERA "int direzioneMago" MA COSI ALMENO CAMBIA DIREZIONE QUANDO DEVE
-    
-    
+ 
     private static MagoDefault instance = null;
 
-    public MagoDefault(/*BufferedImage a, BufferedImage b, BufferedImage c*/) {
+    public MagoDefault() {
         
             arrayMago =  new BufferedImage[3];
             
@@ -71,16 +68,12 @@ public class MagoDefault implements MagoInterface {
     }
     
     public void stampaMago(){
-        if (xMago == xMagoMax ){
-            System.out.print("arrivato al limite ");
-            direzioneMago = -1;
-            System.out.println("DESTRO");
+        if (xMago == xMagoMax ){       
+            direzioneMago = -1;           
             mago = arrayMago[0];
         }
-        if (xMago == xMagoMin){
-            System.out.print("arrivato al limite ");
-            direzioneMago = +1;
-            System.out.println("SINISTRO");
+        if (xMago == xMagoMin){           
+            direzioneMago = +1;           
             mago = arrayMago[0];
         }                                                                        
         xMago += direzioneMago;
@@ -91,29 +84,24 @@ public class MagoDefault implements MagoInterface {
                 mago = arrayMago[0];
     }
     
-     public void gestisciMago(int c){
-        //System.out.println("gestisci mago funziona");
+     public void gestisciMago(int c){       
         int i;
         i= movimentoMago(c);
         mago = arrayMago[i];
     }
     
      public int movimentoMago(int i){
-        //System.out.println("movimento mago funziona");
+
         int imgMago = 0;
         if(xMago < Model.getInstance().getXArray()[i] ){
             imgMago = 1;
             xMagoMax = Model.getInstance().getXArray()[i]+50;
-            //System.out.print("PRIMO   ");
             direzioneMago = +1;
-            //System.out.println("direzioneMago=+1");
         }
         if(xMago > Model.getInstance().getXArray()[i] ){
             imgMago = 2;
             xMagoMin=Model.getInstance().getXArray()[i]-50;
-            //System.out.print("SECONDO    ");
             direzioneMago = -1;
-            //System.out.println("direzioneMago=-1");
         }
         tmago =  System.currentTimeMillis();
         return imgMago;       
@@ -122,8 +110,7 @@ public class MagoDefault implements MagoInterface {
     public int getXMago(){
         return this.xMago;
     }
-    
-    
+       
     public void resetMago(){
         mago = arrayMago[0];
     }
@@ -136,13 +123,14 @@ public class MagoDefault implements MagoInterface {
         xMagoMin = x;
    }
     
+    //---------------------------------------------------------------
+    //  METODI STATICI
+    //--------------------------------------------------------------- 
     public static MagoInterface getInstance() {
-    /*    BufferedImage a = arrayMago[0];
-        BufferedImage b = arrayMago[1];
-        BufferedImage c = arrayMago[2];                                         */
-            if (instance == null)
-                   instance = new MagoDefault(/*a,b,c*/);
-            return instance;
+
+        if (instance == null)
+            instance = new MagoDefault();
+        return instance;
     }
     
 }

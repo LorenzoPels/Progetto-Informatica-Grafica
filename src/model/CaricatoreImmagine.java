@@ -1,5 +1,5 @@
 
-package view;
+package model;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

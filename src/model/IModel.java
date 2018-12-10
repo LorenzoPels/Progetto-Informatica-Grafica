@@ -36,34 +36,32 @@ public interface IModel {
         public void setY(int i,int a);
         
         public int getMovimento();
-        
-        //public void setMovimento(int mv);
-        
+     
         public void incrementaMovimento();
         
-        public  /*Cavaliere[]*/ void Cavalieri();
+        public void Cavalieri();
         
-        public  Cavaliere getCavalieri(int i);
+        public Cavaliere getCavalieri(int i);
         
-        public  Cavaliere[] getCavalieri();
+        public Cavaliere[] getCavalieri();
         
-        public  void setCavalieri(int i,Cavaliere cv);
+        public void setCavalieri(int i,Cavaliere cv);
         
-        public  /*Image[]*/ void Pioggia();
+        public void Pioggia();
         
-        public  Image getPioggia(int i);
+        public Image getPioggia(int i);
         
-        public  void setPioggia(int i, Image img);
+        public void setPioggia(int i, Image img);
         
         public Image[] getPioggia();
       
-        public  void Esplosi();
+        public void Esplosi();
         
-        public  Boolean getEsplosi(int i);
+        public Boolean getEsplosi(int i);
         
-        public  Boolean[] getEsplosi();
+        public Boolean[] getEsplosi();
         
-        public  void setEsplosi(int i, Boolean b);
+        public void setEsplosi(int i, Boolean b);
         
         public int getIntervalli(int i);
         
@@ -71,7 +69,7 @@ public interface IModel {
         
         public void pioggiaRandom();
         
-         public long getT0();
+        public long getT0();
         
         public void setT0();
         
