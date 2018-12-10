@@ -1,53 +1,49 @@
 
 package model;
 
-import controller.ControllerForView;
-import java.awt.Image;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.awt.Image;                                                          
+import static model.Cavaliere.Loader;
+
+
+
 import static view.BoardPanel.larghezza;
-import static view.BoardPanel.x;
 import view.CaricatoreImmagine;
-import view.MainGUI;
+
+
 import static view.MainGUI.ALTEZZA;
-import static view.MainGUI.Pi;
-import static view.MainGUI.Pf;
-import static view.MainGUI.cavalieri;
-import static view.MainGUI.esplosi;
-import static view.MainGUI.gameover;
-import static view.MainGUI.player;
-import static view.MainGUI.scoppio;
-import static view.MainGUI.t1;
-import static view.MainGUI.timer;
-import static view.RightPanel.scorelabel;
-import static view.RightPanel.updateScoreLabel;
-import static view.MainGUI.P;
-import static view.MainGUI.int0;
-import static view.MainGUI.int1;
-import static view.MainGUI.int2;
-import static view.MainGUI.int3;
-import static view.MainGUI.int4;
-import static view.MainGUI.movimento;
-import static view.MainGUI.pioggia;
-import static view.MainGUI.t0;
 import static view.StartWindow.insane;
-import static view.BoardPanel.mago;
-import static view.MainGUI.giocoIniziato;
-import static view.MainGUI.giocoInEsecuzione;
+
+
+/*import static view.MainGUI.giocoIniziato;
+import static view.MainGUI.giocoInEsecuzione;                                   */
+
+
 
 
 public class Model implements IModel {
     
-    //---------------------------------------------------------------
-    // VARIABILI STATICHE
-    //---------------------------------------------------------------
-    private static Model instance = null;
     
-    //---------------------------------------------------------------
-    // VARIABILI PRIVATE
-    //--------------------------------------------------------------- 
-    private Cavaliere fallingPiece;
+    private static Model instance = null;
+    public  int score;
+                     
+    private final int altezzaterreno = ALTEZZA-250;     //get altezza?
+    public  int[] index = new int[5];
+    public boolean[] controlloreMovimento= new boolean[5];
+    public int[] y = new int[5];
+    public int[] x = new int[5];
+    public int movimento;
+    public int rallentaMov;
+    
+    public Image[] pioggia = new Image[5];
+    public Cavaliere[] cavalieri = new Cavaliere[5];
+    public Boolean[] esplosi = new Boolean[5];
+    public String[] colori = new String[5];
+    
+    public long t0,t1,P,Pi,Pf;
+    public long diff;
+    public int[] intervalli = new int[5];
+                                                                                //public  String[] colore = new String[5];
     private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
     private Image[] Giallo = new Image[14];
@@ -56,177 +52,70 @@ public class Model implements IModel {
     private Image[] Rosso = new Image[14];
     private Image[] Verde = new Image[14];
     private Image[] Viola = new Image[14];
-    private boolean controlloreMovimento[]= new boolean[5];
-    private final int altezzaterreno = ALTEZZA-250;
-    int a=0;
     
-    //---------------------------------------------------------------
-    // VARIABILI PUBBLICHE
-    //---------------------------------------------------------------
-    public  int score;
-    public  int y[] = new int[5];
-    public  int index[] = new int[5];
-    public  String[] colore = new String[5];
+    Boolean giocoInEsecuzione, giocoIniziato;
     
-    
+    MagoInterface mago;
     
     private Model() {		
         this.initGame();
     }
     
-    //---------------------------------------------------------------
-    // METODI PUBBLICI
-    //---------------------------------------------------------------
     public void initGame() {
         giocoInEsecuzione = false;
-        giocoIniziato = false;
-        this.score= 0;
+        giocoIniziato = false;      
+        score= 0;       
         for(int i=0; i<cavalieri.length;i++){
             cavalieri[i]=null;
               pioggia[i]=null;
+              esplosi[i]=false;
          }
-        P=0;
-        MainGUI.Cavalieri();
-        MainGUI.Pioggia();
+        P=0;     
+        Cavalieri();
+        Pioggia();
         pioggiaRandom();
-        int0=900;
-        int1=1800;
-        int2=2700;
-        int3=3600;
-        int4=4500;
         resetIndex();
         resetY();
-        for (int i=0; i<y.length;i++)
-            y[i]=-150;
-
+        caricaAnimazioni();
         t0=t1=P=Pi=Pf=0;
+        rallentaMov = 0;
+        
+        for (int i = 0; i< colori.length; i++)
+            colori[i] = null;
+        
+        int t = 0;
         if(insane==true){
-            movimento=2;
-            int0=700;
-            int1=1400;
-            int2=2100;
-            int3=2800;
-            int4=3500;               
+            setMovimento(2);
+           
+            for (int i = 0;i < intervalli.length ;i++){
+                    t+=700;
+                    intervalli[i]=t;
+            }        
         }else{ 
-            movimento =1;
-            int0=900;
-            int1=1800;
-            int2=2700;
-            int3=3600;
-            int4=4500;
+           setMovimento(1);
+           
+            for (int i = 0;i < intervalli.length ;i++){
+                    t+=900;
+                    intervalli[i]=t;
+            }
         }
+        
+        mago = new MagoDefault();
+        /* SPOSTATI DA START PAUE EVENT */
+        mago.setXMagoMax(larghezza-150);
+        mago.setXMagoMin(50);
+        mago.resetMago();
     }
         
     public int getScore() {
         return this.score;
     }
     
-    public int getY(int i) {
-        return this.y[i];
-    }
-    
-    public void resetIndex(){
-        for (int i=0; i<index.length;i++)
-            index[i]=0;
-    }
-    
-    public void resetY(){
-        for (int i=0; i<y.length;i++)
-            y[i]=-150;  
-    }
-    
-    public void resetOndata(){
-        if(pioggia[0]== null && pioggia[1]== null && pioggia[2]== null && pioggia[3]== null && pioggia[4]== null  ){    
-            t0=System.currentTimeMillis();
-            P=0;
-            MainGUI.Cavalieri();
-            MainGUI.Pioggia();
-            MainGUI.Esplosi();
-            pioggiaRandom();
-            resetIndex();
-            resetY();
-            if(int0>100)
-                int0-=100;
-            if( (int1-int0) > 500 )
-                int1-=200;
-            if( (int2-int1) > 500 )
-                int2-=200;
-            if( (int3-int2) > 500 )
-                int3-=200;
-            if( (int4-int3) > 500 )
-                int4-=200;
-
-            if(insane == true){                        
-                if( movimento < 6 ){                    
-                    a++;
-                    movimento++;
-                }
-            }else{
-                if( movimento < 4 ){
-                    if( (movimento+a)%2 == 0)
-                        a++;
-                    else movimento++;               
-                }
-            }               
-        }
-    }
     
     public  void incrementScore() {
         this.score ++;
     }
     
-    public void Colpito(boolean b, String s){
-        for(int i =0;(i<cavalieri.length)&&(b==false);i++){
-            if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
-                pioggia[i] = null;
-                cavalieri[i] = null;
-                esplosi[i] = true;
-                cavalieri[i]=Cavaliere.nextCavaliere();
-                scoppio.play();                
-                mago.gestisciMago(i);
-                incrementScore();
-                updateScoreLabel(getScore());
-                b = true;
-            }
-        }
-    }
-
-    public void statoCavaliere(int i){
-        if(controlloreMovimento[i]) 
-            y[i]+=movimento;
-            if(esplosi[i])
-                y[i]+=movimento+1;
-            if(index[i] > 12)
-                y[i]+=2*movimento+1;
-        if(y[i] >= -1000) controlloreMovimento[i] = true;
-        if(y[i] >= altezzaterreno) controlloreMovimento[i] = false;        
-        if((y[i] >= altezzaterreno) &&(esplosi[i] == true)){
-            pioggia[i]= null;
-            index[i]=0;
-        }        
-        if((y[i] >= altezzaterreno) &&(esplosi[i] == false) ){
-            gameover.play();
-            timer.stop();
-            try {
-                sleep(1500);
-                
-            } catch (InterruptedException ex) {
-                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
-            player.stop();
-            ControllerForView.getInstance().openGameOverDialog(scorelabel.getText());
-
-        }
-        if(esplosi[i] == false){
-             colore[i] = cavalieri[i].getColore();
-        }
-
-        if(esplosi[i]==true  && index[i] <= 13 && y[i] <= altezzaterreno-1){
-            pioggia[i]= effettuaAnimazione(colore[i], index[i]);
-            index[i] ++;
-        }
-    }
     
     public void caricaAnimazioni(){
         CaricatoreImmagine loader = new CaricatoreImmagine();
@@ -265,28 +154,208 @@ public class Model implements IModel {
                         
     }
     
-    public void pioggiaRandom(){   
-        for(int i=0;i<pioggia.length;i++){
-            x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
-            if(x[i]<148)
-                x[i]+=148;
-            if(i>0){
-                if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
-                    x[i] = x[i-1]-148;
-                if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
-                    x[i] = x[i-1]+148;
-            } 
-        }               
+    public int getAltezzaterreno(){
+        return altezzaterreno;
+    }
+    public int getIndex(int i){
+        return index[i];
     }
     
-    //---------------------------------------------------------------
-    // METODI STATICI
-    //---------------------------------------------------------------
+     public void resetIndex(){
+         for(int i=0;i<index.length;i++)
+             index[i]=0;
+     }
+     
+     public void setIndex(int i, int a){
+             index[i]=a;
+     }
+    
+    public boolean getControlloreMovimento(int i){
+        return controlloreMovimento[i];
+    }
+    
+     public void setControlloreMovimento(int i,Boolean b){
+         controlloreMovimento[i]=b;
+     }
+    
+    public int[] getYArray(){
+        return y;
+    }
+    public int[] getXArray(){
+        return x;
+    }
+    public void resetY(){
+        for(int i=0;i<y.length;i++)
+             y[i]=-150;
+    }
+    
+    public void setY(int i, int a){
+        y[i] = a;
+    }
+    
+    public int getMovimento(){
+        return movimento;
+    }
+    public void setMovimento(int mv){
+        movimento = mv;
+    }
+    
+    public void incrementaMovimento(){
+        movimento++;
+    }
+    
+    public Image[] getPioggia(){
+        return pioggia;
+    }
+    
+    public  /*Image[]*/ void Pioggia(){
+    for(int i=0; i<cavalieri.length;i++)  
+       pioggia[i] = Loader(cavalieri[i]);
+    //return pioggia;
+    }
+    
+    public  Image getPioggia(int i){
+        return pioggia[i];
+    }
+    
+    public  void setPioggia(int i, Image img){
+        pioggia[i]=img;
+    }
+    
+    public Cavaliere getCavalieri(int i){
+        return cavalieri[i];
+    }
+    
+    public  /*Cavaliere[]*/ void Cavalieri(){
+        for(int i=0; i<cavalieri.length;i++)  
+            cavalieri[i] = Cavaliere.nextCavaliere();
+        //return cavalieri;
+        }
+    
+    public  Cavaliere[] getCavalieri(){
+        return cavalieri;
+    }
+    
+    public  void setCavalieri(int i,Cavaliere cv){
+        cavalieri[i]=cv;
+    }
+    
+    public Boolean[] getEsplosi(){
+        return esplosi;
+    }
+    
+    public  void Esplosi(){
+        for(int i=0; i<cavalieri.length;i++)  
+            esplosi[i] = false;      
+    }
+    
+    public  Boolean getEsplosi(int i){
+        return esplosi[i];
+    }
+    
+    
+    public  void setEsplosi(int i, Boolean b){
+        esplosi[i]=b;
+    }
+    
+    public int getIntervalli(int i){
+        return intervalli[i];
+    }
+    public void setIntervallo(int i, int val){
+        intervalli[i]=val;
+    }
+    
+    public void pioggiaRandom(){   
+            for(int i=0;i<pioggia.length;i++){
+                x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
+                if(x[i]<148)
+                    x[i]+=148;
+                if(i>0){
+                    if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
+                        x[i] = x[i-1]-148;
+                    if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
+                        x[i] = x[i-1]+148;
+                } 
+            }               
+        }
+    public long getT0(){
+        return t0;
+    }    
+    public void setT0(){
+        t0=System.currentTimeMillis();
+    }
+    public long getT1(){
+        return t1;
+    }
+    public void setT1(){
+        t1=System.currentTimeMillis()-P;
+    }
+    
+    public void setP(long tmp){
+        P = tmp;
+    }
+    
+    public long getP(){
+        return P;
+    }
+    
+    public long getPi(){
+        return Pi;
+    }
+        
+    public void setPi(){
+        Pi = System.currentTimeMillis();
+    }
+        
+    public long getPf(){
+        return Pf;
+    }
+
+    public void setPf(){
+        Pf = System.currentTimeMillis();
+    }
+    
+    public MagoInterface getMago(){
+        return this.mago;
+    }
+    
+    public Boolean getGiocoInEsecuzione(){
+        return giocoInEsecuzione;
+    }
+     public void setGiocoInEsecuzione(Boolean b){
+        giocoInEsecuzione = b;
+    }
+    public Boolean getGiocoIniziato(){
+        return giocoIniziato;
+    }
+    public void setGiocoIniziato(Boolean b){
+        giocoIniziato = b;
+    }
+    
+    public String getColore(int i){
+        return colori[i];
+    }
+        
+    public void setColore(int i, String s){
+        colori[i]= s;
+    }
+    
+    public int getRallentaMov(){
+        return rallentaMov;
+    }
+        
+    public void incrementRallentaMov(){
+        rallentaMov++;
+    }
+    
     public static IModel getInstance() {
             if (instance == null)
                     instance = new Model();
             return instance;
     }
+
+    
+    
 
 }
 
