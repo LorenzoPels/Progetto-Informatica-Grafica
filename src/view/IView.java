@@ -1,7 +1,6 @@
 
 package view;
 
-import java.awt.image.BufferedImage;
 
 public interface IView {
     

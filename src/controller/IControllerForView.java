@@ -2,8 +2,7 @@
 package controller;
 
 import java.awt.Graphics;
-import java.awt.Image;
-import model.Cavaliere;
+
 
 
 
@@ -31,19 +30,9 @@ public interface IControllerForView {
 
 	public void initGame();
         
-        public void Colpito(boolean b, String s);
-        
-       // public int getY(int i);
-         
-        /*public void resetIndex();
-        
-        public void resetY();*/
+        public void Colpito(boolean b, String s);             
         
         public void statoCavaliere(int i);
-        
-        //public void pioggiaRandom();
-        
-        //public int getMovimento();
         
         public void logicaPaint (Graphics g );
         

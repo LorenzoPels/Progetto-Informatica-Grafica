@@ -4,46 +4,39 @@ package model;
 
 import java.awt.Image;                                                          
 import static model.Cavaliere.Loader;
-
-
-
 import static view.BoardPanel.larghezza;
-import view.CaricatoreImmagine;
-
-
 import static view.MainGUI.ALTEZZA;
 import static view.StartWindow.insane;
 
 
-/*import static view.MainGUI.giocoIniziato;
-import static view.MainGUI.giocoInEsecuzione;                                   */
-
-
-
-
 public class Model implements IModel {
     
-    
-    private static Model instance = null;
+    //---------------------------------------------------------------
+    // VARIABILI STATICHE
+    //---------------------------------------------------------------
+    private static Model instance = null;           
+      
+    //---------------------------------------------------------------
+    // VARIABILI PUBBLICHE
+    //---------------------------------------------------------------
     public  int score;
-                     
-    private final int altezzaterreno = ALTEZZA-250;     //get altezza?
     public  int[] index = new int[5];
     public boolean[] controlloreMovimento= new boolean[5];
     public int[] y = new int[5];
     public int[] x = new int[5];
     public int movimento;
-    public int rallentaMov;
-    
+    public int rallentaMov;   
     public Image[] pioggia = new Image[5];
     public Cavaliere[] cavalieri = new Cavaliere[5];
     public Boolean[] esplosi = new Boolean[5];
-    public String[] colori = new String[5];
-    
+    public String[] colori = new String[5];   
     public long t0,t1,P,Pi,Pf;
     public long diff;
-    public int[] intervalli = new int[5];
-                                                                                //public  String[] colore = new String[5];
+    public int[] intervalli = new int[5]; 
+    //---------------------------------------------------------------
+    // VARIABILI PRIVATE
+    //---------------------------------------------------------------
+    private final int altezzaterreno = ALTEZZA-245;
     private Image[] Arancio = new Image[14];
     private Image[] Blu = new Image[14];
     private Image[] Giallo = new Image[14];
@@ -51,15 +44,17 @@ public class Model implements IModel {
     private Image[] Rosa = new Image[14];
     private Image[] Rosso = new Image[14];
     private Image[] Verde = new Image[14];
-    private Image[] Viola = new Image[14];
-    
+    private Image[] Viola = new Image[14];  
     Boolean giocoInEsecuzione, giocoIniziato;
-    
     MagoInterface mago;
     
     private Model() {		
         this.initGame();
     }
+    
+    //---------------------------------------------------------------
+    // METODI PUBBLICI
+    //---------------------------------------------------------------
     
     public void initGame() {
         giocoInEsecuzione = false;
@@ -101,7 +96,6 @@ public class Model implements IModel {
         }
         
         mago = new MagoDefault();
-        /* SPOSTATI DA START PAUE EVENT */
         mago.setXMagoMax(larghezza-150);
         mago.setXMagoMin(50);
         mago.resetMago();
@@ -110,25 +104,23 @@ public class Model implements IModel {
     public int getScore() {
         return this.score;
     }
-    
-    
+       
     public  void incrementScore() {
         this.score ++;
     }
-    
-    
+       
     public void caricaAnimazioni(){
         CaricatoreImmagine loader = new CaricatoreImmagine();
-            for(int i =0;i<=13;i++){
-                Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
-                Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
-                Giallo[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
-                Grigio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
-                Rosa[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
-                Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
-                Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
-                Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
-            }
+        for(int i =0;i<=13;i++){
+            Arancio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereArancio/cavaliereArancio"+i+ ".png");
+            Blu[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereBlu/cavaliereBlu"+i+ ".png");
+            Giallo[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGiallo/cavaliereGiallo"+i+ ".png");
+            Grigio[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereGrigio/cavaliereGrigio"+i+ ".png");
+            Rosa[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosa/cavaliereRosa"+i+ ".png");
+            Rosso[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereRosso/cavaliereRosso"+i+ ".png");
+            Verde[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereVerde/cavaliereVerde"+i+ ".png");
+            Viola[i]= loader.caricaImmagine("/immagini/Cavalieri/Animazioni/cavaliereViola/cavaliereViola"+i+ ".png");
+        }
     }
     
     public Image effettuaAnimazione(String colore, int indice){
@@ -208,10 +200,9 @@ public class Model implements IModel {
         return pioggia;
     }
     
-    public  /*Image[]*/ void Pioggia(){
+    public void Pioggia(){
     for(int i=0; i<cavalieri.length;i++)  
        pioggia[i] = Loader(cavalieri[i]);
-    //return pioggia;
     }
     
     public  Image getPioggia(int i){
@@ -226,10 +217,9 @@ public class Model implements IModel {
         return cavalieri[i];
     }
     
-    public  /*Cavaliere[]*/ void Cavalieri(){
+    public void Cavalieri(){
         for(int i=0; i<cavalieri.length;i++)  
             cavalieri[i] = Cavaliere.nextCavaliere();
-        //return cavalieri;
         }
     
     public  Cavaliere[] getCavalieri(){
@@ -266,18 +256,19 @@ public class Model implements IModel {
     }
     
     public void pioggiaRandom(){   
-            for(int i=0;i<pioggia.length;i++){
-                x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
-                if(x[i]<148)
-                    x[i]+=148;
-                if(i>0){
-                    if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
-                        x[i] = x[i-1]-148;
-                    if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
-                        x[i] = x[i-1]+148;
-                } 
-            }               
-        }
+        for(int i=0;i<pioggia.length;i++){
+            x[i] = (int)(Math.random() * (larghezza-295)) % (larghezza-295);
+            if(x[i]<148)
+                x[i]+=148;
+            if(i>0){
+                if((x[i] > (x[i-1]-148)) && (x[i]<= x[i-1]))
+                    x[i] = x[i-1]-148;
+                if((x[i] < (x[i-1]+148)) && (x[i]>= x[i-1]))
+                    x[i] = x[i-1]+148;
+            } 
+        }               
+    }
+    
     public long getT0(){
         return t0;
     }    
@@ -348,14 +339,14 @@ public class Model implements IModel {
         rallentaMov++;
     }
     
+    //---------------------------------------------------------------
+    // METODI STATICI
+    //---------------------------------------------------------------
     public static IModel getInstance() {
             if (instance == null)
                     instance = new Model();
             return instance;
     }
-
-    
-    
 
 }
 

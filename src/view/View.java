@@ -134,7 +134,6 @@ public class View implements IView {
                         Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     gameover.setVisible(true);
-                    //decine.setText(ControllerForView.getInstance().getScore());
                     cifre = ControllerForView.getInstance().getScore();
                     centinaia.setIcon(null);
                     decine.setIcon(null);
@@ -158,7 +157,6 @@ public class View implements IView {
                     if(cifre.length() ==2){
                         cifreD = cifre.charAt(0);
                         cifreU = cifre.charAt(1);
-                        //cifreH = cifre.charAt(2);
                         decine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreD+".png")));
                         unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreU+".png")));
                         unità.setBounds(200, 170, 70, 110);
@@ -168,8 +166,7 @@ public class View implements IView {
                     if(cifre.length() ==1){
                         cifreU = cifre.charAt(0);
                         unità.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/Numeri/"+cifreU+".png")));
-                        //cifreD = cifre.charAt(1);
-                       // cifreU = cifre.charAt(2);
+
                     }
                     finalscore=ControllerForView.getInstance().getScore();
 

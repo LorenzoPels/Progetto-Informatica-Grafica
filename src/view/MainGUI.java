@@ -1,12 +1,11 @@
 
 package view;
 
-import controller.ControllerForModel;
+
 import controller.ControllerForView;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -21,19 +20,10 @@ import javafx.scene.media.MediaPlayer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
-                                                                                /* 26/11
-import model.Cavaliere;
-import static model.Cavaliere.Loader;
-import model.Model;                                                             */
-
-
-import static view.BoardPanel.larghezza;
 import static view.RightPanel.audiobutton;
 import static view.RightPanel.escbutton;
 import static view.RightPanel.musicbutton;
 import static view.RightPanel.pausebutton;
-import static view.BoardPanel.mago;
 
 
 public class MainGUI extends JFrame implements ActionListener  {
@@ -45,15 +35,12 @@ public class MainGUI extends JFrame implements ActionListener  {
     public final static int LARGHEZZA = 750;
     public final static int ALTEZZA = 730;
     public static Timer timer;
-                                                                                
-    
+                                                                                 
     public static ClipPlayer scoppio;
     public static ClipPlayer gameover;
     public static ClipPlayer sottofondo;
     public static MediaPlayer player;
     
-    /*public static boolean giocoIniziato; 
-    public static boolean giocoInEsecuzione;                                    */
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
@@ -79,7 +66,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         this.createPanel();
         panel = new BoardPanel();
         add(panel);
-        setResizable(true);
+        setResizable(false);
         pack();
         setLocationRelativeTo(null);
         timer = new Timer(PAUSE, this);
@@ -87,9 +74,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         final String audioGO = "audio/gameover.wav";
         scoppio = new ClipPlayer(audioScoppio);
         gameover = new ClipPlayer(audioGO);
-        initBackgroundSound();   
-        //Model.getInstance().caricaAnimazioni();         questa cosa è molto pericolosa
-
+        initBackgroundSound();          
 
     }
 
@@ -100,7 +85,6 @@ public class MainGUI extends JFrame implements ActionListener  {
     public void pausaGioco(){
         ControllerForView.getInstance().setGiocoInEsecuzione(false);
         timer.stop();
-        //giocoiniziato = false;
         player.pause();
         ControllerForView.getInstance().setPi();
         pausebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/immagini/gioca.png")));
@@ -110,7 +94,7 @@ public class MainGUI extends JFrame implements ActionListener  {
     }
     
 @Override
-    public void actionPerformed(ActionEvent e) {                                //va nel CFV? 26/11
+    public void actionPerformed(ActionEvent e) {                            
         
         long diff = ControllerForView.getInstance().getT1() - ControllerForView.getInstance().getT0();
         
@@ -140,7 +124,7 @@ public class MainGUI extends JFrame implements ActionListener  {
         }
 
          this.panel.repaint();       
-        //repaint();
+
     }
         
     //---------------------------------------------------------------
@@ -156,7 +140,9 @@ public class MainGUI extends JFrame implements ActionListener  {
 
     }   
         
-    
+    //---------------------------------------------------------------
+    // METODI STATICI
+    //---------------------------------------------------------------
 
     public static void initBackgroundSound() {
         final JFXPanel fxPanel = new JFXPanel();
@@ -183,9 +169,6 @@ public class MainGUI extends JFrame implements ActionListener  {
                 player.play();
                 timer.start();
                 ControllerForView.getInstance().setT0();
-                //mago.setXMagoMax(larghezza-150);
-                //mago.setXMagoMin(50);
-                //mago.resetMago();
                 panel.requestFocusInWindow();
         }
         else if (!ControllerForView.getInstance().getGiocoInEsecuzione()) {
@@ -219,7 +202,7 @@ public class MainGUI extends JFrame implements ActionListener  {
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                  try {
-                    new MainGUI(/*audioScoppio,audioGO*/).setVisible(true);
+                    new MainGUI().setVisible(true);
 
                 }
                 catch(FileNotFoundException fnfe) {

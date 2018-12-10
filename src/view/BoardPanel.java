@@ -13,14 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 
-import model.MagoDefault;
-import model.Model;
-
-
-
-
-
-
 public class BoardPanel extends JPanel implements KeyListener {
 
     //---------------------------------------------------------------
@@ -30,7 +22,6 @@ public class BoardPanel extends JPanel implements KeyListener {
     public static int larghezza = 490;
     public static int altezza = 680;
     private final static Dimension PREFERRED_SIZE = new Dimension(larghezza,altezza);
-    public static MagoDefault mago;
     //---------------------------------------------------------------
     // VARIABILI PRIVATE
     //--------------------------------------------------------------- 
@@ -42,14 +33,7 @@ public class BoardPanel extends JPanel implements KeyListener {
         super();
         this.addKeyListener(this);
         try {
-            sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));
-         
-         /*   a = ImageIO.read(getClass().getResource("/immagini/Mago.png"));
-            b = ImageIO.read(getClass().getResource("/immagini/MagoDx.png"));
-            c = ImageIO.read(getClass().getResource("/immagini/MagoSx.png"));   *///26/11
-                      
-            //mago = new MagoDefault(a,b,c);
-            
+            sfondo = ImageIO.read(getClass().getResource("/immagini/Sfondo_senza_mago.png"));  
 
         }catch (IOException ex) {
         }
@@ -62,7 +46,6 @@ public class BoardPanel extends JPanel implements KeyListener {
             return PREFERRED_SIZE;
     }
     
-
     @Override
     public void paintComponent(Graphics g) {
         
