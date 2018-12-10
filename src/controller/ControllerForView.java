@@ -65,7 +65,7 @@ public class ControllerForView implements IControllerForView {
             Model.getInstance().initGame();
     }
     public String getScore() {
-            return String.valueOf(ControllerForModel.getInstance().getScore());
+            return String.valueOf(Model.getInstance().getScore());
     }
 
     public void incrementScore() {
@@ -93,15 +93,15 @@ public class ControllerForView implements IControllerForView {
     public void statoCavaliere(int i){
         // non si sa colore[i] da dove nasceva fuori, perciò lo richiamo qui come
         // unica variabile.
-        String colore= ControllerForModel.getInstance().getColore(i);
-        int y=ControllerForModel.getInstance().getY(i);
-        Boolean esplosi = ControllerForModel.getInstance().getEsplosi(i);
-        int altezzaterreno = ControllerForModel.getInstance().getAltezzaterreno();
-        int movimento = ControllerForModel.getInstance().getMovimento();
-        int index = ControllerForModel.getInstance().getIndex(i);
-        if(ControllerForModel.getInstance().getControlloreMovimento(i)) 
+        String colore= Model.getInstance().getColore(i);
+        int y=Model.getInstance().getYArray()[i];
+        Boolean esplosi = Model.getInstance().getEsplosi(i);
+        int altezzaterreno = Model.getInstance().getAltezzaterreno();
+        int movimento = Model.getInstance().getMovimento();
+        int index = Model.getInstance().getIndex(i);
+        if(Model.getInstance().getControlloreMovimento(i)) 
             
-            y+= ControllerForModel.getInstance().getMovimento();
+            y+= Model.getInstance().getMovimento();
             if(esplosi)
                 y+=movimento+1;
                 Model.getInstance().setY(i, y);
@@ -130,7 +130,7 @@ public class ControllerForView implements IControllerForView {
 
         }
         if(colore == null){
-             colore = ControllerForModel.getInstance().getCavalieri(i).getColore();
+             colore = Model.getInstance().getCavalieri(i).getColore();
              Model.getInstance().setColore(i, colore);
              
         }
@@ -157,9 +157,9 @@ public class ControllerForView implements IControllerForView {
         }*/
         public void Colpito(boolean b, String s){
             
-            Cavaliere[] cavalieri = ControllerForModel.getInstance().getCavalieri();
-            int[] y = ControllerForModel.getInstance().getYArray();
-            Boolean[] esplosi = ControllerForModel.getInstance().getEsplosi();
+            Cavaliere[] cavalieri = Model.getInstance().getCavalieri();
+            int[] y = Model.getInstance().getYArray();
+            Boolean[] esplosi = Model.getInstance().getEsplosi();
             for(int i =0;(i<cavalieri.length)&&(b==false);i++){
                 if((cavalieri[i].getName()== s) && (esplosi[i]==false)&&(y[i]>-150)){
                     //pioggia[i] = null;
@@ -175,7 +175,7 @@ public class ControllerForView implements IControllerForView {
                     MagoDefault.getInstance().gestisciMago(i);
                     
                     incrementScore();
-                    updateScoreLabel(ControllerForModel.getInstance().getScore());
+                    updateScoreLabel(Model.getInstance().getScore());
                     b = true;
                 }
             }
@@ -189,11 +189,10 @@ public class ControllerForView implements IControllerForView {
         
     public void logicaPaint(Graphics g){
         
-          MagoInterface mago = ControllerForModel.getInstance().getMago();
-          //mago.stampaMago();
+          MagoInterface mago = Model.getInstance().getMago();
               
        
-        g.drawImage(ControllerForModel.getInstance().magoImg() ,ControllerForModel.getInstance().getXMago() ,ALTEZZA-190,100,108,null);
+        g.drawImage(MagoDefault.getInstance().magoImg() ,MagoDefault.getInstance().getXMago() ,ALTEZZA-190,100,108,null);
         if(getGiocoIniziato()==true) {
 
             Model.getInstance().setT1();
@@ -202,15 +201,15 @@ public class ControllerForView implements IControllerForView {
             
             
             if(diff >= Model.getInstance().getIntervalli(0) )
-                g.drawImage(ControllerForModel.getInstance().getPioggia(0),ControllerForModel.getInstance().getX(0),ControllerForModel.getInstance().getY(0),150,180,null);
+                g.drawImage(Model.getInstance().getPioggia(0),Model.getInstance().getXArray()[0],Model.getInstance().getYArray()[0],150,180,null);
             if(diff >= Model.getInstance().getIntervalli(1) )
-                g.drawImage(ControllerForModel.getInstance().getPioggia(1),ControllerForModel.getInstance().getX(1),ControllerForModel.getInstance().getY(1),150,180,null);
+                g.drawImage(Model.getInstance().getPioggia(1),Model.getInstance().getXArray()[1],Model.getInstance().getYArray()[1],150,180,null);
             if(diff >= Model.getInstance().getIntervalli(2) )
-                g.drawImage(ControllerForModel.getInstance().getPioggia(2),ControllerForModel.getInstance().getX(2),ControllerForModel.getInstance().getY(2),150,180,null);
+                g.drawImage(Model.getInstance().getPioggia(2),Model.getInstance().getXArray()[2],Model.getInstance().getYArray()[2],150,180,null);
             if(diff >= Model.getInstance().getIntervalli(3) )
-                g.drawImage(ControllerForModel.getInstance().getPioggia(3),ControllerForModel.getInstance().getX(3),ControllerForModel.getInstance().getY(3),150,180,null);
+                g.drawImage(Model.getInstance().getPioggia(3),Model.getInstance().getXArray()[3],Model.getInstance().getYArray()[3],150,180,null);
             if(diff >= Model.getInstance().getIntervalli(4) )
-                g.drawImage(ControllerForModel.getInstance().getPioggia(4),ControllerForModel.getInstance().getX(4),ControllerForModel.getInstance().getY(4),150,180,null);
+                g.drawImage(Model.getInstance().getPioggia(4),Model.getInstance().getXArray()[4],Model.getInstance().getYArray()[4],150,180,null);
            
             ControllerForModel.getInstance().resetOndata();           
             mago.movimentoBraccia(); 

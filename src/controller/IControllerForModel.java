@@ -9,31 +9,31 @@ import model.MagoInterface;
 
 public interface IControllerForModel {
         
-        public int getMovimento();
+       // public int getMovimento();
         
         public void resetOndata();
         
         public void aggiornaMovimento(int a); 
         
-        public int getAltezzaterreno();
+       /* public int getAltezzaterreno();
         
         public int getIndex(int i);
          
         public boolean getControlloreMovimento(int i);
         
-        public int[] getYArray();
+        public int[] getYArray();*/
         
-        public int getY(int i);
+       /* public int getY(int i);
         
-        public int getX(int i);
+        public int getX(int i);*/
         
-        public int getScore();
+       /* public int getScore();
         
-        public int getIntervalli(int i);
+        public int getIntervalli(int i);*/
         
         public int diffIntervallo(int i);
         
-        public  Boolean[] getEsplosi();
+        /*public  Boolean[] getEsplosi();
         
         public Boolean getEsplosi(int i);
         
@@ -51,7 +51,7 @@ public interface IControllerForModel {
         
         public int getXMago();
         
-        public BufferedImage magoImg();
+        public BufferedImage magoImg();*/
 
         
         
